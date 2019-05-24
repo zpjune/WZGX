@@ -47,7 +47,17 @@ export const constantRouterMap = [
       component: _import('frame_src/views/noticeViews/index'),
       name: '公告列表', meta: { title: '公告列表', icon: 'home', noCache: true },
       hidden: true
-    }]
+    },
+    {
+      path: '/cangchu/KCZS/ZXK', name: '中心库',
+      meta: { title: '中心库', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/ZXK'), hidden: true
+    },{
+      path: '/cangchu/KCZS/YLH', name: '原炼化分公司',
+      meta: { title: '原炼化分公司', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/YLH'), hidden: true
+    }
+    ]
   },
 ]
 
