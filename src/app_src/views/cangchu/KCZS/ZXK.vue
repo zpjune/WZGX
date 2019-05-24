@@ -1,5 +1,5 @@
 <template>
-  <div usemap="#planetmap" id="TotalZXK" class="app-container calendar-list-container ">
+  <div style="text-align:center" usemap="#planetmap" id="TotalZXK" class="app-container calendar-list-container ">
       <img
 src="../../../img/ZXKdetail.png"
 border="0" usemap="#planetmap"
@@ -7,22 +7,37 @@ alt="Planets" />
     <map name="planetmap" id="planetmap">
      <area
      shape="rect"
-     coords="236,110,304,357"
-     @click="dddd"
+     coords="274,120,331,384"
+     @click="OpenDialog"
+     />
+      <area
+     shape="rect"
+     coords="1334,170,1393,236"
+     @click="OpenDialog"
      />
     </map>
+    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog"></kucunzhanshidetail>
   </div>
 </template>
 
 <script>
+import kucunzhanshidetail from '@/app_src/components/cangchu/kucunzhanshidetail'
 export default {
   name: "TotalZXK",
   data() {
-    return {};
+    return {
+        kcmxDialog:false
+    };
+  },
+  components:{
+    kucunzhanshidetail
   },
   methods: {
-     dddd(){
-         alert("sdf")
+     OpenDialog(){
+         this.kcmxDialog=true;
+     },
+     closeDialog(val){
+         this.kcmxDialog=val;
      }
   }
 };
@@ -31,12 +46,8 @@ export default {
 
 
 <style lang="scss" scoped>
-.bg{
-    width:1669px;
-    height: 780px;
-    background-image: url('../../../img/ZXKdetail.png') ;
-    background-size: 1669px 780px;
-    
+.app-container{
+    padding-top: 2px;
 }
 </style>
 
