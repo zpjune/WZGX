@@ -10,7 +10,7 @@
             type="month"
             value-format="yyyy-MM-dd"
             placeholder="选择年月(起)"
-            :clearable="false"
+            :clearable="true"
           ></el-date-picker>
           <el-date-picker
             size="mini"
@@ -19,7 +19,7 @@
             type="month"
             value-format="yyyy-MM-dd"
             placeholder="选择年月(止)"
-            :clearable="false"
+            :clearable="true"
           ></el-date-picker>
           <el-button
             size="mini"
