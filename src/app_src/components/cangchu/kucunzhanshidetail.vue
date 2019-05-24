@@ -134,20 +134,13 @@ export default {
   watch: {
     kcmxdialogVisible(val) {
       this.kcmxdialog = val; //新增result的watch，监听变更并同步到myResult上
+     // var aa=document.querySelectorAll('.el-dialog__header');
+      // aa[0].style.background="#C0C0C0";
     }
   }
+ 
 };
 </script>
-
-
-
-<style lang="scss" scoped>
-
-.el-dialog__header{
-   background:rgb(192,192,192) !important 
- }
-
-  .app-container .el-dialog__body{
-  background:rgb(192,192,192)!important
-}
+<style  lang="scss" scoped>
+   
 </style>

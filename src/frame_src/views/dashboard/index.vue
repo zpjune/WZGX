@@ -43,7 +43,7 @@
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="22">
-                  <span>纳税人数统计图</span>
+                  <span>库存统计</span>
                 </el-col>
               </el-row>
             </div>
@@ -67,7 +67,7 @@
                   <img src="../../../frame_src/imgs/notice.png" alt class="pic">
                 </el-col>
                 <el-col :span="22">
-                  <span>每月纳税图</span>
+                  <span>出入库统计</span>
                 </el-col>
               </el-row>
             </div>
@@ -83,7 +83,7 @@
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="22">
-                  <span>纳税分档分析</span>
+                  <span>工作量统计</span>
                 </el-col>
               </el-row>
             </div>
