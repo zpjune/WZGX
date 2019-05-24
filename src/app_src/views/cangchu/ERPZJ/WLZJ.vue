@@ -2,7 +2,7 @@
   <div id="WLZJ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable></el-input>
+        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
