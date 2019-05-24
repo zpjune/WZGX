@@ -21,7 +21,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="12" :sm="12" :md="12" :lg="11" :xl="18">
+      <el-col :xs="24" :sm="22" :md="20" :lg="20" :xl="18">
         <el-table
           size="mini"
           :data="goods"
