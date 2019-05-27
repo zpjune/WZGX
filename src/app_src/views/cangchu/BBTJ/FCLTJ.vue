@@ -88,7 +88,7 @@
         </el-table-column>
       </el-table>
     </el-card>
-    <el-dialog :visible.sync="showed" width="80%" title="月度明细">
+    <el-dialog :visible.sync="showed" width="50%" title="月度明细">
       <div class="topSearh">
         <el-row>
           <el-col :span="24">
@@ -129,7 +129,7 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column width="200px" align="center" label="发出日期">
+          <el-table-column width="180px" align="center" label="发出日期">
             <template slot-scope="scope">
               <span>{{scope.row.BUDAT|parseTime}}</span>
             </template>
@@ -139,12 +139,12 @@
               <span>{{scope.row.ZCKTZD}}</span>
             </template>
           </el-table-column>
-          <el-table-column width="180px" align="center" label="发出量">
+          <el-table-column width="100px" align="center" label="发出量">
             <template slot-scope="scope">
               <span>{{scope.row.ZGZSL}}</span>
             </template>
           </el-table-column>
-          <el-table-column width="180px" align="center" label="金额">
+          <el-table-column width="100px" align="center" label="金额">
             <template slot-scope="scope">
               <span>{{scope.row.DMBTR|NumFormat}}</span>
             </template>

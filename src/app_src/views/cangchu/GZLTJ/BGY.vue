@@ -94,7 +94,7 @@
         style="text-align: center;"
       ></el-pagination>
     </el-card>
-    <el-dialog :visible.sync="showed" width="80%" title="月度明细">
+    <el-dialog :visible.sync="showed" width="45%" title="月度明细">
       <div class="topSearh">
         <el-row>
           <el-col :span="24">
@@ -134,7 +134,7 @@
               <span>{{scope.row.ZCJRQ|parseTime}}</span>
             </template>
           </el-table-column>
-          <el-table-column width="180px" align="center" label="单号">
+          <el-table-column  align="center" label="单号">
             <template slot-scope="scope">
               <span>{{scope.row.ZDHTZD}}</span>
             </template>
