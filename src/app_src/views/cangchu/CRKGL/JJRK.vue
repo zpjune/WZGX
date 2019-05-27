@@ -37,12 +37,12 @@
           <el-table-column label="计划单号" prop="ZSEQU" width="150px"></el-table-column>
           <el-table-column label="预留编号" prop="RSNUM" width="150px"></el-table-column>
           <el-table-column label="预留行项目编号" prop="RSPOS" width="150px"></el-table-column>
-          <el-table-column label="领料单号" prop="ZPLDH"></el-table-column>
+          <el-table-column label="领料单号" prop="ZPLDH" width="150px"></el-table-column>
           <el-table-column label="供应商编码" prop="LIFNR" width="150px"></el-table-column>
           <el-table-column label="采购订单数量" prop="MENGE" width="120px"></el-table-column>
-          <el-table-column label="库存地点" prop="LGORT"></el-table-column>
+          <el-table-column label="库存地点" prop="LGORT" width="150px"></el-table-column>
           <el-table-column label="记录创建日期" prop="ZCJRQ" width="150px"></el-table-column>
-          <el-table-column label="创建人" prop="ZCJR"></el-table-column>
+          <el-table-column label="创建人" prop="ZCJR" width="150px"></el-table-column>
           <el-table-column label="状态" prop="ZSTATUS"></el-table-column>
         </el-table>
         <el-pagination

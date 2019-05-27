@@ -6,10 +6,11 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="12" :sm="12" :md="12" :lg="11" :xl="18">
+      <el-col :xs="24" :sm="20" :md="20" :lg="20" :xl="18">
         <el-table
           size="mini"
           :data="goods"
@@ -21,7 +22,9 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="工厂代码" prop="BWKEY"></el-table-column>
+          <!-- <el-table-column label="工厂代码" prop="BWKEY"></el-table-column> -->
+          <el-table-column type="expand">
+          </el-table-column>
           <el-table-column label="大类" prop="MATKL"></el-table-column>
           <el-table-column label="中类" prop="MATKL1"></el-table-column>
           <el-table-column label="小类" prop="MATKL2"></el-table-column>
@@ -75,14 +78,14 @@ export default {
           MATKL3: "未知类",
           SALK3: 1000000
         },
-         {
+        {
           BWKEY: "北京XX贸易公司",
           MATKL: "裤子",
           MATKL1: "七分裤",
           MATKL2: "男士休闲7分库",
           MATKL3: "未知类",
           SALK3: 1000000
-        },
+        }
       ]
     };
   },
