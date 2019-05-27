@@ -9,7 +9,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="12" :sm="12" :md="12" :lg="11" :xl="18">
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-table
           size="mini"
           :data="goods"
@@ -21,13 +21,13 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="库存地点" prop="LGORT"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR"></el-table-column>
+          <el-table-column label="库存地点" width="80" prop="LGORT"></el-table-column>
+          <el-table-column label="物料编码" width="100" prop="MATNR"></el-table-column>
           <el-table-column label="大类" prop="MATKL"></el-table-column>
           <el-table-column label="中类" prop="MATKL1"></el-table-column>
           <el-table-column label="小类" prop="MATKL2"></el-table-column>
           <el-table-column label="品名" prop="MATKL3"></el-table-column>
-          <el-table-column label="金额" prop="SALK3"></el-table-column>
+          <el-table-column label="金额" width="100"  prop="SALK3"></el-table-column>
         </el-table>
         <el-pagination
           background
@@ -53,42 +53,77 @@ export default {
       listloading: false,
       goods: [
         {
-          LGORT: "天津",
-          MATNR: "0101",
-          BWKEY: "创智信息技术",
-          MATKL: "服装类",
-          MATKL1: "裙子",
-          MATKL2: "超短裙",
-          MATKL3: "未知类",
+          LGORT: "C2W1",
+          MATNR: "10001506386",
+          MATKL: "37  石油专用仪器、仪表",
+          MATKL1: "3705  石油产品分析仪器",
+          MATKL2: "370505  超声波分析仪器",
+          MATKL3: "37050503  超声波含砂监测仪",
           SALK3: 1000000
         },
         {
-          LGORT: "天津",
-          MATNR: "0101",
-          MATKL: "鞋类",
-          MATKL1: "凉鞋",
-          MATKL2: "露脚凉鞋",
-          MATKL3: "未知类",
-          SALK3: 1000000
+          LGORT: "C271",
+          MATNR: "11004421013",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390505  汽车发动机维修加工设备及工具",
+          MATKL3: "39050507  气缸体平面磨床",
+          SALK3: 1300000
         },
         {
-          LGORT: "天津",
-          MATNR: "0101",
+  LGORT: "C2W1",
+          MATNR: "11001889505",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390508  汽车底盘维修加工设备及工具",
+          MATKL3: "39050815  制动盘切削机",
+          SALK3: 14000000
+        },
+        {
+  LGORT: "C271",
+          MATNR: "20002264284",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390509  汽车电气设备及车用辅助装置检修设备及工具",
+          MATKL3: "39050923  蓄电池活化仪",
+          SALK3: 1500000
+        },
 
-          MATKL: "上衣",
-          MATKL1: "女士上衣",
-          MATKL2: "女士露肩上衣",
-          MATKL3: "未知类",
-          SALK3: 1000000
+                {
+          LGORT: "C2W1",
+          MATNR: "10001506386",
+          MATKL: "40  工具、量具、刃具、磨具",
+          MATKL1: "4001  普通工具",
+          MATKL2: "400101  扳手",
+          MATKL3: "40010116  棘轮扳手",
+          SALK3: 1400000
         },
         {
-          LGORT: "天津",
-          MATNR: "0101",
-          MATKL: "裤子",
-          MATKL1: "七分裤",
-          MATKL2: "男士休闲7分库",
-          MATKL3: "未知类",
-          SALK3: 1000000
+          LGORT: "C271",
+          MATNR: "11004421013",
+          MATKL: "40  工具、量具、刃具、磨具",
+          MATKL1: "4001  普通工具",
+          MATKL2: "400101  扳手",
+          MATKL3: "40010136  强力气动扳手",
+          SALK3: 1300000
+        },
+        {
+  LGORT: "C2W1",
+          MATNR: "11001889505",
+          MATKL: "40  工具、量具、刃具、磨具",
+          MATKL1: "4001  普通工具",
+          MATKL2: "400102  钳子",
+          MATKL3: "40010224  针嘴钳",
+          SALK3: 14000000
+        },
+        {
+  LGORT: "C271",
+          MATNR: "20002264284",
+          MATKL: "45  消防器材",
+          MATKL1: "4502  消防器械",
+          MATKL2: "450203  消火栓",
+          MATKL3: "45020303  室外地下消火栓",
+          SALK3: 1500000
         }
       ]
     };

@@ -2,14 +2,23 @@
   <div id="SWKC" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable></el-input>
+        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
+      </el-col>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
+      </el-col>
+       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
+      </el-col>
+       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="12" :sm="12" :md="12" :lg="11" :xl="12">
+      <el-col :xs="24" :sm="22" :md="12" :lg="22" :xl="20">
         <el-table
           size="mini"
           :data="fac"
@@ -22,6 +31,8 @@
           style="width: 100%"
         >
           <el-table-column label="物料编码" prop="MATNR"></el-table-column>
+          <el-table-column label="物料名称" prop="MATNRNAME"></el-table-column>
+          <el-table-column label="库存地点编号" prop="LGORTCODE"></el-table-column>
           <el-table-column label="库存地点" prop="LGORT"></el-table-column>
           <el-table-column label="数量" prop="GESME"></el-table-column>
         </el-table>
@@ -49,24 +60,74 @@ export default {
       listloading: false,
       fac: [
         {
-          MATNR: "0101",
-          LGORT: "天津",
-          GESME:800,
+          MATNR: "04010302 ",
+          MATNRNAME:"冷顶锻用合金钢丝",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
         },
         {
-          MATNR: "0102",
-          LGORT: "北京",
-          GESME:900,
+          MATNR: "04010402",
+          MATNRNAME:"滤机用不锈钢丝",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
         },
         {
-          MATNR: "0102",
-          LGORT: "上海",
-          GESME:10000,
+          MATNR: "05010202",
+          MATNRNAME:"电解铜",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
         },
         {
-          MATNR: "0103",
-          LGORT: "深圳",
-          GESME:850,
+          MATNR: "05020201",
+          MATNRNAME:"铸造铝合金锭",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        },
+          {
+          MATNR: "05110216",
+          MATNRNAME:"白铜矩形管",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
+        {
+          MATNR: "05120206",
+          MATNRNAME:"铝合金滴形管",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        },
+          {
+          MATNR: "05120901",
+          MATNRNAME:"铝合金角材",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
+        {
+          MATNR: "05210802",
+          MATNRNAME:"铸造碳化钨粉",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        },
+          {
+          MATNR: "05190801",
+          MATNRNAME:"钛粉",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
+        {
+          MATNR: "05180101",
+          MATNRNAME:"镁合金棒",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
         },
       ]
     };

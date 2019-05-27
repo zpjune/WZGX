@@ -4,12 +4,16 @@
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
+       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-input placeholder="请输入工厂名称" style="width:95%;" size="mini" clearable></el-input>
+      </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="12" :sm="12" :md="12" :lg="11" :xl="10">
+      <el-col :xs="16" :sm="16" :md="16" :lg="15" :xl="14">
         <el-table
           size="mini"
           :data="fac"
@@ -21,7 +25,8 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="单位（工厂）" prop="BWKEY"></el-table-column>
+          <el-table-column label="工厂编码" prop="BWKEY"></el-table-column>
+          <el-table-column label="工厂名称" prop="GCNAME"></el-table-column>
           <el-table-column label="金额" prop="SALK3"></el-table-column>
         </el-table>
         <el-pagination
@@ -48,27 +53,33 @@ export default {
       listloading: false,
       fac: [
         {
-          BWKEY: "创智信息技术",
+          BWKEY: "ZXK9876",
+          GCNAME:"中心库",
           SALK3: 1000000
         },
         {
-          BWKEY: "辽河数码",
+          BWKEY: "ZYK0980",
+          GCNAME:"转运库",
           SALK3: 15000000
         },
         {
-          BWKEY: "北京XX发展有限公司",
+          BWKEY: "ZYG8963",
+          GCNAME:"专用管分公司",
           SALK3: 15000000
         },
         {
-          BWKEY: "天津XX贸易公司",
+          BWKEY: "YLH5247",
+          GCNAME:"原炼化分公司",
           SALK3: 15084000
         },
         {
-          BWKEY: "上海XX贸易公司",
+          BWKEY: "QCK9043",
+          GCNAME:"港东器材库",
           SALK3: 15000960
         },
         {
-          BWKEY: "深圳XX贸易公司",
+          BWKEY: "FZK9422",
+          GCNAME:"辅助器材库",
           SALK3: 15000960
         }
       ]

@@ -5,14 +5,29 @@
         <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入大类编码" style="width:95%;" size="mini" clearable></el-input>
+        <!-- <el-input placeholder="请选择物资分类" style="width:95%;" size="mini" clearable></el-input> -->
+         <el-select
+            size="mini"
+            filterable
+            clearable
+            placeholder="请选择物资分类"
+            v-model="categoryCode"
+            style="width:95%;"
+          >
+            <el-option
+              v-for="item in categoryList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
       </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+      <!-- <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入中类编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入小类编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
+      </el-col>-->
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入品名编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
@@ -22,7 +37,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="24" :sm="22" :md="20" :lg="20" :xl="18">
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-table
           size="mini"
           :data="goods"
@@ -34,7 +49,8 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="工厂代码" prop="BWKEY"></el-table-column>
+          <el-table-column label="工厂编码" prop="BWKEY"></el-table-column>
+          <el-table-column label="工厂名称" prop="GCNAME"></el-table-column>
           <el-table-column label="大类" prop="MATKL"></el-table-column>
           <el-table-column label="中类" prop="MATKL1"></el-table-column>
           <el-table-column label="小类" prop="MATKL2"></el-table-column>
@@ -63,39 +79,117 @@ export default {
   data() {
     return {
       listloading: false,
-      goods: [
+      categoryCode:"",
+      categoryList: [
         {
-          BWKEY: "创智信息技术",
-          MATKL: "服装类",
-          MATKL1: "裙子",
-          MATKL2: "超短裙",
-          MATKL3: "未知类",
-          SALK3: 1000000
+          value: "大类",
+          label: "大类"
         },
         {
-          BWKEY: "辽河数码",
-          MATKL: "鞋类",
-          MATKL1: "凉鞋",
-          MATKL2: "露脚凉鞋",
-          MATKL3: "未知类",
-          SALK3: 1000000
+          value: "中类",
+          label: "中类"
         },
         {
-          BWKEY: "天津XX贸易公司",
-          MATKL: "上衣",
-          MATKL1: "女士上衣",
-          MATKL2: "女士露肩上衣",
-          MATKL3: "未知类",
-          SALK3: 1000000
+          value: "小类",
+          label: "小类"
         },
          {
-          BWKEY: "北京XX贸易公司",
-          MATKL: "裤子",
-          MATKL1: "七分裤",
-          MATKL2: "男士休闲7分库",
-          MATKL3: "未知类",
-          SALK3: 1000000
+          value: "品名",
+          label: "品名"
+        }
+      ],
+      goods: [
+        {
+          BWKEY: "ZXK9876",
+          GCNAME: "中心库",
+          MATKL: "01  冶金原料及铸铁管",
+          MATKL1: "0101  黑色金属矿采选产品",
+          MATKL2: "010101  铁矿石",
+          MATKL3: "01010101  赤铁矿",
+          SALK3: 1400000
         },
+        {
+          BWKEY: "ZYK0980",
+          GCNAME: "转运库",
+          MATKL: "01  冶金原料及铸铁管",
+          MATKL1: "0103  废金属",
+          MATKL2: "010301  废黑色金属",
+          MATKL3: "01030101  废钢",
+          SALK3: 1600000
+        },
+        {
+          BWKEY: "ZYG8963",
+          GCNAME: "专用管分公司",
+          MATKL: "01  冶金原料及铸铁管",
+          MATKL1: "0102  有色金属矿采选产品",
+          MATKL2: "010213  稀有金属矿",
+          MATKL3: "01021304  镉矿",
+          SALK3: 1800000
+        },
+        {
+          BWKEY: "YLH5247",
+          GCNAME: "原炼化分公司",
+          MATKL: "02  石油专用管材",
+          MATKL1: "0202  钻杆",
+          MATKL2: "020202  左旋螺纹钻杆",
+          MATKL3: "02020201  左旋螺纹钻杆",
+          SALK3: 1700000
+        },
+        {
+          BWKEY: "QCK9043",
+          GCNAME: "港东器材库",
+          MATKL: "02  石油专用管材",
+          MATKL1: "0202  钻杆",
+          MATKL2: "020202  左旋螺纹钻杆",
+          MATKL3: "02020203  左旋螺纹内外加厚钻杆",
+          SALK3: 1500000
+        },
+
+         {
+          BWKEY: "ZXK9876",
+          GCNAME: "中心库",
+          MATKL: "07  石油及产品",
+          MATKL1: "0702  石油气体",
+          MATKL2: "070202  炼厂气体",
+          MATKL3: "07020203  工业丁烷",
+          SALK3: 1400000
+        },
+        {
+          BWKEY: "ZYK0980",
+          GCNAME: "转运库",
+          MATKL: "06  建筑五金",
+          MATKL1: "0699  其它建筑五金",
+          MATKL2: "069999  其它建筑五金",
+          MATKL3: "06999901  篷布网",
+          SALK3: 1600000
+        },
+        {
+          BWKEY: "ZYG8963",
+          GCNAME: "专用管分公司",
+          MATKL: "06  建筑五金",
+          MATKL1: "0699  其它建筑五金",
+          MATKL2: "069903  钢制品",
+          MATKL3: "06990317  宣传板支架",
+          SALK3: 1800000
+        },
+        {
+          BWKEY: "YLH5247",
+          GCNAME: "原炼化分公司",
+          MATKL: "09  非金属建筑材料",
+          MATKL1: "0901  砖",
+          MATKL2: "090102  烧结空心砖",
+          MATKL3: "09010203  空心砌块",
+          SALK3: 1700000
+        },
+        {
+          BWKEY: "QCK9043",
+          GCNAME: "港东器材库",
+          MATKL: "11  木材及制品",
+          MATKL1: "1101  原木",
+          MATKL2: "110102  锯切用针叶树原木",
+          MATKL3: "11010203  樟子松",
+          SALK3: 1500000
+        }
       ]
     };
   },
