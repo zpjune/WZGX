@@ -144,7 +144,7 @@ export default {
 .navbar-set {
     background-color: transparent;
     margin-top: 2px;
-    height: 50px;
+    height: 54px;
     line-height: 50px;
     border-radius: 0px !important;
 
