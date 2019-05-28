@@ -6,7 +6,7 @@
     <div class="topSearh" id="topsearch">
       <el-row>
         <el-col :span="3">
-          <el-input placeholder="入库单号" style="width:95%;" size="mini" clearable></el-input>
+          <el-input placeholder="出库单号" style="width:95%;" size="mini" clearable></el-input>
         </el-col>
         <el-col :span="3">
           <el-date-picker
@@ -14,7 +14,7 @@
             style="width:200px;"
             type="month"
             value-format="yyyy-MM-dd"
-            placeholder="入库时间"
+            placeholder="出库时间"
             v-model="listQuery.RKSJ"
             :clearable="true"
           ></el-date-picker>
@@ -68,7 +68,7 @@
             highlight-current-row
             style="width: 100%;text-align:left;"
           >
-            <el-table-column align="center" label="入库单号" :show-overflow-tooltip="true">
+            <el-table-column align="center" label="出库单号" :show-overflow-tooltip="true">
               <template slot-scope="scope">
                 <span>{{scope.row.RKDH}}</span>
               </template>
@@ -101,7 +101,7 @@
                 <span>{{scope.row.CKH}}</span>
               </template>
             </el-table-column>
-            <el-table-column align="center" label="入库时间" :show-overflow-tooltip="true">
+            <el-table-column align="center" label="出库时间" :show-overflow-tooltip="true">
               <template slot-scope="scope">
                 <span>{{scope.row.RKSJ}}</span>
               </template>
@@ -152,7 +152,7 @@
       <el-card>
         <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;">
           <el-col :span="24">
-            <el-form-item label="入库单号" prop="RKDH">
+            <el-form-item label="出库单号" prop="RKDH">
               <el-input v-model="temp.RKDH"></el-input>
             </el-form-item>
           </el-col>
@@ -189,7 +189,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="入库时间" prop="RKSJ">
+            <el-form-item label="出库时间" prop="RKSJ">
               <el-date-picker
                 type="date"
                 placeholder="选择日期"
@@ -251,50 +251,170 @@ export default {
       tableKey: 0,
       list: [
         {
-          RKDH: "RKD-201908170987",
+          RKDH: "2-20190118-00021",
           SL: 200,
           JE: 6000,
           RKSJ: "2019-08-17 14:00:00.000",
           BGY: "张三",
-          WLBM: "12902001",
-          WLMC: "火塞花",
-          WLZ: "配件",
+          WLBM: "03090603",
+          WLMC: "翅片无缝钢管",
+          WLZ: "89715251",
           KCDD: "一号仓库",
           CKH: "001"
         },
         {
-          RKDH: "RKD-201908170987",
+          RKDH: "2-20190120-00023",
           SL: 200,
           JE: 6000,
           RKSJ: "2019-08-17 14:00:00.000",
           BGY: "张三",
-          WLBM: "12902001",
-          WLMC: "基站",
-          WLZ: "配件",
+          WLBM: "03090801",
+          WLMC: "液压支柱用热轧无缝钢管",
+          WLZ: "17020123",
           KCDD: "一号仓库",
           CKH: "001"
         },
         {
-          RKDH: "RKD-201908170987",
+          RKDH: "2-20190119-00092",
           SL: 200,
           JE: 6000,
           RKSJ: "2019-08-17 14:00:00.000",
           BGY: "张三",
-          WLBM: "12902001",
-          WLMC: "铁管",
-          WLZ: "配件",
+          WLBM: "03100102",
+          WLMC: "镀锌焊接钢管",
+          WLZ: "89715251",
+          KCDD: "一号仓库",
+          CKH: "001"
+        }
+        ,{
+          RKDH: "2-20190118-00011",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "03090403",
+          WLMC: "高压锅炉用无缝钢管",
+          WLZ: "17021117",
           KCDD: "一号仓库",
           CKH: "001"
         },
         {
-          RKDH: "RKD-201908170987",
+          RKDH: "2-20190118-00031",
           SL: 200,
           JE: 6000,
           RKSJ: "2019-08-17 14:00:00.000",
           BGY: "张三",
-          WLBM: "12902001",
-          WLMC: "螺丝",
-          WLZ: "配件",
+          WLBM: "03090201",
+          WLMC: "合金无缝钢管",
+          WLZ: "44011501",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190120-00033",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "04010202",
+          WLMC: "预应力钢丝",
+          WLZ: "17020202",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190119-00042",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "04010105",
+          WLMC: "通讯用镀锌钢丝",
+          WLZ: "17020202",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+                {
+          RKDH: "2-20190118-00011",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "03100303",
+          WLMC: "钢门窗用异型焊接钢管",
+          WLZ: "17020123",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190118-00021",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "03090603",
+          WLMC: "翅片无缝钢管",
+          WLZ: "89715251",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190120-00023",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "03090801",
+          WLMC: "液压支柱用热轧无缝钢管",
+          WLZ: "17020123",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190119-00092",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "03100102",
+          WLMC: "镀锌焊接钢管",
+          WLZ: "89715251",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+                {
+          RKDH: "2-20190118-00031",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "03090201",
+          WLMC: "合金无缝钢管",
+          WLZ: "44011501",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190120-00033",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "04010202",
+          WLMC: "预应力钢丝",
+          WLZ: "17020202",
+          KCDD: "一号仓库",
+          CKH: "001"
+        },
+        {
+          RKDH: "2-20190119-00042",
+          SL: 200,
+          JE: 6000,
+          RKSJ: "2019-08-17 14:00:00.000",
+          BGY: "张三",
+          WLBM: "04010105",
+          WLMC: "通讯用镀锌钢丝",
+          WLZ: "17020202",
           KCDD: "一号仓库",
           CKH: "001"
         }
