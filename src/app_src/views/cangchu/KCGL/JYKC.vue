@@ -6,6 +6,7 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -27,7 +28,7 @@
           <el-table-column label="中类" prop="MATKL1"></el-table-column>
           <el-table-column label="小类" prop="MATKL2"></el-table-column>
           <el-table-column label="品名" prop="MATKL3"></el-table-column>
-          <el-table-column label="金额" width="100"  prop="SALK3"></el-table-column>
+          <el-table-column label="金额" width="100" prop="SALK3"></el-table-column>
         </el-table>
         <el-pagination
           background
@@ -35,9 +36,9 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="1"
+          :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="20"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -52,6 +53,33 @@ export default {
     return {
       listloading: false,
       goods: [
+         {
+          LGORT: "C271",
+          MATNR: "20002264284",
+          MATKL: "45  消防器材",
+          MATKL1: "4502  消防器械",
+          MATKL2: "450203  消火栓",
+          MATKL3: "45020303  室外地下消火栓",
+          SALK3: 1500000
+        },
+        {
+          LGORT: "C271",
+          MATNR: "11004421013",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390505  汽车发动机维修加工设备及工具",
+          MATKL3: "39050507  气缸体平面磨床",
+          SALK3: 1300000
+        },
+        {
+          LGORT: "C2W1",
+          MATNR: "11001889505",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390508  汽车底盘维修加工设备及工具",
+          MATKL3: "39050815  制动盘切削机",
+          SALK3: 14000000
+        },
         {
           LGORT: "C2W1",
           MATNR: "10001506386",
@@ -71,7 +99,7 @@ export default {
           SALK3: 1300000
         },
         {
-  LGORT: "C2W1",
+          LGORT: "C2W1",
           MATNR: "11001889505",
           MATKL: "39  小型机械",
           MATKL1: "3905  机动车检测维修设备及工具",
@@ -80,7 +108,7 @@ export default {
           SALK3: 14000000
         },
         {
-  LGORT: "C271",
+          LGORT: "C271",
           MATNR: "20002264284",
           MATKL: "39  小型机械",
           MATKL1: "3905  机动车检测维修设备及工具",
@@ -89,7 +117,7 @@ export default {
           SALK3: 1500000
         },
 
-                {
+        {
           LGORT: "C2W1",
           MATNR: "10001506386",
           MATKL: "40  工具、量具、刃具、磨具",
@@ -108,7 +136,7 @@ export default {
           SALK3: 1300000
         },
         {
-  LGORT: "C2W1",
+          LGORT: "C2W1",
           MATNR: "11001889505",
           MATKL: "40  工具、量具、刃具、磨具",
           MATKL1: "4001  普通工具",
@@ -117,7 +145,70 @@ export default {
           SALK3: 14000000
         },
         {
-  LGORT: "C271",
+          LGORT: "C271",
+          MATNR: "20002264284",
+          MATKL: "45  消防器材",
+          MATKL1: "4502  消防器械",
+          MATKL2: "450203  消火栓",
+          MATKL3: "45020303  室外地下消火栓",
+          SALK3: 1500000
+        },
+        {
+          LGORT: "C271",
+          MATNR: "11004421013",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390505  汽车发动机维修加工设备及工具",
+          MATKL3: "39050507  气缸体平面磨床",
+          SALK3: 1300000
+        },
+        {
+          LGORT: "C2W1",
+          MATNR: "11001889505",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390508  汽车底盘维修加工设备及工具",
+          MATKL3: "39050815  制动盘切削机",
+          SALK3: 14000000
+        },
+        {
+          LGORT: "C271",
+          MATNR: "20002264284",
+          MATKL: "39  小型机械",
+          MATKL1: "3905  机动车检测维修设备及工具",
+          MATKL2: "390509  汽车电气设备及车用辅助装置检修设备及工具",
+          MATKL3: "39050923  蓄电池活化仪",
+          SALK3: 1500000
+        },
+         {
+          LGORT: "C2W1",
+          MATNR: "10001506386",
+          MATKL: "40  工具、量具、刃具、磨具",
+          MATKL1: "4001  普通工具",
+          MATKL2: "400101  扳手",
+          MATKL3: "40010116  棘轮扳手",
+          SALK3: 1400000
+        },
+        {
+          LGORT: "C271",
+          MATNR: "11004421013",
+          MATKL: "40  工具、量具、刃具、磨具",
+          MATKL1: "4001  普通工具",
+          MATKL2: "400101  扳手",
+          MATKL3: "40010136  强力气动扳手",
+          SALK3: 1300000
+        },
+        {
+          LGORT: "C2W1",
+          MATNR: "11001889505",
+          MATKL: "40  工具、量具、刃具、磨具",
+          MATKL1: "4001  普通工具",
+          MATKL2: "400102  钳子",
+          MATKL3: "40010224  针嘴钳",
+          SALK3: 14000000
+        },
+        {
+          LGORT: "C271",
           MATNR: "20002264284",
           MATKL: "45  消防器材",
           MATKL1: "4502  消防器械",

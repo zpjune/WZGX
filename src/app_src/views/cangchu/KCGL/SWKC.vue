@@ -15,10 +15,11 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="24" :sm="22" :md="12" :lg="22" :xl="20">
+      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-table
           size="mini"
           :data="fac"
@@ -42,9 +43,9 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="1"
+          :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="20"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -59,6 +60,35 @@ export default {
     return {
       listloading: false,
       fac: [
+          {
+          MATNR: "05020201",
+          MATNRNAME:"铸造铝合金锭",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        },
+        
+          {
+          MATNR: "05120901",
+          MATNRNAME:"铝合金角材",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
+        {
+          MATNR: "05210802",
+          MATNRNAME:"铸造碳化钨粉",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        },
+          {
+          MATNR: "05190801",
+          MATNRNAME:"钛粉",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
         {
           MATNR: "04010302 ",
           MATNRNAME:"冷顶锻用合金钢丝",
@@ -129,6 +159,34 @@ export default {
           LGORT: "仓库二东区71号",
           GESME: 900
         },
+         {
+          MATNR: "05010202",
+          MATNRNAME:"电解铜",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
+        {
+          MATNR: "05020201",
+          MATNRNAME:"铸造铝合金锭",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        },
+          {
+          MATNR: "05110216",
+          MATNRNAME:"白铜矩形管",
+          LGORTCODE:"C2W1",
+          LGORT: "仓库二西区1号",
+          GESME: 800
+        },
+        {
+          MATNR: "05120206",
+          MATNRNAME:"铝合金滴形管",
+          LGORTCODE:"C271",
+          LGORT: "仓库二东区71号",
+          GESME: 900
+        }
       ]
     };
   },

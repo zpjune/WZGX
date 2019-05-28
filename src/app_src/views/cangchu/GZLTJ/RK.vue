@@ -17,10 +17,11 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="12" :sm="12" :md="12" :lg="11" :xl="10">
+      <el-col :xs="22" :sm="20" :md="20" :lg="18" :xl="16">
         <el-table
           size="mini"
           :data="list"

@@ -63,9 +63,9 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="1"
+          :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="20"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -127,6 +127,80 @@ export default {
           SALK3: 1800000
         },
         {
+          BWKEY: "YLH5247",
+          GCNAME: "原炼化分公司",
+          MATKL: "02  石油专用管材",
+          MATKL1: "0202  钻杆",
+          MATKL2: "020202  左旋螺纹钻杆",
+          MATKL3: "02020201  左旋螺纹钻杆",
+          SALK3: 1700000
+        },
+        {
+          BWKEY: "QCK9043",
+          GCNAME: "港东器材库",
+          MATKL: "02  石油专用管材",
+          MATKL1: "0202  钻杆",
+          MATKL2: "020202  左旋螺纹钻杆",
+          MATKL3: "02020203  左旋螺纹内外加厚钻杆",
+          SALK3: 1500000
+        },
+
+         {
+          BWKEY: "ZXK9876",
+          GCNAME: "中心库",
+          MATKL: "07  石油及产品",
+          MATKL1: "0702  石油气体",
+          MATKL2: "070202  炼厂气体",
+          MATKL3: "07020203  工业丁烷",
+          SALK3: 1400000
+        },
+        {
+          BWKEY: "ZYK0980",
+          GCNAME: "转运库",
+          MATKL: "06  建筑五金",
+          MATKL1: "0699  其它建筑五金",
+          MATKL2: "069999  其它建筑五金",
+          MATKL3: "06999901  篷布网",
+          SALK3: 1600000
+        },
+        {
+          BWKEY: "ZYG8963",
+          GCNAME: "专用管分公司",
+          MATKL: "06  建筑五金",
+          MATKL1: "0699  其它建筑五金",
+          MATKL2: "069903  钢制品",
+          MATKL3: "06990317  宣传板支架",
+          SALK3: 1800000
+        },
+        {
+          BWKEY: "YLH5247",
+          GCNAME: "原炼化分公司",
+          MATKL: "09  非金属建筑材料",
+          MATKL1: "0901  砖",
+          MATKL2: "090102  烧结空心砖",
+          MATKL3: "09010203  空心砌块",
+          SALK3: 1700000
+        },
+       
+         {
+          BWKEY: "YLH5247",
+          GCNAME: "原炼化分公司",
+          MATKL: "09  非金属建筑材料",
+          MATKL1: "0901  砖",
+          MATKL2: "090102  烧结空心砖",
+          MATKL3: "09010203  空心砌块",
+          SALK3: 1700000
+        },
+        {
+          BWKEY: "QCK9043",
+          GCNAME: "港东器材库",
+          MATKL: "11  木材及制品",
+          MATKL1: "1101  原木",
+          MATKL2: "110102  锯切用针叶树原木",
+          MATKL3: "11010203  樟子松",
+          SALK3: 1500000
+        },
+                {
           BWKEY: "YLH5247",
           GCNAME: "原炼化分公司",
           MATKL: "02  石油专用管材",

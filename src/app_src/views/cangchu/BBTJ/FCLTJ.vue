@@ -25,7 +25,6 @@
             size="mini"
             class="filter-item"
             type="primary"
-            v-waves
             icon="el-icon-search"
             @click="handleFilter"
           >搜索</el-button>
@@ -110,7 +109,6 @@
               size="mini"
               class="filter-item"
               type="primary"
-              v-waves
               icon="el-icon-search"
               @click="handleFilterDetail"
             >搜索</el-button>
@@ -179,7 +177,6 @@
 </template>
 
 <script>
-import waves from "@/frame_src/directive/waves"; // 水波纹指令
 import panel from "@/frame_src/components/TreeList/panel.vue";
 import { getToken } from "@/frame_src/utils/auth";
 import { parseTime1 } from "@/frame_src/utils/index.js";
@@ -192,6 +189,26 @@ export default {
       tableKey: 0,
       list: [],
       sumlist: [
+          {
+          BUDAT: "2019-01-08 12:00:00",
+          ZGZSL: 900,
+          MSEG: 210000
+        },
+          {
+          BUDAT: "2019-02-08 12:00:00",
+          ZGZSL: 510,
+          MSEG: 210000
+        },
+          {
+          BUDAT: "2019-03-08 12:00:00",
+          ZGZSL: 560,
+          MSEG: 280000
+        },
+          {
+          BUDAT: "2019-04-08 12:00:00",
+          ZGZSL: 300,
+          MSEG: 210000
+        },
         {
           BUDAT: "2019-05-08 12:00:00",
           ZGZSL: 500,
@@ -226,47 +243,47 @@ export default {
       sumlistLoading: false,
       list: [
         {
-          ZCKTZD:"CKD-201905060111",
+          ZCKTZD:"2-20170203-00032",
           BUDAT: "2019/01/31 00:00:00.000",
-          ZGZSL: 77,
+          ZGZSL: 76,
           DMBTR: 35000,
           MATNR:"物料1",
           LGORT:"仓库1"
         },
          {
-          ZCKTZD:"CKD-201905060111",
+          ZCKTZD:"3-20191008-00033",
           BUDAT: "2019-10-08 12:00:00",
-          ZGZSL: 77,
+          ZGZSL: 57,
           DMBTR: 35000,
           MATNR:"物料1",
           LGORT:"仓库1"
         },
          {
-          ZCKTZD:"CKD-201905060111",
+          ZCKTZD:"5-20191008-00035",
           BUDAT: "2019-10-08 12:00:00",
-          ZGZSL: 77,
+          ZGZSL: 37,
           DMBTR: 35000,
           MATNR:"物料1",
           LGORT:"仓库1"
         },
          {
-          ZCKTZD:"CKD-201905060111",
+          ZCKTZD:"2-20191008-00011",
           BUDAT: "2019-10-08 12:00:00",
-          ZGZSL: 77,
+          ZGZSL: 97,
           DMBTR: 35000,
           MATNR:"物料1",
           LGORT:"仓库1"
         },
          {
-          ZCKTZD:"CKD-201905060111",
+          ZCKTZD:"4-20191008-00031",
           BUDAT: "2019-10-08 12:00:00",
-          ZGZSL: 77,
+          ZGZSL: 107,
           DMBTR: 35000,
           MATNR:"物料1",
           LGORT:"仓库1"
         },
          {
-          ZCKTZD:"CKD-201905060111",
+          ZCKTZD:"4-20191008-00051",
           BUDAT: "2019-10-08 12:00:00",
           ZGZSL: 77,
           DMBTR: 35000,
@@ -305,6 +322,7 @@ export default {
     parseTime1,
     NumFormat
   },
+
   methods: {
     getSummaries(param) {
       const { columns, data } = param;

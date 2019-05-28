@@ -15,7 +15,7 @@
         </el-col>
 
         <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-          <el-input placeholder="保管员"  style="width:95%;"  size="mini" clearable></el-input>
+          <el-input placeholder="保管员" style="width:95%;" size="mini" clearable></el-input>
         </el-col>
         <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
           <el-button
@@ -26,26 +26,25 @@
             icon="el-icon-search"
             @click="handleFilter"
           >搜索</el-button>
+          <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
           <!-- <el-button size="mini" type="primary" icon="el-icon-edit" @click="exportSumExcel">导出</el-button> -->
         </el-col>
       </el-row>
     </div>
-
-    <el-card class="box-card">
-      <el-table
-        size="mini"
-        :data="sumlist"
-        :header-cell-class-name="tableRowClassName"
-        v-loading="sumlistLoading"
-        element-loading-text="给我一点时间"
-        border
-        fit
-        highlight-current-row
-        style="width: 100%"
-        :summary-method="getSummaries"
-        show-summary
-      >
-        <!-- <el-table-column
+    <el-row>
+      <el-col :xs="22" :sm="20" :md="20" :lg="18" :xl="16">
+        <el-table
+          size="mini"
+          :data="sumlist"
+          :header-cell-class-name="tableRowClassName"
+          v-loading="sumlistLoading"
+          element-loading-text="给我一点时间"
+          border
+          fit
+          highlight-current-row
+          style="width: 100%"
+        >
+          <!-- <el-table-column
           width="180px"
           fixed="left"
           align="center"
@@ -55,50 +54,57 @@
           <template slot-scope="scope">
             <span>{{scope.row.S_OrgName}}</span>
           </template>
-        </el-table-column>-->
-        <el-table-column width="90px" align="center" label="时间月">
-          <template slot-scope="scope">
-            <span>{{scope.row.ZCJRQ|parseTime1}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column width="180px" align="right" label="保管员">
-          <template slot-scope="scope">
-            <span>{{scope.row.ZFHSL }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column width="200px" align="right" label="月发出量">
-          <template slot-scope="scope">
-            <span>{{scope.row.ZFHSL |NumFormat}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="操作"
-          width="150px"
-          align="center"
-          class-name="small-padding fixed-width"
-        >
-          <template slot-scope="scope">
-            <el-button size="mini" @click="sumdetail(scope.row.ZCJR)" type="primary" plain>明细</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <el-pagination
-        background
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="1"
-        :page-sizes="[10,20,30, 50]"
-        :page-size="1"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="1"
-        style="text-align: center;"
-      ></el-pagination>
-    </el-card>
+          </el-table-column>-->
+          <el-table-column  align="center" label="时间月">
+            <template slot-scope="scope">
+              <span>{{scope.row.ZCJRQ|parseTime1}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column  align="right" label="保管员">
+            <template slot-scope="scope">
+              <span>{{scope.row.ZCJR }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column  align="right" label="月发出量">
+            <template slot-scope="scope">
+              <span>{{scope.row.ZFHSL |NumFormat}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            label="操作"
+            width="150px"
+            align="center"
+            class-name="small-padding fixed-width"
+          >
+            <template slot-scope="scope">
+              <el-button size="mini" @click="sumdetail(scope.row.ZCJR)" type="primary" plain>明细</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-pagination
+          background
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="1"
+          :page-sizes="[10,20,30, 50]"
+          :page-size="1"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="1"
+          style="text-align: center;"
+        ></el-pagination>
+      </el-col>
+    </el-row>
     <el-dialog :visible.sync="showed" width="45%" title="月度明细">
       <div class="topSearh">
         <el-row>
           <el-col :span="24">
-            <el-input style="width: 200px;" class="filter-item" placeholder="单号" size="mini" clearable></el-input>
+            <el-input
+              style="width: 200px;"
+              class="filter-item"
+              placeholder="单号"
+              size="mini"
+              clearable
+            ></el-input>
             <el-input
               style="width: 200px;"
               class="filter-item"
@@ -134,7 +140,7 @@
               <span>{{scope.row.ZCJRQ|parseTime}}</span>
             </template>
           </el-table-column>
-          <el-table-column  align="center" label="单号">
+          <el-table-column align="center" label="单号">
             <template slot-scope="scope">
               <span>{{scope.row.ZDHTZD}}</span>
             </template>
@@ -208,7 +214,7 @@ export default {
         },
         {
           ZCJRQ: "2019-10-08 12:00:00",
-          ZGZSL: "韩梅梅",
+          ZCJR: "韩梅梅",
           ZFHSL: 350
         }
       ],
@@ -255,7 +261,7 @@ export default {
       totalDetail: null,
       listLoading: false,
       listSumQuery: {
-        ZCJRQ: "",
+        ZCJRQ: ""
         // S_OrgCode: this.$store.state.user.orgCode,
         // S_WorkDate: this.$store.state.user.sysTime,
         // S_OrgName: this.$store.state.user.departName,
@@ -265,7 +271,7 @@ export default {
         page: 1,
         limit: 10,
         //Is_Page: "true",
-        ZCJRQ: "",
+        ZCJRQ: ""
         // S_OrgCode: this.$store.state.user.orgCode,
         // // S_BeginWorkDate: '',
         // // S_EndWorkDate: this.$store.state.user.sysTime,
@@ -279,6 +285,9 @@ export default {
   filters: {
     parseTime1,
     NumFormat
+  },
+  directives: {
+    waves
   },
   methods: {
     getSummaries(param) {

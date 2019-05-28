@@ -14,7 +14,6 @@
         <el-table
           size="mini"
           :data="list"
-          v-loading="listloading"
           element-loading-text="给我一点时间"
           border
           fit
@@ -99,10 +98,12 @@ export default {
         }
       ],
       tableKey: 0,
+    
+
       list: [
         {
           LGNUM: "仓库一",
-          MATNR: "加油卡",
+          MATNR: "10001506386",
           GESMEUO: 130,
           GESMEOT: 22,
           GESMEWT: 11,
@@ -111,7 +112,7 @@ export default {
         },
         {
           LGNUM: "仓库一",
-          MATNR: "基站",
+          MATNR: "11002298694",
           GESMEUO: 130,
           GESMEOT: 22,
           GESMEWT: 11,
@@ -120,7 +121,7 @@ export default {
         },
         {
           LGNUM: "仓库二",
-          MATNR: "电话卡",
+          MATNR: "11001999718",
           GESMEUO: 130,
           GESMEOT: 22,
           GESMEWT: 11,
@@ -129,7 +130,7 @@ export default {
         },
         {
           LGNUM: "仓库一",
-          MATNR: "无线网卡",
+          MATNR: "11000857869",
           GESMEUO: 130,
           GESMEOT: 22,
           GESMEWT: 11,
@@ -138,13 +139,107 @@ export default {
         },
         {
           LGNUM: "仓库二",
-          MATNR: "发动机",
+          MATNR: "10001852506",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+        {
+          LGNUM: "仓库二",
+          MATNR: "11001999718",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+        {
+          LGNUM: "仓库一",
+          MATNR: "11000857869",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+        {
+          LGNUM: "仓库二",
+          MATNR: "10001852506",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+
+
+
+  {
+          LGNUM: "仓库二",
+          MATNR: "10001852506",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+          {
+          LGNUM: "仓库二",
+          MATNR: "10001852506",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+          {
+          LGNUM: "仓库一",
+          MATNR: "20002264284",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+          {
+          LGNUM: "仓库二",
+          MATNR: "10001852506",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+          {
+          LGNUM: "仓库一",
+          MATNR: "11004640852",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+          {
+          LGNUM: "仓库二",
+          MATNR: "11001889507",
+          GESMEUO: 130,
+          GESMEOT: 22,
+          GESMEWT: 11,
+          GESMETU: 9,
+          GESMENS: 5
+        },
+          {
+          LGNUM: "仓库一",
+          MATNR: "11002334581",
           GESMEUO: 130,
           GESMEOT: 22,
           GESMEWT: 11,
           GESMETU: 9,
           GESMENS: 5
         }
+
       ],
 
       total: null,

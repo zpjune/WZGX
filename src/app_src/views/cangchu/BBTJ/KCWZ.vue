@@ -13,7 +13,6 @@
         <el-table
           size="mini"
           :data="list"
-          v-loading="listloading"
           element-loading-text="给我一点时间"
           border
           fit
@@ -190,12 +189,136 @@ export default {
           KUMUHNS: 0,
           XCKUMUH: 60,
           ZGZSL:100
+        },
+                {
+          MATKLNO: "05",
+          MATKL: "有色金属及加工",
+          WERKS: "工厂二",
+          HJUO: 0,
+          LBKUMUO: 0,
+          XCKUMUO: 0,
+          HJOT: 0,
+          LBKUMOT: 0,
+          KUMOTNS: 0,
+          XCKUMOT: 5,
+          HJTH: 0,
+          LBKUMTH: 0,
+          KUMTHNS: 10,
+          XCKUMTH: 0,
+          HJUH: 60,
+          LBKUMUH: 0,
+          KUMUHNS: 0,
+          XCKUMUH: 60,
+          ZGZSL:100
+        },
+                {
+          MATKLNO: "06",
+          MATKL: "建筑五金",
+          WERKS: "工厂一",
+          HJUO: 0,
+          LBKUMUO: 0,
+          XCKUMUO: 0,
+          HJOT: 0,
+          LBKUMOT: 0,
+          KUMOTNS: 0,
+          XCKUMOT: 5,
+          HJTH: 0,
+          LBKUMTH: 0,
+          KUMTHNS: 10,
+          XCKUMTH: 0,
+          HJUH: 60,
+          LBKUMUH: 0,
+          KUMUHNS: 0,
+          XCKUMUH: 60,
+          ZGZSL:100
+        },        {
+          MATKLNO: "07",
+          MATKL: "石油及产品",
+          WERKS: "工厂二",
+          HJUO: 0,
+          LBKUMUO: 0,
+          XCKUMUO: 0,
+          HJOT: 0,
+          LBKUMOT: 0,
+          KUMOTNS: 0,
+          XCKUMOT: 5,
+          HJTH: 0,
+          LBKUMTH: 0,
+          KUMTHNS: 10,
+          XCKUMTH: 0,
+          HJUH: 60,
+          LBKUMUH: 0,
+          KUMUHNS: 0,
+          XCKUMUH: 60,
+          ZGZSL:100
+        },
+                {
+          MATKLNO: "08",
+          MATKL: "煤炭",
+          WERKS: "工厂二",
+          HJUO: 0,
+          LBKUMUO: 0,
+          XCKUMUO: 0,
+          HJOT: 0,
+          LBKUMOT: 0,
+          KUMOTNS: 0,
+          XCKUMOT: 5,
+          HJTH: 0,
+          LBKUMTH: 0,
+          KUMTHNS: 10,
+          XCKUMTH: 0,
+          HJUH: 60,
+          LBKUMUH: 0,
+          KUMUHNS: 0,
+          XCKUMUH: 60,
+          ZGZSL:100
+        },
+                {
+          MATKLNO: "09",
+          MATKL: "非金属建筑材料",
+          WERKS: "工厂一",
+          HJUO: 0,
+          LBKUMUO: 0,
+          XCKUMUO: 0,
+          HJOT: 0,
+          LBKUMOT: 0,
+          KUMOTNS: 0,
+          XCKUMOT: 5,
+          HJTH: 0,
+          LBKUMTH: 0,
+          KUMTHNS: 10,
+          XCKUMTH: 0,
+          HJUH: 60,
+          LBKUMUH: 0,
+          KUMUHNS: 0,
+          XCKUMUH: 60,
+          ZGZSL:120
+        },
+         {
+          MATKLNO: "10",
+          MATKL: "水泥及制品",
+          WERKS: "工厂一",
+          HJUO: 0,
+          LBKUMUO: 0,
+          XCKUMUO: 0,
+          HJOT: 0,
+          LBKUMOT: 0,
+          KUMOTNS: 0,
+          XCKUMOT: 5,
+          HJTH: 0,
+          LBKUMTH: 0,
+          KUMTHNS: 10,
+          XCKUMTH: 0,
+          HJUH: 60,
+          LBKUMUH: 0,
+          KUMUHNS: 0,
+          XCKUMUH: 60,
+          ZGZSL:100
         }
 
       ],
       importList: [],
       total: null,
-      listLoading: true,
       listQuery: {
         page: 1,
         limit: 10,
@@ -218,7 +341,6 @@ export default {
       //     if (response.data.code === 2000) {
       //       this.list = response.data.items;
       this.total = 20;
-      this.listLoading = false;
       //     } else {
       //       this.listLoading = false;
       //       this.$notify({
