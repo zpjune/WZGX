@@ -25,25 +25,72 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="入库通知单号" prop="ZDHTZD" fixed width="150px"></el-table-column>
-          <el-table-column label="入库通知单行号" prop="ZITEM" width="150px"></el-table-column>
-          <el-table-column label="出库通知单号" prop="ZCKTZD" width="150px"></el-table-column>
+          <el-table-column label="出库通知单号" prop="ZCKTZD" fixed width="150px"></el-table-column>
           <el-table-column label="出库通知单行号" prop="ZCITEM" width="150px"></el-table-column>
           <el-table-column label="工厂" prop="WERKS"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" width="150px"></el-table-column>
-          <el-table-column label="物料组" prop="MATKL"></el-table-column>
+          <!-- 
           <el-table-column label="采购凭证号" prop="EBELN" width="150px"></el-table-column>
           <el-table-column label="采购凭证项目编号" prop="EBELP" width="150px"></el-table-column>
+          
+           -->
+          <el-table-column label="供应商或债权人的帐号" prop="LIFNR" width="170px"></el-table-column>
+          <el-table-column label="转储单的供应(发出)工厂" prop="RESWK" width="170px"></el-table-column>
+          <el-table-column label="库存地点" prop="GRUND" width="150px"></el-table-column>
+          <el-table-column label="预留/相关需求的编号" prop="RSNUM" width="150px"></el-table-column>
+          <el-table-column label="预留/相关需求的项目编号" prop="RSPOS" width="170px"></el-table-column>
+          <el-table-column label="领料单行项目" prop="ZLDITEM" width="150px"></el-table-column>
+          <el-table-column label="订单类型（采购）" prop="BSART"></el-table-column>
+          <el-table-column label="采购凭证号" prop="EBELN" width="150px"></el-table-column>
+          <el-table-column label="采购凭证的项目编号 " prop="EBELP" width="150px"></el-table-column>
+          <el-table-column label="转储单编号" prop="TANUM" width="150px"></el-table-column>
+          <el-table-column label="转储单项目" prop="TAPOS" width="150px"></el-table-column>
+          <el-table-column label="销售凭证" prop="VBELN_SO" width="150px"></el-table-column>
+          <el-table-column label="转储单项目" prop="POSNR" width="150px"></el-table-column>
+          <el-table-column label="销售凭证项目" prop="TAPOS" width="150px"></el-table-column>
+          <el-table-column label="交货" prop="VBELN" width="150px"></el-table-column>
+          <el-table-column label="交货项目   " prop="VBELP" width="150px"></el-table-column>
+          <el-table-column label="销售凭证项目   " prop="TAPOS" width="150px"></el-table-column>
+          <el-table-column label="销售凭证项目   " prop="TAPOS" width="150px"></el-table-column>
+          <el-table-column label="销售凭证项目   " prop="TAPOS" width="150px"></el-table-column>
+          <el-table-column label="销售凭证项目   " prop="TAPOS" width="150px"></el-table-column>
+          <el-table-column label="销售凭证项目   " prop="TAPOS" width="150px"></el-table-column>
           <el-table-column label="计划单号" prop="ZSEQU" width="150px"></el-table-column>
-          <el-table-column label="预留编号" prop="RSNUM" width="150px"></el-table-column>
-          <el-table-column label="预留行项目编号" prop="RSPOS" width="150px"></el-table-column>
-          <el-table-column label="领料单号" prop="ZPLDH" width="150px"></el-table-column>
-          <el-table-column label="供应商编码" prop="LIFNR" width="150px"></el-table-column>
-          <el-table-column label="采购订单数量" prop="MENGE" width="120px"></el-table-column>
+          <el-table-column label="采购申请编号" prop="BANFN" width="150px"></el-table-column>
+          <el-table-column label="采购凭证的项目编号" prop="ZSEQU" width="150px"></el-table-column>
+          <el-table-column label="物料编号" prop="MATNR" width="170px"></el-table-column>
+          <el-table-column label="物料组" prop="MATKL" width="170px"></el-table-column>
+          <el-table-column label="物料组" prop="MATKL" width="170px"></el-table-column>
+          <el-table-column label="物料组" prop="MATKL" width="170px"></el-table-column>
+
+          <el-table-column label="基本计量单位" prop="MEINS" width="170px"></el-table-column>
+          <el-table-column label="副计量数量" prop="ZDHSL1" width="170px"></el-table-column>
+          <el-table-column label="副计量单位 " prop="ZMEINS" width="170px"></el-table-column>
+
+
+
+          
+          <el-table-column label="采购订单数量" prop="MENGE" width="170px"></el-table-column>
+          <el-table-column label="收货数量" prop="ZDHSL" width="170px"></el-table-column>
+          <el-table-column label="实际到货数量" prop="ZSJDHSL" width="170px"></el-table-column>
+          
+          <el-table-column label="退货项目" prop="RETPO" width="170px"></el-table-column>
           <el-table-column label="库存地点" prop="LGORT" width="150px"></el-table-column>
+          <el-table-column label="代储代销标识" prop="ZDCDX" width="150px"></el-table-column>
+          <el-table-column label="特殊库存标识" prop="SOBKZ" width="150px"></el-table-column>
+          <el-table-column label="WBS 要素" prop="PSPEL" width="150px"></el-table-column>
+          <el-table-column label="移动类型（库存管理）" prop="BWART" width="150px"></el-table-column>
+          
           <el-table-column label="记录创建日期" prop="ZCJRQ" width="150px"></el-table-column>
           <el-table-column label="创建人" prop="ZCJR" width="150px"></el-table-column>
           <el-table-column label="状态" prop="ZSTATUS"></el-table-column>
+          <el-table-column label="输入时间" prop="CJSJ" width="150px"></el-table-column>
+          <el-table-column label="仓库号/混合仓库" prop="ZCDH" width="150px"></el-table-column>
+          <el-table-column label="物料凭证编号" prop="MBLNR" width="150px"></el-table-column>
+          <el-table-column label="物料凭证中的项目" prop="ZEILE" width="150px"></el-table-column>
+          <el-table-column label="凭证中的过账日期" prop="BUDAT" width="150px"></el-table-column>
+          <el-table-column label="数量" prop="ZDGZSL" width="150px"></el-table-column>
+          <el-table-column label="必检物资" prop="ZBJWZ" width="150px"></el-table-column>
+          <el-table-column label="创建类型" prop="ZCJLX" width="150px"></el-table-column>
         </el-table>
         <el-pagination
           background
@@ -67,96 +114,7 @@ export default {
   data() {
     return {
       listloading: false,
-      goods: [
-        {
-            ZDHTZD:"QQSSAD21576832",
-            ZITEM:"DASDWDBUJA12768",
-            ZCKTZD:"ADUYFSJ27632",
-            ZCITEM:"uydabkgda8576320",
-            WERKS:"天津创智",
-            MATNR:"dsahgjasbk876842",
-            MATKL:"一组",
-            EBELN:"diysauyf21768432",
-            EBELP:"DYIUFJKD9876343",
-            ZSEQU:"dasiuifs879432",
-            RSNUM:"daiydisau4687",
-            RSPOS:"duyiajk32",
-            ZPLDH:"daskhu79841",
-            ZLDITEM:"dkjhsad9803",
-            LIFNR:"hdjah7632185",
-            MENGE:"iughdasi7529",
-            LGORT:"天津",
-            ZCJRQ:"2019-05-23",
-            ZCJR:"admin",
-            ZSTATUS:"正常"
-        },
-         {
-            ZDHTZD:"QASDGSAD21576832",
-            ZITEM:"DASDWDBUJA12768",
-            ZCKTZD:"ADUYFSJ27632",
-            ZCITEM:"uydabkgda8576320",
-            WERKS:"天津创智",
-            MATNR:"dsahgjasbk876842",
-            MATKL:"一组",
-            EBELN:"diysauyf21768432",
-            EBELP:"DYIUFJKD9876343",
-            ZSEQU:"dasiuifs879432",
-            RSNUM:"daiydisau4687",
-            RSPOS:"duyiajk32",
-            ZPLDH:"daskhu79841",
-            ZLDITEM:"dkjhsad9803",
-            LIFNR:"hdjah7632185",
-            MENGE:"iughdasi7529",
-            LGORT:"天津",
-            ZCJRQ:"2019-05-23",
-            ZCJR:"admin",
-            ZSTATUS:"正常"
-        },
-         {
-            ZDHTZD:"QQSSAD21576832",
-            ZITEM:"DASDWDBUJA12768",
-            ZCKTZD:"ADUYFSJ27632",
-            ZCITEM:"uydabkgda8576320",
-            WERKS:"天津创智",
-            MATNR:"dsahgjasbk876842",
-            MATKL:"一组",
-            EBELN:"diysauyf21768432",
-            EBELP:"DYIUFJKD9876343",
-            ZSEQU:"dasiuifs879432",
-            RSNUM:"daiydisau4687",
-            RSPOS:"duyiajk32",
-            ZPLDH:"daskhu79841",
-            ZLDITEM:"dkjhsad9803",
-            LIFNR:"hdjah7632185",
-            MENGE:"iughdasi7529",
-            LGORT:"天津",
-            ZCJRQ:"2019-05-23",
-            ZCJR:"admin",
-            ZSTATUS:"正常"
-        },
-         {
-            ZDHTZD:"QQAD21576832",
-            ZITEM:"DASDWD2768",
-            ZCKTZD:"ADUYFSJ27632",
-            ZCITEM:"uydda8576320",
-            WERKS:"天津创智",
-            MATNR:"dsahgjasbk876842",
-            MATKL:"一组",
-            EBELN:"diysauyf21768432",
-            EBELP:"DYIUFJKD9876343",
-            ZSEQU:"dasiuifs879432",
-            RSNUM:"daiydisau4687",
-            RSPOS:"duyiajk32",
-            ZPLDH:"daskhu79841",
-            ZLDITEM:"dkjhsad9803",
-            LIFNR:"hdjah7632185",
-            MENGE:"iughdasi7529",
-            LGORT:"天津",
-            ZCJRQ:"2019-05-23",
-            ZCJR:"admin",
-            ZSTATUS:"正常"
-        },
-      ]
+      goods: []
     };
   },
 
