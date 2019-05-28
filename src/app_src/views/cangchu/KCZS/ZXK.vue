@@ -49,6 +49,12 @@ export default {
 .app-container{
     padding-top: 2px;
 }
+ .app-container /deep/ .el-dialog__body{
+     background: #C0C0C0 !important;
+   }
+   .app-container /deep/ .el-dialog__header{
+     background: #C0C0C0 !important;
+   }
 </style>
 
 

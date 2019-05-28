@@ -103,6 +103,30 @@ export default {
           LGORT: "仓库一",
           ZCJRQ: "2019-01",
           ZFHSL: 350
+        },
+        ,
+        {
+          LGORT: "仓库三",
+          ZCJRQ: "2019-01",
+          ZFHSL: 350
+        }
+        ,
+        {
+          LGORT: "仓库三",
+          ZCJRQ: "2019-02",
+          ZFHSL: 350
+        }
+        ,
+        {
+          LGORT: "仓库三",
+          ZCJRQ: "2019-03",
+          ZFHSL: 350
+        }
+        ,
+        {
+          LGORT: "仓库三",
+          ZCJRQ: "2019-04",
+          ZFHSL: 350
         }
       ]
     };

@@ -155,7 +155,24 @@ export default {
   data() {
     return {
       currentRole: "adminDashboard",
-      noticeList: [],
+      noticeList: [
+        {
+          NOTICE_TITLE:'关于物资供销数据挖掘系统项目开发通知',
+          NOTICE_DATETIME:'2019-05-22'
+        },{
+          NOTICE_TITLE:'关于物资供销公司仓库使用通知',
+          NOTICE_DATETIME:'2019-05-23'
+        },{
+          NOTICE_TITLE:'关于物资供销公司保管员工作量通告',
+          NOTICE_DATETIME:'2019-05-24'
+        },{
+          NOTICE_TITLE:'关于物资供销公司岗位职责通告',
+          NOTICE_DATETIME:'2019-05-25'
+        },{
+          NOTICE_TITLE:'关于物资供销公司运动会通知',
+          NOTICE_DATETIME:'2019-05-26'
+        }
+      ],
       detailList: [],
       temp: {
         orgcode: this.$store.state.user.orgCode,
@@ -224,7 +241,7 @@ export default {
           },
           {
             type: "bar",
-            barMaxWidth:30,
+            barMaxWidth:80,
             itemStyle: {
               normal: {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -334,22 +351,28 @@ export default {
       mycharts2.setOption(this.option2);
     },
     getMonthData() {
-      getMonthData(this.temp).then(response => {
-        if (response.data.code === 2000) {
-          this.option.xAxis.data = Object.keys(response.data.items[0]);
-          this.option.series[1].data = Object.values(response.data.items[0]);
-          console.log(this.option)
+     let items=[{"中心库":21317,"转运库":21234,"原炼化分公司":33074,"港东器材库":12222,"专用管分公司":55548}];
+      this.option.xAxis.data = Object.keys(items[0]);
+          this.option.series[1].data = Object.values(items[0]);
           this.drawline();
-        }
-      });
+      // getMonthData(this.temp).then(response => {
+      //   if (response.data.code === 2000) {
+      //     this.option.xAxis.data = Object.keys(response.data.items[0]);
+      //     this.option.series[1].data = Object.values(response.data.items[0]);
+      //     this.drawline();
+      //   }
+      // });
     },
     getLv() {
-      getLv(this.temp).then(response => {
-        if (response.data.code === 2000) {
-          this.changeLvData(response.data.items);
+      let items=[{"TaxRate":"入库工作量","1月":0,"2月":4,"3月":60},{"TaxRate":"出库工作量","1月":18632,"2月":20575,"3月":7232}];
+        this.changeLvData(items);
           this.drawline2();
-        }
-      });
+      // getLv(this.temp).then(response => {
+      //   if (response.data.code === 2000) {
+      //     this.changeLvData(response.data.items);
+      //     this.drawline2();
+      //   }
+      // });
     },
     // changeLvData(data) {
     //   let na = "";
@@ -382,7 +405,7 @@ export default {
       let namelist = [];
       data.forEach(item => {
         na = Object.values(item)[0];
-        na += "%";
+        //na += "%";
         namelist.push(na);
         arr = Object.values(item);
         arr.splice(0, 1);
@@ -403,12 +426,15 @@ export default {
       this.option2.legend.data = namelist;
     },
     CompareData() {
-      CompareData(this.temp).then(response => {
-        if (response.data.code === 2000) {
-          this.changeCompareData(response.data.items);
-          this.drawline1();
-        }
-      });
+      let item=[{"mm":1,"KS":98366.06,"DJ":0.00},{"mm":2,"KS":100702.29,"DJ":103453.27},{"mm":3,"KS":114047.24,"DJ":122994.45}];
+      this.changeCompareData(item);
+      this.drawline1();
+      // CompareData(this.temp).then(response => {
+      //   if (response.data.code === 2000) {
+      //     this.changeCompareData(response.data.items);
+      //     this.drawline1();
+      //   }
+      // });
     },
     changeCompareData(data) {
       let arr1 = [];
@@ -421,22 +447,22 @@ export default {
         arr2.push(item.DJ);
       });
       this.option1.series.push({
-        name: "预缴",
+        name: "出库",
         type: "bar",
         barGap: 0,
-        label: "预缴",
+        label: "出库",
         data: arr1,
         barMaxWidth: 30
       });
       this.option1.series.push({
-        name: "代缴",
+        name: "入库",
         type: "bar",
         barGap: 0,
-        label: "代缴",
+        label: "入库",
         data: arr2,
         barMaxWidth: 35
       });
-      this.option1.legend.data = ["预缴", "代缴"];
+      this.option1.legend.data = ["出库", "入库"];
       this.option1.xAxis.push({
         type: "category",
         axisTick: { show: false },
