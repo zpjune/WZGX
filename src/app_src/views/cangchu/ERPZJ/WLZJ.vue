@@ -45,8 +45,8 @@
           highlight-current-row
         >
           <!-- <el-table-column label="大类" prop="MATKL"></el-table-column> -->
-          <el-table-column label="品名" prop="MATKL3"></el-table-column>
-          <el-table-column label="编码" prop="CODE"></el-table-column>
+          <el-table-column label="物料编码" prop="CODE"></el-table-column>
+          <el-table-column label="物料名称" prop="MATKL3"></el-table-column>
           <el-table-column label="金额" prop="SALK3"></el-table-column>
         </el-table>
 
