@@ -4,7 +4,7 @@
       <el-row :gutter="20" type="flex" justify="center">
         <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="11">
           <el-card>
-            <div slot="header" class="header">
+            <!-- <div slot="header" class="header">
               <el-row>
                 <el-col :span="2">
                   <img src="../../../frame_src/imgs/notice.png" alt>
@@ -16,30 +16,48 @@
                   <el-button size="mini" type="primary" style="float:right;" @click="getMore">查看更多</el-button>
                 </el-col>
               </el-row>
+            </div>-->
+            <div slot="header" class="header">
+              <el-row>
+                <el-col :span="1">
+                  <img  src="../../../frame_src/imgs/notice.png" alt>
+                </el-col>
+                <el-col :span="14">
+                  <span>可视化仓储</span>
+                </el-col>
+                <el-col :span="8"></el-col>
+              </el-row>
             </div>
-            <el-table :data="noticeList" :show-header="false" size="mini">
-              <el-table-column show-overflow-tooltip>
-                <template slot-scope="scope">
-                  <span
-                    class="noticetitle"
-                    @click="goToContent(scope.row)"
-                  >{{scope.row.NOTICE_TITLE}}</span>
-                </template>
-              </el-table-column>
-              <!-- <el-table-column  prop="writter" align="center"></el-table-column> -->
-              <el-table-column align="center" width="150px">
-                <template slot-scope="scope">
-                  <span class="noticetitle">{{scope.row.NOTICE_DATETIME|parseTime}}</span>
-                </template>
-              </el-table-column>
-            </el-table>
+            <div class="cangku_div">
+              <el-row>
+                <el-col :span="12" style="text-align:center">
+                  <img class="cangku_img" style="margin-right:-30px;" @click="zhongxinkuclick" src="../../../frame_src/imgs/cangku1.jpg" alt="中心库">
+                  <div><span>中心库</span></div>
+                </el-col>
+                <el-col :span="12" style="text-align:center">
+                  <img class="cangku_img" style="margin-left:-30px;" @click="zhuanyunku" src="../../../frame_src/imgs/cangku2.jpg" alt="转运库">
+                   <div><span>转运库</span></div>
+                </el-col>
+              </el-row>
+              <div style="height:5px;"></div>
+              <el-row>
+                <el-col :span="12" style="text-align:center">
+                  <img class="cangku_img" style="margin-right:-30px;" src="../../../frame_src/imgs/cangku3.jpg" alt="港东器材库">
+                   <div><span>港东器材库</span></div>
+                </el-col>
+                <el-col :span="12" style="text-align:center">
+                  <img class="cangku_img" style="margin-left:-30px;" src="../../../frame_src/imgs/cangku4.jpg" alt="专用管分公司">
+                   <div><span>专用管分公司</span></div>
+                </el-col>
+              </el-row>
+            </div>
           </el-card>
         </el-col>
         <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="11">
           <el-card>
             <div slot="header" class="header">
               <el-row>
-                <el-col :span="2">
+                <el-col :span="1">
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="22">
@@ -63,7 +81,7 @@
           <el-card>
             <div slot="header" class="header">
               <el-row>
-                <el-col :span="2">
+                <el-col :span="1">
                   <img src="../../../frame_src/imgs/notice.png" alt class="pic">
                 </el-col>
                 <el-col :span="22">
@@ -79,7 +97,7 @@
           <el-card>
             <div slot="header" class="header">
               <el-row>
-                <el-col :span="2">
+                <el-col :span="1">
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="22">
@@ -110,7 +128,8 @@
                   </el-row>
                 </div>
                 <el-row v-if="detailList!=null">
-                  <el-col :span="24">附件：
+                  <el-col :span="24">
+                    附件：
                     <div style="margin-left:25px;" v-for="(item,key) in detailList" :key="key">
                       <el-button
                         @click="downLoad(item)"
@@ -157,20 +176,24 @@ export default {
       currentRole: "adminDashboard",
       noticeList: [
         {
-          NOTICE_TITLE:'关于物资供销数据挖掘系统项目开发通知',
-          NOTICE_DATETIME:'2019-05-22'
-        },{
-          NOTICE_TITLE:'关于物资供销公司仓库使用通知',
-          NOTICE_DATETIME:'2019-05-23'
-        },{
-          NOTICE_TITLE:'关于物资供销公司保管员工作量通告',
-          NOTICE_DATETIME:'2019-05-24'
-        },{
-          NOTICE_TITLE:'关于物资供销公司岗位职责通告',
-          NOTICE_DATETIME:'2019-05-25'
-        },{
-          NOTICE_TITLE:'关于物资供销公司运动会通知',
-          NOTICE_DATETIME:'2019-05-26'
+          NOTICE_TITLE: "关于物资供销数据挖掘系统项目开发通知",
+          NOTICE_DATETIME: "2019-05-22"
+        },
+        {
+          NOTICE_TITLE: "关于物资供销公司仓库使用通知",
+          NOTICE_DATETIME: "2019-05-23"
+        },
+        {
+          NOTICE_TITLE: "关于物资供销公司保管员工作量通告",
+          NOTICE_DATETIME: "2019-05-24"
+        },
+        {
+          NOTICE_TITLE: "关于物资供销公司岗位职责通告",
+          NOTICE_DATETIME: "2019-05-25"
+        },
+        {
+          NOTICE_TITLE: "关于物资供销公司运动会通知",
+          NOTICE_DATETIME: "2019-05-26"
         }
       ],
       detailList: [],
@@ -241,7 +264,7 @@ export default {
           },
           {
             type: "bar",
-            barMaxWidth:80,
+            barMaxWidth: 80,
             itemStyle: {
               normal: {
                 color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
@@ -351,10 +374,18 @@ export default {
       mycharts2.setOption(this.option2);
     },
     getMonthData() {
-     let items=[{"中心库":21317,"转运库":21234,"原炼化分公司":33074,"港东器材库":12222,"专用管分公司":55548}];
+      let items = [
+        {
+          中心库: 21317,
+          转运库: 21234,
+          原炼化分公司: 33074,
+          港东器材库: 12222,
+          专用管分公司: 55548
+        }
+      ];
       this.option.xAxis.data = Object.keys(items[0]);
-          this.option.series[1].data = Object.values(items[0]);
-          this.drawline();
+      this.option.series[1].data = Object.values(items[0]);
+      this.drawline();
       // getMonthData(this.temp).then(response => {
       //   if (response.data.code === 2000) {
       //     this.option.xAxis.data = Object.keys(response.data.items[0]);
@@ -364,9 +395,12 @@ export default {
       // });
     },
     getLv() {
-      let items=[{"TaxRate":"入库工作量","1月":0,"2月":4,"3月":60},{"TaxRate":"出库工作量","1月":18632,"2月":20575,"3月":7232}];
-        this.changeLvData(items);
-          this.drawline2();
+      let items = [
+        { TaxRate: "入库工作量", "1月": 0, "2月": 4, "3月": 60 },
+        { TaxRate: "出库工作量", "1月": 18632, "2月": 20575, "3月": 7232 }
+      ];
+      this.changeLvData(items);
+      this.drawline2();
       // getLv(this.temp).then(response => {
       //   if (response.data.code === 2000) {
       //     this.changeLvData(response.data.items);
@@ -426,7 +460,11 @@ export default {
       this.option2.legend.data = namelist;
     },
     CompareData() {
-      let item=[{"mm":1,"KS":98366.06,"DJ":0.00},{"mm":2,"KS":100702.29,"DJ":103453.27},{"mm":3,"KS":114047.24,"DJ":122994.45}];
+      let item = [
+        { mm: 1, KS: 98366.06, DJ: 0.0 },
+        { mm: 2, KS: 100702.29, DJ: 103453.27 },
+        { mm: 3, KS: 114047.24, DJ: 122994.45 }
+      ];
       this.changeCompareData(item);
       this.drawline1();
       // CompareData(this.temp).then(response => {
@@ -496,7 +534,13 @@ export default {
     },
     getMore() {
       this.$router.push({ path: "noticeViews/noticelist/" });
-    }
+    },
+    zhongxinkuclick(){
+         this.$router.push({path:'/cangchu/KCZS/ZXKDetail'});
+      },
+      zhuanyunku(){
+        this.$router.push({path:'/cangchu/KCZS/YLH'});
+      }
   },
   created() {},
   mounted() {
@@ -568,7 +612,12 @@ export default {
 }
 .el-card {
   font-family: "微软雅黑";
-  min-height: 360px;
+  min-height: 555px;
+}
+.cangku_img{
+  width:300px;
+  height:200px;
+  cursor:pointer;
 }
 </style>
 

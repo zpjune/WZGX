@@ -49,9 +49,9 @@ export const constantRouterMap = [
       hidden: true
     },
     {
-      path: '/cangchu/KCZS/ZXK', name: '中心库',
+      path: '/cangchu/KCZS/ZXKDetail', name: '中心库',
       meta: { title: '中心库', icon: 'home', noCache: true },
-      component: _import('app_src/views/cangchu/KCZS/ZXK'), hidden: true
+      component: _import('app_src/views/cangchu/KCZS/ZXKDetail'), hidden: true
     },{
       path: '/cangchu/KCZS/YLH', name: '原炼化分公司',
       meta: { title: '原炼化分公司', icon: 'home', noCache: true },

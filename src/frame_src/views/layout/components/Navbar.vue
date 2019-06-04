@@ -71,11 +71,17 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('toggleSideBar')
     },
+    closeSideBar(){
+      this.$store.dispatch('closeSideBar',false)
+    },
     logout() {
       this.$store.dispatch('LogOut').then(() => {
         location.reload()// In order to re-instantiate the vue-router object to avoid bugs
       })
     }
+  },
+  mounted(){
+    this.closeSideBar();
   }
 }
 </script>
