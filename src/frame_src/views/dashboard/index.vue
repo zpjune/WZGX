@@ -173,7 +173,7 @@
                 </el-col>
               </el-row>
             </div>
-            <div class="pic1" id="pic2"></div>
+            <div style="width:100%;height:470px" id="pic2"></div>
           </el-card>
         </el-col>
 
@@ -189,7 +189,7 @@
                 </el-col>
               </el-row>
             </div>
-            <div class="pic1" id="pic3"></div>
+            <div style="width:100%;height:470px" id="pic3"></div>
           </el-card>
         </el-col>
       </el-row>
@@ -618,8 +618,8 @@ export default {
     },
     getLv() {
       let items = [
-        { TaxRate: "入库工作量", "1月": 0, "2月": 4, "3月": 60 },
-        { TaxRate: "出库工作量", "1月": 18632, "2月": 20575, "3月": 7232 }
+        { "1月": 18632, "2月": 20575, "3月": 37232 ,"4月": 18632, "5月": 20575, "6月": 27232 }
+       // { TaxRate: "出库工作量", "1月": 18632, "2月": 20575, "3月": 7232 ,"4月": 18632, "5月": 20575, "6月": 7232 }
       ];
       this.changeLvData(items);
       this.drawline2();
@@ -683,9 +683,12 @@ export default {
     },
     CompareData() {
       let item = [
-        { mm: 1, KS: 98366.06, DJ: 0.0 },
+        { mm: 1, KS: 98366.06, DJ: 35699 },
         { mm: 2, KS: 100702.29, DJ: 103453.27 },
-        { mm: 3, KS: 114047.24, DJ: 122994.45 }
+        { mm: 3, KS: 114047.24, DJ: 122994.45 },
+        { mm: 4, KS: 98366.06, DJ: 35699 },
+        { mm: 5, KS: 100702.29, DJ: 103453.27 },
+        { mm: 6, KS: 114047.24, DJ: 122994.45 }
       ];
       this.changeCompareData(item);
       this.drawline1();

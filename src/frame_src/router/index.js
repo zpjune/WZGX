@@ -54,8 +54,8 @@ export const constantRouterMap = [
       component: _import('app_src/views/cangchu/KCZS/ZXKDetail'), hidden: true
     },
     {
-      path: '/cangchu/KCZS/ZXK', name: '中心库',
-      meta: { title: '中心库', icon: 'home', noCache: true },
+      path: '/cangchu/KCZS/ZXK', name: '可视化展示',
+      meta: { title: '可视化展示', icon: 'home', noCache: true },
       component: _import('app_src/views/cangchu/KCZS/ZXK'), hidden: true
     },{
       path: '/cangchu/KCZS/YLH', name: '转运库',
