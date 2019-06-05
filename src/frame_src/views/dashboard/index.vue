@@ -20,7 +20,7 @@
             <div slot="header" class="header">
               <el-row>
                 <el-col :span="1">
-                  <img  src="../../../frame_src/imgs/notice.png" alt>
+                  <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="14">
                   <span>可视化仓储</span>
@@ -31,47 +31,193 @@
             <div class="cangku_div">
               <el-row>
                 <el-col :span="12" style="text-align:center">
-                  <img class="cangku_img" style="margin-right:-30px;" @click="zhongxinkuclick" src="../../../frame_src/imgs/cangku1.jpg" alt="中心库">
-                  <div><span>中心库</span></div>
+                  <img
+                    class="cangku_img"
+                    style="margin-right:-30px;"
+                    @click="zhongxinkuclick"
+                    src="../../../frame_src/imgs/cangku1.jpg"
+                    alt="中心库"
+                  >
+                  <div>
+                    <span>中心库</span>
+                  </div>
                 </el-col>
                 <el-col :span="12" style="text-align:center">
-                  <img class="cangku_img" style="margin-left:-30px;" @click="zhuanyunku" src="../../../frame_src/imgs/cangku2.jpg" alt="转运库">
-                   <div><span>转运库</span></div>
+                  <img
+                    class="cangku_img"
+                    style="margin-left:-30px;"
+                    @click="zhuanyunku"
+                    src="../../../frame_src/imgs/cangku2.jpg"
+                    alt="转运库"
+                  >
+                  <div>
+                    <span>转运库</span>
+                  </div>
                 </el-col>
               </el-row>
               <div style="height:5px;"></div>
               <el-row>
                 <el-col :span="12" style="text-align:center">
-                  <img class="cangku_img" style="margin-right:-30px;" src="../../../frame_src/imgs/cangku3.jpg" alt="港东器材库">
-                   <div><span>港东器材库</span></div>
+                  <img
+                    class="cangku_img"
+                    style="margin-right:-30px;"
+                    src="../../../frame_src/imgs/cangku3.jpg"
+                    alt="港东器材库"
+                  >
+                  <div>
+                    <span>港东器材库</span>
+                  </div>
                 </el-col>
                 <el-col :span="12" style="text-align:center">
-                  <img class="cangku_img" style="margin-left:-30px;" src="../../../frame_src/imgs/cangku4.jpg" alt="专用管分公司">
-                   <div><span>专用管分公司</span></div>
+                  <img
+                    class="cangku_img"
+                    style="margin-left:-30px;"
+                    src="../../../frame_src/imgs/cangku4.jpg"
+                    alt="专用管分公司"
+                  >
+                  <div>
+                    <span>专用管分公司</span>
+                  </div>
                 </el-col>
               </el-row>
             </div>
           </el-card>
         </el-col>
         <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="11">
+
           <el-card>
             <div slot="header" class="header">
               <el-row>
                 <el-col :span="1">
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
-                <el-col :span="22">
-                  <span>库存统计</span>
+                <el-col :span="14">
+                  <span>资金统计</span>
+                </el-col>
+                <el-col :span="8"></el-col>
+              </el-row>
+            </div>
+              <div class="cangku_div">
+              <el-row class="panel-group" :gutter="10">
+                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+                  <div class="card-panel"  @click="handleSetLineChartData('ZJ')">
+                    <div class="card-panel-icon-wrapper icon-message">
+                      <i class="el-icon-s-finance" style="font-size:48px;"></i>
+                    </div>
+                    <div class="card-panel-description">
+                      <div class="card-panel-text">整体库存资金</div>
+                      <count-to
+                        class="card-panel-num"
+                        :startVal="0"
+                        :endVal="81212"
+                        :duration="3000"
+                      ></count-to>
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+                  <div class="card-panel" @click="handleSetLineChartData('CB')">
+                    <div class="card-panel-icon-wrapper icon-money">
+                      <i class="el-icon-s-grid" style="font-size:48px;"></i>
+                    </div>
+                    <div class="card-panel-description">
+                      <div class="card-panel-text">重点物资储备</div>
+                      <count-to
+                        class="card-panel-num"
+                        :startVal="0"
+                        :endVal="9280"
+                        :duration="3200"
+                      ></count-to>
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+                  <div class="card-panel" @click="handleSetLineChartData('KC')">
+                    <div class="card-panel-icon-wrapper icon-shoppingCard">
+                      <i class="el-icon-s-data" style="font-size:48px;"></i>
+                    </div>
+                    <div class="card-panel-description">
+                      <div class="card-panel-text">库存量</div>
+                      <count-to
+                        class="card-panel-num"
+                        :startVal="0"
+                        :endVal="13600"
+                        :duration="3600"
+                      ></count-to>
+                    </div>
+                  </div>
+                </el-col>
+              </el-row>
+              <!-- <div style="height:5px;"></div> -->
+              <el-row  class="panel-chart">
+                <el-col :span="24" style="text-align:center;margin:0;padding:0;">
+                       <div id="pic1" class="pic1" v-show="this.CHECK_STATE=='1'"></div> 
+                       <div id="picZD" class="pic1" v-show="this.CHECK_STATE=='2'"></div> 
+                       <div id="picKC" class="pic1" v-show="this.CHECK_STATE=='3'"></div> 
+                       <!-- <div id="pic1" class="pic1"  v-if="this.CHECK_STATE=='1'"></div> 
+                       <div id="picZD" class="pic1" v-if="this.CHECK_STATE=='2'"></div> 
+                       <div id="picKC" class="pic1" v-if="this.CHECK_STATE=='3'"></div>  -->
                 </el-col>
               </el-row>
             </div>
-            <!-- <div class="pic">
-              <img src="../../../frame_src/imgs/pic1.png" alt>
-            </div>-->
-            <div id="pic1" class="pic1"></div>
+            <!-- <div>
+              <el-row class="panel-group" :gutter="10">
+                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+                  <div class="card-panel">
+                    <div class="card-panel-icon-wrapper icon-message">
+                      <i class="el-icon-s-finance" style="font-size:48px;"></i>
+                    </div>
+                    <div class="card-panel-description">
+                      <div class="card-panel-text">整体库存资金</div>
+                      <count-to
+                        class="card-panel-num"
+                        :startVal="0"
+                        :endVal="81212"
+                        :duration="3000"
+                      ></count-to>
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+                  <div class="card-panel">
+                    <div class="card-panel-icon-wrapper icon-money">
+                      <i class="el-icon-s-grid" style="font-size:48px;"></i>
+                    </div>
+                    <div class="card-panel-description">
+                      <div class="card-panel-text">重点物资储备</div>
+                      <count-to
+                        class="card-panel-num"
+                        :startVal="0"
+                        :endVal="9280"
+                        :duration="3200"
+                      ></count-to>
+                    </div>
+                  </div>
+                  <div class="pic1" id="ZDCB"></div>
+                </el-col>
+                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
+                  <div class="card-panel">
+                    <div class="card-panel-icon-wrapper icon-shoppingCard">
+                      <i class="el-icon-s-data" style="font-size:48px;"></i>
+                    </div>
+                    <div class="card-panel-description">
+                      <div class="card-panel-text">库存量</div>
+                      <count-to
+                        class="card-panel-num"
+                        :startVal="0"
+                        :endVal="13600"
+                        :duration="3600"
+                      ></count-to>
+                    </div>
+                  </div>
+                </el-col>
+              </el-row>
+              <el-row>
+                <div id="pic1" class="pic1"></div>
+              </el-row>
+            </div> -->
           </el-card>
         </el-col>
-        <el-col :xs="0" :sm="0" :md="0" :lg="0" :xl="1"></el-col>
       </el-row>
     </div>
 
@@ -157,6 +303,7 @@
 <script>
 import { mapGetters } from "vuex";
 import adminDashboard from "./admin";
+import CountTo from "vue-count-to";
 import {
   getMonthData,
   getNotice,
@@ -170,9 +317,118 @@ import { parseTime } from "@/frame_src/utils";
 export default {
   name: "dashboard",
   // components: { adminDashboard, editorDashboard },
-  components: { adminDashboard },
+  components: { adminDashboard, CountTo },
   data() {
     return {
+      ZDWZoption:{
+                tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+ grid: {
+          left: "0%",
+          right: "0%",
+          bottom: "0%",
+          containLabel: true
+        },
+    xAxis: {
+        type: 'category',
+        data: ["中心库", "运转库", "港东器材库", "专用管分公司"],
+         axisTick: {
+              alignWithLabel: true
+            }
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+       name: "重点物资储备",
+            barWidth: "40%",
+        data: [120, 200, 150, 80],
+        type: 'bar'
+    }]
+      },
+        ZJoption: {
+        color: ["#3398DB"],
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+        grid: {
+          left: "0%",
+          right: "0%",
+          bottom: "0%",
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: "category",
+            data: ["中心库", "运转库", "港东器材库", "专用管分公司"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: "value"
+          }
+        ],
+        series: [
+          {
+            name: "整体资金",
+            type: "bar",
+            barWidth: "40%",
+            data: [500, 520, 200, 334]
+          }
+        ]
+       
+      },
+      KCoption: {
+        color: ["#34bfa3"],
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            // 坐标轴指示器，坐标轴触发有效
+            type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
+          }
+        },
+        grid: {
+          left: "0%",
+          right: "0%",
+          bottom: "0%",
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: "category",
+            data: ["中心库", "运转库", "港东器材库", "专用管分公司"],
+            axisTick: {
+              alignWithLabel: true
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: "value"
+          }
+        ],
+        series: [
+          {
+            name: "整体资金",
+            type: "bar",
+            barWidth: "40%",
+            data: [1500, 1520, 1200, 1334]
+          }
+        ]
+       
+      },
       currentRole: "adminDashboard",
       noticeList: [
         {
@@ -210,7 +466,7 @@ export default {
       },
       baseurl: process.env.BASE_API,
       detailVisible: false,
-
+      CHECK_STATE:"1",
       option: {
         title: {
           //text: "纳税人员统计图"
@@ -359,11 +615,36 @@ export default {
     };
   },
   methods: {
+     handleSetLineChartData(type) {
+      if(type=="ZJ")
+      {
+this.CHECK_STATE="1";
+      }
+      else if(type=="CB")
+      {
+this.CHECK_STATE="2";
+      }
+      else if(type=="KC")
+      {
+this.CHECK_STATE="3";
+      }
+    },
     drawline() {
       ///绘制echarts 柱状图
       let mycharts = this.$echarts.init(document.getElementById("pic1"));
-      mycharts.setOption(this.option);
+      mycharts.setOption(this.ZJoption);
     },
+    drawlineZD() {
+      ///绘制echarts 柱状图
+      let mycharts = this.$echarts.init(document.getElementById("picZD"));
+      mycharts.setOption(this.ZDWZoption);
+    },
+    drawlineKC() {
+      ///绘制echarts 柱状图
+      let mycharts = this.$echarts.init(document.getElementById("picKC"));
+      mycharts.setOption(this.KCoption);
+    },
+    
     drawline1() {
       let mycharts1 = this.$echarts.init(document.getElementById("pic2"));
       mycharts1.setOption(this.option1);
@@ -535,16 +816,18 @@ export default {
     getMore() {
       this.$router.push({ path: "noticeViews/noticelist/" });
     },
-    zhongxinkuclick(){
-         this.$router.push({path:'/cangchu/KCZS/ZXKDetail'});
-      },
-      zhuanyunku(){
-        this.$router.push({path:'/cangchu/KCZS/YLH'});
-      }
+    zhongxinkuclick() {
+      this.$router.push({ path: "/cangchu/KCZS/ZXKDetail" });
+    },
+    zhuanyunku() {
+      this.$router.push({ path: "/cangchu/KCZS/YLH" });
+    }
   },
   created() {},
   mounted() {
-    this.getMonthData();
+     this.drawline();
+     this.drawlineZD();
+    this.drawlineKC();
     this.getLv();
     this.CompareData();
     this.getNotice();
@@ -614,10 +897,110 @@ export default {
   font-family: "微软雅黑";
   min-height: 555px;
 }
-.cangku_img{
-  width:300px;
-  height:200px;
-  cursor:pointer;
+.cangku_img {
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+}
+.panel-chart
+{
+ height: 200px;
+  margin-top: 18px;
+  .card-panel-col {
+    margin-bottom: 0px;
+  }
+}
+.panel-group {
+  height: 120px;
+  margin-top: 18px;
+  .card-panel-col {
+    margin-bottom: 0px;
+  }
+  .card-panel {
+    height: 108px;
+    cursor: pointer;
+    font-size: 12px;
+    position: relative;
+    overflow: hidden;
+    color: #666;
+    background: #fff;
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.05);
+    &:hover {
+      .card-panel-icon-wrapper {
+        color: #fff;
+      }
+      .icon-people {
+        width: 80px;
+        height: 80px;
+        background: #40c9c6;
+      }
+      .icon-message {
+        width: 80px;
+        height: 80px;
+        background: #36a3f7;
+      }
+      .icon-money {
+        width: 80px;
+        height: 80px;
+        background: #f4516c;
+      }
+      .icon-shoppingCard {
+        width: 80px;
+        height: 80px;
+        background: #34bfa3;
+      }
+    }
+    .icon-people {
+      width: 80px;
+      height: 80px;
+      color: #40c9c6;
+    }
+    .icon-message {
+      width: 80px;
+      height: 80px;
+      color: #36a3f7;
+    }
+    .icon-money {
+      width: 80px;
+      height: 80px;
+      color: #f4516c;
+    }
+    .icon-shoppingCard {
+      width: 80px;
+      height: 80px;
+      color: #34bfa3;
+    }
+    .card-panel-icon-wrapper {
+      float: left;
+      margin: 14px 0 0 14px;
+      padding: 16px;
+      transition: all 0.38s ease-out;
+      border-radius: 6px;
+    }
+    .card-panel-icon {
+      float: left;
+
+      font-size: 12px;
+      width: 50px;
+      height: 50px;
+    }
+    .card-panel-description {
+      float: right;
+      font-weight: bold;
+      margin: 26px;
+      margin-left: 0px;
+      .card-panel-text {
+        line-height: 18px;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+      .card-panel-num {
+        font-size: 20px;
+      }
+    }
+  }
 }
 </style>
 
