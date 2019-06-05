@@ -24,6 +24,7 @@
           highlight-current-row
           style="width: 100%"
         >
+        <el-table-column label="序号" prop="non" fixed width="100px"></el-table-column>
           <el-table-column label="出库通知单号" prop="ZCKTZD" fixed width="150px"></el-table-column>
           <el-table-column label="出库通知单行号" prop="ZCITEM" width="150px"></el-table-column>
           <el-table-column label="工厂" prop="WERKS"></el-table-column>
@@ -75,7 +76,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="1"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="15"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -91,6 +92,7 @@ export default {
       listloading: false,
       goods: [
                    {
+                     non:1,
           ZCKTZD: "2-20170203-000344",
           ZCITEM: 1,
           WERKS: "C264",
@@ -135,6 +137,7 @@ export default {
           ZCJLX: "4"
         },
            {
+             non:2,
           ZCKTZD: "2-20170203-000321",
           ZCITEM: 1,
           WERKS: "C264",
@@ -179,6 +182,7 @@ export default {
           ZCJLX: "4"
         },
                 {
+                  non:3,
           ZCKTZD: "2-20170203-000310",
           ZCITEM: 1,
           WERKS: "C264",
@@ -223,6 +227,7 @@ export default {
           ZCJLX: "4"
         },
            {
+             non:4,
           ZCKTZD: "2-20170203-000976",
           ZCITEM: 1,
           WERKS: "C267",
@@ -267,6 +272,7 @@ export default {
           ZCJLX: "3"
         },
            {
+             non:5,
           ZCKTZD: "2-20170203-000344",
           ZCITEM: 1,
           WERKS: "C264",
@@ -311,6 +317,7 @@ export default {
           ZCJLX: "4"
         },
                 {
+                  non:6,
           ZCKTZD: "2-20170203-000315",
           ZCITEM: 1,
           WERKS: "C264",
@@ -355,6 +362,7 @@ export default {
           ZCJLX: "4"
         },
         {
+          non:7,
           ZCKTZD: "2-20170203-00032",
           ZCITEM: 1,
           WERKS: "C274",
@@ -399,6 +407,7 @@ export default {
           ZCJLX: "4"
         },
            {
+             non:8,
           ZCKTZD: "2-20170203-000344",
           ZCITEM: 1,
           WERKS: "C264",
@@ -443,6 +452,7 @@ export default {
           ZCJLX: "4"
         },
          {
+           non:9,
           ZCKTZD: "2-20170203-000321",
           ZCITEM: 1,
           WERKS: "C264",
@@ -487,6 +497,7 @@ export default {
           ZCJLX: "4"
         },
                 {
+                  non:10,
           ZCKTZD: "2-20170203-000310",
           ZCITEM: 1,
           WERKS: "C264",
@@ -531,6 +542,7 @@ export default {
           ZCJLX: "4"
         },
            {
+             non:11,
           ZCKTZD: "2-20170203-000976",
           ZCITEM: 1,
           WERKS: "C267",
@@ -575,6 +587,7 @@ export default {
           ZCJLX: "3"
         },
            {
+             non:12,
           ZCKTZD: "2-20170203-000344",
           ZCITEM: 1,
           WERKS: "C264",
@@ -619,6 +632,7 @@ export default {
           ZCJLX: "4"
         },
                 {
+                  non:13,
           ZCKTZD: "2-20170203-000315",
           ZCITEM: 1,
           WERKS: "C264",
@@ -663,6 +677,7 @@ export default {
           ZCJLX: "4"
         },
            {
+             non:14,
           ZCKTZD: "2-20170203-000344",
           ZCITEM: 1,
           WERKS: "C264",
@@ -707,6 +722,7 @@ export default {
           ZCJLX: "4"
         },
                 {
+                  non:15,
           ZCKTZD: "2-20170203-000315",
           ZCITEM: 1,
           WERKS: "C264",
@@ -749,6 +765,50 @@ export default {
           ZTKBS: "",
           ZDCDX: "",
           ZCJLX: "4"
+        }, {
+                  non:'合计',
+          ZCKTZD: "",
+          ZCITEM: '',
+          WERKS: "",
+          LIFNR: "",
+          RESWK: "",
+          GRUND: "",
+          RSNUM: '',
+          RSPOS: '',
+          ZLDITEM: '',
+          BSART: "",
+          EBELN: "",
+          EBELP: '',
+          TANUM: '',
+          TAPOS: '',
+          VBELN_SO: "",
+          POSNR: '',
+          TAPOS: "",
+          VBELN: '',
+          VBELP: "",
+          ZSEQU: "",
+          BANFN: "",
+          BNFPO: 10,
+          MATNR: "",
+          MATKL: "",
+          ZFHSL: 0,
+          ZSJFHSL: 0,
+          MEINS: "",
+          BWART: '',
+          LGORT: "",
+          ZCJR: "",
+          ZCJRQ: "",
+          CJSJ: "",
+          ZBAN1: "",
+          ZBNF1: "",
+          LGNUM: "",
+          MBLNR: "",
+          ZEILE: '',
+          BUDAT: '',
+          ZDGZSL: 0,
+          ZTKBS: "",
+          ZDCDX: "",
+          ZCJLX: ""
         }
       ]
     };

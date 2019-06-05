@@ -1,7 +1,7 @@
 <template>
-  <div id="SWKC" class="app-container calendar-list-container">
+  <div id="JJCK" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
@@ -22,7 +22,7 @@
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-table
           size="mini"
-          :data="fac"
+          :data="goods"
           :header-cell-class-name="tableRowClassName"
           v-loading="listloading"
           element-loading-text="给我一点时间"
@@ -31,7 +31,7 @@
           highlight-current-row
           style="width: 100%"
         >
-        <el-table-column label="序号" width="100" prop="non"></el-table-column>
+         <el-table-column label="序号" width="100" prop="non"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR"></el-table-column>
           <el-table-column label="物料名称" prop="MATNRNAME"></el-table-column>
           <el-table-column label="库存地点编号" prop="LGORTCODE"></el-table-column>
@@ -45,7 +45,7 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="20"
+          :page-size="1"
           layout="total, sizes, prev, pager, next, jumper"
           :total="18"
           style="text-align: center;"
@@ -57,11 +57,11 @@
 
 <script>
 export default {
-  name: "SWKC",
+  name: "JJCK",
   data() {
     return {
       listloading: false,
-      fac: [
+      goods: [
           {
           non:1,
           MATNR: "05020201",
@@ -223,6 +223,7 @@ export default {
       ]
     };
   },
+
   methods: {
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
