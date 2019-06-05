@@ -84,7 +84,6 @@
           </el-card>
         </el-col>
         <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="11">
-
           <el-card>
             <div slot="header" class="header">
               <el-row>
@@ -97,10 +96,10 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-              <div class="cangku_div">
+            <div class="cangku_div">
               <el-row class="panel-group" :gutter="10">
                 <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel"  @click="handleSetLineChartData('ZJ')">
+                  <div class="card-panel" @click="handleSetLineChartData('ZJ')">
                     <div class="card-panel-icon-wrapper icon-message">
                       <i class="el-icon-s-finance" style="font-size:48px;"></i>
                     </div>
@@ -149,78 +148,17 @@
                 </el-col>
               </el-row>
               <!-- <div style="height:5px;"></div> -->
-              <el-row  class="panel-chart">
+              <el-row class="panel-chart">
                 <el-col :span="24" style="text-align:center;margin:0;padding:0;">
-                       <div id="pic1" class="pic1" v-show="this.CHECK_STATE=='1'"></div> 
-                       <div id="picZD" class="pic1" v-show="this.CHECK_STATE=='2'"></div> 
-                       <div id="picKC" class="pic1" v-show="this.CHECK_STATE=='3'"></div> 
-                       <!-- <div id="pic1" class="pic1"  v-if="this.CHECK_STATE=='1'"></div> 
-                       <div id="picZD" class="pic1" v-if="this.CHECK_STATE=='2'"></div> 
-                       <div id="picKC" class="pic1" v-if="this.CHECK_STATE=='3'"></div>  -->
+                  <div id="pic1" class="pic1"></div>
+                  <!-- <div id="picKC" class="pic1 v-show="this.CHECK_STATE=='3'"></div>-->
                 </el-col>
               </el-row>
             </div>
-            <!-- <div>
-              <el-row class="panel-group" :gutter="10">
-                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel">
-                    <div class="card-panel-icon-wrapper icon-message">
-                      <i class="el-icon-s-finance" style="font-size:48px;"></i>
-                    </div>
-                    <div class="card-panel-description">
-                      <div class="card-panel-text">整体库存资金</div>
-                      <count-to
-                        class="card-panel-num"
-                        :startVal="0"
-                        :endVal="81212"
-                        :duration="3000"
-                      ></count-to>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel">
-                    <div class="card-panel-icon-wrapper icon-money">
-                      <i class="el-icon-s-grid" style="font-size:48px;"></i>
-                    </div>
-                    <div class="card-panel-description">
-                      <div class="card-panel-text">重点物资储备</div>
-                      <count-to
-                        class="card-panel-num"
-                        :startVal="0"
-                        :endVal="9280"
-                        :duration="3200"
-                      ></count-to>
-                    </div>
-                  </div>
-                  <div class="pic1" id="ZDCB"></div>
-                </el-col>
-                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel">
-                    <div class="card-panel-icon-wrapper icon-shoppingCard">
-                      <i class="el-icon-s-data" style="font-size:48px;"></i>
-                    </div>
-                    <div class="card-panel-description">
-                      <div class="card-panel-text">库存量</div>
-                      <count-to
-                        class="card-panel-num"
-                        :startVal="0"
-                        :endVal="13600"
-                        :duration="3600"
-                      ></count-to>
-                    </div>
-                  </div>
-                </el-col>
-              </el-row>
-              <el-row>
-                <div id="pic1" class="pic1"></div>
-              </el-row>
-            </div> -->
           </el-card>
         </el-col>
       </el-row>
     </div>
-
     <div class="containerBottom">
       <el-row :gutter="20" type="flex" justify="center">
         <el-col :xs="12" :sm="12" :md="12" :lg="12" :xl="11">
@@ -256,7 +194,7 @@
         </el-col>
       </el-row>
     </div>
-    <el-dialog :visible.sync="detailVisible" title="详情" width="800px">
+    <!-- <el-dialog :visible.sync="detailVisible" title="详情" width="800px">
       <el-card>
         <el-form ref="dataForm" :model="temp">
           <el-row type="flex">
@@ -283,7 +221,7 @@
                         size="text"
                       >{{item.FILE_NAME}}</el-button>
                     </div>
-                    <!-- <a target="blank" :href="baseurl+item.FILE_URL" v-for="(item,key) in detailList" :key="key">{{item.FILE_NAME}}</a> -->
+                     <a target="blank" :href="baseurl+item.FILE_URL" v-for="(item,key) in detailList" :key="key">{{item.FILE_NAME}}</a> 
                   </el-col>
                 </el-row>
                 <div class="foot">
@@ -296,7 +234,7 @@
           </el-row>
         </el-form>
       </el-card>
-    </el-dialog>
+    </el-dialog>-->
   </div>
 </template>
 
@@ -320,38 +258,41 @@ export default {
   components: { adminDashboard, CountTo },
   data() {
     return {
-      ZDWZoption:{
-                tooltip: {
+      ZDWZoption: {
+        color: ["#f4516c"],
+        tooltip: {
           trigger: "axis",
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效
             type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
           }
         },
- grid: {
+        grid: {
           left: "0%",
           right: "0%",
           bottom: "0%",
           containLabel: true
         },
-    xAxis: {
-        type: 'category',
-        data: ["中心库", "运转库", "港东器材库", "专用管分公司"],
-         axisTick: {
-              alignWithLabel: true
-            }
-    },
-    yAxis: {
-        type: 'value'
-    },
-    series: [{
-       name: "重点物资储备",
+        xAxis: {
+          type: "category",
+          data: ["中心库", "运转库", "港东器材库", "专用管分公司"],
+          axisTick: {
+            alignWithLabel: true
+          }
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            name: "重点物资储备",
             barWidth: "40%",
-        data: [120, 200, 150, 80],
-        type: 'bar'
-    }]
+            data: [120, 200, 150, 80],
+            type: "bar"
+          }
+        ]
       },
-        ZJoption: {
+      ZJoption: {
         color: ["#3398DB"],
         tooltip: {
           trigger: "axis",
@@ -388,7 +329,6 @@ export default {
             data: [500, 520, 200, 334]
           }
         ]
-       
       },
       KCoption: {
         color: ["#34bfa3"],
@@ -421,13 +361,12 @@ export default {
         ],
         series: [
           {
-            name: "整体资金",
+            name: "库存",
             type: "bar",
             barWidth: "40%",
             data: [1500, 1520, 1200, 1334]
           }
         ]
-       
       },
       currentRole: "adminDashboard",
       noticeList: [
@@ -466,7 +405,7 @@ export default {
       },
       baseurl: process.env.BASE_API,
       detailVisible: false,
-      CHECK_STATE:"1",
+      CHECK_STATE: "1",
       option: {
         title: {
           //text: "纳税人员统计图"
@@ -615,18 +554,18 @@ export default {
     };
   },
   methods: {
-     handleSetLineChartData(type) {
-      if(type=="ZJ")
-      {
-this.CHECK_STATE="1";
-      }
-      else if(type=="CB")
-      {
-this.CHECK_STATE="2";
-      }
-      else if(type=="KC")
-      {
-this.CHECK_STATE="3";
+    handleSetLineChartData(type) {
+      if (type == "ZJ") {
+        this.CHECK_STATE = "1";
+        this.drawline();
+      } else if (type == "CB") {
+        this.CHECK_STATE = "2";
+
+        this.drawlineZD();
+      } else if (type == "KC") {
+        this.CHECK_STATE = "3";
+
+        this.drawlineKC();
       }
     },
     drawline() {
@@ -636,15 +575,17 @@ this.CHECK_STATE="3";
     },
     drawlineZD() {
       ///绘制echarts 柱状图
-      let mycharts = this.$echarts.init(document.getElementById("picZD"));
+      // let mycharts = this.$echarts.init(document.getElementById("picZD"));
+      let mycharts = this.$echarts.init(document.getElementById("pic1"));
       mycharts.setOption(this.ZDWZoption);
     },
     drawlineKC() {
       ///绘制echarts 柱状图
-      let mycharts = this.$echarts.init(document.getElementById("picKC"));
+      // let mycharts = this.$echarts.init(document.getElementById("picKC"));
+      let mycharts = this.$echarts.init(document.getElementById("pic1"));
       mycharts.setOption(this.KCoption);
     },
-    
+
     drawline1() {
       let mycharts1 = this.$echarts.init(document.getElementById("pic2"));
       mycharts1.setOption(this.option1);
@@ -825,9 +766,9 @@ this.CHECK_STATE="3";
   },
   created() {},
   mounted() {
-     this.drawline();
-     this.drawlineZD();
-    this.drawlineKC();
+    this.drawline();
+    //  this.drawlineZD();
+    // this.drawlineKC();
     this.getLv();
     this.CompareData();
     this.getNotice();
@@ -902,9 +843,8 @@ this.CHECK_STATE="3";
   height: 200px;
   cursor: pointer;
 }
-.panel-chart
-{
- height: 200px;
+.panel-chart {
+  height: 200px;
   margin-top: 18px;
   .card-panel-col {
     margin-bottom: 0px;
