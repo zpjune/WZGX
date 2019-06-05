@@ -85,7 +85,7 @@
                   <img src="../../../frame_src/imgs/notice.png" alt class="pic">
                 </el-col>
                 <el-col :span="22">
-                  <span>出入库统计</span>
+                  <span>重点物资出入库统计</span>
                 </el-col>
               </el-row>
             </div>
@@ -101,7 +101,7 @@
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="22">
-                  <span>工作量统计</span>
+                  <span>积压物资统计</span>
                 </el-col>
               </el-row>
             </div>
