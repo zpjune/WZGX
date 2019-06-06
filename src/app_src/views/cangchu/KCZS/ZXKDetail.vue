@@ -325,7 +325,7 @@ export default {
           subtext: "",
           x: "center"
         },
-        //color: ["#32CD32"],
+        color:['#A2CD5A','#CD950C'],
         tooltip: {
           trigger: "item",
           formatter: "{a} <br/>{b}: {c}吨"
@@ -367,6 +367,7 @@ export default {
             title: {
           text: "工作量统计统计"
         },
+        color:['#A2CD5A','#CD950C'],
         tooltip: {
           trigger: "axis"
         },

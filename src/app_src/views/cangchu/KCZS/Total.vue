@@ -1,11 +1,11 @@
 <template>
   <div id="total" class="app-container calendar-list-container">
-    <div>
+    <div style="margin-left:15%">
       <div style="float:left">
         <div>
           <img class="ho" @click="zhongxinkuclick" src="../../../img/cangku1.jpg">
         </div>
-        <div style="text-align:center">
+        <div style="text-align:center;margin-bottom:15px">
           <span>中心库</span>
         </div>
       </div>
@@ -18,7 +18,7 @@
             src="../../../img/cangku2.jpg"
           >
         </div>
-        <div style="padding-left:470px;">
+        <div style="padding-left:680px;margin-bottom:15px">
           <span>转运库</span>
         </div>
       </div>
@@ -35,7 +35,7 @@
         <div>
         <img class="ho" style="margin-left:40px;" @click="zhongxinkuclick" src="../../../img/cangku4.jpg">
         </div>
-        <div style="padding-left:440px;">
+        <div style="padding-left:680px;">
           <span>专用管分公司</span>
         </div>
       </div>
@@ -109,8 +109,8 @@ export default {
   cursor: pointer;
 }
 img {
-  width: 301px;
-  height: 184px;
+  width: 450px;
+  height: 280px;
 }
 </style>
 
