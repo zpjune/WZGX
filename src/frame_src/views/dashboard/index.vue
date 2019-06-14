@@ -118,64 +118,22 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div class="cangku_div">
-              <el-row class="panel-group" :gutter="10">
-                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel" @click="handleSetLineChartData('ZJ')">
-                    <div class="card-panel-icon-wrapper icon-message">
-                      <i class="el-icon-s-finance" style="font-size:48px;"></i>
-                    </div>
-                    <div class="card-panel-description">
-                      <div class="card-panel-text">整体库存资金</div>
-                      <count-to
-                        class="card-panel-num"
-                        :startVal="0"
-                        :endVal="81212"
-                        :duration="3000"
-                      ></count-to>
-                    </div>
-                  </div>
+            <div style="height:613px;word-wrap:break-word">
+              <el-row>
+                <el-col :span="3" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/notice.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>生产数据</span></div>
                 </el-col>
-                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel" @click="handleSetLineChartData('CB')">
-                    <div class="card-panel-icon-wrapper icon-money">
-                      <i class="el-icon-s-grid" style="font-size:48px;"></i>
-                    </div>
-                    <div class="card-panel-description">
-                      <div class="card-panel-text">重点物资储备</div>
-                      <count-to
-                        class="card-panel-num"
-                        :startVal="0"
-                        :endVal="9280"
-                        :duration="3200"
-                      ></count-to>
-                    </div>
-                  </div>
+                <el-col :span="3" style="text-align:center">
+                  <img src="../../../frame_src/imgs/notice.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>生产数据</span></div>
                 </el-col>
-                <el-col :xs="12" :sm="12" :lg="8" class="card-panel-col">
-                  <div class="card-panel" @click="handleSetLineChartData('KC')">
-                    <div class="card-panel-icon-wrapper icon-shoppingCard">
-                      <i class="el-icon-s-data" style="font-size:48px;"></i>
-                    </div>
-                    <div class="card-panel-description">
-                      <div class="card-panel-text">库存量</div>
-                      <count-to
-                        class="card-panel-num"
-                        :startVal="0"
-                        :endVal="13600"
-                        :duration="3600"
-                      ></count-to>
-                    </div>
-                  </div>
+                <el-col :span="3" style="text-align:center">
+                  <img src="../../../frame_src/imgs/notice.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>生产数据</span></div>
                 </el-col>
               </el-row>
-              <!-- <div style="height:5px;"></div> -->
-              <el-row class="panel-chart">
-                <el-col :span="24" style="text-align:center;margin:0;padding:0;">
-                  <div id="pic1" class="pic1"></div>
-                  <!-- <div id="picKC" class="pic1 v-show="this.CHECK_STATE=='3'"></div>-->
-                </el-col>
-              </el-row>
+              
             </div>
           </el-card>
         </el-col>
@@ -232,7 +190,6 @@ import CountTo from "vue-count-to";
 import {
   getMonthData,
   getNotice,
-  getLv,
   CompareData,
   getNoticeDetail
 } from "@/frame_src/api/Home";
@@ -333,7 +290,6 @@ export default {
   created() {},
   mounted() {
     // this.drawlineKC();
-    this.getLv();
     this.getNotice();
   },
   computed: {
