@@ -121,15 +121,15 @@
             <div style="height:613px;word-wrap:break-word">
               <el-row>
                 <el-col :span="3" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/notice.png" style="width:50px;height:50px;" alt>
+                  <img src="../../../frame_src/imgs/wuzi001.jpg" style="width:50px;height:50px;" alt>
                   <div style="font-size:12px;color:#C0C0C0;"><span>生产数据</span></div>
                 </el-col>
                 <el-col :span="3" style="text-align:center">
-                  <img src="../../../frame_src/imgs/notice.png" style="width:50px;height:50px;" alt>
+                  <img src="../../../frame_src/imgs/wuzi002.jpg" style="width:50px;height:50px;" alt>
                   <div style="font-size:12px;color:#C0C0C0"><span>生产数据</span></div>
                 </el-col>
                 <el-col :span="3" style="text-align:center">
-                  <img src="../../../frame_src/imgs/notice.png" style="width:50px;height:50px;" alt>
+                  <img src="../../../frame_src/imgs/wuzi003.jpg" style="width:50px;height:50px;" alt>
                   <div style="font-size:12px;color:#C0C0C0"><span>生产数据</span></div>
                 </el-col>
               </el-row>

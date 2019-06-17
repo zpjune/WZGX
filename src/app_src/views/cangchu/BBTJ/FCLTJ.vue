@@ -58,33 +58,37 @@
             <span>{{scope.row.S_OrgName}}</span>
           </template>
         </el-table-column>-->
-        <el-table-column width="90px" align="center" label="时间月">
+        <el-table-column width="120px" align="center" label="时间月">
           <template slot-scope="scope">
             <span>{{scope.row.BUDAT|parseTime1}}</span>
           </template>
         </el-table-column>
-
+<el-table-column width="150px" align="center" label="工厂">
+          <template slot-scope="scope">
+            <span>{{scope.row.GC}}</span>
+          </template>
+        </el-table-column>
         <el-table-column width="200px" align="right" prop="ZGZSL" label="月发出量">
           <template slot-scope="scope">
             <span>{{scope.row.ZGZSL |NumFormat}}</span>
           </template>
         </el-table-column>
-        <el-table-column width="180px" align="right" prop="MSEG" label="累计月发出总金额">
+        <el-table-column width="220px" align="right" prop="MSEG" label="累计月发出总金额">
           <template slot-scope="scope">
             <span>{{scope.row.MSEG |NumFormat}}</span>
           </template>
         </el-table-column>
 
-        <el-table-column
+        <!-- <el-table-column
           label="操作"
           width="150px"
           align="center"
           class-name="small-padding fixed-width"
-        >
-          <template slot-scope="scope">
+        > -->
+          <!-- <template slot-scope="scope">
             <el-button size="mini" @click="sumdetail(scope.row.BUDAT)" type="primary" plain>明细</el-button>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
     </el-card>
     <el-dialog :visible.sync="showed" width="50%" title="月度明细">
@@ -192,52 +196,32 @@ export default {
           {
           BUDAT: "2019-01-08 12:00:00",
           ZGZSL: 900,
+          GC:'港东供销',
           MSEG: 210000
         },
           {
           BUDAT: "2019-02-08 12:00:00",
           ZGZSL: 510,
+           GC:'港西供销',
           MSEG: 210000
         },
           {
           BUDAT: "2019-03-08 12:00:00",
           ZGZSL: 560,
+           GC:'港狮供销',
           MSEG: 280000
         },
           {
           BUDAT: "2019-04-08 12:00:00",
           ZGZSL: 300,
+           GC:'油区供销',
           MSEG: 210000
         },
         {
           BUDAT: "2019-05-08 12:00:00",
           ZGZSL: 500,
+           GC:'港骅供销',
           MSEG: 230000
-        },
-        {
-          BUDAT: "2019-06-08 12:00:00",
-          ZGZSL: 600,
-          MSEG: 26000
-        },
-        {
-          BUDAT: "2019-07-08 12:00:00",
-          ZGZSL: 700,
-          MSEG: 31000
-        },
-        {
-          BUDAT: "2019-08-08 12:00:00",
-          ZGZSL: 470,
-          MSEG: 21000
-        },
-        {
-          BUDAT: "2019-09-08 12:00:00",
-          ZGZSL: 56,
-          MSEG: 24000
-        },
-        {
-          BUDAT: "2019-10-08 12:00:00",
-          ZGZSL: 77,
-          MSEG: 35000
         }
       ],
       sumlistLoading: false,
