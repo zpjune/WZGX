@@ -16,7 +16,7 @@
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
-      </el-col>
+      </el-col> 
     </el-row>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
@@ -36,7 +36,7 @@
               <img
                 v-if="scope.row.ZT==0"
                 src="../../../img/blue.jpg"
-                style="width:20px;height:15px;"
+                style="width:20px;height:15px; "
               >
               <img
                 v-if="scope.row.ZT==1"
