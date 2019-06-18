@@ -3,6 +3,9 @@
  */
 
 export function parseTime(time, cFormat) {
+  if(time===null||time===""){
+    return null;
+  }
   if (arguments.length === 0) {
     return null
   }

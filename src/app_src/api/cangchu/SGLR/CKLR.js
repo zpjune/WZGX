@@ -1,32 +1,32 @@
 import request from '@/frame_src/utils/request'
 
-export function createRKInfo(data) {
+export function createCKInfo(data) {
     return request({
-      url: '/RKInfo/CreateRKInfo',
+      url: '/CKInfo/CreateCKInfo',
       method: 'post',
       data
     })
   }
   
-  export function delRKInfo(data) {
+  export function delCKInfo(data) {
     return request({
-      url: '/RKInfo/DeleteRKInfo',
+      url: '/CKInfo/DeleteCKInfo',
       method: 'post',
       data
     })
   }
 
-  export function updateRKInfo(data) {
+  export function updateCKInfo(data) {
     return request({
-      url: '/RKInfo/UpdateRKInfo',
+      url: '/CKInfo/UpdateCKInfo',
       method: 'post',
       data
     })
   }
 
-  export function getRKInfo(query) {
+  export function getCKInfo(query) {
     return request({
-      url: '/RKInfo/GetRKInfo',
+      url: '/CKInfo/GetCKInfo',
       method: 'get',
       params:query
     })
