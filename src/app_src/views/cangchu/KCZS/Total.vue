@@ -38,7 +38,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <TotalZDWZ></TotalZDWZ>
+        <TotalZDWZDetail></TotalZDWZDetail>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
@@ -95,7 +95,7 @@
 
 <script>
 import TotalSWKC from "@/app_src/views/cangchu/KCZS/TotalSWKC";
-import TotalZDWZ from "@/app_src/views/cangchu/KCZS/TotalZDWZ";
+import TotalZDWZDetail from "@/app_src/views/cangchu/KCZS/TotalZDWZDetail";
 import TotalZDWZCRK from "@/app_src/views/cangchu/KCZS/TotalZDWZCRK";
 import TotalCKQX from "@/app_src/views/cangchu/KCZS/TotalCKQX";
 import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
@@ -104,7 +104,7 @@ export default {
   name: "total",
   components: {
     TotalSWKC, //实物库存
-    TotalZDWZ, //重点物资
+    TotalZDWZDetail, //重点物资
     TotalZDWZCRK, //重点物资出入库
     TotalBGYGZL, //保管员工作量
     TotalCKQX, //出库去向
