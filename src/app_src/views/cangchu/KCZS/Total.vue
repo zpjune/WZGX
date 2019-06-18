@@ -50,7 +50,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">积压物资统计</i>
         </template>
-        <TotalZDWZ></TotalZDWZ>
+        <TotalJYWZ></TotalJYWZ>
       </el-collapse-item>
       <el-collapse-item name="6">
         <template slot="title">
@@ -100,6 +100,7 @@ import TotalZDWZCRK from "@/app_src/views/cangchu/KCZS/TotalZDWZCRK";
 import TotalCKQX from "@/app_src/views/cangchu/KCZS/TotalCKQX";
 import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
+import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
 export default {
   name: "total",
   components: {
@@ -108,7 +109,8 @@ export default {
     TotalZDWZCRK, //重点物资出入库
     TotalBGYGZL, //保管员工作量
     TotalCKQX, //出库去向
-    TotalCRKdetail //出入库统计详情页
+    TotalCRKdetail, //出入库统计详情页
+    TotalJYWZ
   },
   data() {
     return {

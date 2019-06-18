@@ -25,7 +25,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK></detailZDWZCRK>>
+        <detailZDWZCRK></detailZDWZCRK>
       </el-collapse-item>
       <el-collapse-item name="5">
         <template slot="title">

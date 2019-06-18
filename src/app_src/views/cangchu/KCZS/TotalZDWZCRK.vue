@@ -31,41 +31,20 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="状态" width="70" align="center" prop="ZT">
-            <template slot-scope="scope">
-              <img
-                v-if="scope.row.ZT==0"
-                src="../../../img/blue.jpg"
-                style="width:20px;height:15px;"
-              >
-              <img
-                v-if="scope.row.ZT==1"
-                src="../../../img/red.jpg"
-                style="width:20px;height:15px;"
-              >
-              <img
-                v-if="scope.row.ZT==2"
-                src="../../../img/yellow.jpg"
-                style="width:20px;height:15px;"
-              >
-            </template>
-          </el-table-column>
-          <el-table-column label="工厂编号" prop="GCBH"></el-table-column>
+          <el-table-column label="序号" width="70" align="center" prop="non"></el-table-column>
           <el-table-column label="物料组" prop="WLZ"></el-table-column>
           <el-table-column label="物料编码" prop="WLBM"></el-table-column>
-          <el-table-column label="物料描述" prop="WLMS"></el-table-column>
+          <el-table-column label="物料名称" prop="WLMC"></el-table-column>
+          <el-table-column label="规格型号" prop="GGXH"></el-table-column>
           <el-table-column label="计量单位" prop="JLDW"></el-table-column>
-          <el-table-column label="实存数量" prop="SCSL"></el-table-column>
-          <el-table-column label="副计量单位" prop="FJLDW"></el-table-column>
-          <el-table-column label="副计量数量" prop="FJLSL"></el-table-column>
-          <el-table-column label="存货状态" prop="CHZT"></el-table-column>
-          <el-table-column label="库存地点" prop="KCDD"></el-table-column>
+          <el-table-column label="最低储备" prop="ZDCB"></el-table-column>
+          <el-table-column label="最高储备" prop="ZGCB"></el-table-column>
+          <el-table-column label="现有库存" prop="XYKC"></el-table-column>
+          <el-table-column label="本月入库" prop="BYRK"></el-table-column>
+          <el-table-column label="本月消耗" prop="BYXH"></el-table-column>
+          <el-table-column label="使用单位" prop="SYDW"></el-table-column>
+          <el-table-column label="备注" prop="REMARK"></el-table-column>
         </el-table>
-        <div style="padding-top:3px;">
-        <img src="../../../img/blue.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;无动态（积压）</span>
-        <img src="../../../img/red.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;报废或超期</span>
-        <img src="../../../img/yellow.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;有保存期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他为正常</span>
-        </div>
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -74,7 +53,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="7"
+          :total="5"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -90,95 +69,91 @@ export default {
       listloading: false,
       fac: [
         {
-          ZT: 0,
-          GCBH: "11002298694",
+          non: 1,
           WLZ: "12020611",
-          WLBM: "C271",
-          WLMS: "",
+          WLBM: "12365487456",
+          WLMC: "柴油",
+          GGXH:'0#（国六）',
           JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          ZDCB: 200,
+          ZGCB: 1600,
+          XYKC: 2000,
+          BYRK: "",
+          BYXH: "",
+          SYDW:'',
+          REMARK:''
         },
-        {
-          ZT: 3,
-          GCBH: "12002298691",
-          WLZ: "12365478",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 10,
-          FJLDW: "方",
-          FJLSL: 100,
-          CHZT: "已上架",
-          KCDD: "转运库"
-        },
-        {
-          ZT: 1,
-          GCBH: "13202298456",
-          WLZ: "12365489",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 50,
-          FJLDW: "箱",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
-        },
-        {
-          ZT: 3,
-          GCBH: "11002298699",
-          WLZ: "12020611",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 30,
-          FJLDW: "桶",
-          FJLSL: 200,
-          CHZT: "已上架",
-          KCDD: "港东器材库"
-        },
-        {
-          ZT: 2,
-          GCBH: "11002298695",
+         {
+          non: 1,
           WLZ: "12020612",
-          WLBM: "C271",
-          WLMS: "",
+          WLBM: "21548695452",
+          WLMC: "柴油",
+          GGXH:'-20#（国六）',
           JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
-        },
-        {
-          ZT: 0,
-          GCBH: "11002298696",
+          ZDCB: 300,
+          ZGCB: 1600,
+          XYKC: 4000,
+          BYRK: "",
+          BYXH: "",
+          SYDW:'',
+          REMARK:''
+        }
+        , {
+          non: 2,
           WLZ: "12020613",
-          WLBM: "C271",
-          WLMS: "",
+          WLBM: "12365487456",
+          WLMC: "柴油",
+          GGXH:'0#（国六）',
           JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
-        },
-        {
-          ZT: 3,
-          GCBH: "11002298697",
+          ZDCB: 200,
+          ZGCB: 1600,
+          XYKC: 2000,
+          BYRK: "",
+          BYXH: "",
+          SYDW:'',
+          REMARK:''
+        }, {
+          non: 3,
           WLZ: "12020614",
-          WLBM: "C271",
-          WLMS: "",
+          WLBM: "36526985699",
+          WLMC: "油管",
+          GGXH:'73*5.51N80E',
           JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          ZDCB: 500,
+          ZGCB: 1000,
+          XYKC: 2000,
+          BYRK: "",
+          BYXH: "",
+          SYDW:'',
+          REMARK:''
+        }, {
+          non: 4,
+          WLZ: "12020611",
+          WLBM: "12365487456",
+          WLMC: "柴油",
+          GGXH:'0#（国六）',
+          JLDW: "吨",
+          ZDCB: 200,
+          ZGCB: 1600,
+          XYKC: 2000,
+          BYRK: "",
+          BYXH: "",
+          SYDW:'',
+          REMARK:''
+        }, {
+          non: 5,
+          WLZ: "12020611",
+          WLBM: "12365487456",
+          WLMC: "油井水泥",
+          GGXH:'G级高抗',
+          JLDW: "吨",
+          ZDCB: 6500,
+          ZGCB: 8000,
+          XYKC: 2000,
+          BYRK: "",
+          BYXH: "",
+          SYDW:'',
+          REMARK:''
         }
       ]
     };
