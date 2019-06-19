@@ -20,7 +20,7 @@
     </el-row>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-table
+        <!-- <el-table
           size="mini"
           :data="fac"
           :header-cell-class-name="tableRowClassName"
@@ -65,7 +65,33 @@
         <img src="../../../img/blue.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;无动态（积压）</span>
         <img src="../../../img/red.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;报废或超期</span>
         <img src="../../../img/yellow.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;有保存期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他为正常</span>
-        </div>
+        </div>-->
+        <el-table
+          size="mini"
+          :data="fac"
+          :header-cell-class-name="tableRowClassName"
+          v-loading="listloading"
+          element-loading-text="给我一点时间"
+          border
+          fit
+          highlight-current-row
+          style="width: 100%"
+        >
+          <el-table-column label="序号">
+            <template slot-scope="scope">{{scope.$index+1}}</template>
+          </el-table-column>
+          <el-table-column label="入库单号" prop="DH"></el-table-column>
+          <el-table-column label="物料组" prop="WLZ"></el-table-column>
+          <el-table-column label="物料编码" prop="WLBM"></el-table-column>
+          <el-table-column label="物料描述" prop="WLMS"></el-table-column>
+          <el-table-column label="计量单位" prop="JLDW"></el-table-column>
+          <el-table-column label="待入库数量" prop="SL"></el-table-column>
+          <el-table-column label="库存地点" prop="DD"></el-table-column>
+          <el-table-column label="工厂" prop="GC"></el-table-column>
+          <el-table-column label="创建人" prop="CJR"></el-table-column>
+          <el-table-column label="供货单位" prop="DW"></el-table-column>
+          <el-table-column label="备注" prop="BZ"></el-table-column>
+        </el-table>
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -90,95 +116,95 @@ export default {
       listloading: false,
       fac: [
         {
-          ZT: 0,
-          GCBH: "11002298694",
-          WLZ: "12020611",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          DH: "201906019001",
+          WLZ: "0831",
+          WLBM: "0010001002",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 500,
+          DD: "中心库北侧",
+          GC: "1号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         },
         {
-          ZT: 3,
-          GCBH: "12002298691",
-          WLZ: "12365478",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 10,
-          FJLDW: "方",
-          FJLSL: 100,
-          CHZT: "已上架",
-          KCDD: "转运库"
+          DH: "201906019002",
+          WLZ: "0832",
+          WLBM: "0010001003",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 200,
+          DD: "中心库北侧",
+          GC: "1号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         },
         {
-          ZT: 1,
-          GCBH: "13202298456",
-          WLZ: "12365489",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 50,
-          FJLDW: "箱",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          DH: "201906019006",
+          WLZ: "0463",
+          WLBM: "0010001009",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 276.5,
+          DD: "中心库北侧",
+          GC: "2号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         },
         {
-          ZT: 3,
-          GCBH: "11002298699",
-          WLZ: "12020611",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 30,
-          FJLDW: "桶",
-          FJLSL: 200,
-          CHZT: "已上架",
-          KCDD: "港东器材库"
+          DH: "201906019009",
+          WLZ: "0879",
+          WLBM: "0010001007",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 1200,
+          DD: "中心库北侧",
+          GC: "3号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         },
         {
-          ZT: 2,
-          GCBH: "11002298695",
-          WLZ: "12020612",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          DH: "201906019089",
+          WLZ: "08561",
+          WLBM: "0010001890",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 2100,
+          DD: "中心库北侧",
+          GC: "1号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         },
         {
-          ZT: 0,
-          GCBH: "11002298696",
-          WLZ: "12020613",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          DH: "201906019471",
+          WLZ: "0890",
+          WLBM: "00100010089",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 500,
+          DD: "中心库北侧",
+          GC: "1号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         },
         {
-          ZT: 3,
-          GCBH: "11002298697",
-          WLZ: "12020614",
-          WLBM: "C271",
-          WLMS: "",
-          JLDW: "吨",
-          SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
-          CHZT: "已上架",
-          KCDD: "中心库"
+          DH: "2019060190098",
+          WLZ: "0978",
+          WLBM: "0010001097",
+          WLMS: "建筑材料",
+          JLDW: "T",
+          SL: 166,
+          DD: "中心库北侧",
+          GC: "1号工厂",
+          CJR: "管理员",
+          DW: "供货一公司",
+          BZ: ""
         }
       ]
     };

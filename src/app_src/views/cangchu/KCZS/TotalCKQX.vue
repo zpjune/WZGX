@@ -14,13 +14,13 @@
         <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="createData">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-table
+        <!-- <el-table
           size="mini"
           :data="fac"
           :header-cell-class-name="tableRowClassName"
@@ -65,7 +65,35 @@
         <img src="../../../img/blue.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;无动态（积压）</span>
         <img src="../../../img/red.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;报废或超期</span>
         <img src="../../../img/yellow.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;有保存期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他为正常</span>
-        </div>
+        </div>-->
+        <el-table
+          size="mini"
+          :data="fac"
+          :header-cell-class-name="tableRowClassName"
+          v-loading="listloading"
+          element-loading-text="给我一点时间"
+          border
+          fit
+          highlight-current-row
+          style="width: 100%"
+          show-summary
+        >
+          <el-table-column label="类号">
+            <template slot-scope="scope">{{scope.$index+1}}</template>
+          </el-table-column>
+          <el-table-column label="大类名称" prop="name"></el-table-column>
+          <el-table-column label="出库合计" prop="HJ"></el-table-column>
+          <el-table-column label="油田公司未上市企业" prop="WSH"></el-table-column>
+          <el-table-column label="油田公司上市企业" prop="SH"></el-table-column>
+          <el-table-column label="渤海钻探" prop="BHZT"></el-table-column>
+          <el-table-column label="渤海装备" prop="BHZB"></el-table-column>
+          <el-table-column label="福山油田" prop="FSYT"></el-table-column>
+          <el-table-column label="煤层气" prop="MCQ"></el-table-column>
+          <el-table-column label="冀东油田" prop="JDYT"></el-table-column>
+          <el-table-column label="其他中石油企业" prop="QT"></el-table-column>
+          <el-table-column label="大港石化" prop="DGSH"></el-table-column>
+          <el-table-column label="社会外销" prop="SHWX"></el-table-column>
+        </el-table>
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -192,7 +220,57 @@ export default {
       return "";
     },
     handleSizeChange() {},
-    handleCurrentChange() {}
+    handleCurrentChange() {},
+    createData() {
+      let name = [
+        "冶金原料及铸铁管",
+        "石油专用管材",
+        "普通钢材",
+        "金属丝、金属绳",
+        "有色金属及加工材",
+        "建筑五金",
+        "石油及产品",
+        "煤炭",
+        "非金属建筑材料",
+        "水泥及制品"
+      ];
+      let tempData = {
+        name: "",
+        HJ: "",
+        WSH: "",
+        SH: "",
+        BHZT: "",
+        BHZB: "",
+        FSYT: "",
+        MCQ: "",
+        JDYT: "",
+        QT: "",
+        DGSH: "",
+        SHWX: ""
+      };
+      let DataList=[];
+      for(let i=0;i<name.length-1;i++){
+        tempData={
+          name:name[i],      
+          WSH:Math.round(Math.random()*100),
+          SH:Math.round(Math.random()*100),
+          BHZT:Math.round(Math.random()*100),
+          BHZB:Math.round(Math.random()*100),
+          FSYT:Math.round(Math.random()*100),
+          MCQ:Math.round(Math.random()*100),
+          JDYT:Math.round(Math.random()*100),
+          QT:Math.round(Math.random()*100),
+          DGSH:Math.round(Math.random()*100),
+          SHWX:Math.round(Math.random()*100),
+        }
+        tempData.HJ=tempData.WSH+tempData.SH+tempData.BHZT+tempData.BHZB+tempData.FSYT+tempData.MCQ+tempData.JDYT+tempData.QT+tempData.DGSH+tempData.SHWX
+        DataList.push(tempData);
+      }
+      this.fac=DataList;
+    }
+  },
+  mounted(){
+    this.createData();
   }
 };
 </script>
