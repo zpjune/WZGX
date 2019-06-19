@@ -108,7 +108,7 @@ export default {
           isSet: false,
           kcdd: "转运库",
           rkje: "0.1亿",
-          rkl: "",
+          rkl: "150",
           ckje: "0.2亿",
           ckl: 1000
         },
@@ -116,7 +116,7 @@ export default {
           isSet: false,
           kcdd: "港东器材库",
           rkje: "1.5亿",
-          rkl: "",
+          rkl: "122.5",
           ckje: "0.5亿",
           ckl: 1000
         },
@@ -124,7 +124,7 @@ export default {
           isSet: false,
           kcdd: "专用管分公司",
           rkje: "0.3亿",
-          rkl: "",
+          rkl: "37",
           ckje: "0.2亿",
           ckl: 1000
         },
@@ -132,7 +132,7 @@ export default {
           isSet: false,
           kcdd: "厂现直供库",
           rkje: "0.3亿",
-          rkl: "",
+          rkl: "26",
           ckje: "0.8亿",
           ckl: 1000
         }

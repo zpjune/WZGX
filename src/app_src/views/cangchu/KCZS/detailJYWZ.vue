@@ -34,8 +34,8 @@
           <el-table-column label="工厂编号" prop="GCBH"></el-table-column>
           <el-table-column label="物料组" prop="WLZ"></el-table-column>
           <el-table-column label="物料编码" prop="WLBM"></el-table-column>
-          <el-table-column label="物料描述" prop="WLMS"></el-table-column>
-          <el-table-column label="计量单位" prop="JLDW"></el-table-column>
+          <el-table-column label="物料描述" prop="WLMS" width="300"></el-table-column>
+          <el-table-column label="计量单位" prop="JLDW" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="SCSL"></el-table-column>
           <el-table-column label="副计量单位" prop="FJLDW"></el-table-column>
           <el-table-column label="副计量数量" prop="FJLSL"></el-table-column>
@@ -67,10 +67,10 @@ export default {
       fac: [
         {
           ZT: 0,
-          GCBH: "11002298694",
-          WLZ: "12020611",
-          WLBM: "C271",
-          WLMS: "",
+          GCBH: "C27D",
+          WLZ: "36010101",
+          WLBM: "10003153483",
+          WLMS: "台式机 戴尔 7050MT Intel i7 7700 3.6G",
           JLDW: "吨",
           SCSL: 20,
           FJLDW: "根",
@@ -80,10 +80,10 @@ export default {
         },
         {
           ZT: 3,
-          GCBH: "12002298691",
-          WLZ: "12365478",
-          WLBM: "C271",
-          WLMS: "",
+          GCBH: "C27C",
+          WLZ: "36010101",
+          WLBM: "10003153483",
+          WLMS: "台式机 戴尔 Optiplex 7050MT (i7-7700 3.6GHz*⑴",
           JLDW: "吨",
           SCSL: 10,
           FJLDW: "方",
@@ -93,10 +93,10 @@ export default {
         },
         {
           ZT: 1,
-          GCBH: "13202298456",
-          WLZ: "12365489",
-          WLBM: "C271",
-          WLMS: "",
+          GCBH: "C274",
+          WLZ: "17021117",
+          WLBM: "10001506386",
+          WLMS: "氯化钾",
           JLDW: "吨",
           SCSL: 50,
           FJLDW: "箱",
@@ -106,10 +106,10 @@ export default {
         },
         {
           ZT: 3,
-          GCBH: "11002298699",
+          GCBH: "C27D",
           WLZ: "12020611",
-          WLBM: "C271",
-          WLMS: "",
+          WLBM: "11002298694",
+          WLMS: "水解聚丙烯腈铵盐",
           JLDW: "吨",
           SCSL: 30,
           FJLDW: "桶",
@@ -119,10 +119,10 @@ export default {
         },
         {
           ZT: 2,
-          GCBH: "11002298695",
+          GCBH: "C27C",
           WLZ: "12020612",
           WLBM: "C271",
-          WLMS: "",
+          WLMS: "高压水井阀门",
           JLDW: "吨",
           SCSL: 20,
           FJLDW: "根",
@@ -132,10 +132,10 @@ export default {
         },
         {
           ZT: 0,
-          GCBH: "11002298696",
-          WLZ: "12020613",
-          WLBM: "C271",
-          WLMS: "",
+          GCBH: "C274",
+          WLZ: "12020612",
+          WLBM: "11001999718",
+          WLMS: "钻井液用树脂",
           JLDW: "吨",
           SCSL: 20,
           FJLDW: "根",
@@ -145,10 +145,10 @@ export default {
         },
         {
           ZT: 3,
-          GCBH: "11002298697",
-          WLZ: "12020614",
-          WLBM: "C271",
-          WLMS: "",
+          GCBH: "C274",
+          WLZ: "17020202",
+          WLBM: "11000857869",
+          WLMS: "烧碱",
           JLDW: "吨",
           SCSL: 20,
           FJLDW: "根",

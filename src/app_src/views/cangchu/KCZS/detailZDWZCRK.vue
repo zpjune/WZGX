@@ -70,8 +70,8 @@ export default {
       fac: [
          {
           non: 1,
-          WLZ: "12020611",
-          WLBM: "12365487456",
+          WLZ: "07030302",
+          WLBM: "10000513978",
           WLMC: "柴油",
           GGXH:'0#（国六）',
           JLDW: "吨",
@@ -85,8 +85,8 @@ export default {
         },
          {
           non: 1,
-          WLZ: "12020612",
-          WLBM: "21548695452",
+          WLZ: "07030302",
+          WLBM: "11000922113",
           WLMC: "柴油",
           GGXH:'-20#（国六）',
           JLDW: "吨",
@@ -114,8 +114,8 @@ export default {
           REMARK:''
         }, {
           non: 3,
-          WLZ: "12020614",
-          WLBM: "36526985699",
+          WLZ: "07030302",
+          WLBM: "11000922112",
           WLMC: "油管",
           GGXH:'73*5.51N80E',
           JLDW: "吨",
@@ -128,8 +128,8 @@ export default {
           REMARK:''
         }, {
           non: 4,
-          WLZ: "12020611",
-          WLBM: "12365487456",
+          WLZ: "02040101",
+          WLBM: "20002020707",
           WLMC: "柴油",
           GGXH:'0#（国六）',
           JLDW: "吨",
@@ -142,8 +142,8 @@ export default {
           REMARK:''
         }, {
           non: 5,
-          WLZ: "12020611",
-          WLBM: "12365487456",
+          WLZ: "07030302",
+          WLBM: "11004684489",
           WLMC: "油井水泥",
           GGXH:'G级高抗',
           JLDW: "吨",
