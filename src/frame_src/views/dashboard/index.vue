@@ -118,19 +118,144 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div style="height:613px;word-wrap:break-word">
+            <div style="height:613px;word-wrap:break-word" class="icon">
               <el-row>
-                <el-col :span="3" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/wuzi001.jpg" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;color:#C0C0C0;"><span>生产数据</span></div>
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/33.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>自采统计</span></div>
                 </el-col>
-                <el-col :span="3" style="text-align:center">
-                  <img src="../../../frame_src/imgs/wuzi002.jpg" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;color:#C0C0C0"><span>生产数据</span></div>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/13.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>统采统计</span></div>
                 </el-col>
-                <el-col :span="3" style="text-align:center">
-                  <img src="../../../frame_src/imgs/wuzi003.jpg" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;color:#C0C0C0"><span>生产数据</span></div>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/12.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>设备情况</span></div>
+                </el-col>
+                
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/16.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>两金压控</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/27.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>降本增效</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/5.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>厂现直供</span></div>
+                </el-col>
+              </el-row>
+
+               <el-row>
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/7.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>钻井动态</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/17.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>月度消耗统计</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/20.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>到货周期统计</span></div>
+                </el-col>
+                
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/9.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>库存变动统计</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/32.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>成本费用管理</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/35.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>市场收入预计</span></div>
+                </el-col>
+              </el-row>
+
+              <el-row>
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/1.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>物资销售统计</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/2.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>设备油耗统计</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/3.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>修理费用统计</span></div>
+                </el-col>
+                
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/4.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>利润情况统计</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/6.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>市场占有率</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/8.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>作业计划查询</span></div>
+                </el-col>
+              </el-row>
+
+               <el-row>
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/10.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>外部市场创收</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/11.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>重点物资收发</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/12.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>重点生产信息</span></div>
+                </el-col>
+                
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/18.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>基建维修计划</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/19.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>基建维修进度</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/21.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>生产预测表</span></div>
+                </el-col>
+              </el-row>
+
+              <el-row>
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/25.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>井位进度日报</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/26.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>油管朋度计划</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/27.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>油管月度统计</span></div>
+                </el-col>
+                
+                <el-col :span="4" style="text-align:center;" >
+                  <img src="../../../frame_src/imgs/icon/28.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0;"><span>配送物流跟踪</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/29.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>产能建设计划</span></div>
+                </el-col>
+                <el-col :span="4" style="text-align:center">
+                  <img src="../../../frame_src/imgs/icon/30.png" style="width:50px;height:50px;" alt>
+                  <div style="font-size:12px;color:#C0C0C0"><span>井位需求计划</span></div>
                 </el-col>
               </el-row>
               
@@ -331,6 +456,11 @@ export default {
   .pic1 {
     height: 250px;
     width: 100%;
+  }
+  .icon{
+    .el-row{
+      margin-top: 25px;
+    }
   }
 }
 .el-card {
