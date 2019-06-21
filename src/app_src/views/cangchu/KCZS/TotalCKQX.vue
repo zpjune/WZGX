@@ -83,7 +83,7 @@
           </el-table-column>
           <el-table-column label="大类名称" prop="name"></el-table-column>
           <el-table-column label="出库合计" prop="HJ"></el-table-column>
-          <el-table-column label="油田公司未上市企业" prop="WSH"></el-table-column>
+          <el-table-column label="油田公司未上市企业" width="140PX" prop="WSH"></el-table-column>
           <el-table-column label="油田公司上市企业" prop="SH"></el-table-column>
           <el-table-column label="渤海钻探" prop="BHZT"></el-table-column>
           <el-table-column label="渤海装备" prop="BHZB"></el-table-column>

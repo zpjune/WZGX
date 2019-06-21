@@ -37,8 +37,6 @@
           <el-table-column label="物料描述" prop="WLMS" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="JLDW" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="SCSL"></el-table-column>
-          <el-table-column label="副计量单位" prop="FJLDW"></el-table-column>
-          <el-table-column label="副计量数量" prop="FJLSL"></el-table-column>
           <el-table-column label="存货状态" prop="CHZT"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD"></el-table-column>
         </el-table>
@@ -73,8 +71,6 @@ export default {
           WLMS: "台式机 戴尔 7050MT Intel i7 7700 3.6G",
           JLDW: "吨",
           SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
           CHZT: "已上架",
           KCDD: "中心库"
         },
@@ -86,8 +82,6 @@ export default {
           WLMS: "台式机 戴尔 Optiplex 7050MT (i7-7700 3.6GHz*⑴",
           JLDW: "吨",
           SCSL: 10,
-          FJLDW: "方",
-          FJLSL: 100,
           CHZT: "已上架",
           KCDD: "转运库"
         },
@@ -99,8 +93,6 @@ export default {
           WLMS: "氯化钾",
           JLDW: "吨",
           SCSL: 50,
-          FJLDW: "箱",
-          FJLSL: 2000,
           CHZT: "已上架",
           KCDD: "中心库"
         },
@@ -112,8 +104,6 @@ export default {
           WLMS: "水解聚丙烯腈铵盐",
           JLDW: "吨",
           SCSL: 30,
-          FJLDW: "桶",
-          FJLSL: 200,
           CHZT: "已上架",
           KCDD: "港东器材库"
         },
@@ -125,8 +115,6 @@ export default {
           WLMS: "高压水井阀门",
           JLDW: "吨",
           SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
           CHZT: "已上架",
           KCDD: "中心库"
         },
@@ -138,8 +126,6 @@ export default {
           WLMS: "钻井液用树脂",
           JLDW: "吨",
           SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
           CHZT: "已上架",
           KCDD: "中心库"
         },
@@ -151,8 +137,6 @@ export default {
           WLMS: "烧碱",
           JLDW: "吨",
           SCSL: 20,
-          FJLDW: "根",
-          FJLSL: 2000,
           CHZT: "已上架",
           KCDD: "中心库"
         }

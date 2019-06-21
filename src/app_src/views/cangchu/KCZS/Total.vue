@@ -17,7 +17,7 @@
                     <el-col :span="24" style="font-weight:bold;font-size:25px">总资金</el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="24" style="font-weight:bold;font-size:15px">1.5亿</el-col>
+                    <el-col :span="24" style="font-weight:bold;font-size:15px"> <count-to :start-val="0" :end-val="1500000000" :duration="3000" class="card-panel-num" />元</el-col>
                   </el-row>
                 </el-col>
               </el-row>
@@ -77,12 +77,6 @@
           @listenToChildEvent="closeDialog"
         ></TotalCRKdetail>
       </el-collapse-item>
-      <el-collapse-item name="7">
-        <template slot="title">
-          <i class="header-icon el-icon-eleme" style="font-weight:bold">出库去向统计</i>
-        </template>
-        <TotalCKQX></TotalCKQX>
-      </el-collapse-item>
       <el-collapse-item name="8">
         <template slot="title">
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">保管员工作量统计</i>
@@ -97,24 +91,24 @@
 import TotalSWKC from "@/app_src/views/cangchu/KCZS/TotalSWKC";
 import TotalZDWZDetail from "@/app_src/views/cangchu/KCZS/TotalZDWZDetail";
 import TotalZDWZCRK from "@/app_src/views/cangchu/KCZS/TotalZDWZCRK";
-import TotalCKQX from "@/app_src/views/cangchu/KCZS/TotalCKQX";
 import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
 import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
+import CountTo from 'vue-count-to'
 export default {
   name: "total",
   components: {
+    CountTo,
     TotalSWKC, //实物库存
     TotalZDWZDetail, //重点物资
     TotalZDWZCRK, //重点物资出入库
     TotalBGYGZL, //保管员工作量
-    TotalCKQX, //出库去向
     TotalCRKdetail, //出入库统计详情页
     TotalJYWZ
   },
   data() {
     return {
-      activeCangku: 1,
+      activeCangku: "1",
       option2: {
         title: {
           text: "各单位库存资金",
