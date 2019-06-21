@@ -35,15 +35,7 @@
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="入库量" fixed="left">
           <template slot-scope="scope">
-            <span v-if="scope.row.isSet">
-              <el-input
-                size="small"
-                v-model="scope.row.rkl"
-                placeholder="请输入内容"
-                @change="handleEdit(scope.$index, scope.row)"
-              ></el-input>
-            </span>
-            <span v-else>{{scope.row.rkl}}</span>
+            <span >{{scope.row.rkl}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="出库金额" fixed="left">
@@ -53,20 +45,7 @@
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="出库量" fixed="left">
           <template slot-scope="scope">
-             <span v-if="scope.row.isSet">
-              <el-input
-                size="small"
-                v-model="scope.row.ckl"
-                placeholder="请输入内容"
-                @change="handleEdit(scope.$index, scope.row)"
-              ></el-input>
-            </span>
-            <span v-else>{{scope.row.ckl}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column min-width="100px" align="center" label="操作" fixed="left">
-          <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">保存</el-button>
+            <span >{{scope.row.ckl}}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -136,6 +115,15 @@ export default {
           ckje: "0.8亿",
           ckl: 1000
         }
+        ,
+        {
+          isSet: false,
+          kcdd: "直达料",
+          rkje: "0.3亿",
+          rkl: "26",
+          ckje: "0.8亿",
+          ckl: 1000
+        }
       ],
       listQuery: {
         page: 1,
@@ -153,8 +141,6 @@ export default {
       console.log(index, row);
     },
     rowDoubleClick(row, column, event) {
-      row.isSet = true;
-      console.log(row);
     },
     handleUpdate(row) {
       row.isSet = false;
