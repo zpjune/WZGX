@@ -9,15 +9,15 @@
           <el-col :xs="12" :sm="12" :lg="7">
             <div id="pic1" class="pic1" style="width:55%;margin-left:30%;padding-top:80px">
               <el-row>
-                <el-col :xs="12" :sm="10" :lg="10">
+                <el-col :xs="12" :sm="10" :lg="10" style="text-align:right">
                   <img src="../../../img/renminbi.png" style="width:80px;height:80px">
                 </el-col>
                 <el-col :xs="12" :sm="14" :lg="14">
                   <el-row>
-                    <el-col :span="24" style="font-weight:bold;font-size:25px">总资金</el-col>
+                    <el-col :span="24" style="font-weight:bold;font-size:16px;text-align:center;color:#696969;padding-top:7px;">总资金</el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="24" style="font-weight:bold;font-size:15px"> <count-to :start-val="0" :end-val="1500000000" :duration="3000" class="card-panel-num" />元</el-col>
+                    <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center"> <count-to :start-val="0" :end-val="15000" :duration="3000" class="card-panel-num" />万</el-col>
                   </el-row>
                 </el-col>
               </el-row>

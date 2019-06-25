@@ -83,7 +83,7 @@
       </el-col>
     </el-row>
     <el-dialog
-      title="去向明细"
+      title="去向明细表"
       :visible.sync="quxiangDialogVisible"
       @close="CloseDialog"
       :modal="false"
@@ -93,9 +93,9 @@
     >
     <el-button
                 type="primary"
-                style="width:120px"
+                style="float:right"
                 size="mini"
-              >导出去向明细</el-button>
+              >导出</el-button>
       <el-table
         :key="tableKey"
         :data="listDetail"
@@ -104,8 +104,9 @@
         element-loading-text="给我一点时间"
         border
         fit
+        height="350"
         highlight-current-row
-        style="width: 100%"
+        style="width: 100%;"
         size="mini"
         id="table"
       >
@@ -146,18 +147,33 @@ export default {
       quxiangDialogVisible:false,
       listDetail:[
         {
-          lldw:"单位1",
+          lldw:"井下作业",
           xh:20
         },
         {
-          lldw:"单位2",
+          lldw:"电力公司",
           xh:300
         },{
-          lldw:"单位3",
+          lldw:"信息中心 （通信公司）",
           xh:20
         },
         {
-          lldw:"单位4",
+          lldw:"技术学院",
+          xh:300
+        },
+        {
+          lldw:"油田宾馆",
+          xh:20
+        },
+        {
+          lldw:"车务管理中心",
+          xh:300
+        },{
+          lldw:"物业公司",
+          xh:20
+        },
+        {
+          lldw:"市政公司",
           xh:300
         }
       ],
@@ -276,6 +292,10 @@ export default {
 
 
 <style lang="scss" scoped>
+.app-container /deep/.el-dialog__header {
+padding:20px 20px 0px;
+text-align: center;
+}
 </style>
 
 

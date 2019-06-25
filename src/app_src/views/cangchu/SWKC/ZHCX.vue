@@ -34,25 +34,7 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="状态" width="70" align="center" prop="ZT">
-            <template slot-scope="scope">
-              <img
-                v-if="scope.row.ZT==0"
-                src="../../../img/blue.jpg"
-                style="width:20px;height:15px;"
-              >
-              <img
-                v-if="scope.row.ZT==1"
-                src="../../../img/red.jpg"
-                style="width:20px;height:15px;"
-              >
-              <img
-                v-if="scope.row.ZT==2"
-                src="../../../img/yellow.jpg"
-                style="width:20px;height:15px;"
-              >
-            </template>
-          </el-table-column>
+          
           <el-table-column label="工厂编号" prop="GCBH"></el-table-column>
           <el-table-column label="物料组" prop="WLZ"></el-table-column>
           <el-table-column label="物料编码" prop="WLBM"></el-table-column>
@@ -62,11 +44,7 @@
           <el-table-column label="存货状态" prop="CHZT"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD"></el-table-column>
         </el-table>
-        <div style="padding-top:3px;">
-        <img src="../../../img/blue.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;无动态（积压）</span>
-        <img src="../../../img/red.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;报废或超期</span>
-        <img src="../../../img/yellow.jpg" style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"><span>&nbsp;有保存期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他为正常</span>
-        </div>
+        
         <el-pagination
           background
           @size-change="handleSizeChange"
