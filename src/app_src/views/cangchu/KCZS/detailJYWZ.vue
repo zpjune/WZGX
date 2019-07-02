@@ -2,12 +2,6 @@
   <div id="TotalZDWZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
@@ -38,7 +32,6 @@
           <el-table-column label="计量单位" prop="JLDW" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="SCSL"></el-table-column>
           <el-table-column label="存货状态" prop="CHZT"></el-table-column>
-          <el-table-column label="库存地点" prop="KCDD"></el-table-column>
         </el-table>
         <el-pagination
           background
