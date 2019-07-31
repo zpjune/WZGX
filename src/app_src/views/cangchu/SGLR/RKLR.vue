@@ -131,64 +131,64 @@
               align="center"
               label="大类"
               :show-overflow-tooltip="true"
-              prop="RK_ClassCode"
+              prop="RK_CLASSCODE"
             ></el-table-column>
             <el-table-column
               align="center"
               label="物资编码"
               :show-overflow-tooltip="true"
-              prop="RK_Code"
+              prop="RK_CODE"
             ></el-table-column>
             <el-table-column
               align="center"
               label="物料描述"
               :show-overflow-tooltip="true"
-              prop="RK_Describe"
+              prop="RK_DESCRIBE"
             ></el-table-column>
             <el-table-column
               align="center"
               label="计量单位"
               :show-overflow-tooltip="true"
-              prop="RK_Measurement"
+              prop="RK_MEASUREMENT"
             ></el-table-column>
             <el-table-column
               align="center"
               label="入库数量"
               :show-overflow-tooltip="true"
-              prop="RK_Quantity"
+              prop="RK_QUANTITY"
             ></el-table-column>
             <el-table-column align="center" label="入库时间" :show-overflow-tooltip="true">
-              <template slot-scope="scope">{{scope.row.RK_Time|parseTime}}</template>
+              <template slot-scope="scope">{{scope.row.RK_TIME|parseTime}}</template>
             </el-table-column>
             <el-table-column
               align="center"
               label="委托单位"
               :show-overflow-tooltip="true"
-              prop="RK_Company"
+              prop="RK_COMPANY"
             ></el-table-column>
             <el-table-column
               align="center"
               label="保管员"
               :show-overflow-tooltip="true"
-              prop="RK_Custodian"
+              prop="RK_CUSTODIAN"
             ></el-table-column>
             <el-table-column
               align="center"
               label="入库地点"
               :show-overflow-tooltip="true"
-              prop="RK_Location"
+              prop="RK_LOCATION"
             ></el-table-column>
             <el-table-column
               align="center"
               label="货位号"
               :show-overflow-tooltip="true"
-              prop="RK_LocationNumber"
+              prop="RK_LOCATIONNUMBER"
             ></el-table-column>
             <el-table-column
               align="center"
               label="备注"
               :show-overflow-tooltip="true"
-              prop="RK_Remark"
+              prop="RK_REMARK"
             ></el-table-column>
             <el-table-column align="center" width="200" label="操作">
               <template slot-scope="scope">
@@ -222,18 +222,18 @@
         <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;">
           <el-col :span="24">
             <el-form-item label="大类编码" prop="RK_ClassCode">
-              <el-input v-model="temp.RK_ClassCode"></el-input>
+              <el-input v-model="temp.RK_CLASSCODE"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="物资编码" prop="RK_Code">
-              <el-input v-model="temp.RK_Code"></el-input>
+              <el-input v-model="temp.RK_CODE"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
             <el-form-item label="物资描述" prop="RK_Describe">
-              <el-input v-model="temp.RK_Describe"></el-input>
+              <el-input v-model="temp.RK_DESCRIBE"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -254,12 +254,12 @@
               </el-select>
             </el-form-item>-->
             <el-form-item label="计量单位" prop="RK_Measurement">
-              <el-input v-model="temp.RK_Measurement"></el-input>
+              <el-input v-model="temp.RK_MEASUREMENT"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="入库数量" prop="RK_Quantity">
-              <el-input v-model="temp.RK_Quantity"></el-input>
+            <el-form-item label="入库数量" prop="RK_QUANTITY">
+              <el-input v-model="temp.RK_QUANTITY"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -267,35 +267,35 @@
               <el-date-picker
                 type="date"
                 placeholder="选择日期"
-                v-model="temp.RK_Time"
+                v-model="temp.RK_TIME"
                 style="width: 100%;"
               ></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="委托单位" prop="RK_Company">
-              <el-input v-model="temp.RK_Company"></el-input>
+              <el-input v-model="temp.RK_COMPANY"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="保管员" prop="RK_Custodian">
-              <el-input v-model="temp.RK_Custodian"></el-input>
+              <el-input v-model="temp.RK_CUSTODIAN"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
             <el-form-item label="入库地点" prop="RK_Location">
-              <el-input v-model="temp.RK_Location"></el-input>
+              <el-input v-model="temp.RK_LOCATION"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="货位号" prop="RK_LocationNumber">
-              <el-input v-model="temp.RK_LocationNumber"></el-input>
+              <el-input v-model="temp.RK_LOCATIONNUMBER"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="备注" prop="RK_Remark">
-              <el-input v-model="temp.RK_Remark"></el-input>
+              <el-input v-model="temp.RK_REMARK"></el-input>
             </el-form-item>
           </el-col>
         </el-form>
@@ -359,17 +359,17 @@ export default {
         LocationNumber: ""
       },
       temp: {
-        RK_ClassCode: "",
-        RK_Code: "",
-        RK_Describe: "",
-        RK_Measurement: "",
-        RK_Quantity: "",
-        RK_Time: "",
-        RK_Company: "",
-        RK_Custodian: "",
-        RK_Location: "",
-        RK_LocationNumber: "",
-        RK_Remark: ""
+        RK_CLASSCODE: "",
+        RK_CODE: "",
+        RK_DESCRIBE: "",
+        RK_MEASUREMENT: "",
+        RK_QUANTITY: "",
+        RK_TIME: "",
+        RK_COMPANY: "",
+        RK_CUSTODIAN: "",
+        RK_LOCATION: "",
+        RK_LOCATIONNUMBER: "",
+        RK_REMARK: ""
       },
       textMap: {
         update: "修改入库信息",
@@ -384,17 +384,17 @@ export default {
   methods: {
     resetTemp() {
       this.temp = {
-        RK_ClassCode: "",
-        RK_Code: "",
-        RK_Describe: "",
-        RK_Measurement: "",
-        RK_Quantity: "",
-        RK_Time: "",
-        RK_Company: "",
-        RK_Custodian: "",
-        RK_Location: "",
-        RK_LocationNumber: "",
-        RK_Remark: ""
+        RK_CLASSCODE: "",
+        RK_CODE: "",
+        RK_DESCRIBE: "",
+        RK_MEASUREMENT: "",
+        RK_QUANTITY: "",
+        RK_TIME: "",
+        RK_COMPANY: "",
+        RK_CUSTODIAN: "",
+        RK_LOCATION: "",
+        RK_LOCATIONNUMBER: "",
+        RK_REMARK: ""
       };
     },
 
@@ -441,14 +441,16 @@ export default {
       })
         .then(() => {
           delRKInfo(row).then(response => {
-            this.getList();
-          });
-          this.$notify({
-            position: "bottom-right",
-            title: this.title,
-            message: this.message,
-            type: this.type,
-            duration: 2000
+            if (response.data.code === 2000) {
+              this.$notify({
+                position: "bottom-right",
+                title: "成功！",
+                message: response.data.message,
+                type: "success",
+                duration: 2000
+              });
+              this.getList();
+            }
           });
         })
         .catch();
@@ -540,15 +542,7 @@ export default {
     }
   },
   fliters: {
-    parseTime,
-    ChangeTime(data){
-      if(data==null||data==""){
-        return null;
-      }
-      else{
-        return parseTime(data);
-      }
-    }
+    parseTime
   }
 };
 </script>

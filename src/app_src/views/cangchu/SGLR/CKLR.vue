@@ -131,58 +131,58 @@
               align="center"
               label="大类"
               :show-overflow-tooltip="true"
-              prop="CK_ClassCode"
+              prop="CK_CLASSCODE"
             ></el-table-column>
             <el-table-column
               align="center"
               label="物资编码"
               :show-overflow-tooltip="true"
-              prop="CK_Code"
+              prop="CK_CODE"
             ></el-table-column>
             <el-table-column
               align="center"
               label="物料描述"
               :show-overflow-tooltip="true"
-              prop="CK_Describe"
+              prop="CK_DESCRIBE"
             ></el-table-column>
             <el-table-column
               align="center"
               label="计量单位"
               :show-overflow-tooltip="true"
-              prop="CK_Measurement"
+              prop="CK_MEASUREMENT"
             ></el-table-column>
             <el-table-column align="center" label="出库时间" :show-overflow-tooltip="true">
-              <template slot-scope="scope">{{scope.row.CK_Time|parseTime}}</template>
+              <template slot-scope="scope">{{scope.row.CK_TIME|parseTime}}</template>
             </el-table-column>
             <el-table-column
               align="center"
               label="使用单位"
               :show-overflow-tooltip="true"
-              prop="CK_Company"
+              prop="CK_COMPANY"
             ></el-table-column>
             <el-table-column
               align="center"
               label="保管员"
               :show-overflow-tooltip="true"
-              prop="CK_Custodian"
+              prop="CK_CUSTODIAN"
             ></el-table-column>
             <el-table-column
               align="center"
               label="库存地点"
               :show-overflow-tooltip="true"
-              prop="CK_Location"
+              prop="CK_LOCATION"
             ></el-table-column>
             <el-table-column
               align="center"
               label="货位号"
               :show-overflow-tooltip="true"
-              prop="CK_LocationNumber"
+              prop="CK_LOCATIONNUMBER"
             ></el-table-column>
             <el-table-column
               align="center"
               label="备注"
               :show-overflow-tooltip="true"
-              prop="CK_Remark"
+              prop="CK_REMARK"
             ></el-table-column>
             <el-table-column align="center" width="200" label="操作">
               <template slot-scope="scope">
@@ -216,18 +216,18 @@
         <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;">
           <el-col :span="24">
             <el-form-item label="大类编码" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
+              <el-input v-model="temp.CK_CLASSCODE"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="物资编码" prop="CK_Code">
-              <el-input v-model="temp.CK_Code"></el-input>
+              <el-input v-model="temp.CK_CODE"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
             <el-form-item label="物资描述" prop="CK_Describe">
-              <el-input v-model="temp.CK_Describe"></el-input>
+              <el-input v-model="temp.CK_DESCRIBE"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -248,7 +248,7 @@
               </el-select>
             </el-form-item>-->
             <el-form-item label="计量单位" prop="CK_Measurement">
-              <el-input v-model="temp.CK_Measurement"></el-input>
+              <el-input v-model="temp.CK_MEASUREMENT"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -256,35 +256,35 @@
               <el-date-picker
                 type="date"
                 placeholder="选择日期"
-                v-model="temp.CK_Time"
+                v-model="temp.CK_TIME"
                 style="width: 100%;"
               ></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="使用单位" prop="CK_Company">
-              <el-input v-model="temp.CK_Company"></el-input>
+              <el-input v-model="temp.CK_COMPANY"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="保管员" prop="CK_Custodian">
-              <el-input v-model="temp.CK_Custodian"></el-input>
+              <el-input v-model="temp.CK_CUSTODIAN"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
             <el-form-item label="库存地点" prop="CK_Location">
-              <el-input v-model="temp.CK_Location"></el-input>
+              <el-input v-model="temp.CK_LOCATION"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="货位号" prop="CK_LocationNumber">
-              <el-input v-model="temp.CK_LocationNumber"></el-input>
+              <el-input v-model="temp.CK_LOCATIONNUMBER"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item label="备注" prop="CK_Remark">
-              <el-input v-model="temp.CK_Remark"></el-input>
+              <el-input v-model="temp.CK_REMARK"></el-input>
             </el-form-item>
           </el-col>
         </el-form>
@@ -348,16 +348,16 @@ export default {
         LocationNumber: ""
       },
       temp: {
-        CK_ClassCode: "",
-        CK_Code: "",
-        CK_Describe: "",
+        CK_CLASSCODE: "",
+        CK_CODE: "",
+        CK_DESCRIBE: "",
         CK_Measurement: "",
-        CK_Time: "",
-        CK_Company: "",
-        CK_Custodian: "",
-        CK_Location: "",
-        CK_LocationNumber: "",
-        CK_Remark: ""
+        CK_TIME: "",
+        CK_COMPANY: "",
+        CK_CUSTODIAN: "",
+        CK_LOCATION: "",
+        CK_LOCATIONNUMBER: "",
+        CK_REMARK: ""
       },
       textMap: {
         update: "修改入库信息",
@@ -365,23 +365,22 @@ export default {
       },
       editVisible: false,
       dialogStatus: "",
-
       treeData: []
     };
   },
   methods: {
     resetTemp() {
       this.temp = {
-        CK_ClassCode: "",
-        CK_Code: "",
-        CK_Describe: "",
+        CK_CLASSCODE: "",
+        CK_CODE: "",
+        CK_DESCRIBE: "",
         CK_Measurement: "",
-        CK_Time: "",
-        CK_Company: "",
-        CK_Custodian: "",
-        CK_Location: "",
-        CK_LocationNumber: "",
-        CK_Remark: ""
+        CK_TIME: "",
+        CK_COMPANY: "",
+        CK_CUSTODIAN: "",
+        CK_LOCATION: "",
+        CK_LOCATIONNUMBER: "",
+        CK_REMARK: ""
       };
     },
 
@@ -428,14 +427,16 @@ export default {
       })
         .then(() => {
           delCKInfo(row).then(response => {
-            this.getList();
-          });
-          this.$notify({
-            position: "bottom-right",
-            title: this.title,
-            message: this.message,
-            type: this.type,
-            duration: 2000
+            if (response.data.code === 2000) {
+              this.$notify({
+                position: "bottom-right",
+                title: "成功！",
+                message: response.data.message,
+                type: "success",
+                duration: 2000
+              });
+              this.getList();
+            }
           });
         })
         .catch();
@@ -516,7 +517,9 @@ export default {
     this.listLoading = false;
     this.getList();
   },
-
+  fliters: {
+    parseTime
+  },
   computed: {
     getRoleLevel() {
       if (this.$store.state.user.roleLevel === "admin") {
@@ -525,9 +528,6 @@ export default {
         return false;
       }
     }
-  },
-  fliters: {
-    parseTime
   }
 };
 </script>

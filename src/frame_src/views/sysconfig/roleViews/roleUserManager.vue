@@ -29,20 +29,20 @@
               ></el-input>
               <el-col :span="6">
                 <treeselect
-                v-model="listQuery.orgCode"
-                :multiple="false"
-                :options="treeData"
-                :load-options="loadOptions"
-                :loadOptions="loadOptions"
-                placeholder="请选择部门"
-                :normalizer="normalizer"
-                :disable-branch-nodes="false"
-                noResultsText="未搜索到结果"
-                noChildrenText=" "
-                style="font-size:14px;"
-              />
+                  v-model="listQuery.orgCode"
+                  :multiple="false"
+                  :options="treeData"
+                  :load-options="loadOptions"
+                  :loadOptions="loadOptions"
+                  placeholder="请选择部门"
+                  :normalizer="normalizer"
+                  :disable-branch-nodes="false"
+                  noResultsText="未搜索到结果"
+                  noChildrenText=" "
+                  style="font-size:14px;"
+                />
               </el-col>
-              
+
               <el-select
                 clearable
                 style="width: 120px"
@@ -210,7 +210,7 @@ export default {
         importance: undefined,
         sort: "+USER_ID",
         roleId: undefined,
-        orgcode:undefined,
+        orgcode: undefined
       },
       flagOptions,
       sortOptions: [
@@ -256,8 +256,7 @@ export default {
           label: node.orgShortName,
           children: node.children
         };
-      },
-      
+      }
     };
   },
   filters: {
@@ -428,26 +427,39 @@ export default {
         })
           .then(() => {
             this.listUpdate.GROUP_ID = this.$refs.roleTree.getCurrentKey();
-            this.listUpdate.arr = this.arr;
-            deleteUserRoleArticle(this.listUpdate).then(response => {
-              var message = response.data.message;
-              var title = "失败";
-              var type = "error";
-              if (response.data.code === 2000) {
-                title = "成功";
-                type = "success";
-                this.arr = [];
-                this.getList();
-                this.load();
-              }
+            if (
+              this.listUpdate.GROUP_ID === null ||
+              this.listUpdate.GROUP_ID === ""
+            ) {
               this.$notify({
                 position: "bottom-right",
-                title: title,
-                message: message,
-                type: type,
+                title: "失败",
+                message: "请选择左侧权限树！",
+                type: "error",
                 duration: 2000
               });
-            });
+            } else {
+              this.listUpdate.arr = this.arr;
+              deleteUserRoleArticle(this.listUpdate).then(response => {
+                var message = response.data.message;
+                var title = "失败";
+                var type = "error";
+                if (response.data.code === 2000) {
+                  title = "成功";
+                  type = "success";
+                  this.arr = [];
+                  this.getList();
+                  this.load();
+                }
+                this.$notify({
+                  position: "bottom-right",
+                  title: title,
+                  message: message,
+                  type: type,
+                  duration: 2000
+                });
+              });
+            }
           })
           .catch(() => {
             this.$notify({
@@ -480,20 +492,20 @@ export default {
   activated() {
     this.getList();
     this.load();
-  },
+  }
 };
 </script>
 <style lang="scss" >
-  .vue-treeselect__control {
-    height: 28px !important;
-    width: 100%;
-  }
-  .vue-treeselect__placeholder,
-  .vue-treeselect__single-value {
-    line-height: 28px;
-  }
-  .vue-treeselect--single .vue-treeselect__input-container {
-    height: 28px;
-    width: 100%;
-  }
+.vue-treeselect__control {
+  height: 28px !important;
+  width: 100%;
+}
+.vue-treeselect__placeholder,
+.vue-treeselect__single-value {
+  line-height: 28px;
+}
+.vue-treeselect--single .vue-treeselect__input-container {
+  height: 28px;
+  width: 100%;
+}
 </style>
