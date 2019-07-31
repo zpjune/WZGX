@@ -257,6 +257,7 @@
                 type="date"
                 placeholder="选择日期"
                 v-model="temp.CK_TIME"
+                value-format="yyyy-MM-dd"
                 style="width: 100%;"
               ></el-date-picker>
             </el-form-item>

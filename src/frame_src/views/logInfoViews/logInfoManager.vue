@@ -1,19 +1,19 @@
 <template>
     <div class="app-container calendar-list-container"> 
     <div class="filter-container">
-       <el-input @keyup.enter.native="handleFilter" style="width: 150px;"  :placeholder="$t('logInfoTable.USER_NAME')" v-model="listQuery.USER_NAME">
+       <el-input @keyup.enter.native="handleFilter" style="width: 150px;"  :placeholder="$t('logInfoTable.USER_NAME')" v-model="listQuery.USER_NAME" size="small">
       </el-input>
-      <el-input v-model="listQuery.USER_DOMAIN" type="text" placeholder="输入用户账号" style="width: 150px;"></el-input> 
+      <el-input v-model="listQuery.USER_DOMAIN" type="text" placeholder="输入用户账号" style="width: 150px;" size="small"></el-input> 
       <!-- <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" :placeholder="$t('logInfoTable.LOG_TYPE')" v-model="listQuery.LOG_TYPE">
       </el-input>  -->
-      <el-date-picker v-model="listQuery.BEGIN_ACCESS_TIME" type="date" placeholder="选择开始日期" style="width: 180px;"  value-format="yyyy-MM-dd"></el-date-picker>
-      <el-date-picker v-model="listQuery.END_ACCESS_TIME" type="date" placeholder="选择结束日期" style="width: 180px;"  value-format="yyyy-MM-dd"></el-date-picker>
-      <el-button  type="primary" v-waves icon="el-icon-search" @click="handleFilter">{{$t('logInfoTable.search')}}</el-button>
-      <el-button  type="primary" :loading="downloadLoading" v-waves icon="el-icon-download" @click="handleDownload">{{$t('logInfoTable.export')}}</el-button>
+      <el-date-picker v-model="listQuery.BEGIN_ACCESS_TIME" type="date" placeholder="选择开始日期" style="width: 180px;"  value-format="yyyy-MM-dd" size="small"></el-date-picker>
+      <el-date-picker v-model="listQuery.END_ACCESS_TIME" type="date" placeholder="选择结束日期" style="width: 180px;"  value-format="yyyy-MM-dd" size="small"></el-date-picker>
+      <el-button  type="primary" v-waves icon="el-icon-search" @click="handleFilter" size="small">{{$t('logInfoTable.search')}}</el-button>
+      <el-button  type="primary" :loading="downloadLoading" v-waves icon="el-icon-download" @click="handleDownload" size="small">{{$t('logInfoTable.export')}}</el-button>
     </div>
     <el-card class="box-card">
       <el-table :key='tableKey' :header-cell-class-name="tableRowClassName" :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
-      style="width: 100%">
+      style="width: 100%" size="small">
         <el-table-column width="160px"  class="filter-item"  align="center" :label="'时间'">
         <template slot-scope="scope">
           <span>{{scope.row.ACCESS_TIME|parseTime}}</span>
