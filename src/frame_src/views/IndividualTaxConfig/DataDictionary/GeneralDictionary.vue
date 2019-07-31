@@ -106,7 +106,7 @@
 
     <el-dialog :visible.sync="showed" :title="title" width="40%">
       <el-form :model="temp" ref="temp" label-width="80px" :rules="rules">
-        <el-form-item label="上级" prop="ParentCode">
+        <el-form-item label="上级" >
           <treeselect
             v-model="temp.ParentCode"
             :multiple="false"
@@ -155,7 +155,7 @@ import {
   editNode,
   createNode,
   delNode
-} from "@/frame_src/api/TaxConfig";
+} from "@/frame_src/api/DictionaryConfig";
 export default {
   data() {
     return {
