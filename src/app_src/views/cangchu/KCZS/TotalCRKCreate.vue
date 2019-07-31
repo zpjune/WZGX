@@ -10,7 +10,6 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
          <el-date-picker
-      v-model="value2"
       style="width:95%;" size="mini"
       type="month"
       placeholder="选择月">

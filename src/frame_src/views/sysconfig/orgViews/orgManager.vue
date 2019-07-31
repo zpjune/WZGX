@@ -33,7 +33,7 @@
                   <el-input v-model="form.orgCode" auto-complete="off" type="number" onkeypress="return( /[\d]/.test(String.fromCharCode(event.keyCode) ) )"></el-input>
                 </el-form-item> -->
                 <el-form-item :label="$t('orgTable.orgCode')+'：'" prop="orgCode" :label-width="formLabelWidth">
-                  <el-input v-model="form.orgCode" auto-complete="off" readonly="true" placeholder="系统自动生成"></el-input>
+                  <el-input v-model="form.orgCode" auto-complete="off" :readonly="true" placeholder="系统自动生成"></el-input>
                 </el-form-item>
 
                 <el-form-item label="组织机构名称：" prop="orgName" :label-width="formLabelWidth">

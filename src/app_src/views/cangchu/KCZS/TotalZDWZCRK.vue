@@ -2,12 +2,13 @@
   <div id="TotalZDWZCRK" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
-         <el-date-picker
-      v-model="value2"
-      style="width:95%;" size="mini"
-      type="month"
-      placeholder="选择月">
-    </el-date-picker>
+        <el-date-picker
+          v-model="value2"
+          style="width:95%;"
+          size="mini"
+          type="month"
+          placeholder="选择月"
+        ></el-date-picker>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
@@ -91,20 +92,15 @@
       style="margin-top:10vh;margin-left:100px;"
       width="50%"
     >
-    <el-button
-                type="primary"
-                style="float:right"
-                size="mini"
-              >导出</el-button>
+      <el-button type="primary" style="float:right" size="mini">导出</el-button>
       <el-table
-        :key="tableKey"
         :data="listDetail"
         :header-cell-class-name="tableRowClassName"
-        v-loading="listLoading"
+        v-loading="listloading"
         element-loading-text="给我一点时间"
         border
         fit
-         height="350"
+        height="350"
         highlight-current-row
         style="width: 100%"
         size="mini"
@@ -132,7 +128,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
         ></el-pagination>
-      </div> -->
+      </div>-->
     </el-dialog>
   </div>
 </template>
@@ -143,8 +139,8 @@ export default {
   data() {
     return {
       listloading: false,
-      value2:'2019-06-01',
-      quxiangDialogVisible:false,
+      value2: "2019-06-01",
+      quxiangDialogVisible: false,
       fac: [
         {
           non: 1,
@@ -249,36 +245,38 @@ export default {
           REMARK: ""
         }
       ],
-      listDetail:[
+      listDetail: [
         {
-          lldw:"井下作业",
-          xh:20
+          lldw: "井下作业",
+          xh: 20
         },
         {
-          lldw:"电力公司",
-          xh:300
-        },{
-          lldw:"信息中心 （通信公司）",
-          xh:20
+          lldw: "电力公司",
+          xh: 300
         },
         {
-          lldw:"技术学院",
-          xh:300
+          lldw: "信息中心 （通信公司）",
+          xh: 20
         },
         {
-          lldw:"油田宾馆",
-          xh:20
+          lldw: "技术学院",
+          xh: 300
         },
         {
-          lldw:"车务管理中心",
-          xh:300
-        },{
-          lldw:"物业公司",
-          xh:20
+          lldw: "油田宾馆",
+          xh: 20
         },
         {
-          lldw:"市政公司",
-          xh:300
+          lldw: "车务管理中心",
+          xh: 300
+        },
+        {
+          lldw: "物业公司",
+          xh: 20
+        },
+        {
+          lldw: "市政公司",
+          xh: 300
         }
       ]
     };
@@ -294,8 +292,9 @@ export default {
     handleSizeChange() {},
     handleCurrentChange() {},
     DetailClick(row) {
-      this.quxiangDialogVisible=true;
-    }
+      this.quxiangDialogVisible = true;
+    },
+    CloseDialog() {}
   }
 };
 </script>
@@ -307,8 +306,8 @@ export default {
   width: 80px;
 }
 .app-container /deep/.el-dialog__header {
-padding:20px 20px 0px;
-text-align: center;
+  padding: 20px 20px 0px;
+  text-align: center;
 }
 </style>
 
