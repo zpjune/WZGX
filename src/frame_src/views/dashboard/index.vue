@@ -434,7 +434,7 @@ export default {
       this.$router.push({ path: "/cangchu/KCZS/ZXKDetail" });
     },
     zhuanyunku() {
-      this.$router.push({ path: "/cangchu/KCZS/YLH" });
+      this.$router.push({ path: "/cangchu/KCZS/ZYKDetail" });
     },
     zongkucunclick(){
       this.$router.push({ path: "/cangchu/KCZS/Total" });

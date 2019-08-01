@@ -57,7 +57,12 @@ export const constantRouterMap = [
       path: '/cangchu/KCZS/Total', name: '总库存',
       meta: { title: '总库存', icon: 'home', noCache: true },
       component: _import('app_src/views/cangchu/KCZS/Total'), hidden: true
-    }
+    },
+    {
+      path: '/cangchu/KCZS/ZYKDetail', name: '转运库',
+      meta: { title: '转运库', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/ZYKDetail'), hidden: true
+    },
     ]
   },
 ]
