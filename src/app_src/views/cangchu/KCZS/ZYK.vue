@@ -129,14 +129,19 @@ export default {
       console.log("do");
     },
     debounce(fn, delay) {
-      let timer = null; //借助闭包
+      var delay = delay || 200;
+      console.log(delay)
+      var timer;
       return function() {
+        var th = this;
+        var args = arguments;
         if (timer) {
-          clearTimeout(timer); 
-          timer = setTimeOut(fn, delay);
-        } else {
-          timer = setTimeOut(fn, delay); 
+          clearTimeout(timer);
         }
+        timer = setTimeout(function() {
+          timer = null;
+          fn.apply(th, args);
+        }, delay);
       };
     },
     observer() {
