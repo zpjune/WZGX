@@ -122,7 +122,7 @@
             >
               <el-table-column min-width="300px" align="center" label="组织机构名称" fixed="left">
                 <template slot-scope="scope">
-                  <span>{{scope.row.orgName}}</span>
+                  <span>{{scope.row.ORGNAME}}</span>
                 </template>
               </el-table-column>
               <el-table-column width="110px" fixed="left" align="center" label="姓名">
@@ -679,7 +679,7 @@ export default {
     return {
       showUpload: false,
       urlUpload: process.env.BASE_API + "user/uploadUserArticle",
-      urldownload: process.env.BASE_API + "ExcelModel/用户.xlsx",
+      urldownload: process.env.BASE_API + "ExcelModel/用户.xls",
       fileList: [],
       tableKey: 0,
       list: null,
