@@ -1025,6 +1025,7 @@ export default {
       this.temp = Object.assign({}, row); // copy obj
       this.temp.USER_PASS2 = row.USER_PASS;
       this.temp.timestamp = new Date(this.temp.timestamp);
+      this.temp.orgId=row.ORGID;
       this.dialogStatus = "update";
       this.dialogFormVisible = true;
       this.$nextTick(() => {
