@@ -20,7 +20,8 @@
         ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="createNode">新建</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="GetList">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
@@ -73,7 +74,7 @@
           <el-table-column label="属性单位10" prop="SX10DW" width="120px"></el-table-column>-->
           <el-table-column label="操作" fixed="right" width="150px">
             <template slot-scope="scope">
-              <div v-if="scope.row.PMCODE!=null&&scope.row.PMCODE.length>6">
+              <div v-if="!scope.row.hasChildren">
                 <el-button type="primary" size="small" @click="editNode(scope.row)">编辑</el-button>
                 <el-button type="danger" size="small" @click="delNode(scope.row)">删除</el-button>
               </div>
@@ -81,33 +82,99 @@
           </el-table-column>
         </el-table>
 
-        <el-dialog :visible.sync="show" :title="dialogTitle">
+        <el-dialog :visible.sync="show" :title="dialogTitle" width="30%">
           <el-card>
             <el-form label-width="100px">
-              <el-form-item label="修改类型">
-                <el-radio
+              <el-form-item label="类别是否存在">
+                <!-- <el-radio
                   v-for="(item,key) in editOptions"
                   :label="item.label"
                   :value="item.value"
                   :key="key"
                   v-model="type"
-                ></el-radio>
-                <el-check-group v-model="checkList">
-                  <el-checkbox  v-for="(item,key) in editOptions" :key=key :label="item.lable"></el-checkbox>
-                </el-check-group>
+                ></el-radio>-->
+                <el-checkbox-group v-model="checkList" @change="CheckGroup">
+                  <el-checkbox v-for="(item,key) in editOptions" :key="key" :label="item.label"></el-checkbox>
+                </el-checkbox-group>
               </el-form-item>
-              <el-form-item label="大类名称">
-                <el-input v-model="WLZModule.DLNAME"></el-input>
+              <div v-show="selectOptionsFlag[0]==='1'">
+                <el-form-item label="大类名称">
+                  <el-select v-model="WLZModule.DLCODE" style="width:100%" @change="ChangeZL">
+                    <el-option
+                      v-for="(item,key) in DLOptions"
+                      :key="key"
+                      :label="item.DLNAME"
+                      :value="item.DLCODE"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </div>
+              <div v-show="selectOptionsFlag[0]==='0'">
+                <el-form-item label="大类名称">
+                  <el-input v-model="WLZModule.DLNAME"></el-input>
+                </el-form-item>
+                <el-form-item label="大类编码">
+                  <el-input v-model="WLZModule.DLCODE"></el-input>
+                </el-form-item>
+              </div>
+
+              <div v-show="selectOptionsFlag[1]==='1'">
+                <el-form-item label="中类名称">
+                  <el-select v-model="WLZModule.ZLCODE" style="width:100%" @change="ChangeXL">
+                    <el-option
+                      v-for="(item,key) in ZLOptions"
+                      :key="key"
+                      :label="item.ZLNAME"
+                      :value="item.ZLCODE"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </div>
+              <div v-show="selectOptionsFlag[1]==='0'">
+                <el-form-item label="中类名称">
+                  <el-input v-model="WLZModule.ZLNAME"></el-input>
+                </el-form-item>
+                <el-form-item label="中类编码">
+                  <el-input v-model="WLZModule.ZLCODE"></el-input>
+                </el-form-item>
+              </div>
+
+              <div v-show="selectOptionsFlag[2]==='1'">
+                <el-form-item label="小类名称">
+                  <el-select v-model="WLZModule.XLCODE" style="width:100%" @change="ChangeXXL">
+                    <el-option
+                      v-for="(item,key) in XLOptions"
+                      :key="key"
+                      :label="item.XLNAME"
+                      :value="item.XLCODE"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </div>
+              <div v-show="selectOptionsFlag[2]==='0'">
+                <el-form-item label="小类名称">
+                  <el-input v-model="WLZModule.XLNAME"></el-input>
+                </el-form-item>
+                <el-form-item label="小类编码">
+                  <el-input v-model="WLZModule.XLCODE"></el-input>
+                </el-form-item>
+              </div>
+              <el-form-item label="品名">
+                <el-input v-model="WLZModule.PMNAME"></el-input>
               </el-form-item>
-              <el-form-item label="中类名称">
-                <el-input v-model="WLZModule.ZLNAME"></el-input>
+              <el-form-item label="品名编码">
+                <el-input v-model="WLZModule.PMCODE"></el-input>
               </el-form-item>
-              <el-form-item label="小类名称">
-                <el-input v-model="WLZModule.XLNAME"></el-input>
+              <el-form-item label="型号规格规范">
+                <el-input v-model="WLZModule.XHGGGF"></el-input>
               </el-form-item>
-              <el-form-item label="小类名称">
-                <el-input v-model="WLZModule.XLNAME"></el-input>
+              <el-form-item label="基本计量单位">
+                <el-input v-model="WLZModule.JBJLDW"></el-input>
               </el-form-item>
+              <div style="text-align:center">
+                <el-button type="primary" size="mini" @click="submit">提交</el-button>
+                <el-button type="primary" size="mini" @click="show=false">取消</el-button>
+              </div>
             </el-form>
           </el-card>
         </el-dialog>
@@ -133,7 +200,9 @@ import {
   GetParentWLZList,
   GetChildrenWLZList,
   editNode,
-  getOptions,
+  getDLOptions,
+  getZLOptions,
+  getXLOptions,
   createNode,
   delNode
 } from "@/app_src/api/cangchu/ZDWZ/WLZWH";
@@ -145,7 +214,7 @@ export default {
       listloading: false,
       show: false,
       dialogTitle: "",
-      type:0,
+      type: 0,
       goods: [],
       temp: {
         WLZCODE: "",
@@ -170,10 +239,11 @@ export default {
         { label: "中类", value: 1 },
         { label: "小类", value: 2 }
       ],
-      checkList:[],
+      checkList: ["大类", "中类", "小类"],
+      selectOptionsFlag: "111",
       DLOptions: [],
       ZLOptions: [],
-      ZLOptions: []
+      XLOptions: []
     };
   },
 
@@ -208,11 +278,11 @@ export default {
         DLCODE: tree.DLCODE,
         ZLCODE: tree.ZLCODE,
         XLCODE: tree.XLCODE,
+        FlagID: tree.flagID,
         level: treeNode.level
       };
       GetChildrenWLZList(temp).then(response => {
         arr = response.data;
-        console.log(arr);
         resolve(arr);
       });
     },
@@ -220,12 +290,15 @@ export default {
       this.dialogTitle = "创建节点";
       this.show = true;
       this.reset();
-      this.getOptions();
+      this.getDLOptions();
     },
     editNode(data) {
       this.dialogTitle = "修改节点";
       this.show = true;
-      this.getOptions();
+      this.WLZModule = Object.assign({}, data);
+      this.getDLOptions();
+      this.getZLOptions();
+      this.getXLOptions();
     },
     reset() {
       this.WLZModule = {
@@ -241,6 +314,25 @@ export default {
         JBJLDW: ""
       };
     },
+    CheckGroup() {
+      let a = 0b001;
+      let b = 0b010;
+      let c = 0b100;
+      let flag = 0;
+      this.checkList.forEach(item => {
+        if (item === "大类") {
+          flag += c;
+        }
+        if (item === "中类") {
+          flag += b;
+        }
+        if (item === "小类") {
+          flag += a;
+        }
+      });
+      this.selectOptionsFlag = flag.toString(2);
+      console.log(this.selectOptionsFlag);
+    },
     submit() {
       if (this.dialogTitle == "创建节点") {
         createNode(this.WLZModule).then(response => {
@@ -252,6 +344,7 @@ export default {
               type: "success",
               duration: 2000
             });
+            this.show = false;
             this.GetList();
           } else {
             this.$notify({
@@ -264,74 +357,129 @@ export default {
           }
         });
       } else {
-        this.$confirm("您确认删除此节点吗?", "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
-          type: "warning"
-        })
-          .then(() => {
-            editNode(this.WLZModule).then(response => {
-              if (response.data.code === 2000) {
-                this.$notify({
-                  position: "bottom-right",
-                  title: "成功",
-                  message: response.data.message,
-                  type: "success",
-                  duration: 2000
-                });
-                this.GetList();
-              } else {
-                this.$notify({
-                  position: "bottom-right",
-                  title: "失败",
-                  message: response.data.message,
-                  type: "error",
-                  duration: 2000
-                });
-              }
+        editNode(this.WLZModule).then(response => {
+          if (response.data.code === 2000) {
+            this.$notify({
+              position: "bottom-right",
+              title: "成功",
+              message: response.data.message,
+              type: "success",
+              duration: 2000
             });
-          })
-          .catch(() => {
-            this.$message({
-              type: "info",
-              message: "已取消删除"
+            this.show = false;
+            this.GetList();
+          } else {
+            this.$notify({
+              position: "bottom-right",
+              title: "失败",
+              message: response.data.message,
+              type: "error",
+              duration: 2000
             });
-          });
+          }
+        });
       }
     },
     delNode(data) {
-      delNode(data.ID).then(response => {
+      this.$confirm("您确认删除此节点吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          let temp = {
+            ID: data.ID
+          };
+          delNode(temp).then(response => {
+            if (response.data.code === 2000) {
+              this.$notify({
+                position: "bottom-right",
+                title: "成功",
+                message: response.data.message,
+                type: "success",
+                duration: 2000
+              });
+              this.GetList();
+            } else {
+              this.$notify({
+                position: "bottom-right",
+                title: "失败",
+                message: response.data.message,
+                type: "error",
+                duration: 2000
+              });
+            }
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
+    getDLOptions() {
+      getDLOptions().then(response => {
         if (response.data.code === 2000) {
-          this.$notify({
-            position: "bottom-right",
-            title: "成功",
-            message: response.data.message,
-            type: "success",
-            duration: 2000
-          });
-          this.GetList();
-        } else {
-          this.$notify({
-            position: "bottom-right",
-            title: "失败",
-            message: response.data.message,
-            type: "error",
-            duration: 2000
-          });
+          this.DLOptions = response.data.DLOptions;
+          //this.ZLOptions = response.data.ZLOptions;
+          //this.XLOptions = response.data.XLOptions;
         }
       });
     },
-    getOptions() {
-      getOptions().then(response => {
+    getZLOptions() {
+      let temp = {
+        DLCODE: this.WLZModule.DLCODE
+      };
+      getZLOptions(temp).then(response => {
+        console.log(1);
         if (response.data.code === 2000) {
-          this.DLOptions = response.data.DLOptions;
           this.ZLOptions = response.data.ZLOptions;
+        }
+      });
+    },
+    getXLOptions() {
+      let temp = {
+        DLCODE: this.WLZModule.DLCODE,
+        ZLCODE: this.WLZModule.ZLCODE
+      };
+      getXLOptions(temp).then(response => {
+        if (response.data.code === 2000) {
           this.XLOptions = response.data.XLOptions;
         }
       });
     },
-    handleSizeChange() {},
-    handleCurrentChange() {},
+    ChangeZL(data) {
+      this.getZLOptions();
+      this.DLOptions.forEach(item => {
+        if (item.DLCODE === data) {
+          this.WLZModule.DLNAME = item.DLNAME;
+        }
+      });
+    },
+    ChangeXL(data) {
+      this.getXLOptions();
+      this.ZLOptions.forEach(item => {
+        if (item.ZLCODE === data) {
+          this.WLZModule.ZLNAME = item.ZLNAME;
+        }
+      });
+    },
+    ChangeXXL(data){
+      this.XLOptions.forEach(item => {
+        if (item.XLCODE === data) {
+          this.WLZModule.XLNAME = item.XLNAME;
+        }
+      });
+    },
+    handleSizeChange(val) {
+      this.temp.limit=val;
+      this.GetList();
+    },
+    handleCurrentChange(val) {
+      this.temp.page=val;
+      this.GetList();
+    },
     createRandomData() {}
   },
   mounted() {

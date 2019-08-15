@@ -26,13 +26,28 @@ export function GetParentWLZList(query) {
   }
 
 
-  export function getOptions(query) {
+  export function getDLOptions(query) {
     return request({
-      url: '/WLZWH/getOptions',
+      url: '/WLZWH/getDLOptions',
       method: 'get',
       params:query
     })
   }
+  export function getZLOptions(query) {
+    return request({
+      url: '/WLZWH/getZLOptions',
+      method: 'get',
+      params:query
+    })
+  }
+  export function getXLOptions(query) {
+    return request({
+      url: '/WLZWH/getXLOptions',
+      method: 'get',
+      params:query
+    })
+  }
+  
 
 
   export function createNode(data) {
