@@ -259,9 +259,9 @@ export default {
       GetParentWLZList(this.temp).then(response => {
         if (response.data.code === 2000) {
           this.goods = response.data.items;
-          this.listLoading = false;
+          this.listloading = false;
         } else {
-          this.listLoading = false;
+          this.listloading = false;
           this.$notify({
             position: "bottom-right",
             title: "失败",
