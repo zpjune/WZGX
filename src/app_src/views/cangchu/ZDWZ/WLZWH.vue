@@ -211,7 +211,7 @@ export default {
 
   data() {
     return {
-      listloading: false,
+      listloading: true,
       show: false,
       dialogTitle: "",
       type: 0,
