@@ -1,36 +1,23 @@
 <template>
-  <div id="BGYWH" class="app-container calendar-list-container">
+  <div id="KCDDWH" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
-          placeholder="请输入保管员姓名"
+          placeholder="请输入地点名称"
           style="width:95%;"
           size="mini"
           clearable
-          v-model="temp.DW_NAME"
+          v-model="temp.KCDD_NAME"
         ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
-          placeholder="请输入保管员编码"
+          placeholder="请输入地点编码"
           style="width:95%;"
           size="mini"
           clearable
-          v-model="temp.DW_CODE"
+          v-model="temp.KCDD_CODE"
         ></el-input>
-      </el-col>
-
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <treeselect
-          placeholder="请选择单位"
-          :options="options"
-          valueFormat="label"
-          :normalizer="normalizer"
-          :loadOptions="loadOptions"
-          v-model="temp.WORKER_DP"
-          :disable-branch-nodes="true"
-          :show-count="true"
-        />
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="Create">新建</el-button>
@@ -50,9 +37,8 @@
           fit
           highlight-current-row
         >
-          <el-table-column label="保管员编码" prop="WORKER_CODE"></el-table-column>
-          <el-table-column label="保管员姓名" prop="WORKER_NAME"></el-table-column>
-          <el-table-column label="单位工厂" prop="DW_NAME"></el-table-column>
+          <el-table-column label="地点编码" prop="KCDD_CODE"></el-table-column>
+          <el-table-column label="地点名称" prop="KCDD_NAME"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" @click="Edit(scope.row)" size="mini">编辑</el-button>
@@ -62,23 +48,12 @@
         </el-table>
         <el-dialog :visible.sync="show" :title="dialogTitle" width="30%">
           <el-card>
-            <el-form :model="BGYModel" :rules="rules" label-width="100px" ref="BGYModel">
-              <el-form-item label="保管员编码" prop="WORKER_CODE">
-                <el-input v-model="BGYModel.WORKER_CODE" :disabled="dialogTitle=='修改工厂信息'"></el-input>
+            <el-form :model="KCDDModel" :rules="rules" label-width="80px" ref="KCDDModel">
+              <el-form-item label="地点编码" prop="KCDD_CODE">
+                <el-input v-model="KCDDModel.KCDD_CODE" :disabled="dialogTitle=='修改地点信息'"></el-input>
               </el-form-item>
-              <el-form-item label="保管员名称" prop="WORKER_NAME">
-                <el-input v-model="BGYModel.WORKER_NAME"></el-input>
-              </el-form-item>
-              <el-form-item label="单位" prop="WORKER_DP">
-                <treeselect
-                  placeholder="请选择单位"
-                  :options="options"
-                  :normalizer="normalizer"
-                  :loadOptions="loadOptions"
-                  v-model="BGYModel.WORKER_DP"
-                  :disable-branch-nodes="true"
-                  :show-count="true"
-                />
+              <el-form-item label="地点名称" prop="KCDD_NAME">
+                <el-input v-model="KCDDModel.KCDD_NAME"></el-input>
               </el-form-item>
               <div style="text-align:center">
                 <el-button type="primary" @click="submit">提交</el-button>
@@ -105,20 +80,13 @@
 
 <script>
 import {
-  GetBGYInfo,
-  CreateBGYInfo,
-  EditBGYInfo,
-  DelBGYInfo,
-  GetGCInfo
-} from "@/app_src/api/cangchu/ZDWZ/BGYWH";
-import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
-import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+  GetKCDDInfo,
+  CreateKCDDInfo,
+  EditKCDDInfo,
+  DelKCDDinfo
+} from "@/app_src/api/cangchu/ZDWZ/KCDDWH";
 export default {
-  name: "BGYWH",
-  components: {
-    Treeselect
-  },
-
+  name: "KCDDWH",
   data() {
     return {
       listloading: true,
@@ -126,39 +94,24 @@ export default {
       temp: {
         limit: 10,
         page: 1,
-        WORKER_CODE: "",
-        WORKER_NAME: "",
-        GC_CODE:null,
-        WORKER_DP: null
+        KCDD_CODE:'',
+        KCDD_NAME: ""
       },
-      BGYModel: {
-        WORKER_CODE: "",
-        WORKER_NAME: "",
-        GC_CODE:null,
-        WORKER_DP: null
+      KCDDModel: {
+        KCDD_CODE: "",
+        KCDD_NAME: "",
       },
       rules: {
-        WORKER_CODE: [
+        KCDD_CODE: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
-        WORKER_NAME: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
-        ],
-        WORKER_DP: [
+        KCDD_NAME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ]
       },
       fac: [],
       dialogTitle: "",
-      options: [],
-      show: false,
-      normalizer(node, instanceId) {
-        return {
-          id: node.DW_CODE,
-          label: node.DW_NAME,
-          children: node.Children
-        };
-      }
+      show: false
     };
   },
   methods: {
@@ -170,29 +123,13 @@ export default {
       return "";
     },
     reset() {
-      this.BGYModel = {
-        WORKER_CODE: "",
-        WORKER_NAME: "",
-        WORKER_DP: null,
-        GC_CODE:null,
-      };
-    },
-    loadOptions({ action, parentNode, callback }) {
-      if (action === LOAD_CHILDREN_OPTIONS) {
-        if (parentNode.Children == null) {
-          parentNode.Children = undefined;
-          callback();
-        }
+      this.KCDDModel= {
+        KCDD_CODE: "",
+        KCDD_NAME: "",
       }
     },
-    // SearchSelect(node, instanceId){
-    //   this.temp.WORKER_DP=node.DW_NAME;
-    // },
-    // FormSelect(node, instanceId){
-    //   this.BGYModel.WORKER_DP=node.DW_NAME;
-    // },
     GetList() {
-      GetBGYInfo(this.temp).then(response => {
+      GetKCDDInfo(this.temp).then(response => {
         if (response.data.code === 2000) {
           this.fac = response.data.items;
           this.total = response.data.total;
@@ -211,20 +148,20 @@ export default {
     },
     Create() {
       this.show = true;
-      this.dialogTitle = "新建工厂信息";
       this.$nextTick(() => {
-        console.log(this.$refs["BGYModel"]);
-        this.$refs["BGYModel"].clearValidate();
+        this.$refs["KCDDModel"].clearValidate();
       });
       this.reset();
+      this.dialogTitle = "新建地点信息";
     },
     Edit(data) {
-      this.BGYModel = Object.assign({}, data);
       this.show = true;
-      this.dialogTitle = "修改工厂信息";
       this.$nextTick(() => {
-        this.$refs["BGYModel"].clearValidate();
+        this.$refs["KCDDModel"].clearValidate();
       });
+      this.KCDDModel = Object.assign({}, data);
+
+      this.dialogTitle = "修改地点信息";
     },
     del(data) {
       this.$confirm("您确定要删除此项信息吗?", "提示", {
@@ -232,7 +169,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        DelBGYInfo(data).then(response => {
+        DelKCDDinfo(data).then(response => {
           if (response.data.code === 2000) {
             this.$notify({
               position: "bottom-right",
@@ -255,11 +192,10 @@ export default {
       });
     },
     submit() {
-      console.log(this.BGYModel);
-      this.$refs["BGYModel"].validate(valid => {
+      this.$refs["KCDDModel"].validate(valid => {
         if (valid) {
-          if (this.dialogTitle == "新建工厂信息") {
-            CreateBGYInfo(this.BGYModel).then(response => {
+          if (this.dialogTitle == "新建地点信息") {
+            CreateKCDDInfo(this.KCDDModel).then(response => {
               if (response.data.code === 2000) {
                 this.$notify({
                   position: "bottom-right",
@@ -281,7 +217,7 @@ export default {
               }
             });
           } else {
-            EditBGYInfo(this.BGYModel).then(response => {
+            EditKCDDInfo(this.KCDDModel).then(response => {
               if (response.data.code === 2000) {
                 this.$notify({
                   position: "bottom-right",
@@ -306,34 +242,24 @@ export default {
         }
       });
     },
-    GetOptions() {
-      GetGCInfo().then(response => {
-        if (response.data.code === 2000) {
-          this.options = response.data.items;
-        }
-      });
+    handleSizeChange(val) {
+      this.temp.limit = val;
+      this.GetList();
     },
-    handleSizeChange() {},
-    handleCurrentChange() {}
+    handleCurrentChange(val) {
+      this.temp.page = val;
+      this.GetList();
+    }
   },
   mounted() {
     this.GetList();
-    this.GetOptions();
   }
 };
 </script>
 
 
 
-<style lang="scss" >
-.vue-treeselect__control {
-  height: 28px !important;
-  width: 100%;
-}
-.vue-treeselect__placeholder,
-.vue-treeselect__single-value {
-  line-height: 28px;
-}
+<style lang="scss" scoped>
 </style>
 
 

@@ -20,6 +20,12 @@
         ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-select v-model="temp.DW_ISSS" size="mini" placeholder="是否上市" style="width:90%">
+          <el-option label="上市" value="Y"></el-option>
+          <el-option label="未上市" value="N"></el-option>
+        </el-select>
+      </el-col>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="Create">新建</el-button>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="GetList">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
@@ -39,7 +45,9 @@
         >
           <el-table-column label="工厂编码" prop="DW_CODE"></el-table-column>
           <el-table-column label="工厂名称" prop="DW_NAME"></el-table-column>
-          <el-table-column label="是否上市" prop="DW_ISSS"></el-table-column>
+          <el-table-column label="是否上市">
+            <template slot-scope="scope">{{scope.row.DW_ISSS|ChangeFlag}}</template>
+          </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" @click="Edit(scope.row)" size="mini">编辑</el-button>
@@ -57,10 +65,10 @@
                 <el-input v-model="DWModel.DW_NAME"></el-input>
               </el-form-item>
               <el-form-item label="是否上市" prop="DW_ISSS">
-                  <el-select v-model="DWModel.DW_ISSS">
-                      <el-option label="上市" value="是"></el-option>
-                      <el-option label="未上市" value="否"></el-option>
-                  </el-select>
+                <el-select v-model="DWModel.DW_ISSS">
+                  <el-option label="上市" value="Y"></el-option>
+                  <el-option label="未上市" value="N"></el-option>
+                </el-select>
               </el-form-item>
               <div style="text-align:center">
                 <el-button type="primary" @click="submit">提交</el-button>
@@ -77,7 +85,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="5"
+          :total="total"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -97,6 +105,7 @@ export default {
   data() {
     return {
       listloading: true,
+      total: 0,
       temp: {
         limit: 10,
         page: 1,
@@ -106,7 +115,7 @@ export default {
       DWModel: {
         DW_CODE: "",
         DW_NAME: "",
-        DW_ISSS:"",
+        DW_ISSS: ""
       },
       rules: {
         DW_CODE: [
@@ -115,14 +124,23 @@ export default {
         DW_NAME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
-        DW_ISSS:[
-             { required: true, message: "此项不能为空！", trigger: "change" }
+        DW_ISSS: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
         ]
       },
       fac: [],
       dialogTitle: "",
       show: false
     };
+  },
+  filters: {
+    ChangeFlag(data) {
+      if (data === "Y") {
+        return "上市";
+      } else {
+        return "未上市";
+      }
+    }
   },
   methods: {
     tableRowClassName({ row, rowIndex }) {
@@ -142,6 +160,7 @@ export default {
       GetGCInfo(this.temp).then(response => {
         if (response.data.code === 2000) {
           this.fac = response.data.items;
+          this.total = response.data.total;
           this.listloading = false;
         } else {
           this.listloading = false;
@@ -156,7 +175,7 @@ export default {
       });
     },
     Create() {
-        this.show = true;
+      this.show = true;
       this.$nextTick(() => {
         this.$refs["DWModel"].clearValidate();
       });
@@ -164,12 +183,12 @@ export default {
       this.dialogTitle = "新建工厂信息";
     },
     Edit(data) {
-        this.show = true;
+      this.show = true;
       this.$nextTick(() => {
         this.$refs["DWModel"].clearValidate();
       });
       this.DWModel = Object.assign({}, data);
-      
+
       this.dialogTitle = "修改工厂信息";
     },
     del(data) {
@@ -251,8 +270,14 @@ export default {
         }
       });
     },
-    handleSizeChange() {},
-    handleCurrentChange() {}
+    handleSizeChange(val) {
+      this.temp.limit = val;
+      this.GetList();
+    },
+    handleCurrentChange(val) {
+      this.temp.page = val;
+      this.GetList();
+    }
   },
   mounted() {
     this.GetList();

@@ -187,7 +187,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="1"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="total"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -215,6 +215,7 @@ export default {
       show: false,
       dialogTitle: "",
       type: 0,
+      total:0,
       goods: [],
       temp: {
         WLZCODE: "",
@@ -259,6 +260,7 @@ export default {
       GetParentWLZList(this.temp).then(response => {
         if (response.data.code === 2000) {
           this.goods = response.data.items;
+          this.total=response.data.total;
           this.listloading = false;
         } else {
           this.listloading = false;
@@ -331,6 +333,9 @@ export default {
         }
       });
       this.selectOptionsFlag = flag.toString(2);
+      while(this.selectOptionsFlag.length<3){
+        this.selectOptionsFlag="0"+this.selectOptionsFlag;
+      }
       console.log(this.selectOptionsFlag);
     },
     submit() {
