@@ -1,40 +1,40 @@
 import request from '@/frame_src/utils/request'
 
-export function GetZDWZPZInfo(query) {
+export function GetZDWZWHInfo(query) {
     return request({
-      url: '/ZDWZPZ/GetZDWZPZInfo',
+      url: '/ZDWZWH/GetZDWZWHInfo',
       method: 'get',
       params:query
     })
   }
 
-  export function CreateZDWZPZInfo(data) {
+  export function CreateZDWZWHInfo(data) {
     return request({
-      url: '/ZDWZPZ/CreateZDWZPZInfo',
+      url: '/ZDWZWH/CreateZDWZWHInfo',
       method: 'post',
       data
     })
   }
 
-  export function EditZDWZPZInfo(data) {
+  export function EditZDWZWHInfo(data) {
     return request({
-      url: '/ZDWZPZ/EditZDWZPZInfo',
+      url: '/ZDWZWH/EditZDWZWHInfo',
       method: 'post',
       data
     })
   }
 
-  export function DelZDWZPZinfo(data) {
+  export function DelZDWZWHInfo(data) {
     return request({
-      url: '/ZDWZPZ/DelZDWZPZinfo',
+      url: '/ZDWZWH/DelZDWZWHInfo',
       method: 'post',
       data
     })
   }
 
-  export function GetPMCODE(query) {
+  export function GetKCDDInfo(query) {
     return request({
-      url: '/ZDWZPZ/GetPMCODE',
+      url: '/ZDWZWH/GetKCDDInfo',
       method: 'get',
       params:query
     })

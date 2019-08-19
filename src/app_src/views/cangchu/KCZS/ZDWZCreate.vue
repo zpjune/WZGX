@@ -2,18 +2,18 @@
   <div id="ZDWZCreate" class="app-container calendar-list-container">
     <div class="topSearh" id="topsearch">
       <el-row>
-       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+          <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
+        </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+          <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
+        </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+          <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
+        </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+          <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable></el-input>
+        </el-col>
         <el-col :span="9">
           <el-button
             size="mini"
@@ -51,48 +51,13 @@
             highlight-current-row
             style="width: 100%;text-align:left;"
           >
-          <el-table-column
-              align="center"
-              label="序号"
-              :show-overflow-tooltip="true"
-              prop="non"
-            ></el-table-column>
-          <el-table-column
-              align="center"
-              label="物料组"
-              :show-overflow-tooltip="true"
-              prop="WLZ"
-            ></el-table-column>
-            <el-table-column
-              align="center"
-              label="物料编码"
-              :show-overflow-tooltip="true"
-              prop="WLBM"
-            ></el-table-column>
-            <el-table-column
-              align="center"
-              label="物料名称"
-              :show-overflow-tooltip="true"
-              prop="WLMC"
-            ></el-table-column>
-            <el-table-column
-              align="center"
-              label="存放地点"
-              :show-overflow-tooltip="true"
-              prop="KCDD"
-            ></el-table-column>
-            <el-table-column
-              align="center"
-              label="最高储备"
-              :show-overflow-tooltip="true"
-              prop="ZGCB"
-            ></el-table-column>
-            <el-table-column
-              align="center"
-              label="最低储备"
-              :show-overflow-tooltip="true"
-              prop="ZDCB"
-            ></el-table-column>
+            <el-table-column align="center" label="序号" :show-overflow-tooltip="true" prop="non"></el-table-column>
+            <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ"></el-table-column>
+            <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" prop="WLBM"></el-table-column>
+            <el-table-column align="center" label="物料名称" :show-overflow-tooltip="true" prop="WLMC"></el-table-column>
+            <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD"></el-table-column>
+            <el-table-column align="center" label="最高储备" :show-overflow-tooltip="true" prop="ZGCB"></el-table-column>
+            <el-table-column align="center" label="最低储备" :show-overflow-tooltip="true" prop="ZDCB"></el-table-column>
             <el-table-column align="center" width="200" label="操作">
               <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">修改</el-button>
@@ -123,17 +88,17 @@
     >
       <el-card>
         <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;">
-             <el-col :span="24">
+          <el-col :span="24">
             <el-form-item label="物料组" prop="CK_ClassCode">
               <el-input v-model="temp.CK_ClassCode"></el-input>
             </el-form-item>
           </el-col>
-           <el-col :span="24">
+          <el-col :span="24">
             <el-form-item label="物料编码" prop="CK_ClassCode">
               <el-input v-model="temp.CK_ClassCode"></el-input>
             </el-form-item>
           </el-col>
-           <el-col :span="24">
+          <el-col :span="24">
             <el-form-item label="物料名称" prop="CK_ClassCode">
               <el-input v-model="temp.CK_ClassCode"></el-input>
             </el-form-item>
@@ -171,6 +136,14 @@
 // import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
 // import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
+import {
+  GetZDWZWHInfo,
+  CreateZDWZWHInfo,
+  EditZDWZWHInfo,
+  DelZDWZWHInfo,
+  GetKCDDInfo
+} from "@/app_src/api/cangchu/ZDWZ/ZDWZCreate";
+
 import waves from "@/frame_src/directive/waves"; // 水波纹指令
 import { getToken } from "@/frame_src/utils/auth";
 import { parseTime } from "@/frame_src/utils";
@@ -182,50 +155,7 @@ export default {
   data() {
     return {
       tableKey: 0,
-      list: [{
-          non: 1,
-          WLZ: "07030302",
-          WLBM: "10000513978",
-          WLMC: "柴油",
-          ZDCB: 300,
-          ZGCB: 1600,
-          KCDD: ""
-        },{
-          non: 2,
-          WLZ: "07030302",
-          WLBM: "11000922113",
-          WLMC: "柴油",
-          ZDCB: 200,
-          ZGCB: 1300,
-          KCDD: ""
-        },
-        {
-          non: 3,
-          WLZ: "07030302",
-          WLBM: "11000922112",
-          WLMC: "柴油",
-          ZDCB: 300,
-          ZGCB: 1600,
-          KCDD: ""
-        },
-        {
-          non: 4,
-          WLZ: "02040101",
-          WLBM: "20002020707",
-          WLMC: "无缝套管",
-          ZDCB: 300,
-          ZGCB: 1700,
-          KCDD: ""
-        },
-        {
-          non: 5,
-          WLZ: "07030302",
-          WLBM: "11004684489",
-          WLMC: "柴油",
-          ZDCB: 300,
-          ZGCB: 1600,
-          KCDD: ""
-        }],
+      list: [],
       total: 15,
       listLoading: false,
       listQuery: {
@@ -258,9 +188,7 @@ export default {
       };
     },
 
-    getList() {
-      
-    },
+    getList() {},
 
     handleCreate() {
       this.resetTemp();
@@ -284,9 +212,7 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消"
       })
-        .then(() => {
-         
-        })
+        .then(() => {})
         .catch();
     },
     createData() {
@@ -299,13 +225,12 @@ export default {
     updateData() {
       this.$refs["dataForm"].validate(valid => {
         if (valid) {
-          
         }
       });
     },
     handleSizeChange(val) {
       this.listQuery.limit = val;
-     // this.getList();
+      // this.getList();
     },
     handleCurrentChange(val) {
       this.listQuery.page = val;
@@ -313,7 +238,7 @@ export default {
     },
     handleFilter() {
       this.listQuery.page = 1;
-     // this.getList();
+      // this.getList();
     },
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex === 0) {
@@ -324,7 +249,7 @@ export default {
   },
   created() {
     this.listLoading = false;
-   // this.getList();
+    // this.getList();
   },
 
   computed: {

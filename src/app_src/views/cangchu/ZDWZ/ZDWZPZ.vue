@@ -2,13 +2,27 @@
   <div id="ZDWZPZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input
+        <!-- <el-input
           placeholder="请输入物料组编码"
           style="width:95%;"
           size="mini"
           clearable
           v-model="temp.WLZ_CODE"
-        ></el-input>
+        ></el-input>-->
+        <el-select
+          v-model="temp.WLZ_CODE"
+          placeholder="请选择物料组编码"
+          :disabled="dialogTitle=='修改配置信息'"
+          style="width:95%"
+          size="mini"
+        >
+          <el-option
+            v-for="(item,key) in WLZOptions"
+            :key="key"
+            :value="item.PMCODE"
+            :label="item.PMNAME"
+          ></el-option>
+        </el-select>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
@@ -39,6 +53,7 @@
         >
           <el-table-column label="物料组编码" prop="WLZ_CODE"></el-table-column>
           <el-table-column label="物料编码" prop="WL_CODE"></el-table-column>
+          <el-table-column label="物料名称" prop="WL_NAME"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" @click="Edit(scope.row)" size="mini">编辑</el-button>
@@ -50,10 +65,26 @@
           <el-card>
             <el-form :model="ZDWZPZModel" :rules="rules" label-width="100px" ref="ZDWZPZModel">
               <el-form-item label="物料组编码" prop="WLZ_CODE">
-                <el-input v-model="ZDWZPZModel.WLZ_CODE" :disabled="dialogTitle=='修改配置信息'"></el-input>
+                <!-- <el-input v-model="ZDWZPZModel.WLZ_CODE" :disabled="dialogTitle=='修改配置信息'"></el-input> -->
+                <el-select
+                  v-model="ZDWZPZModel.WLZ_CODE"
+                  placeholder="请选择物料组编码"
+                  :disabled="dialogTitle=='修改配置信息'"
+                  style="width:100%"
+                >
+                  <el-option
+                    v-for="(item,key) in WLZOptions"
+                    :key="key"
+                    :value="item.PMCODE"
+                    :label="item.PMNAME"
+                  ></el-option>
+                </el-select>
               </el-form-item>
               <el-form-item label="物料编码" prop="WL_CODE">
                 <el-input v-model="ZDWZPZModel.WL_CODE"></el-input>
+              </el-form-item>
+              <el-form-item label="物料名称" >
+                <el-input v-model="ZDWZPZModel.WL_NAME"></el-input>
               </el-form-item>
               <div style="text-align:center">
                 <el-button type="primary" @click="submit">提交</el-button>
@@ -83,7 +114,8 @@ import {
   GetZDWZPZInfo,
   CreateZDWZPZInfo,
   EditZDWZPZInfo,
-  DelZDWZPZinfo
+  DelZDWZPZinfo,
+  GetPMCODE
 } from "@/app_src/api/cangchu/ZDWZ/ZDWZPZ";
 export default {
   name: "ZDWZPZ",
@@ -94,22 +126,24 @@ export default {
       temp: {
         limit: 10,
         page: 1,
-        WLZ_CODE:'',
-        WLZ_CODE: ""
+        WLZ_CODE: "",
+        WL_CODE: ""
       },
       ZDWZPZModel: {
-        WLZ_CODE:'',
-        WLZ_CODE: ""
+        WLZ_CODE: "",
+        WL_CODE: "",
+        WZ_NAME:'',
       },
       rules: {
         WLZ_CODE: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
-        WLZ_CODE: [
+        WL_CODE: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ]
       },
       fac: [],
+      WLZOptions: [],
       dialogTitle: "",
       show: false
     };
@@ -123,10 +157,10 @@ export default {
       return "";
     },
     reset() {
-      this.ZDWZPZModel= {
-        WLZ_CODE:'',
-        WLZ_CODE: ""
-      }
+      this.ZDWZPZModel = {
+        WLZ_CODE: "",
+        WL_CODE: ""
+      };
     },
     GetList() {
       GetZDWZPZInfo(this.temp).then(response => {
@@ -242,6 +276,13 @@ export default {
         }
       });
     },
+    GetPMCODE() {
+      GetPMCODE().then(response => {
+        if (response.data.code === 2000) {
+          this.WLZOptions = response.data.items;
+        }
+      });
+    },
     handleSizeChange(val) {
       this.temp.limit = val;
       this.GetList();
@@ -253,6 +294,7 @@ export default {
   },
   mounted() {
     this.GetList();
+    this.GetPMCODE();
   }
 };
 </script>
