@@ -8,6 +8,7 @@
             size="mini"
             style="width:95%"
             placeholder="请选择库存地点"
+            clearable
           >
             <el-option
               v-for="(item,key) in KCDDOptions"
@@ -24,6 +25,7 @@
             style="width:95%"
             placeholder="请选择物料组编码"
             @change="getWLOptions(0)"
+            clearable
           >
             <el-option
               v-for="(item,key) in WLZOptions"
@@ -350,8 +352,8 @@ export default {
         }
       });
     },
-    delInfo() {
-      DelZDWZWHInfo(this.temp).then(response => {
+    delInfo(temp) {
+      DelZDWZWHInfo(temp).then(response => {
         if (response.data.code === 2000) {
           this.editVisible = false;
           this.$notify({
@@ -361,6 +363,7 @@ export default {
             type: "success",
             duration: 2000
           });
+          this.getList();
         } else {
           this.$notify({
             position: "bottom-right",
@@ -429,7 +432,12 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消"
       })
-        .then(() => {})
+        .then(() => {
+          let temp={
+            ID:row.ID
+          }
+          this.delInfo(temp);
+        })
         .catch();
     },
     createData() {

@@ -43,15 +43,15 @@
           empty-text="空"
         >
           <el-table-column label="大类编码" prop="DLCODE" width="120px"></el-table-column>
-          <el-table-column label="大类名称" prop="DLNAME"></el-table-column>
-          <el-table-column label="中类编码" prop="ZLCODE"></el-table-column>
-          <el-table-column label="中类名称" prop="ZLNAME"></el-table-column>
+          <el-table-column label="大类名称" prop="DLNAME" ></el-table-column>
+          <el-table-column label="中类编码" prop="ZLCODE" ></el-table-column>
+          <el-table-column label="中类名称" prop="ZLNAME" ></el-table-column>
           <el-table-column label="小类编码" prop="XLCODE"></el-table-column>
-          <el-table-column label="小类名称" prop="XLNAME"></el-table-column>
-          <el-table-column label="物料编码" prop="PMCODE"></el-table-column>
-          <el-table-column label="物料名称" prop="PMNAME"></el-table-column>
-          <el-table-column label="型号规格规范" prop="XHGGGF" width="120px"></el-table-column>
-          <el-table-column label="基本计量单位" prop="JBJLDW" width="120px"></el-table-column>
+          <el-table-column label="小类名称" prop="XLNAME" ></el-table-column>
+          <el-table-column label="物料编码" prop="PMCODE" ></el-table-column>
+          <el-table-column label="物料名称" prop="PMNAME" ></el-table-column>
+          <el-table-column label="型号规格规范" prop="XHGGGF" ></el-table-column>
+          <el-table-column label="基本计量单位" prop="JBJLDW" ></el-table-column>
           <!-- <el-table-column label="属性名称1" prop="SX1MC"></el-table-column>
           <el-table-column label="属性单位1" prop="SX1DW"></el-table-column>
           <el-table-column label="属性名称2" prop="SX2MC"></el-table-column>
@@ -237,7 +237,8 @@ export default {
       },
       rules: {
         DLCODE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          { min: 2, max: 2, message: '长度为2个字符！', trigger: 'change' }
         ],
         DLNAME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
@@ -246,16 +247,19 @@ export default {
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         ZLCODE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          { min: 4, max: 4, message: '长度为4个字符！', trigger: 'change' }
         ],
         XLCODE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          { min: 6, max: 6, message: '长度为6个字符！', trigger: 'change' }
         ],
         XLNAME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         PMCODE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          { min: 8, max: 8, message: '长度为8个字符！', trigger: 'change' }
         ],
         PMNAME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
