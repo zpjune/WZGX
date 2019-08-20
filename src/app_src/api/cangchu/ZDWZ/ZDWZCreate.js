@@ -39,3 +39,19 @@ export function GetZDWZWHInfo(query) {
       params:query
     })
   }
+
+  export function GetWLZCODE(query) {
+    return request({
+      url: '/ZDWZWH/GetWLZCODE',
+      method: 'get',
+      params:query
+    })
+  }
+
+  export function GetWZCODE(query) {
+    return request({
+      url: '/ZDWZWH/GetWZCODE',
+      method: 'get',
+      params:query
+    })
+  }

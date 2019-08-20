@@ -3,16 +3,51 @@
     <div class="topSearh" id="topsearch">
       <el-row>
         <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-          <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
+          <el-select
+            v-model="listQuery.WL_LOCATIONCODE"
+            size="mini"
+            style="width:95%"
+            placeholder="请选择库存地点"
+          >
+            <el-option
+              v-for="(item,key) in KCDDOptions"
+              :key="key"
+              :value="item.KCDD_CODE"
+              :label="item.KCDD_NAME"
+            ></el-option>
+          </el-select>
         </el-col>
         <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-          <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
+          <el-select
+            v-model="listQuery.WLZ_CODE"
+            size="mini"
+            style="width:95%"
+            placeholder="请选择物料组编码"
+            @change="getWLOptions(0)"
+          >
+            <el-option
+              v-for="(item,key) in WLZOptions"
+              :key="key"
+              :value="item.WLZ_CODE"
+              :label="item.WLZ_CODE"
+            ></el-option>
+          </el-select>
         </el-col>
         <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-          <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
-        </el-col>
-        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-          <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable></el-input>
+          <el-select
+            v-model="listQuery.WL_CODE"
+            size="mini"
+            style="width:95%"
+            placeholder="请选择物料名称"
+            :disabled="listQuery.WLZ_CODE===''||listQuery.WLZ_CODE===null"
+          >
+            <el-option
+              v-for="(item,key) in WLOptions"
+              :key="key"
+              :value="item.WL_CODE"
+              :label="item.WL_NAME"
+            ></el-option>
+          </el-select>
         </el-col>
         <el-col :span="9">
           <el-button
@@ -21,7 +56,7 @@
             type="primary"
             v-waves
             icon="el-icon-search"
-            @click="handleFilter"
+            @click="getList"
           >搜索</el-button>
           <el-button
             size="mini"
@@ -51,13 +86,12 @@
             highlight-current-row
             style="width: 100%;text-align:left;"
           >
-            <el-table-column align="center" label="序号" :show-overflow-tooltip="true" prop="non"></el-table-column>
-            <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ"></el-table-column>
-            <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" prop="WLBM"></el-table-column>
-            <el-table-column align="center" label="物料名称" :show-overflow-tooltip="true" prop="WLMC"></el-table-column>
-            <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD"></el-table-column>
-            <el-table-column align="center" label="最高储备" :show-overflow-tooltip="true" prop="ZGCB"></el-table-column>
-            <el-table-column align="center" label="最低储备" :show-overflow-tooltip="true" prop="ZDCB"></el-table-column>
+            <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ_CODE"></el-table-column>
+            <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" prop="WL_CODE"></el-table-column>
+            <el-table-column align="center" label="物料名称" :show-overflow-tooltip="true" prop="WL_NAME"></el-table-column>
+            <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD_NAME"></el-table-column>
+            <el-table-column align="center" label="最高储备" :show-overflow-tooltip="true" prop="MAXHAVING"></el-table-column>
+            <el-table-column align="center" label="最低储备" :show-overflow-tooltip="true" prop="MINHAVING"></el-table-column>
             <el-table-column align="center" width="200" label="操作">
               <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">修改</el-button>
@@ -87,36 +121,70 @@
       width="500px"
     >
       <el-card>
-        <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;">
+        <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;"  :rules="rules">
           <el-col :span="24">
-            <el-form-item label="物料组" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
+            <el-form-item label="物料组" prop="WLZ_CODE">
+              <el-select
+                v-model="temp.WLZ_CODE"
+                size="mini"
+                style="width:95%"
+                placeholder="请选择物料组编码"
+                @change="getWLOptions(1)"
+              >
+                <el-option
+                  v-for="(item,key) in WLZOptions"
+                  :key="key"
+                  :value="item.WLZ_CODE"
+                  :label="item.WLZ_CODE"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="物料编码" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
+            <el-form-item label="物料名称" prop="WL_CODE">
+              <el-select
+                v-model="temp.WL_CODE"
+                
+                style="width:95%"
+                placeholder="请选择物料名称"
+                :disabled="temp.WLZ_CODE===''||temp.WLZ_CODE===null"
+                size="mini"
+              >
+                <el-option
+                  v-for="(item,key) in TempWLOptions"
+                  :key="key"
+                  :value="item.WL_CODE"
+                  :label="item.WL_NAME"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="物料名称" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
+            <el-form-item label="存放地点" prop="WL_LOCATIONCODE">
+              <el-select
+                v-model="temp.WL_LOCATIONCODE"
+                size="mini"
+                style="width:95%"
+                placeholder="请选择库存地点"
+              >
+                <el-option
+                  v-for="(item,key) in KCDDOptions"
+                  :key="key"
+                  :value="item.KCDD_CODE"
+                  :label="item.KCDD_NAME"
+                ></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="存放地点" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="24">
-            <el-form-item label="最低储备" prop="CK_Code">
-              <el-input v-model="temp.CK_Code"></el-input>
+            <el-form-item label="最低储备" prop="MAXHAVING">
+              <el-input v-model="temp.MAXHAVING" size="mini" style="width:95%"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
-            <el-form-item label="最高储备" prop="CK_Describe">
-              <el-input v-model="temp.CK_Describe"></el-input>
+            <el-form-item label="最高储备" prop="MINHAVING">
+              <el-input v-model="temp.MINHAVING" size="mini" style="width:95%"></el-input>
             </el-form-item>
           </el-col>
         </el-form>
@@ -141,14 +209,16 @@ import {
   CreateZDWZWHInfo,
   EditZDWZWHInfo,
   DelZDWZWHInfo,
-  GetKCDDInfo
+  GetKCDDInfo,
+  GetWLZCODE,
+  GetWZCODE
 } from "@/app_src/api/cangchu/ZDWZ/ZDWZCreate";
 
 import waves from "@/frame_src/directive/waves"; // 水波纹指令
 import { getToken } from "@/frame_src/utils/auth";
 import { parseTime } from "@/frame_src/utils";
 export default {
-  name: "CKLR",
+  name: "ZDWZCreate",
   directives: {
     waves
   },
@@ -156,18 +226,26 @@ export default {
     return {
       tableKey: 0,
       list: [],
-      total: 15,
+      total: 0,
       listLoading: false,
       listQuery: {
         limit: 10,
         page: 1,
-        CKTime: "",
-        LocationNumber: ""
+        WL_LOCATIONCODE: "",
+        WLZ_CODE: "",
+        WL_CODE: ""
       },
+      KCDDOptions: [],
+      WLZOptions: [],
+      WLOptions: [],
+      TempWLOptions: [],
       temp: {
-        CK_ClassCode: "",
-        CK_Code: "",
-        CK_Describe: ""
+        WLZ_CODE: "",
+        WL_CODE: "",
+        WL_LOCATIONCODE: "",
+        WL_LOCATIONCODE: "",
+        MAXHAVING: "",
+        MINHAVING: ""
       },
       textMap: {
         update: "修改",
@@ -175,21 +253,159 @@ export default {
       },
       editVisible: false,
       dialogStatus: "",
-
-      treeData: []
+      treeData: [],
+      rules: {
+        WLZ_CODE: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        WL_CODE: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        WL_LOCATIONCODE: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        WL_LOCATIONCODE: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        MAXHAVING: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        MINHAVING: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ]
+      }
     };
   },
   methods: {
     resetTemp() {
       this.temp = {
-        CK_ClassCode: "",
-        CK_Code: "",
-        CK_Describe: ""
+        WLZ_CODE: "",
+        WL_CODE: "",
+        WL_LOCATIONCODE: "",
+        WL_LOCATIONCODE: "",
+        MINHAVING: ""
       };
     },
-
-    getList() {},
-
+    getList() {
+      GetZDWZWHInfo(this.listQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.listLoading = false;
+          this.list = response.data.items;
+          this.total=response.data.total;
+        } else {
+          this.listLoading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
+    },
+    createInfo() {
+      CreateZDWZWHInfo(this.temp).then(response => {
+        if (response.data.code === 2000) {
+          this.editVisible = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "成功",
+            message: response.data.message,
+            type: "success",
+            duration: 2000
+          });
+          this.getList();
+        } else {
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "warning",
+            duration: 2000
+          });
+        }
+      });
+    },
+    editInfo() {
+      EditZDWZWHInfo(this.temp).then(response => {
+        if (response.data.code === 2000) {
+          this.editVisible = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "成功",
+            message: response.data.message,
+            type: "success",
+            duration: 2000
+          });
+          this.getList();
+        } else {
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "warning",
+            duration: 2000
+          });
+        }
+      });
+    },
+    delInfo() {
+      DelZDWZWHInfo(this.temp).then(response => {
+        if (response.data.code === 2000) {
+          this.editVisible = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "成功",
+            message: response.data.message,
+            type: "success",
+            duration: 2000
+          });
+        } else {
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "warning",
+            duration: 2000
+          });
+        }
+      });
+    },
+    getKCDDOptions() {
+      GetKCDDInfo().then(response => {
+        if (response.data.code === 2000) {
+          this.KCDDOptions = response.data.items;
+        }
+      });
+    },
+    getWLZOptions() {
+      GetWLZCODE().then(response => {
+        if (response.data.code === 2000) {
+          this.WLZOptions = response.data.items;
+        }
+      });
+    },
+    getWLOptions(flag) {
+      let temp = {
+        WLZ_CODE: ""
+      };
+      if (flag === 0) {
+        temp.WLZ_CODE = this.listQuery.WLZ_CODE;
+        GetWZCODE(temp).then(response => {
+          if (response.data.code === 2000) {
+            this.WLOptions = response.data.items;
+          }
+        });
+      } else {
+        temp.WLZ_CODE = this.temp.WLZ_CODE;
+        GetWZCODE(temp).then(response => {
+          if (response.data.code === 2000) {
+            this.TempWLOptions = response.data.items;
+          }
+        });
+      }
+    },
     handleCreate() {
       this.resetTemp();
       this.editVisible = true;
@@ -202,6 +418,7 @@ export default {
       this.temp = Object.assign({}, row); // copy obj
       this.editVisible = true;
       this.dialogStatus = "update";
+      this.getWLOptions(1);
       this.$nextTick(() => {
         this.$refs["dataForm"].clearValidate();
       });
@@ -219,26 +436,28 @@ export default {
       // 创建
       this.$refs["dataForm"].validate(valid => {
         if (valid) {
+          this.createInfo();
         }
       });
     },
     updateData() {
       this.$refs["dataForm"].validate(valid => {
         if (valid) {
+          this.editInfo();
         }
       });
     },
     handleSizeChange(val) {
       this.listQuery.limit = val;
-      // this.getList();
+      this.getList();
     },
     handleCurrentChange(val) {
       this.listQuery.page = val;
-      //this.getList();
+      this.getList();
     },
     handleFilter() {
       this.listQuery.page = 1;
-      // this.getList();
+      this.getList();
     },
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex === 0) {
@@ -248,8 +467,10 @@ export default {
     }
   },
   created() {
-    this.listLoading = false;
-    // this.getList();
+    //this.listLoading = false;
+    this.getList();
+    this.getKCDDOptions();
+    this.getWLZOptions();
   },
 
   computed: {

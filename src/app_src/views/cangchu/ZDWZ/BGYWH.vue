@@ -34,7 +34,7 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="Create">新建</el-button>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="GetList">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleFilter">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
@@ -313,8 +313,18 @@ export default {
         }
       });
     },
-    handleSizeChange() {},
-    handleCurrentChange() {}
+    handleFilter(){
+      this.temp.page=1;
+      this.GetList();
+    },
+    handleSizeChange(val) {
+      this.temp.limit=val;
+      this.GetList();
+    },
+    handleCurrentChange(val) {
+      this.temp.page=val;
+      this.GetList();
+    }
   },
   mounted() {
     this.GetList();
