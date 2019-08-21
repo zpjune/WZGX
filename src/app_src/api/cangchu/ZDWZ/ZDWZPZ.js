@@ -39,3 +39,19 @@ export function GetZDWZPZInfo(query) {
       params:query
     })
   }
+
+  export function GetParentNode(query) {
+    return request({
+      url: '/ZDWZPZ/GetParentNode',
+      method: 'get',
+      params:query
+    })
+  }
+
+  export function GetChildrenNode(query) {
+    return request({
+      url: '/ZDWZPZ/GetChildrenNode',
+      method: 'get',
+      params:query
+    })
+  }

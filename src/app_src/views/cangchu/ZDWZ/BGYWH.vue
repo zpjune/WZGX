@@ -24,7 +24,6 @@
         <treeselect
           placeholder="请选择单位"
           :options="options"
-          valueFormat="label"
           :normalizer="normalizer"
           :loadOptions="loadOptions"
           v-model="temp.WORKER_DP"

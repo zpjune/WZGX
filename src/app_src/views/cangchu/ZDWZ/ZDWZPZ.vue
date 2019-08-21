@@ -2,14 +2,7 @@
   <div id="ZDWZPZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <!-- <el-input
-          placeholder="请输入物料组编码"
-          style="width:95%;"
-          size="mini"
-          clearable
-          v-model="temp.WLZ_CODE"
-        ></el-input>-->
-        <el-select
+        <!-- <el-select
           v-model="temp.WLZ_CODE"
           placeholder="请选择物料组编码"
           :disabled="dialogTitle=='修改配置信息'"
@@ -22,7 +15,16 @@
             :value="item.PMCODE"
             :label="item.PMNAME"
           ></el-option>
-        </el-select>
+        </el-select>-->
+        <treeselect
+          placeholder="请选择物料组"
+          :options="options"
+          :normalizer="normalizer"
+          :loadOptions="loadOptions"
+          v-model="temp.WLZ_CODE"
+          :disable-branch-nodes="true"
+          :show-count="true"
+        />
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
@@ -52,6 +54,7 @@
           highlight-current-row
         >
           <el-table-column label="物料组编码" prop="WLZ_CODE"></el-table-column>
+          <el-table-column label="物料组名称" prop="PMNAME"></el-table-column>
           <el-table-column label="物料编码" prop="WL_CODE"></el-table-column>
           <el-table-column label="物料名称" prop="WL_NAME"></el-table-column>
           <el-table-column label="操作">
@@ -66,7 +69,7 @@
             <el-form :model="ZDWZPZModel" :rules="rules" label-width="100px" ref="ZDWZPZModel">
               <el-form-item label="物料组编码" prop="WLZ_CODE">
                 <!-- <el-input v-model="ZDWZPZModel.WLZ_CODE" :disabled="dialogTitle=='修改配置信息'"></el-input> -->
-                <el-select
+                <!-- <el-select
                   v-model="ZDWZPZModel.WLZ_CODE"
                   placeholder="请选择物料组编码"
                   :disabled="dialogTitle=='修改配置信息'"
@@ -78,12 +81,21 @@
                     :value="item.PMCODE"
                     :label="item.PMNAME"
                   ></el-option>
-                </el-select>
+                </el-select>-->
+                <treeselect
+                  placeholder="请选择物料组"
+                  :options="options"
+                  :normalizer="normalizer"
+                  :loadOptions="loadOptions"
+                  v-model="ZDWZPZModel.WLZ_CODE"
+                  :disable-branch-nodes="true"
+                  :show-count="true"
+                />
               </el-form-item>
               <el-form-item label="物料编码" prop="WL_CODE">
                 <el-input v-model="ZDWZPZModel.WL_CODE"></el-input>
               </el-form-item>
-              <el-form-item label="物料名称" >
+              <el-form-item label="物料名称">
                 <el-input v-model="ZDWZPZModel.WL_NAME"></el-input>
               </el-form-item>
               <div style="text-align:center">
@@ -115,10 +127,17 @@ import {
   CreateZDWZPZInfo,
   EditZDWZPZInfo,
   DelZDWZPZinfo,
-  GetPMCODE
+  GetPMCODE,
+  GetParentNode,
+  GetChildrenNode
 } from "@/app_src/api/cangchu/ZDWZ/ZDWZPZ";
+import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
+import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 export default {
   name: "ZDWZPZ",
+  components: {
+    Treeselect
+  },
   data() {
     return {
       listloading: true,
@@ -126,13 +145,13 @@ export default {
       temp: {
         limit: 10,
         page: 1,
-        WLZ_CODE: "",
+        WLZ_CODE: null,
         WL_CODE: ""
       },
       ZDWZPZModel: {
-        WLZ_CODE: "",
+        WLZ_CODE: null,
         WL_CODE: "",
-        WZ_NAME:'',
+        WZ_NAME: ""
       },
       rules: {
         WLZ_CODE: [
@@ -144,6 +163,14 @@ export default {
       },
       fac: [],
       WLZOptions: [],
+      options: [],
+      normalizer(node, instanceId) {
+        return {
+          id: node.Code,
+          label: node.label,
+          children: node.children
+        };
+      },
       dialogTitle: "",
       show: false
     };
@@ -158,8 +185,9 @@ export default {
     },
     reset() {
       this.ZDWZPZModel = {
-        WLZ_CODE: "",
-        WL_CODE: ""
+        WLZ_CODE: null,
+        WL_CODE: "",
+        WZ_NAME: ""
       };
     },
     GetList() {
@@ -283,29 +311,69 @@ export default {
         }
       });
     },
-    handleFilter(){
-      this.temp.page=1;
+    GetParentNode() {
+      GetParentNode().then(response => {
+        this.options = response.data;
+      });
+    },
+    GetChildrenNode(temp) {
+      GetChildrenNode(temp).then(response => {
+        return response.data;
+      });
+    },
+    loadOptions({ action, parentNode, callback }) {
+      if (action === LOAD_CHILDREN_OPTIONS) {
+        if (parentNode.hasChildren) {
+          console.log(parentNode);
+          let temp = {
+            flagID: parentNode.FlagID,
+            DLCODE: parentNode.DLCODE === null ? "0" : parentNode.DLCODE,
+            ZLCODE: parentNode.ZLCODE === null ? "0" : parentNode.ZLCODE,
+            XLCODE: parentNode.XLCODE === null ? "0" : parentNode.XLCODE
+          };
+          let arr = [];
+          parentNode.Children = [];
+          GetChildrenNode(temp).then(response => {
+            parentNode.children = response.data;
+          });
+          callback();
+        } else {
+          parentNode.children = undefined;
+        }
+      }
+    },
+    handleFilter() {
+      this.temp.page = 1;
       this.GetList();
     },
     handleSizeChange(val) {
-      this.temp.limit=val;
+      this.temp.limit = val;
       this.GetList();
     },
     handleCurrentChange(val) {
-      this.temp.page=val;
+      this.temp.page = val;
       this.GetList();
-    },
+    }
   },
   mounted() {
     this.GetList();
-    this.GetPMCODE();
+    this.GetParentNode();
+    //this.GetPMCODE();
   }
 };
 </script>
 
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
+.vue-treeselect__control {
+  height: 28px !important;
+  width: 100%;
+}
+.vue-treeselect__placeholder,
+.vue-treeselect__single-value {
+  line-height: 28px;
+}
 </style>
 
 
