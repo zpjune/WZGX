@@ -55,3 +55,11 @@ export function GetZDWZPZInfo(query) {
       params:query
     })
   }
+
+  export function GetEditParentNode(query) {
+    return request({
+      url: '/ZDWZPZ/GetEditParentNode',
+      method: 'get',
+      params:query
+    })
+  }

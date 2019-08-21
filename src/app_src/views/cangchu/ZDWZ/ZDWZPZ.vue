@@ -84,7 +84,7 @@
                 </el-select>-->
                 <treeselect
                   placeholder="请选择物料组"
-                  :options="options"
+                  :options="options1"
                   :normalizer="normalizer"
                   :loadOptions="loadOptions"
                   v-model="ZDWZPZModel.WLZ_CODE"
@@ -129,7 +129,8 @@ import {
   DelZDWZPZinfo,
   GetPMCODE,
   GetParentNode,
-  GetChildrenNode
+  GetChildrenNode,
+  GetEditParentNode
 } from "@/app_src/api/cangchu/ZDWZ/ZDWZPZ";
 import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
@@ -164,6 +165,7 @@ export default {
       fac: [],
       WLZOptions: [],
       options: [],
+      options1: [],
       normalizer(node, instanceId) {
         return {
           id: node.Code,
@@ -222,8 +224,11 @@ export default {
         this.$refs["ZDWZPZModel"].clearValidate();
       });
       this.ZDWZPZModel = Object.assign({}, data);
-
       this.dialogTitle = "修改配置信息";
+      let temp = {
+        PMCODE: this.ZDWZPZModel.WLZ_CODE
+      };
+      this.GetEditParentNode(temp);
     },
     del(data) {
       this.$confirm("您确定要删除此项信息吗?", "提示", {
@@ -316,29 +321,41 @@ export default {
         this.options = response.data;
       });
     },
-    GetChildrenNode(temp) {
-      GetChildrenNode(temp).then(response => {
-        return response.data;
+    GetEditParentNode(temp) {
+      GetEditParentNode(temp).then(response => {
+        this.options1 = response.data;
       });
     },
     loadOptions({ action, parentNode, callback }) {
+      console.log(action)
       if (action === LOAD_CHILDREN_OPTIONS) {
-        if (parentNode.hasChildren) {
+        console.log(parentNode)
+        if (!parentNode.IsLoading) {
+          if (parentNode.hasChildren) {
+            let temp = {
+              flagID: parentNode.FlagID,
+              DLCODE: parentNode.DLCODE === null ? "0" : parentNode.DLCODE,
+              ZLCODE: parentNode.ZLCODE === null ? "0" : parentNode.ZLCODE,
+              XLCODE: parentNode.XLCODE === null ? "0" : parentNode.XLCODE
+            };
+            GetChildrenNode(temp).then(response => {
+              parentNode.children = response.data;
+            });
+            callback();
+          } else {
+            parentNode.children = undefined;
+          }
+        }
+        else{
           console.log(parentNode);
-          let temp = {
-            flagID: parentNode.FlagID,
-            DLCODE: parentNode.DLCODE === null ? "0" : parentNode.DLCODE,
-            ZLCODE: parentNode.ZLCODE === null ? "0" : parentNode.ZLCODE,
-            XLCODE: parentNode.XLCODE === null ? "0" : parentNode.XLCODE
-          };
-          let arr = [];
-          parentNode.Children = [];
-          GetChildrenNode(temp).then(response => {
-            parentNode.children = response.data;
-          });
-          callback();
-        } else {
-          parentNode.children = undefined;
+          if(parentNode.hasChildren){
+            callback();
+          }
+          else{
+            
+            parentNode.children = undefined;
+          }
+          
         }
       }
     },
