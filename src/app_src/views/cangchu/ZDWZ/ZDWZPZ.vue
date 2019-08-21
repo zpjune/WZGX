@@ -327,9 +327,7 @@ export default {
       });
     },
     loadOptions({ action, parentNode, callback }) {
-      console.log(action)
       if (action === LOAD_CHILDREN_OPTIONS) {
-        console.log(parentNode)
         if (!parentNode.IsLoading) {
           if (parentNode.hasChildren) {
             let temp = {
@@ -351,8 +349,7 @@ export default {
           if(parentNode.hasChildren){
             callback();
           }
-          else{
-            
+          else{     
             parentNode.children = undefined;
           }
           
