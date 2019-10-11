@@ -63,6 +63,21 @@ export const constantRouterMap = [
       meta: { title: '转运库', icon: 'home', noCache: true },
       component: _import('app_src/views/cangchu/KCZS/ZYKDetail'), hidden: true
     },
+    {
+      path: '/cangchu/KCZS/GDQCKDetail', name: '港东器材库',
+      meta: { title: '港东器材库', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/GDQCK/GDQCKDetail'), hidden: true
+    },
+    {
+      path: '/cangchu/KCZS/ZYGFGSDetail', name: '专用管分公司',
+      meta: { title: '专用管分公司', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/ZYGFGS/ZYGFGSDetail'), hidden: true
+    },
+    {
+      path: '/cangchu/KCZS/CXZGKDetail', name: '厂现直供库',
+      meta: { title: '厂现直供库', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/CXZGK/CXZGKDetail'), hidden: true
+    },
     ]
   },
 ]

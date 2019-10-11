@@ -72,6 +72,7 @@
                     class="cangku_img"
                     src="../../../frame_src/imgs/cangku3.jpg"
                     alt="港东器材库"
+                    @click="gangdongclick"
                   >
                   <div>
                     <span>港东器材库</span>
@@ -85,6 +86,7 @@
                     class="cangku_img"
                     src="../../../frame_src/imgs/cangku4.jpg"
                     alt="专用管分公司"
+                    @click="zhuanyongguanclick"
                   >
                   <div>
                     <span>专用管分公司</span>
@@ -95,6 +97,7 @@
                     class="cangku_img"
                     src="../../../frame_src/imgs/cangku4.jpg"
                     alt="厂现直供库"
+                    @click="changxianzhiclick"
                   >
                   <div>
                     <span>厂现直供库</span>
@@ -438,6 +441,16 @@ export default {
     },
     zongkucunclick(){
       this.$router.push({ path: "/cangchu/KCZS/Total" });
+    },
+    gangdongclick(){
+      this.$router.push({ path: "/cangchu/KCZS/GDQCKDetail" });
+    },
+    zhuanyongguanclick(){
+      this.$router.push({ path: "/cangchu/KCZS/ZYGFGSDetail" });
+
+    },
+    changxianzhiclick(){
+      this.$router.push({ path: "/cangchu/KCZS/CXZGKDetail" });
     }
   },
   created() {},

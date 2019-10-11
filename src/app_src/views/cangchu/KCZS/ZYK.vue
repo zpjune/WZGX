@@ -78,6 +78,602 @@
         title="积压"
         style=" position: absolute;left: 279px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
       />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag3"
+        title="积压"
+        style=" position: absolute;left: 289px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag4"
+        title="积压"
+        style=" position: absolute;left: 299px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag5"
+        title="积压"
+        style=" position: absolute;left: 310px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag6"
+        title="积压"
+        style=" position: absolute;left: 320px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag7"
+        title="积压"
+        style=" position: absolute;left: 330px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag8"
+        title="积压"
+        style=" position: absolute;left: 340px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag9"
+        title="积压"
+        style=" position: absolute;left: 350px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag10"
+        title="积压"
+        style=" position: absolute;left: 360px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag11"
+        title="积压"
+        style=" position: absolute;left: 370px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag12"
+        title="积压"
+        style=" position: absolute;left: 380px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag13"
+        title="积压"
+        style=" position: absolute;left: 390px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag14"
+        title="积压"
+        style=" position: absolute;left: 400px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag15"
+        title="积压"
+        style=" position: absolute;left: 410px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag16"
+        title="积压"
+        style=" position: absolute;left: 420px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag17"
+        title="积压"
+        style=" position: absolute;left: 430px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag18"
+        title="积压"
+        style=" position: absolute;left: 440px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag19"
+        title="积压"
+        style=" position: absolute;left: 450px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag20"
+        title="积压"
+        style=" position: absolute;left: 460px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag21"
+        title="积压"
+        style=" position: absolute;left: 470px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag22"
+        title="积压"
+        style=" position: absolute;left: 480px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag23"
+        title="积压"
+        style=" position: absolute;left: 490px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag24"
+        title="积压"
+        style=" position: absolute;left: 500px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag25"
+        title="积压"
+        style=" position: absolute;left: 510px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag26"
+        title="积压"
+        style=" position: absolute;left: 520px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag27"
+        title="积压"
+        style=" position: absolute;left: 530px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag28"
+        title="积压"
+        style=" position: absolute;left: 540px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag29"
+        title="积压"
+        style=" position: absolute;left: 570px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag30"
+        title="积压"
+        style=" position: absolute;left: 580px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag31"
+        title="积压"
+        style=" position: absolute;left: 590px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag32"
+        title="积压"
+        style=" position: absolute;left: 600px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag33"
+        title="积压"
+        style=" position: absolute;left: 610px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag34"
+        title="积压"
+        style=" position: absolute;left: 620px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag35"
+        title="积压"
+        style=" position: absolute;left: 630px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag36"
+        title="积压"
+        style=" position: absolute;left: 640px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag37"
+        title="积压"
+        style=" position: absolute;left: 650px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag38"
+        title="积压"
+        style=" position: absolute;left: 660px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag39"
+        title="积压"
+        style=" position: absolute;left: 670px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag40"
+        title="积压"
+        style=" position: absolute;left: 680px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag41"
+        title="积压"
+        style=" position: absolute;left: 690px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag42"
+        title="积压"
+        style=" position: absolute;left: 700px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag43"
+        title="积压"
+        style=" position: absolute;left: 710px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag44"
+        title="积压"
+        style=" position: absolute;left: 720px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag45"
+        title="积压"
+        style=" position: absolute;left: 730px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag46"
+        title="积压"
+        style=" position: absolute;left: 740px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag47"
+        title="积压"
+        style=" position: absolute;left: 750px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag48"
+        title="积压"
+        style=" position: absolute;left: 760px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag49"
+        title="积压"
+        style=" position: absolute;left: 770px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag50"
+        title="积压"
+        style=" position: absolute;left: 780px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag51"
+        title="积压"
+        style=" position: absolute;left: 790px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag52"
+        title="积压"
+        style=" position: absolute;left: 800px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag53"
+        title="积压"
+        style=" position: absolute;left: 810px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag54"
+        title="积压"
+        style=" position: absolute;left: 820px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag55"
+        title="积压"
+        style=" position: absolute;left: 830px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag56"
+        title="积压"
+        style=" position: absolute;left: 840px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag57"
+        title="积压"
+        style=" position: absolute;left: 850px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag58"
+        title="积压"
+        style=" position: absolute;left: 860px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag59"
+        title="积压"
+        style=" position: absolute;left: 870px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag60"
+        title="积压"
+        style=" position: absolute;left: 880px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag61"
+        title="积压"
+        style=" position: absolute;left: 890px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag62"
+        title="积压"
+        style=" position: absolute;left: 900px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag63"
+        title="积压"
+        style=" position: absolute;left: 910px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag64"
+        title="积压"
+        style=" position: absolute;left: 920px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag65"
+        title="积压"
+        style=" position: absolute;left: 930px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag66"
+        title="积压"
+        style=" position: absolute;left: 940px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag67"
+        title="积压"
+        style=" position: absolute;left: 950px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag68"
+        title="积压"
+        style=" position: absolute;left: 960px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag69"
+        title="积压"
+        style=" position: absolute;left: 970px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag70"
+        title="积压"
+        style=" position: absolute;left: 980px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag71"
+        title="积压"
+        style=" position: absolute;left: 990px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag72"
+        title="积压"
+        style=" position: absolute;left: 1000px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag73"
+        title="积压"
+        style=" position: absolute;left: 1010px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag74"
+        title="积压"
+        style=" position: absolute;left: 1020px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag75"
+        title="积压"
+        style=" position: absolute;left: 1030px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag76"
+        title="积压"
+        style=" position: absolute;left: 1040px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag77"
+        title="积压"
+        style=" position: absolute;left: 1050px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag78"
+        title="积压"
+        style=" position: absolute;left: 1060px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag79"
+        title="积压"
+        style=" position: absolute;left: 1070px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag80"
+        title="积压"
+        style=" position: absolute;left: 1080px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag81"
+        title="积压"
+        style=" position: absolute;left: 1090px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag82"
+        title="积压"
+        style=" position: absolute;left: 1100px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag83"
+        title="积压"
+        style=" position: absolute;left: 1110px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag84"
+        title="积压"
+        style=" position: absolute;left: 1120px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag85"
+        title="积压"
+        style=" position: absolute;left: 1130px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag86"
+        title="积压"
+        style=" position: absolute;left: 1140px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
+      <img
+        src="../../../img/yellow.jpg"
+        alt
+        id="flag87"
+        title="积压"
+        style=" position: absolute;left: 1160px;z-index: 2;top: 10.5%;width: 12px;height: 12px;"
+      />
     </div>
     <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog"></kucunzhanshidetail>
   </div>
@@ -117,7 +713,7 @@ export default {
       this.width = w;
     },
     setStyle(val) {
-      let maxName = 3;
+      let maxName = 86;
       for (let i = 0; i < maxName; i++) {
         let name = "flag" + i.toString();
         let currentWidth = document.getElementById(name).style.left;
@@ -130,7 +726,7 @@ export default {
     },
     debounce(fn, delay) {
       var delay = delay || 200;
-      console.log(delay)
+      console.log(delay);
       var timer;
       return function() {
         var th = this;
