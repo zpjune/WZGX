@@ -2,10 +2,10 @@
   <div id="WLZJ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
+        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable v-model="listQuery.MATKL"></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
@@ -35,9 +35,12 @@
         <el-table
           :data="goods"
           style="width: 100%"
-          row-key="id"
+          row-key="CODE"
           border
+          lazy
           size="mini"
+          :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
+          :load="load"
           :header-cell-class-name="tableRowClassName"
           v-loading="listloading"
           element-loading-text="给我一点时间"
@@ -46,7 +49,7 @@
         >
           <!-- <el-table-column label="大类" prop="MATKL"></el-table-column> -->
           <el-table-column label="物料编码" prop="CODE"></el-table-column>
-          <el-table-column label="物料名称" prop="MATKL3"></el-table-column>
+          <el-table-column label="物料名称" prop="NAME"></el-table-column>
           <el-table-column label="金额" prop="SALK3"></el-table-column>
         </el-table>
 
@@ -58,7 +61,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="1"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="total"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -67,147 +70,58 @@
 </template>
 
 <script>
+import {
+  GetParentWLZList,
+  GetChildrenList
+} from "@/app_src/api/cangchu/ERPZJ/ZWKC";
 export default {
   name: "WLZJ",
   data() {
     return {
-      listloading: false,
-      goods: [
-        {
-          id: 1,
-          MATKL3: "冶金原料及铸铁管",
-          CODE: "01",
-          SALK3: 1000000,
-          children: [
-            {
-              id: 11,
-              MATKL3: "黑色金属矿采选产品",
-              SALK3: 1000000,
-              CODE: "0101",
-              children: [
-                {
-                  id: 111,
-                  MATKL3: "铁矿石",
-                  SALK3: 1000000,
-                  CODE: "010101",
-                  children: [
-                    {
-                      id: 1111,
-                      MATKL3: "赤铁矿",
-                      SALK3: 1000000,
-                      CODE: "01010101"
-                    },
-                    {
-                      id: 1112,
-                      MATKL3: "褐铁矿",
-                      SALK3: 1000000,
-                      CODE: "01010102"
-                    },
-                    {
-                      id: 1113,
-                      MATKL3: "磁铁矿",
-                      SALK3: 1000000,
-                      CODE: "01010103"
-                    },
-                    {
-                      id: 1114,
-                      MATKL3: "菱铁矿",
-                      SALK3: 1000000,
-                      CODE: "01010104"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              id: 12,
-              MATKL3: "有色金属矿采选产品",
-              SALK3: 1000000,
-              CODE: "0102",
-              children: [
-                {
-                  id: 121,
-                  MATKL3: "铝矿",
-                  SALK3: 1000000,
-                  CODE: "010202",
-                  children: [
-                    {
-                      id: 1211,
-                      MATKL3: "铝土矿",
-                      SALK3: 1000000,
-                      CODE: "01020201"
-                    },
-                    {
-                      id: 1212,
-                      MATKL3: "铝选矿",
-                      SALK3: 1000000,
-                      CODE: "01020202"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          id: 2,
-          MATKL3: "石油专用管材",
-          CODE: "02",
-          SALK3: 1000000
-        },
-        {
-          id: 3,
-          MATKL3: "普通钢材",
-          CODE: "03",
-          SALK3: 1000000
-        },
-        {
-          id: 4,
-          MATKL3: "金属丝、金属绳",
-          CODE: "04",
-          SALK3: 1000000
-        },
-        {
-          id: 5,
-          MATKL3: "有色金属及加工材",
-          CODE: "05",
-          SALK3: 1000000
-        },
-        {
-          id: 6,
-          MATKL3: "建筑五金",
-          CODE: "06",
-          SALK3: 1000000
-        },
-        {
-          id: 7,
-          MATKL3: "石油及产品",
-          CODE: "07",
-          SALK3: 1000000
-        },
-        {
-          id: 8,
-          MATKL3: "煤炭",
-          CODE: "08",
-          SALK3: 1000000
-        },
-        {
-          id: 9,
-          MATKL3: "非金属建筑材料",
-          CODE: "09",
-          SALK3: 1000000
-        },
-        {
-          id: 10,
-          MATKL3: "水泥及制品",
-          CODE: "10",
-          SALK3: 1000000
-        }
-      ]
+      listloading: true,
+      total:0,
+      goods: [],
+      listQuery: {
+        MATKL: "",
+        CODE: "",
+        level: 0,
+        page: 1,
+        limit: 10
+      }
     };
   },
 
   methods: {
+    getList() {
+      GetParentWLZList(this.listQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.goods = response.data.items;
+          this.total=response.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
+    },
+    load(tree, treeNode, resolve) {
+      let temp={
+        CODE:tree.CODE,
+        level:tree.level
+      };
+      let arr=[];
+      GetChildrenList(temp).then(response=>{
+        arr=response.data;
+        resolve(arr);
+      })
+
+    },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
       if (rowIndex === 0) {
@@ -217,18 +131,12 @@ export default {
     },
     handleSizeChange() {},
     handleCurrentChange() {},
-    createRandomData() {
-      let arr = [
-        "中心库",
-        "转运库",
-        "专用管分公司",
-        "原炼化分公司",
-        "港东器材库",
-        "辅助器材库"
-      ];
-    }
+    createRandomData() {},
+    
   },
-  mounted() {}
+  mounted() {
+    this.getList();
+  }
 };
 </script>
 
