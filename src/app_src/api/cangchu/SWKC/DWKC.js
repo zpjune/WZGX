@@ -1,8 +1,8 @@
 import request from '@/frame_src/utils/request'
 
-export function GetFacMoney(query) {//单位资金查询接口
+export function GetFacInfo(query) {//单位物资查询接口
     return request({
-      url: '/ZWKC/GetFacMoney',
+      url: '/SWKC/GetFacInfo',
       method: 'get',
       params:query
     })

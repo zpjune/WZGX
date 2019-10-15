@@ -73,7 +73,7 @@
 import {
   GetParentWLZList,
   GetChildrenList
-} from "@/app_src/api/cangchu/ERPZJ/ZWKC";
+} from "@/app_src/api/cangchu/ERPZJ/WLZJ";
 export default {
   name: "WLZJ",
   data() {
@@ -111,9 +111,10 @@ export default {
       });
     },
     load(tree, treeNode, resolve) {
+
       let temp={
         CODE:tree.CODE,
-        level:tree.level
+        level:treeNode.level
       };
       let arr=[];
       GetChildrenList(temp).then(response=>{
@@ -129,8 +130,14 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-    handleSizeChange() {},
-    handleCurrentChange() {},
+    handleSizeChange(val) {
+      this.listQuery.limit=val;
+      this.getList();
+    },
+    handleCurrentChange(val) {
+      this.listQuery.page=val;
+      this.getList();
+    },
     createRandomData() {},
     
   },

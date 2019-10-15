@@ -2,13 +2,13 @@
   <div id="DWZJ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂名称" style="width:95%;" size="mini" clearable></el-input>
+        <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable v-model="listQuery.BWKEY"></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-input placeholder="请输入工厂名称" style="width:95%;" size="mini" clearable v-model="listQuery.BWKEY_NAME"></el-input>
+      </el-col>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
@@ -26,7 +26,7 @@
           style="width: 100%"
         >
           <el-table-column label="工厂编码" prop="BWKEY"></el-table-column>
-          <el-table-column label="工厂名称" prop="GCNAME"></el-table-column>
+          <el-table-column label="工厂名称" prop="BWKEY_NAME"></el-table-column>
           <el-table-column label="金额" prop="SALK3"></el-table-column>
         </el-table>
         <el-pagination
@@ -37,7 +37,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="1"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="total"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -46,46 +46,41 @@
 </template>
 
 <script>
+import { GetFacMoney } from "@/app_src/api/cangchu/ERPZJ/DWZJ";
 export default {
   name: "DWZJ",
   data() {
     return {
       listloading: false,
-      fac: [
-        {
-          BWKEY: "ZXK9876",
-          GCNAME:"中心库",
-          SALK3: 1000000
-        },
-        {
-          BWKEY: "ZYK0980",
-          GCNAME:"转运库",
-          SALK3: 15000000
-        },
-        {
-          BWKEY: "ZYG8963",
-          GCNAME:"专用管分公司",
-          SALK3: 15000000
-        },
-        {
-          BWKEY: "YLH5247",
-          GCNAME:"原炼化分公司",
-          SALK3: 15084000
-        },
-        {
-          BWKEY: "QCK9043",
-          GCNAME:"港东器材库",
-          SALK3: 15000960
-        },
-        {
-          BWKEY: "FZK9422",
-          GCNAME:"辅助器材库",
-          SALK3: 15000960
-        }
-      ]
+      fac: [],
+      listQuery:{
+        page:1,
+        limit:10,
+        BWKEY:"",
+        BWKEY_NAME:"",
+      },
+      total:0,
     };
   },
   methods: {
+    getList() {
+      GetFacMoney(this.listQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.fac = response.data.items;
+          this.total = response.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
+    },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
       if (rowIndex === 0) {
@@ -93,8 +88,17 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-    handleSizeChange() {},
-    handleCurrentChange() {}
+    handleSizeChange(val) {
+      this.listQuery.limit=val;
+      this.getList();
+    },
+    handleCurrentChange(val) {
+      this.listQuery.page=val;
+      this.getList();
+    },
+  },
+  mounted(){
+    this.getList();
   }
 };
 </script>
