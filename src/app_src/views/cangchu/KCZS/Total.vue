@@ -10,14 +10,25 @@
             <div id="pic1" class="pic1" style="width:55%;margin-left:30%;padding-top:80px">
               <el-row>
                 <el-col :xs="12" :sm="10" :lg="10" style="text-align:right">
-                  <img src="../../../img/renminbi.png" style="width:80px;height:80px">
+                  <img src="../../../img/renminbi.png" style="width:80px;height:80px" />
                 </el-col>
                 <el-col :xs="12" :sm="14" :lg="14">
                   <el-row>
-                    <el-col :span="24" style="font-weight:bold;font-size:16px;text-align:center;color:#696969;padding-top:7px;">总资金</el-col>
+                    <el-col
+                      :span="24"
+                      style="font-weight:bold;font-size:16px;text-align:center;color:#696969;padding-top:7px;"
+                    >总资金</el-col>
                   </el-row>
                   <el-row>
-                    <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center"> <count-to :start-val="0" :end-val="15000" :duration="3000" class="card-panel-num" />万</el-col>
+                    <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center">
+                      <count-to
+                        :start-val="0"
+                        :end-val="totalziji"
+                        :duration="3000"
+                        :decimals=2
+                        class="card-panel-num"
+                      />万
+                    </el-col>
                   </el-row>
                 </el-col>
               </el-row>
@@ -94,7 +105,8 @@ import TotalZDWZCRK from "@/app_src/views/cangchu/KCZS/TotalZDWZCRK";
 import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
 import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
-import CountTo from 'vue-count-to'
+import CountTo from "vue-count-to";
+import { GetKCZJ } from "@/app_src/api/cangchu/KCZS/Total";
 export default {
   name: "total",
   components: {
@@ -109,6 +121,7 @@ export default {
   data() {
     return {
       activeCangku: "1",
+      totalziji:0,
       option2: {
         title: {
           text: "各单位库存资金",
@@ -133,15 +146,15 @@ export default {
             label: {
               normal: {
                 show: true,
-                formatter: "{b}: {c}亿({d}%)"
+                formatter: "{b}: {c}万({d}%)"
               }
             },
             data: [
-              { value: 0.2, name: "港东供销" },
-              { value: 0.5, name: "港西供销" },
-              { value: 0.1, name: "油区供销" },
-              { value: 0.3, name: "港狮供销" },
-              { value: 0.4, name: "港骅供销" }
+              { value: 0, name: "港东供销" },
+              { value: 0, name: "港西供销" },
+              { value: 0, name: "油区供销" },
+              { value: 0, name: "港狮供销" },
+              { value: 0, name: "港骅供销" }
             ],
             itemStyle: {
               emphasis: {
@@ -251,6 +264,22 @@ export default {
       //   mycharts.resize();
       // }, 1500);
     },
+    getKCZJ() {
+      GetKCZJ().then(res => {
+        if (res.data.code === 2000) {
+          //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
+          let arr=new Array(5);
+          arr[0]={value:res.data.items.C27C,name:"港东供销"};
+          arr[1]={value:res.data.items.C27D,name:"港西供销"};
+          arr[2]={value:res.data.items.C27G,name:"油区供销"};
+          arr[3]={value:res.data.items.C279,name:"港狮供销"};
+          arr[4]={value:res.data.items.C27B,name:"港骅供销"};
+          this.option2.series[0].data=arr;
+          this.totalziji=res.data.items.TOTAL;
+          this.drawline2();
+        }
+      });
+    },
     drawlineCRK() {
       let _this = this;
       ///绘制echarts 饼状图
@@ -276,10 +305,12 @@ export default {
       this.dataYear = date.getFullYear().toString();
     }
   },
+  created(){
+  },
   mounted() {
     this.getTime();
-    this.drawline2();
     this.drawlineCRK();
+    this.getKCZJ();
   }
 };
 </script>
