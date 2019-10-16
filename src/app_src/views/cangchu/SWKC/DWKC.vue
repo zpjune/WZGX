@@ -103,6 +103,9 @@ export default {
       this.listQuery.page = val;
       this.getList();
     }
+  },
+  mounted(){
+    this.getList();
   }
 };
 </script>

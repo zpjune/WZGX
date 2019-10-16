@@ -111,7 +111,6 @@ export default {
       });
     },
     load(tree, treeNode, resolve) {
-
       let temp={
         CODE:tree.CODE,
         level:treeNode.level
