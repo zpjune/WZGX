@@ -25,7 +25,7 @@
                         :start-val="0"
                         :end-val="totalziji"
                         :duration="3000"
-                        :decimals=2
+                        :decimals="2"
                         class="card-panel-num"
                       />万
                     </el-col>
@@ -74,6 +74,7 @@
             type="year"
             placeholder="选择年"
             size="mini"
+            :clearable="false"
           ></el-date-picker>
           <el-button style="margin-left:5px" type="primary" size="mini" @click="handleFlush">刷新</el-button>
         </div>
@@ -86,6 +87,8 @@
           :CRKdetaildialogVisible="crkDialog"
           :RCKDetailTitle="crkDetailTitle"
           @listenToChildEvent="closeDialog"
+          :pmonth="crklmonth"
+          :pyear="crklyear"
         ></TotalCRKdetail>
       </el-collapse-item>
       <el-collapse-item name="8">
@@ -106,7 +109,7 @@ import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
 import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
 import CountTo from "vue-count-to";
-import { GetKCZJ } from "@/app_src/api/cangchu/KCZS/Total";
+import { GetKCZJ ,GetCRKJE} from "@/app_src/api/cangchu/KCZS/Total";
 export default {
   name: "total",
   components: {
@@ -212,47 +215,38 @@ export default {
           }
         ],
         series: [
-          {
-            name: "入库",
-            type: "bar",
-            data: [
-              2.0,
-              4.9,
-              7.0,
-              23.2,
-              25.6,
-              76.7,
-              135.6,
-              162.2,
-              32.6,
-              20.0,
-              6.4,
-              3.3
-            ]
-          },
-          {
-            name: "出库",
-            type: "bar",
-            data: [
-              2.6,
-              5.9,
-              9.0,
-              26.4,
-              28.7,
-              70.7,
-              175.6,
-              182.2,
-              48.7,
-              18.8,
-              6.0,
-              2.3
-            ]
-          }
+          // {
+          //   name: "入库",
+          //   type: "bar",
+          //   data: [
+          //     2.0,
+          //     4.9,
+          //     7.0,
+          //     23.2,
+          //     25.6,
+          //     76.7,
+          //     135.6,
+          //     162.2,
+          //     32.6,
+          //     20.0,
+          //     6.4,
+          //     3.3
+          //   ]
+          // },
+          // {
+          //   name: "出库",
+          //   type: "bar",
+          //   data: [
+             
+          //   ]
+          // }
         ]
       },
       crkDialog: false, //出入库详情 弹窗
       crkDetailTitle: "",
-      dataYear: "" //出入库查询日期选择
+      dataYear: "" ,//出入库查询日期选择
+      crklmonth:"",
+      crklyear:""
     };
   },
   methods: {
@@ -280,17 +274,48 @@ export default {
         }
       });
     },
+    GetCRKJE(){
+      let queryparam={"year":this.dataYear}
+      GetCRKJE(queryparam).then(res=>{
+          if (res.data.code === 2000) {
+            let arrCKJE=new Array();
+            let arrRKJE=new Array();
+            for (let index = 1; index < 13; index++) {
+               let ckje=0;
+               let rkje=0;
+               res.data.items[0].forEach(item => {//有的月份没有出入库金额，所以要补0
+                 if(parseInt(item.MONTH)===index){
+                    ckje=item.JE;
+                    return;
+                 }
+            });
+            arrCKJE.push(ckje);
+
+            res.data.items[1].forEach(item => {
+              if(parseInt(item.MONTH)===index){
+                    rkje=item.JE;
+                    return;
+                 }
+            });
+            arrRKJE.push(rkje);
+            }
+           console.log(arrCKJE)
+            this.optioncrk.series=[{name:"入库",type:"bar",data:arrRKJE},{name:"出库",type:"bar",data:arrCKJE}];
+            this.drawlineCRK();
+          }
+      });
+    },
     drawlineCRK() {
       let _this = this;
       ///绘制echarts 饼状图
       let mycharts = this.$echarts.init(document.getElementById("picCRK"));
       mycharts.setOption(this.optioncrk, true);
       mycharts.on("click", function(param) {
-        _this.openDialog();
         _this.crkDetailTitle = param.dataIndex + 1 + "月份出入库明细";
-        console.log(param.dataIndex);
-        console.log(param.seriesIndex);
-        console.log(param.seriesName);
+        //param.dataIndex 0开始 第几组柱状图 param.seriesIndex 0开始 每组里的第几个柱子 param.seriesName 每个柱子的名字
+         _this.crklyear=_this.dataYear;
+         _this.crklmonth=param.dataIndex+1;
+        _this.openDialog();
       });
     },
     closeDialog(val) {
@@ -299,7 +324,12 @@ export default {
     openDialog() {
       this.crkDialog = true;
     },
-    handleFlush() {},
+    handleFlush() {
+      if(this.dataYear.toString().length>4){//初始化时是字符串格式，当选择日期的时候是date格式，如果不是初始化刷新需要转成字符串
+         this.dataYear=this.dataYear.getFullYear().toString();
+      }
+      this.GetCRKJE();
+    },
     getTime() {
       let date = new Date();
       this.dataYear = date.getFullYear().toString();
@@ -309,8 +339,8 @@ export default {
   },
   mounted() {
     this.getTime();
-    this.drawlineCRK();
     this.getKCZJ();
+    this.GetCRKJE();
   }
 };
 </script>

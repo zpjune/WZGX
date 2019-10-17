@@ -160,6 +160,8 @@ export default {
       return "";
     },
     btnQuert(){
+      this.listQuery.limit=10;
+      this.listQuery.page=1;
       this.getList();
     },
     getList() {

@@ -75,64 +75,18 @@ export default {
       tableKey: 0,
       total: 5,
       list: [
-        {
-          isSet: false,
-          kcdd: "中心库",
-          rkje: "1.5亿",
-          rkl: "100",
-          ckje: "0.5亿",
-          ckl: 1000
-        },
-        {
-          isSet: false,
-          kcdd: "转运库",
-          rkje: "0.1亿",
-          rkl: "150",
-          ckje: "0.2亿",
-          ckl: 1000
-        },
-        {
-          isSet: false,
-          kcdd: "港东器材库",
-          rkje: "1.5亿",
-          rkl: "122.5",
-          ckje: "0.5亿",
-          ckl: 1000
-        },
-        {
-          isSet: false,
-          kcdd: "专用管分公司",
-          rkje: "0.3亿",
-          rkl: "37",
-          ckje: "0.2亿",
-          ckl: 1000
-        },
-        {
-          isSet: false,
-          kcdd: "厂现直供库",
-          rkje: "0.3亿",
-          rkl: "26",
-          ckje: "0.8亿",
-          ckl: 1000
-        }
-        ,
-        {
-          isSet: false,
-          kcdd: "直达料",
-          rkje: "0.3亿",
-          rkl: "26",
-          ckje: "0.8亿",
-          ckl: 1000
-        }
+       
       ],
       listQuery: {
         page: 1,
         limit: 10
       },
-      listLoading: false
+      listLoading: false,
+      year:"",
+      month:""
     };
   },
-  props: ["CRKdetaildialogVisible","RCKDetailTitle"],
+  props: ["CRKdetaildialogVisible","RCKDetailTitle","pmonth","pyear"],
   methods: {
     CloseDialog() {
       this.$emit("listenToChildEvent", false);
@@ -157,14 +111,16 @@ export default {
   },
   watch: {
     CRKdetaildialogVisible(val) {
-      console.log("d-----");
-      console.log(val);
       this.crkdialog = val; //新增result的watch，监听变更并同步到myResult上
-      // var aa=document.querySelectorAll('.el-dialog__header');
-      // aa[0].style.background="#C0C0C0";
     },
     RCKDetailTitle(val){
       this.CRKTitle=val;
+    },
+    pmonth(val){
+        this.month=val;
+    },
+    pyear(val){
+      this.year=val;
     }
   }
 };
