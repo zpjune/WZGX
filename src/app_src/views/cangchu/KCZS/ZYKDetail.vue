@@ -31,13 +31,13 @@
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
         </template>
-        <detailDRK></detailDRK>
+        <detailDRK :FacCode="FacCode"></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="6">
         <template slot="title">
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">待出库统计</i>
         </template>
-        <detailDCK></detailDCK>
+        <detailDCK :FacCode="FacCode"></detailDCK>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -55,7 +55,8 @@ export default {
   data() {
     return {
       activeCangku: "1",
-      param:'ZYK'
+      param:'ZYK',
+      FacCode:"01",
     };
   },
   components: {

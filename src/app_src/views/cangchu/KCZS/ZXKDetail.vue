@@ -23,21 +23,21 @@
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
-          <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
+          <i class="header-icon el-icon-s-flag" style="font-weight:bold" >重点物资出入库统计</i>
         </template>
         <detailZDWZCRK></detailZDWZCRK>
       </el-collapse-item>
       <el-collapse-item name="5" @change="DRKClick">
         <template slot="title">
-          <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
+          <i class="header-icon el-icon-eleme" style="font-weight:bold" >待入库统计</i>
         </template>
-        <detailDRK ref="detailDRK"></detailDRK>
+        <detailDRK ref="detailDRK" :FacCode="FacCode"></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="6" @change="DCKClick">
         <template slot="title">
-          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">待出库统计</i>
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold" >待出库统计</i>
         </template>
-        <detailDCK ref="detailDCK"></detailDCK>
+        <detailDCK ref="detailDCK" :FacCode="FacCode"></detailDCK>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -56,6 +56,7 @@ export default {
     return {
       activeCangku: "1",
       options:[],
+      FacCode:"02",
     };
   },
   components: {

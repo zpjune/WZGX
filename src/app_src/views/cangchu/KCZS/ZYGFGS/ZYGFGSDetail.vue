@@ -31,13 +31,13 @@
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
         </template>
-        <detailDRK></detailDRK>
+        <detailDRK :FacCode="FacCode"></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="6">
         <template slot="title">
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">待出库统计</i>
         </template>
-        <detailDCK></detailDCK>
+        <detailDCK :FacCode="FacCode"></detailDCK>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -46,16 +46,17 @@
 <script>
 
 import ZYGFGS from "@/app_src/views/cangchu/KCZS/ZYGFGS/ZYGFGS";
-import detailJYWZ from "@/app_src/views/cangchu/KCZS/ZYGFGS/detailJYWZ";
-import detailZDWZ from "@/app_src/views/cangchu/KCZS/ZYGFGS/detailZDWZ";
-import detailZDWZCRK from "@/app_src/views/cangchu/KCZS/ZYGFGS/detailZDWZCRK";
-import detailDRK from "@/app_src/views/cangchu/KCZS/ZYGFGS/detailDRK";
-import detailDCK from "@/app_src/views/cangchu/KCZS/ZYGFGS/detailDCK";
+import detailJYWZ from "@/app_src/views/cangchu/KCZS/detailJYWZ";
+import detailZDWZ from "@/app_src/views/cangchu/KCZS/detailZDWZ";
+import detailZDWZCRK from "@/app_src/views/cangchu/KCZS/detailZDWZCRK";
+import detailDRK from "@/app_src/views/cangchu/KCZS/detailDRK";
+import detailDCK from "@/app_src/views/cangchu/KCZS/detailDCK";
 export default {
   name: "ZYGFGSDetail",
   data() {
     return {
-      activeCangku: "1"
+      activeCangku: "1",
+      FacCode:"08",
     };
   },
   components: {

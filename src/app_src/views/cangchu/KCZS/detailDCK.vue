@@ -106,6 +106,7 @@
 import { GetDCKInfo } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
+  props:["FacCode"],
   data() {
     return {
       listloading: false,
@@ -116,9 +117,10 @@ export default {
         page: 1,
         MATNR: "",
         info: "",
-        FacCode:"01"
+        FacCode:this.FacCode
       },
-      total: 0
+      total: 0,
+      
     };
   },
   methods: {
