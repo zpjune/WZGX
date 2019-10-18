@@ -21,35 +21,34 @@
         style="width: 100%"
         size="mini"
         id="table"
-        @row-dblclick="rowDoubleClick"
       >
         <el-table-column min-width="100px" align="center" label="库存地点" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.kcdd}}</span>
+            <span>{{scope.row.DKName}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="入库金额" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.rkje}}</span>
+            <span>{{scope.row.RKJE}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="入库量" fixed="left">
           <template slot-scope="scope">
-            <span >{{scope.row.rkl}}</span>
+            <span >{{scope.row.RKL}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="出库金额" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.ckje}}</span>
+            <span>{{scope.row.CKJE}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="出库量" fixed="left">
           <template slot-scope="scope">
-            <span >{{scope.row.ckl}}</span>
+            <span >{{scope.row.CKL}}</span>
           </template>
         </el-table-column>
       </el-table>
-      <div class="pagination-container" style="text-align:center;">
+      <!-- <div class="pagination-container" style="text-align:center;">
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -60,12 +59,13 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
         ></el-pagination>
-      </div>
+      </div> -->
     </el-dialog>
   </div>
 </template>
 
 <script>
+import { getCRKDetail} from "@/app_src/api/cangchu/KCZS/Total";
 export default {
   name: "TotalCRKdetail",
   data() {
@@ -73,7 +73,7 @@ export default {
       crkdialog: false,
       CRKTitle:'出入库明细',
       tableKey: 0,
-      total: 5,
+      total: 0,
       list: [
        
       ],
@@ -91,16 +91,19 @@ export default {
     CloseDialog() {
       this.$emit("listenToChildEvent", false);
     },
-    handleEdit(index, row) {
-      console.log(index, row);
+    getList() {
+      let newmonth="0"+this.month;
+      if(this.month>9){
+        newmonth=month;
+      }
+      let query={year:this.year,month:newmonth}
+      getCRKDetail(query).then(res=>{
+        if(res.data.code===2000){
+          console.log(1111);
+
+        }
+      });
     },
-    rowDoubleClick(row, column, event) {
-    },
-    handleUpdate(row) {
-      row.isSet = false;
-    },
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
       if (rowIndex === 0) {
@@ -121,7 +124,16 @@ export default {
     },
     pyear(val){
       this.year=val;
+    },
+    crkdialog(val){
+      if(val==true){
+        this.getList();
+      }
+      
     }
+  },
+  created(){
+    
   }
 };
 </script>

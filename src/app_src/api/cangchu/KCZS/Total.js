@@ -21,9 +21,16 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
-  export function GetCRKJE(query) {//总库存 积压物资查询
+  export function GetCRKJE(query) {//总库存 出入库金额
     return request({
       url: '/Total/GetCRKJE',
+      method: 'get',
+      params:query
+    })
+  }
+  export function getCRKDetail(query) {//总库存 出入库金额明细
+    return request({
+      url: '/Total/getCRKDetail',
       method: 'get',
       params:query
     })

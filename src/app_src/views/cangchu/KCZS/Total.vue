@@ -299,7 +299,6 @@ export default {
             });
             arrRKJE.push(rkje);
             }
-           console.log(arrCKJE)
             this.optioncrk.series=[{name:"入库",type:"bar",data:arrRKJE},{name:"出库",type:"bar",data:arrCKJE}];
             this.drawlineCRK();
           }
