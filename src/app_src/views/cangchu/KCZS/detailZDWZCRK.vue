@@ -134,6 +134,7 @@
 </template>
 
 <script>
+import { GetDCKInfo } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
   data() {
@@ -175,105 +176,34 @@ export default {
           xh: 300
         }
       ],
-      fac: [
-        {
-          non: 1,
-          WLZ: "07030302",
-          WLBM: "10000513978",
-          WLMC: "柴油",
-          GGXH: "0#（国六）",
-          JLDW: "吨",
-          ZDCB: 200,
-          ZGCB: 1600,
-          XYKC: 2000,
-          BYRK: "",
-          BYXH: "",
-          LJRK: "",
-          LJXH: "",
-          REMARK: ""
-        },
-        {
-          non: 1,
-          WLZ: "07030302",
-          WLBM: "11000922113",
-          WLMC: "柴油",
-          GGXH: "-20#（国六）",
-          JLDW: "吨",
-          ZDCB: 300,
-          ZGCB: 1600,
-          XYKC: 4000,
-          BYRK: "",
-          BYXH: "",
-          LJRK: "",
-          LJXH: "",
-          REMARK: ""
-        },
-        {
-          non: 2,
-          WLZ: "12020613",
-          WLBM: "12365487456",
-          WLMC: "柴油",
-          GGXH: "0#（国六）",
-          JLDW: "吨",
-          ZDCB: 200,
-          ZGCB: 1600,
-          XYKC: 2000,
-          BYRK: "",
-          BYXH: "",
-          LJRK: "",
-          LJXH: "",
-          REMARK: ""
-        },
-        {
-          non: 3,
-          WLZ: "07030302",
-          WLBM: "11000922112",
-          WLMC: "油管",
-          GGXH: "73*5.51N80E",
-          JLDW: "吨",
-          ZDCB: 500,
-          ZGCB: 1000,
-          XYKC: 2000,
-          BYRK: "",
-          BYXH: "",
-          REMARK: ""
-        },
-        {
-          non: 4,
-          WLZ: "02040101",
-          WLBM: "20002020707",
-          WLMC: "柴油",
-          GGXH: "0#（国六）",
-          JLDW: "吨",
-          ZDCB: 200,
-          ZGCB: 1600,
-          XYKC: 2000,
-          BYRK: "",
-          BYXH: "",
-          LJRK: "",
-          LJXH: "",
-          REMARK: ""
-        },
-        {
-          non: 5,
-          WLZ: "07030302",
-          WLBM: "11004684489",
-          WLMC: "油井水泥",
-          GGXH: "G级高抗",
-          JLDW: "吨",
-          ZDCB: 6500,
-          ZGCB: 8000,
-          XYKC: 2000,
-          BYRK: "",
-          BYXH: "",
-          LJRK: "",
-          LJXH: "",
-          REMARK: ""
-        }
-      ]
+      fac: [],
+      listQuery: {
+        limit: 10,
+        pagea: 1,
+        MATNR: "",
+        info: ""
+      }
     };
   },
   methods: {
+    getList() {
+      GetFacInfo(this.listQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.fac = response.data.items;
+          this.total = response.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
+    },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
       if (rowIndex === 0) {
@@ -287,6 +217,9 @@ export default {
     DetailClick(row) {
       this.quxiangDialogVisible = true;
     }
+  },
+  mounted(){
+    //this.getList();
   }
 };
 </script>

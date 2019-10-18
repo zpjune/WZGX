@@ -8,6 +8,13 @@ export function GetKCDDInfo(query) {
     })
   }
 
+  export function GetDWInfo(query) {
+    return request({
+      url: '/KCDDWH/GetDWInfo',
+      method: 'get',
+      params:query
+    })
+  }
   export function CreateKCDDInfo(data) {
     return request({
       url: '/KCDDWH/CreateKCDDInfo',
