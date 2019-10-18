@@ -114,7 +114,8 @@ export default {
         limit: 10,
         page: 1,
         MATNR: "",
-        info: ""
+        info: "",
+        FacCode:"01"
       },
       total: 0
     };
