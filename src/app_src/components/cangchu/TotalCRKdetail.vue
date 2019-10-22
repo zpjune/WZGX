@@ -99,8 +99,8 @@ export default {
       let query={year:this.year,month:newmonth}
       getCRKDetail(query).then(res=>{
         if(res.data.code===2000){
-          console.log(1111);
-
+          this.list=res.data.items;
+          this.total=res.data.total;
         }
       });
     },

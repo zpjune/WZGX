@@ -35,3 +35,17 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
+  export function getBGYGZL(query) {//总库存 保管员工作量
+    return request({
+      url: '/Total/getBGYGZL',
+      method: 'get',
+      params:query
+    })
+  }
+  export function getBGYGZLDetail(query) {//总库存 保管员工作量明细
+    return request({
+      url: '/Total/getBGYGZLDetail',
+      method: 'get',
+      params:query
+    })
+  }
