@@ -19,7 +19,7 @@
           v-model="temp.KCDD_CODE"
         ></el-input>
       </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="4">
         <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="Create">新建</el-button>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleFilter">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
@@ -65,7 +65,7 @@
                     :key="key"
                     :label="item.DW_NAME"
                     :value="item.DW_CODE"
-                    :disabled="dialogTitle=='修改地点信息'"
+                   
                   ></el-option>
                 </el-select>
               </el-form-item>

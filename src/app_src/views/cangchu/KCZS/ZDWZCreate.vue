@@ -7,15 +7,16 @@
             v-model="listQuery.WL_LOCATIONCODE"
             size="mini"
             style="width:95%"
-            placeholder="请选择库存地点"
+            placeholder="请选择存放大库"
             clearable
           >
-            <el-option
+            <!-- <el-option
               v-for="(item,key) in KCDDOptions"
               :key="key"
               :value="item.KCDD_CODE"
               :label="item.KCDD_NAME"
-            ></el-option>
+            ></el-option> -->
+            <el-option v-for="(item,key) in KCCODEOptions" :key="key" :value="item.CODE" :label="item.NAME"></el-option>
           </el-select>
         </el-col>
         <!-- <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
@@ -91,7 +92,7 @@
             <!-- <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ_CODE"></el-table-column> -->
             <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" prop="WL_CODE"></el-table-column>
             <el-table-column align="center" label="物料名称" :show-overflow-tooltip="true" prop="WL_NAME"></el-table-column>
-            <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD_NAME"></el-table-column>
+            <!-- <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD_NAME"></el-table-column> -->
             <el-table-column align="center" label="存放大库" :show-overflow-tooltip="true" prop="NAME"></el-table-column>
             <el-table-column align="center" label="最高储备" :show-overflow-tooltip="true" prop="MAXHAVING"></el-table-column>
             <el-table-column align="center" label="最低储备" :show-overflow-tooltip="true" prop="MINHAVING"></el-table-column>
@@ -166,7 +167,7 @@
               <el-input size="mini" style="width:95%" v-model="temp.WL_NAME"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="24">
+          <!-- <el-col :span="24">
             <el-form-item label="存放地点" prop="WL_LOCATIONCODE">
               <el-select
                 v-model="temp.WL_LOCATIONCODE"
@@ -182,7 +183,7 @@
                 ></el-option>
               </el-select>
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <el-col :span="24">
             <el-form-item label="大库名称" prop="KC_CODE">
               <el-select v-model="temp.KC_CODE" size="mini" style="width:95%">
@@ -246,7 +247,7 @@ export default {
       listQuery: {
         limit: 10,
         page: 1,
-        WL_LOCATIONCODE: "",
+        KC_CODE: "",
         WLZ_CODE: "",
         WL_CODE: ""
       },
@@ -514,7 +515,7 @@ export default {
   created() {
     //this.listLoading = false;
     this.getList();
-    this.getKCDDOptions();
+    //this.getKCDDOptions();
     this.getWLZOptions();
     this.GetCodeOptions();
   },

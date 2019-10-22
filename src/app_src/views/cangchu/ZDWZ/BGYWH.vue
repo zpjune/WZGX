@@ -31,7 +31,7 @@
           :show-count="true"
         />
       </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="4">
         <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="Create">新建</el-button>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleFilter">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
