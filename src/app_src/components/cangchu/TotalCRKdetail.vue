@@ -74,9 +74,7 @@ export default {
       CRKTitle:'出入库明细',
       tableKey: 0,
       total: 0,
-      list: [
-       
-      ],
+      list: [],
       listQuery: {
         page: 1,
         limit: 10
