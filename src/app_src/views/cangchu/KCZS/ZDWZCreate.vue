@@ -18,7 +18,7 @@
             ></el-option>
           </el-select>
         </el-col>
-        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <!-- <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
           <el-select
             v-model="listQuery.WLZ_CODE"
             size="mini"
@@ -50,7 +50,7 @@
               :label="item.WL_NAME"
             ></el-option>
           </el-select>
-        </el-col>
+        </el-col> -->
         <el-col :span="9">
           <el-button
             size="mini"
@@ -88,10 +88,11 @@
             highlight-current-row
             style="width: 100%;text-align:left;"
           >
-            <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ_CODE"></el-table-column>
+            <!-- <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ_CODE"></el-table-column> -->
             <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" prop="WL_CODE"></el-table-column>
             <el-table-column align="center" label="物料名称" :show-overflow-tooltip="true" prop="WL_NAME"></el-table-column>
             <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD_NAME"></el-table-column>
+            <el-table-column align="center" label="存放大库" :show-overflow-tooltip="true" prop="NAME"></el-table-column>
             <el-table-column align="center" label="最高储备" :show-overflow-tooltip="true" prop="MAXHAVING"></el-table-column>
             <el-table-column align="center" label="最低储备" :show-overflow-tooltip="true" prop="MINHAVING"></el-table-column>
             <el-table-column align="center" width="200" label="操作">
@@ -125,7 +126,7 @@
       <el-card>
         <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;"  :rules="rules">
           <el-col :span="24">
-            <el-form-item label="物料组" prop="WLZ_CODE">
+            <!-- <el-form-item label="物料组" prop="WLZ_CODE">
               <el-select
                 v-model="temp.WLZ_CODE"
                 size="mini"
@@ -140,11 +141,14 @@
                   :label="item.WLZ_CODE"
                 ></el-option>
               </el-select>
+            </el-form-item> -->
+            <el-form-item label="物料编码" prop="WL_CODE">
+              <el-input size="mini" style="width:95%" v-model="temp.WL_CODE"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="物料名称" prop="WL_CODE">
-              <el-select
+            <el-form-item label="物料名称" prop="WL_NAME">
+              <!-- <el-select
                 v-model="temp.WL_CODE"
                 
                 style="width:95%"
@@ -158,7 +162,8 @@
                   :value="item.WL_CODE"
                   :label="item.WL_NAME"
                 ></el-option>
-              </el-select>
+              </el-select> -->
+              <el-input size="mini" style="width:95%" v-model="temp.WL_NAME"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -175,6 +180,13 @@
                   :value="item.KCDD_CODE"
                   :label="item.KCDD_NAME"
                 ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="大库名称" prop="KC_CODE">
+              <el-select v-model="temp.KC_CODE" size="mini" style="width:95%">
+                <el-option v-for="(item,key) in KCCODEOptions" :key="key" :value="item.CODE" :label="item.NAME"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
@@ -213,7 +225,8 @@ import {
   DelZDWZWHInfo,
   GetKCDDInfo,
   GetWLZCODE,
-  GetWZCODE
+  GetWZCODE,
+  GetCodeOptions
 } from "@/app_src/api/cangchu/ZDWZ/ZDWZCreate";
 
 import waves from "@/frame_src/directive/waves"; // 水波纹指令
@@ -241,9 +254,12 @@ export default {
       WLZOptions: [],
       WLOptions: [],
       TempWLOptions: [],
+      KCCODEOptions:[],
       temp: {
         WLZ_CODE: "",
         WL_CODE: "",
+        WL_NAME:"",
+        KC_CODE:"",
         WL_LOCATIONCODE: "",
         WL_LOCATIONCODE: "",
         MAXHAVING: "",
@@ -261,6 +277,13 @@ export default {
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         WL_CODE: [
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          { max:18,min:18,message:"物料编码为18位，不足18位请在前方补0!",trigger:"change" },
+        ],
+        WL_NAME: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        KC_CODE: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         WL_LOCATIONCODE: [
@@ -283,8 +306,11 @@ export default {
       this.temp = {
         WLZ_CODE: "",
         WL_CODE: "",
+        WL_NAME:"",
+        KC_CODE:"",
         WL_LOCATIONCODE: "",
         WL_LOCATIONCODE: "",
+        MAXHAVING: "",
         MINHAVING: ""
       };
     },
@@ -409,6 +435,17 @@ export default {
         });
       }
     },
+    GetCodeOptions(){
+      let temp={
+        ParentCode:"TOTAL",
+      };
+      GetCodeOptions(temp).then(response=>{
+        if(response.data.code===2000){
+          this.KCCODEOptions=response.data.items;
+
+        }
+      })
+    },
     handleCreate() {
       this.resetTemp();
       this.editVisible = true;
@@ -479,6 +516,7 @@ export default {
     this.getList();
     this.getKCDDOptions();
     this.getWLZOptions();
+    this.GetCodeOptions();
   },
 
   computed: {

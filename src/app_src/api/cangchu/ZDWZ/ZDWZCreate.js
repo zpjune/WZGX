@@ -55,3 +55,11 @@ export function GetZDWZWHInfo(query) {
       params:query
     })
   }
+
+  export function GetCodeOptions(query) {
+    return request({
+      url: '/DictionaryConfig/GetCodeOptions',
+      method: 'get',
+      params:query
+    })
+  }

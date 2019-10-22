@@ -38,3 +38,10 @@ export function GetKCDDInfo(query) {
       data
     })
   }
+  export function GetCodeOptions(query) {
+    return request({
+      url: '/DictionaryConfig/GetCodeOptions',
+      method: 'get',
+      params:query
+    })
+  }

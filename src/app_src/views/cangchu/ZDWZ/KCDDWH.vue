@@ -41,7 +41,7 @@
           <el-table-column label="地点名称" prop="KCDD_NAME"></el-table-column>
           <el-table-column label="工厂编码" prop="DWCODE"></el-table-column>
           <el-table-column label="大库编码" prop="CKH"></el-table-column>
-          <el-table-column label="大库名称" prop="CKH_NAME"></el-table-column>
+          <el-table-column label="大库名称" prop="NAME"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" @click="Edit(scope.row)" size="mini">编辑</el-button>
@@ -58,17 +58,30 @@
               <el-form-item label="地点名称" prop="KCDD_NAME">
                 <el-input v-model="KCDDModel.KCDD_NAME"></el-input>
               </el-form-item>
-              <el-form-item label="工厂编码" prop="DWCODE">          
+              <el-form-item label="工厂编码" prop="DWCODE">
                 <el-select v-model="KCDDModel.DWCODE" style="width:100%">
-                  <el-option v-for="(item,key) in DWOptions" :key="key" :label="item.DW_NAME" :value="item.DW_CODE" :disabled="dialogTitle=='修改地点信息'"></el-option>
+                  <el-option
+                    v-for="(item,key) in DWOptions"
+                    :key="key"
+                    :label="item.DW_NAME"
+                    :value="item.DW_CODE"
+                    :disabled="dialogTitle=='修改地点信息'"
+                  ></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="大库编码" prop="CKH">
-                <el-input v-model="KCDDModel.CKH"></el-input>
+                <el-select v-model="KCDDModel.CKH" style="width:100%">
+                  <el-option
+                    v-for="(item,key) in KCCODEOptions"
+                    :key="key"
+                    :value="item.CODE"
+                    :label="item.NAME"
+                  ></el-option>
+                </el-select>
               </el-form-item>
-              <el-form-item label="大库名称" prop="CKH_NAME">
+              <!-- <el-form-item label="大库名称" prop="CKH_NAME">
                 <el-input v-model="KCDDModel.CKH_NAME"></el-input>
-              </el-form-item>
+              </el-form-item> -->
               <div style="text-align:center">
                 <el-button type="primary" @click="submit">提交</el-button>
                 <el-button @click="show=false">取消</el-button>
@@ -98,7 +111,8 @@ import {
   GetDWInfo,
   CreateKCDDInfo,
   EditKCDDInfo,
-  DelKCDDinfo
+  DelKCDDinfo,
+  GetCodeOptions
 } from "@/app_src/api/cangchu/ZDWZ/KCDDWH";
 export default {
   name: "KCDDWH",
@@ -109,16 +123,17 @@ export default {
       temp: {
         limit: 10,
         page: 1,
-        KCDD_CODE:'',
+        KCDD_CODE: "",
         KCDD_NAME: ""
       },
       KCDDModel: {
         KCDD_CODE: "",
         KCDD_NAME: "",
-        DWCODE:"",
-        CKH:"",
-        CKH_NAME:"",
+        DWCODE: "",
+        CKH: "",
+        CKH_NAME: ""
       },
+      KCCODEOptions: [],
       rules: {
         KCDD_CODE: [
           { required: true, message: "此项不能为空！", trigger: "change" },
@@ -130,15 +145,13 @@ export default {
         DWCODE: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
-        CKH: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
-        ],
+        CKH: [{ required: true, message: "此项不能为空！", trigger: "change" }],
         CKH_NAME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ]
       },
       fac: [],
-      DWOptions:[],
+      DWOptions: [],
       dialogTitle: "",
       show: false
     };
@@ -152,13 +165,23 @@ export default {
       return "";
     },
     reset() {
-      this.KCDDModel= {
+      this.KCDDModel = {
         KCDD_CODE: "",
         KCDD_NAME: "",
-        DWCODE:"",
-        CKH:"",
-        CKH_NAME:"",
-      }
+        DWCODE: "",
+        CKH: "",
+        CKH_NAME: ""
+      };
+    },
+    GetCodeOptions() {
+      let temp = {
+        ParentCode: "TOTAL"
+      };
+      GetCodeOptions(temp).then(response => {
+        if (response.data.code === 2000) {
+          this.KCCODEOptions = response.data.items;
+        }
+      });
     },
     GetList() {
       GetKCDDInfo(this.temp).then(response => {
@@ -185,11 +208,11 @@ export default {
       });
       this.reset();
       this.dialogTitle = "新建地点信息";
-      GetDWInfo().then(response=>{
-        if(response.data.code===2000){
-          this.DWOptions=response.data.items;
+      GetDWInfo().then(response => {
+        if (response.data.code === 2000) {
+          this.DWOptions = response.data.items;
         }
-      })
+      });
     },
     Edit(data) {
       this.show = true;
@@ -198,11 +221,11 @@ export default {
       });
       this.KCDDModel = Object.assign({}, data);
       this.dialogTitle = "修改地点信息";
-      GetDWInfo().then(response=>{
-        if(response.data.code===2000){
-          this.DWOptions=response.data.items;
+      GetDWInfo().then(response => {
+        if (response.data.code === 2000) {
+          this.DWOptions = response.data.items;
         }
-      })
+      });
     },
     del(data) {
       this.$confirm("您确定要删除此项信息吗?", "提示", {
@@ -283,21 +306,22 @@ export default {
         }
       });
     },
-    handleFilter(){
-      this.temp.page=1;
+    handleFilter() {
+      this.temp.page = 1;
       this.GetList();
     },
     handleSizeChange(val) {
-      this.temp.limit=val;
+      this.temp.limit = val;
       this.GetList();
     },
     handleCurrentChange(val) {
-      this.temp.page=val;
+      this.temp.page = val;
       this.GetList();
     }
   },
   mounted() {
     this.GetList();
+    this.GetCodeOptions();
   }
 };
 </script>

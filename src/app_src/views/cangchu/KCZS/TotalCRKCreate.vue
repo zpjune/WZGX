@@ -2,19 +2,26 @@
   <div id="TotalCRKCreate" class="app-container calendar-list-container">
     <div class="topSearh" id="topsearch">
       <el-row>
-       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
-         <el-date-picker
-      style="width:95%;" size="mini"
-      type="month"
-      placeholder="选择月">
-    </el-date-picker>
-      </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+          <el-select v-model="listQuery.DK_CODE" placeholder="请选择库存地点" clearable size="mini" style="width:95%">
+            <el-option
+              v-for="(item,key) in KCCODEOptions"
+              :key="key"
+              :label="item.NAME"
+              :value="item.CODE"
+            ></el-option>
+          </el-select>
+        </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
+          <el-date-picker
+            style="width:95%;"
+            size="mini"
+            type="month"
+            placeholder="选择月"
+            v-model="listQuery.ERDATE"
+            value-format="yyyyMM"
+          ></el-date-picker>
+        </el-col>
         <el-col :span="9">
           <el-button
             size="mini"
@@ -22,7 +29,7 @@
             type="primary"
             v-waves
             icon="el-icon-search"
-            @click="handleFilter"
+            @click="GetList"
           >搜索</el-button>
           <el-button
             size="mini"
@@ -45,43 +52,27 @@
             :data="list"
             size="mini"
             :header-cell-class-name="tableRowClassName"
-            v-loading="listLoading"
+            v-loading="listloading"
             element-loading-text="给我一点时间"
             border
             fit
             highlight-current-row
             style="width: 100%;text-align:left;"
           >
-          <el-table-column
-              align="center"
-              label="序号"
-              :show-overflow-tooltip="true"
-              prop="non"
-            ></el-table-column>
-          <el-table-column
-              align="center"
-              label="月份"
-              :show-overflow-tooltip="true"
-              prop="MTH"
-            ></el-table-column>
+            <el-table-column align="center" label="序号" :show-overflow-tooltip="true" >
+              <template slot-scope="scope">
+                {{scope.$index+1}}
+              </template>
+            </el-table-column>
             <el-table-column
               align="center"
-              label="库存地点"
+              label="出入库时间"
               :show-overflow-tooltip="true"
-              prop="KCDD"
+              prop="ERDATE"
             ></el-table-column>
-            <el-table-column
-              align="center"
-              label="入库量"
-              :show-overflow-tooltip="true"
-              prop="RKL"
-            ></el-table-column>
-            <el-table-column
-              align="center"
-              label="出库量"
-              :show-overflow-tooltip="true"
-              prop="CKL"
-            ></el-table-column>
+            <el-table-column align="center" label="库存地点" :show-overflow-tooltip="true" prop="NAME"></el-table-column>
+            <el-table-column align="center" label="入库量" :show-overflow-tooltip="true" prop="RKL"></el-table-column>
+            <el-table-column align="center" label="出库量" :show-overflow-tooltip="true" prop="CKL"></el-table-column>
             <el-table-column align="center" width="200" label="操作">
               <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">修改</el-button>
@@ -111,25 +102,44 @@
       width="500px"
     >
       <el-card>
-        <el-form ref="dataForm" :model="temp" label-width="120px" style="width: 99%;">
-             <el-col :span="24">
-            <el-form-item label="月份" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
-            </el-form-item>
-          </el-col>
-           <el-col :span="24">
-            <el-form-item label="库存地点" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
-            </el-form-item>
-          </el-col>
-           <el-col :span="24">
-            <el-form-item label="入库量" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
+        <el-form
+          ref="dataForm"
+          :model="temp"
+          :rules="rules"
+          label-width="120px"
+          style="width: 99%;"
+        >
+          <el-col :span="24">
+            <el-form-item label="月份" prop="ERDATE">
+              <el-date-picker
+                type="month"
+                placeholder="选择月"
+                v-model="temp.ERDATE"
+                style="width:100%"
+                value-format="yyyyMM"
+              ></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="出库量" prop="CK_ClassCode">
-              <el-input v-model="temp.CK_ClassCode"></el-input>
+            <el-form-item label="库存地点" prop="DK_CODE">
+              <el-select v-model="temp.DK_CODE" style="width:100%">
+                <el-option
+                  v-for="(item,key) in KCCODEOptions"
+                  :key="key"
+                  :label="item.NAME"
+                  :value="item.CODE"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="入库量" prop="RKL">
+              <el-input v-model="temp.RKL"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="出库量" prop="CKL">
+              <el-input v-model="temp.CKL"></el-input>
             </el-form-item>
           </el-col>
         </el-form>
@@ -152,6 +162,13 @@
 import waves from "@/frame_src/directive/waves"; // 水波纹指令
 import { getToken } from "@/frame_src/utils/auth";
 import { parseTime } from "@/frame_src/utils";
+import {
+  GetCodeOptions,
+  GetCRKInfo,
+  CreateCRKInfo,
+  UpdateCRKInfo,
+  DelCRKInfo
+} from "@/app_src/api/cangchu/ZDWZ/CRKWH";
 export default {
   name: "CKLR",
   directives: {
@@ -160,61 +177,22 @@ export default {
   data() {
     return {
       tableKey: 0,
-      list: [{
-          non:1,
-          MTH:"2019-6",
-          KCDD: "中心库",
-           RKL:250,
-          CKL: 1000
-        },
-        {
-          non:2,
-          MTH:"2019-6",
-          KCDD: "转运库",
-          RKL:280,
-          CKL: 3000
-        },
-        {
-          non:3,
-          MTH:"2019-6",
-          KCDD: "港东器材库",
-          RKL:450,
-          CKL: 7000
-        },
-        {
-          non:4,
-          MTH:"2019-6",
-          KCDD: "专用管分公司",
-           RKL:50,
-          CKL: 1800
-        },
-        {
-          non:5,
-          MTH:"2019-6",
-          KCDD: "厂现直供库",
-           RKL:250,
-          CKL: 1500
-        }
-        ,
-        {
-         non:6,
-         MTH:"2019-6",
-          KCDD: "直达料",
-          RKL: 320,
-          CKL: 2000
-        }],
-      total: 15,
-      listLoading: false,
+      list: [],
+      KCCODEOptions: [],
+      total: 0,
+      listloading: false,
       listQuery: {
         limit: 10,
         page: 1,
-        CKTime: "",
-        LocationNumber: ""
+        DK_CODE: "",
+        ERDATE: ""
       },
       temp: {
-        CK_ClassCode: "",
-        CK_Code: "",
-        CK_Describe: ""
+        DK_CODE: "",
+        ERDATE: "",
+        RKL: "",
+        CKL: "",
+        userid: this.$store.state.user.userId
       },
       textMap: {
         update: "修改",
@@ -222,23 +200,57 @@ export default {
       },
       editVisible: false,
       dialogStatus: "",
-
-      treeData: []
+      treeData: [],
+      rules: {
+        DK_CODE: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        ERDATE: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        RKL: [{ required: true, message: "此项不能为空！", trigger: "change" }],
+        CKL: [{ required: true, message: "此项不能为空！", trigger: "change" }]
+      }
     };
   },
   methods: {
     resetTemp() {
       this.temp = {
-        CK_ClassCode: "",
-        CK_Code: "",
-        CK_Describe: ""
+        DK_CODE: "",
+        ERDATE: "",
+        RKL: "",
+        CKL: "",
+        userid: this.$store.state.user.userId
       };
     },
-
-    getList() {
-      
+    GetList() {
+      GetCRKInfo(this.listQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.list = response.data.items;
+          this.total = response.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
     },
-
+    GetCodeOptions() {
+      let temp = {
+        ParentCode: "TOTAL"
+      };
+      GetCodeOptions(temp).then(response => {
+        if (response.data.code === 2000) {
+          this.KCCODEOptions = response.data.items;
+        }
+      });
+    },
     handleCreate() {
       this.resetTemp();
       this.editVisible = true;
@@ -262,7 +274,29 @@ export default {
         cancelButtonText: "取消"
       })
         .then(() => {
-         
+          let temp = {
+            ID: row.ID
+          };
+          DelCRKInfo(temp).then(response => {
+            if (response.data.code === 2000) {
+              this.$notify({
+                position: "bottom-right",
+                title: "成功",
+                message: response.data.message,
+                type: "success",
+                duration: 2000
+              });
+              this.GetList();
+            } else {
+              this.$notify({
+                position: "bottom-right",
+                title: "失败",
+                message: response.data.message,
+                type: "error",
+                duration: 2000
+              });
+            }
+          });
         })
         .catch();
     },
@@ -270,27 +304,68 @@ export default {
       // 创建
       this.$refs["dataForm"].validate(valid => {
         if (valid) {
+          CreateCRKInfo(this.temp).then(response => {
+            if (response.data.code === 2000) {
+              this.$notify({
+                position: "bottom-right",
+                title: "成功",
+                message: response.data.message,
+                type: "success",
+                duration: 2000
+              });
+              this.editVisible=false;
+              this.GetList();
+            } else {
+              this.$notify({
+                position: "bottom-right",
+                title: "失败",
+                message: response.data.message,
+                type: "error",
+                duration: 2000
+              });
+            }
+          });
         }
       });
     },
     updateData() {
       this.$refs["dataForm"].validate(valid => {
         if (valid) {
-          
+          UpdateCRKInfo(this.temp).then(response => {
+            if (response.data.code === 2000) {
+              this.$notify({
+                position: "bottom-right",
+                title: "成功",
+                message: response.data.message,
+                type: "success",
+                duration: 2000
+              });
+              this.editVisible=false;
+              this.GetList();
+            } else {
+              this.$notify({
+                position: "bottom-right",
+                title: "失败",
+                message: response.data.message,
+                type: "error",
+                duration: 2000
+              });
+            }
+          });
         }
       });
     },
     handleSizeChange(val) {
       this.listQuery.limit = val;
-     // this.getList();
+      this.getList();
     },
     handleCurrentChange(val) {
       this.listQuery.page = val;
-      //this.getList();
+      this.getList();
     },
     handleFilter() {
       this.listQuery.page = 1;
-     // this.getList();
+      // this.getList();
     },
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex === 0) {
@@ -301,7 +376,11 @@ export default {
   },
   created() {
     this.listLoading = false;
-   // this.getList();
+    // this.getList();
+  },
+  mounted() {
+    this.GetList();
+    this.GetCodeOptions();
   },
 
   computed: {

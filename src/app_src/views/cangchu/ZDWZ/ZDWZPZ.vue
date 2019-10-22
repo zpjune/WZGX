@@ -2,21 +2,7 @@
   <div id="ZDWZPZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <!-- <el-select
-          v-model="temp.WLZ_CODE"
-          placeholder="请选择物料组编码"
-          :disabled="dialogTitle=='修改配置信息'"
-          style="width:95%"
-          size="mini"
-        >
-          <el-option
-            v-for="(item,key) in WLZOptions"
-            :key="key"
-            :value="item.PMCODE"
-            :label="item.PMNAME"
-          ></el-option>
-        </el-select>-->
-        <treeselect
+        <!-- <treeselect
           placeholder="请选择物料组"
           :options="options"
           :normalizer="normalizer"
@@ -24,7 +10,7 @@
           v-model="temp.WLZ_CODE"
           :disable-branch-nodes="true"
           :show-count="true"
-        />
+        /> -->
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
@@ -53,8 +39,8 @@
           fit
           highlight-current-row
         >
-          <el-table-column label="物料组编码" prop="WLZ_CODE"></el-table-column>
-          <el-table-column label="物料组名称" prop="PMNAME"></el-table-column>
+          <!-- <el-table-column label="物料组编码" prop="WLZ_CODE"></el-table-column>
+          <el-table-column label="物料组名称" prop="PMNAME"></el-table-column> -->
           <el-table-column label="物料编码" prop="WL_CODE"></el-table-column>
           <el-table-column label="物料名称" prop="WL_NAME"></el-table-column>
           <el-table-column label="操作">
@@ -67,21 +53,7 @@
         <el-dialog :visible.sync="show" :title="dialogTitle" width="30%">
           <el-card>
             <el-form :model="ZDWZPZModel" :rules="rules" label-width="100px" ref="ZDWZPZModel">
-              <el-form-item label="物料组编码" prop="WLZ_CODE">
-                <!-- <el-input v-model="ZDWZPZModel.WLZ_CODE" :disabled="dialogTitle=='修改配置信息'"></el-input> -->
-                <!-- <el-select
-                  v-model="ZDWZPZModel.WLZ_CODE"
-                  placeholder="请选择物料组编码"
-                  :disabled="dialogTitle=='修改配置信息'"
-                  style="width:100%"
-                >
-                  <el-option
-                    v-for="(item,key) in WLZOptions"
-                    :key="key"
-                    :value="item.PMCODE"
-                    :label="item.PMNAME"
-                  ></el-option>
-                </el-select>-->
+              <!-- <el-form-item label="物料组编码" prop="WLZ_CODE">
                 <treeselect
                   placeholder="请选择物料组"
                   :options="options1"
@@ -91,7 +63,7 @@
                   :disable-branch-nodes="true"
                   :show-count="true"
                 />
-              </el-form-item>
+              </el-form-item> -->
               <el-form-item label="物料编码" prop="WL_CODE">
                 <el-input v-model="ZDWZPZModel.WL_CODE"></el-input>
               </el-form-item>
@@ -159,7 +131,8 @@ export default {
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         WL_CODE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          { max:18,min:18,message:"物料编码为18位，不足18位请在前方补0!",trigger:"change" },
         ]
       },
       fac: [],
@@ -228,7 +201,7 @@ export default {
       let temp = {
         PMCODE: this.ZDWZPZModel.WLZ_CODE
       };
-      this.GetEditParentNode(temp);
+      //this.GetEditParentNode(temp);
     },
     del(data) {
       this.$confirm("您确定要删除此项信息吗?", "提示", {
@@ -371,7 +344,7 @@ export default {
   },
   mounted() {
     this.GetList();
-    this.GetParentNode();
+    //this.GetParentNode();
     //this.GetPMCODE();
   }
 };
