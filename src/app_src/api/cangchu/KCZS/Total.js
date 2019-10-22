@@ -49,3 +49,10 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
+  export function getZDWZCB(query) {//总库存 重点物资储备
+    return request({
+      url: '/Total/getZDWZCB',
+      method: 'get',
+      params:query
+    })
+  }
