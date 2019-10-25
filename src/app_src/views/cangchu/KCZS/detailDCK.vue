@@ -2,10 +2,22 @@
   <div id="TotalZDWZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable v-model="listQuery.MATNR"></el-input>
+        <el-input
+          placeholder="请输入物料编码"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.MATNR"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料描述" style="width:95%;" size="mini" clearable v-model="listQuery.info"></el-input>
+        <el-input
+          placeholder="请输入物料描述"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.info"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
@@ -80,7 +92,9 @@
           <el-table-column label="物料描述" prop="MAKTX"></el-table-column>
           <el-table-column label="计量单位" prop="JBJLDW"></el-table-column>
           <el-table-column label="待出库数量" prop="ZFHSL"></el-table-column>
-          <el-table-column label="库存数量" prop="GESME"></el-table-column>
+          <el-table-column label="库存数量">
+            <template slot-scope="scope">{{scope.row.GESME|changeNum}}</template>
+          </el-table-column>
           <el-table-column label="工厂" prop="WERKS"></el-table-column>
           <!-- <el-table-column label="创建人" prop="CJR"></el-table-column> -->
           <el-table-column label="供货单位" prop="NAME1" width="150"></el-table-column>
@@ -106,21 +120,19 @@
 import { GetDCKInfo } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
-  props:["FacCode"],
+  props: ["FacCode"],
   data() {
     return {
       listloading: false,
-      fac: [
-      ],
+      fac: [],
       listQuery: {
         limit: 10,
         page: 1,
         MATNR: "",
         info: "",
-        FacCode:this.FacCode
+        FacCode: this.FacCode
       },
-      total: 0,
-      
+      total: 0
     };
   },
   methods: {
@@ -149,7 +161,7 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
- handleSizeChange(val) {
+    handleSizeChange(val) {
       this.listQuery.limit = val;
       this.getList();
     },
@@ -158,8 +170,17 @@ export default {
       this.getList();
     }
   },
-  mounted(){
+  mounted() {
     this.getList();
+  },
+  filters: {
+    changeNum(val) {
+      if (val === null || val === "") {
+        return 0;
+      } else {
+        return val;
+      }
+    }
   }
 };
 </script>

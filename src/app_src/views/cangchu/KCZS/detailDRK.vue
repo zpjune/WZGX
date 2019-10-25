@@ -2,10 +2,22 @@
   <div id="TotalZDWZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable v-model="listQuery.MATNR"></el-input>
+        <el-input
+          placeholder="请输入物料编码"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.MATNR"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料描述" style="width:95%;" size="mini" clearable v-model="listQuery.info"></el-input>
+        <el-input
+          placeholder="请输入物料描述"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.info"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
@@ -80,7 +92,9 @@
           <el-table-column label="物料描述" prop="MAKTX"></el-table-column>
           <el-table-column label="计量单位" prop="JBJLDW"></el-table-column>
           <el-table-column label="待入库数量" prop="MENGE"></el-table-column>
-          <el-table-column label="库存数量" prop="GESME"></el-table-column>
+          <el-table-column label="库存数量">
+            <template slot-scope="scope">{{scope.row.GESME|changeNum}}</template>
+          </el-table-column>
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
           <el-table-column label="单位名称" prop="DW_NAME"></el-table-column>
           <!-- <el-table-column label="创建人" prop="CJR"></el-table-column> -->
@@ -107,7 +121,7 @@
 import { GetDRKInfo } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
-  props:["FacCode"],
+  props: ["FacCode"],
   data() {
     return {
       listloading: false,
@@ -117,7 +131,7 @@ export default {
         page: 1,
         MATNR: "",
         info: "",
-        FacCode:this.FacCode
+        FacCode: this.FacCode
       },
       total: 0
     };
@@ -159,6 +173,15 @@ export default {
   },
   mounted() {
     this.getList();
+  },
+  filters: {
+    changeNum(val) {
+      if (val === null || val === "") {
+        return 0;
+      } else {
+        return val;
+      }
+    }
   }
 };
 </script>
