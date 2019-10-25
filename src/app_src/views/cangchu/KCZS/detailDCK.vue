@@ -5,7 +5,7 @@
         <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable v-model="listQuery.MATNR"></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable v-model="listQuery.info"></el-input>
+        <el-input placeholder="请输入物料描述" style="width:95%;" size="mini" clearable v-model="listQuery.info"></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
@@ -77,8 +77,8 @@
           <el-table-column label="出库单号" prop="ZCKTZD" width="150"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR" width="150"></el-table-column>
-          <el-table-column label="物料描述" prop="PMNAME"></el-table-column>
-          <el-table-column label="计量单位" prop="MEINS"></el-table-column>
+          <el-table-column label="物料描述" prop="MAKTX"></el-table-column>
+          <el-table-column label="计量单位" prop="JBJLDW"></el-table-column>
           <el-table-column label="待出库数量" prop="ZFHSL"></el-table-column>
           <el-table-column label="库存数量" prop="GESME"></el-table-column>
           <el-table-column label="工厂" prop="WERKS"></el-table-column>
