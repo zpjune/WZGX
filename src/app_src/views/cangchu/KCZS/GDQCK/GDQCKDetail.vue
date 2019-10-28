@@ -13,7 +13,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
         </template>
-        <detailJYWZ></detailJYWZ>
+        <detailJYWZ DKCODE="03"></detailJYWZ>
       </el-collapse-item>
       <el-collapse-item name="3">
         <template slot="title">
