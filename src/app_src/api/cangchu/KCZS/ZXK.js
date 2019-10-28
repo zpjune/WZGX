@@ -22,3 +22,12 @@ export function GetDCKInfo(query) {//总库存 资金查询
       params:query
     })
   }
+
+
+    export function GetFacStatus(query) {//总库存 资金查询
+    return request({
+      url: '/ZXK/GetFacStatus',
+      method: 'get',
+      params:query
+    })
+  }
