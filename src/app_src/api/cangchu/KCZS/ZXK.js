@@ -15,3 +15,10 @@ export function GetDCKInfo(query) {//总库存 资金查询
       params:query
     })
   }
+  export function GetFK_JYWZ(query) {//总库存 资金查询
+    return request({
+      url: '/ZXK/GetFK_JYWZ',
+      method: 'get',
+      params:query
+    })
+  }
