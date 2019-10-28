@@ -379,7 +379,7 @@ export default {
       GetFacStatus(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.StatusStr = response.data.items;
-          this.setStyle(this.width);
+          
         }
       });
     },
@@ -435,6 +435,9 @@ export default {
     this.getPoint();
     //this.setStyle(this.width);
     this.observer();
+    this.setStyle(this.width);
+  },
+  created(){
     this.getList();
   }
 };
