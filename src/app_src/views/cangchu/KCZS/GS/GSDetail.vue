@@ -1,32 +1,32 @@
 <template>
-  <div id="ZYKDetail" class="app-container calendar-list-container">
+  <div id="GDQCKDetail" class="app-container calendar-list-container">
     <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px">
       <el-collapse-item name="1">
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-        <ZYK :FacCode="FacCode"></ZYK>
+        <GS></GS>
         </div>
       </el-collapse-item>
-      <el-collapse-item name="2" @click.native="getDetailJYWZData()">
+      <el-collapse-item name="2">
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
         </template>
-        <detailJYWZ DKCODE="01"></detailJYWZ>
+        <detailJYWZ DKCODE="08"></detailJYWZ>
       </el-collapse-item>
       <el-collapse-item name="3">
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ DKCODE="01"></detailZDWZ>
+        <detailZDWZ DKCODE="08"></detailZDWZ>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK DKCODE="01"></detailZDWZCRK>
-      </el-collapse-item>
+        <detailZDWZCRK DKCODE="08"></detailZDWZCRK>
+      </el-collapse-item>   
       <el-collapse-item name="5">
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
@@ -44,34 +44,29 @@
 </template>
 
 <script>
-import ZYK from "@/app_src/views/cangchu/KCZS/ZYK";
+import GS from "@/app_src/views/cangchu/KCZS/GS/GS";
 import detailJYWZ from "@/app_src/views/cangchu/KCZS/detailJYWZ";
 import detailZDWZ from "@/app_src/views/cangchu/KCZS/detailZDWZ";
 import detailZDWZCRK from "@/app_src/views/cangchu/KCZS/detailZDWZCRK";
 import detailDRK from "@/app_src/views/cangchu/KCZS/detailDRK";
 import detailDCK from "@/app_src/views/cangchu/KCZS/detailDCK";
 export default {
-  name: "ZYKDetail",
+  name: "GDQCKDetail",
   data() {
     return {
       activeCangku: "1",
-      param:'ZYK',
-      FacCode:"01",
+      FacCode:"08",
     };
   },
   components: {
-    ZYK,
+    GS,
     detailJYWZ,
     detailZDWZ,
     detailZDWZCRK,
     detailDRK,
     detailDCK
   },
-  methods: {
-      getDetailJYWZData(){
-          this.$refs.detailJYWZ.ParentClick(this.param);
-      }
-  },
+  methods: {},
   mounted() {}
 };
 </script>

@@ -74,6 +74,16 @@ export const constantRouterMap = [
       component: _import('app_src/views/cangchu/KCZS/ZYGFGS/ZYGFGSDetail'), hidden: true
     },
     {
+      path: '/cangchu/KCZS/GSDetail', name: '港狮库',
+      meta: { title: '港狮库', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/GS/GSDetail'), hidden: true
+    },
+    {
+      path: '/cangchu/KCZS/HBDetail', name: '华北地区集中储备库',
+      meta: { title: '华北地区集中储备库', icon: 'home', noCache: true },
+      component: _import('app_src/views/cangchu/KCZS/HB/HBDetail'), hidden: true
+    },
+    {
       path: '/cangchu/KCZS/CXZGKDetail', name: '厂现直供库',
       meta: { title: '厂现直供库', icon: 'home', noCache: true },
       component: _import('app_src/views/cangchu/KCZS/CXZGK/CXZGKDetail'), hidden: true

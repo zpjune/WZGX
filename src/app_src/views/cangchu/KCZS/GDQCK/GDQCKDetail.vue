@@ -19,13 +19,13 @@
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ></detailZDWZ>
+        <detailZDWZ DKCODE="03"></detailZDWZ>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK></detailZDWZCRK>
+        <detailZDWZCRK DKCODE="03"></detailZDWZCRK>
       </el-collapse-item>   
       <el-collapse-item name="5">
         <template slot="title">

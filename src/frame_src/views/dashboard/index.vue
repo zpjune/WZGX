@@ -96,6 +96,32 @@
                   <img
                     class="cangku_img"
                     src="../../../frame_src/imgs/cangku4.jpg"
+                    alt="港狮库"
+                    @click="GSclick"
+                  >
+                  <div>
+                    <span>港狮库</span>
+                  </div>
+                </el-col>
+              </el-row>
+              
+              <div class="div_height"></div>
+              <el-row>
+                <el-col :span="12" style="text-align:center">
+                  <img
+                    class="cangku_img"
+                    src="../../../frame_src/imgs/cangku4.jpg"
+                    alt="华北地区集中储备库"
+                    @click="HBclick"
+                  >
+                  <div>
+                    <span>华北地区集中储备库</span>
+                  </div>
+                </el-col>
+                <el-col :span="12" style="text-align:center">
+                  <img
+                    class="cangku_img"
+                    src="../../../frame_src/imgs/cangku4.jpg"
                     alt="厂现直供库"
                     @click="changxianzhiclick"
                   >
@@ -121,7 +147,7 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div style="height:613px;word-wrap:break-word" class="icon">
+            <div style="height:773px;word-wrap:break-word" class="icon">
               <el-row>
                 <el-col :span="4" style="text-align:center;" >
                   <img src="../../../frame_src/imgs/icon/33.png" style="width:50px;height:50px;" alt>
@@ -359,28 +385,6 @@ export default {
   data() {
     return {
       currentRole: "adminDashboard",
-      noticeList: [
-        {
-          NOTICE_TITLE: "关于物资供销数据挖掘系统项目开发通知",
-          NOTICE_DATETIME: "2019-05-22"
-        },
-        {
-          NOTICE_TITLE: "关于物资供销公司仓库使用通知",
-          NOTICE_DATETIME: "2019-05-23"
-        },
-        {
-          NOTICE_TITLE: "关于物资供销公司保管员工作量通告",
-          NOTICE_DATETIME: "2019-05-24"
-        },
-        {
-          NOTICE_TITLE: "关于物资供销公司岗位职责通告",
-          NOTICE_DATETIME: "2019-05-25"
-        },
-        {
-          NOTICE_TITLE: "关于物资供销公司运动会通知",
-          NOTICE_DATETIME: "2019-05-26"
-        }
-      ],
       detailList: [],
       temp: {
         orgcode: this.$store.state.user.orgCode,
@@ -451,6 +455,13 @@ export default {
     },
     changxianzhiclick(){
       this.$router.push({ path: "/cangchu/KCZS/CXZGKDetail" });
+    },
+     HBclick(){
+      this.$router.push({ path: "/cangchu/KCZS/HBDetail" });
+
+    },
+    GSclick(){
+      this.$router.push({ path: "/cangchu/KCZS/GSDetail" });
     }
   },
   created() {},
