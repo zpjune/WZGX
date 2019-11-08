@@ -387,7 +387,7 @@ export default {
     },
     GetCodeOptions() {
       let temp = {
-        ParentCode: "JJREASON"
+        ParentCode: "JJCKREASON"
       };
       GetCodeOptions(temp).then(response => {
         if (response.data.code === 2000) {
