@@ -3,35 +3,26 @@
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
         <el-date-picker
-          v-model="value2"
+          v-model="month"
           style="width:95%;"
           size="mini"
           type="month"
-          placeholder="选择月"
+          :clearable="false"
         ></el-date-picker>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
       </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="5">
+        <el-button type="primary" icon="el-icon-search" @click="btnQuery" size="mini">查询</el-button>
         <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-table
+       <el-table
           size="mini"
-          :data="fac"
+          :data="list"
           :header-cell-class-name="tableRowClassName"
           v-loading="listloading"
           element-loading-text="给我一点时间"
@@ -40,20 +31,17 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="序号" width="70" align="center" prop="non"></el-table-column>
-          <el-table-column label="物料组" prop="WLZ"></el-table-column>
-          <el-table-column label="物料编码" prop="WLBM"></el-table-column>
-          <el-table-column label="物料名称" prop="WLMC"></el-table-column>
-          <el-table-column label="规格型号" prop="GGXH"></el-table-column>
-          <el-table-column label="计量单位" prop="JLDW"></el-table-column>
-          <el-table-column label="最低储备" prop="ZDCB"></el-table-column>
-          <el-table-column label="最高储备" prop="ZGCB"></el-table-column>
-          <el-table-column label="现有库存" prop="XYKC"></el-table-column>
-          <el-table-column label="月度入库" prop="BYRK"></el-table-column>
-          <el-table-column label="累计入库" prop="BYRK"></el-table-column>
-          <el-table-column label="月度消耗" prop="BYXH"></el-table-column>
-          <el-table-column label="累计消耗" prop="BYRK"></el-table-column>
-          <el-table-column label="备注" prop="REMARK"></el-table-column>
+          <el-table-column label="物料组" width="100" prop="MATKL"></el-table-column>
+          <el-table-column label="物料编码" width="150" prop="WL_CODE"></el-table-column>
+          <el-table-column label="物料描述" width="280" :show-overflow-tooltip="true" prop="MAKTX"></el-table-column>
+          <el-table-column label="计量单位" width="100" prop="MEINS"></el-table-column>
+          <el-table-column label="最低储备" width="120" prop="MAXHAVING"></el-table-column>
+          <el-table-column label="最高储备" width="120" prop="MAXHAVING"></el-table-column>
+          <el-table-column label="现有库存" width="150" prop="GESME"></el-table-column>
+          <el-table-column label="月度入库" width="150" prop="RKSL"></el-table-column>
+          <el-table-column label="累计入库" width="150" prop="RKSUMSL"></el-table-column>
+          <el-table-column label="月度消耗" width="150" prop="CKSL"></el-table-column>
+          <el-table-column label="累计消耗" width="150" prop="CKSUMSL"></el-table-column>
           <el-table-column
             align="center"
             label="操作"
@@ -74,11 +62,11 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="1"
+          :current-page="listQuery.page"
           :page-sizes="[10,20,30, 50]"
-          :page-size="20"
+          :page-size="listQuery.limit"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="7"
+          :total="5"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -86,7 +74,6 @@
     <el-dialog
       title="去向明细表"
       :visible.sync="quxiangDialogVisible"
-      @close="CloseDialog"
       :modal="false"
       :modal-append-to-body="false"
       style="margin-top:10vh;margin-left:100px;"
@@ -102,108 +89,68 @@
         fit
         height="350"
         highlight-current-row
-        style="width: 100%;"
+        style="width: 100%"
         size="mini"
         id="table"
       >
         <el-table-column min-width="100px" align="center" label="(领料)单位" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.lldw}}</span>
+            <span>{{scope.row.WERKS_NAME}}</span>
           </template>
         </el-table-column>
-        <el-table-column min-width="100px" align="center" label="消耗" fixed="left">
+        <el-table-column min-width="100px" align="center" label="消耗数量" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.xh}}</span>
+            <span>{{scope.row.SL}}</span>
           </template>
         </el-table-column>
       </el-table>
-      <!-- <div class="pagination-container" style="text-align:center;">
+      <div class="pagination-container" style="text-align:center;">
         <el-pagination
           background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="listQuery.page"
+          @size-change="handleSizeChangeDetail"
+          @current-change="handleCurrentChangeDetail"
+          :current-page="listQueryDetail.page"
           :page-sizes="[10,20,30,40]"
-          :page-size="listQuery.limit"
+          :page-size="listQueryDetail.limit"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
+          :total="totalDetail"
         ></el-pagination>
-      </div>-->
+      </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { GetDCKInfo } from "@/app_src/api/cangchu/KCZS/ZXK";
+import { getZDWZCRK,getZDWZCRKDetail } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
   data() {
     return {
       listloading: false,
-      value2: "2019-06-01",
       quxiangDialogVisible: false,
-      listDetail: [
-        {
-          lldw: "井下作业",
-          xh: 20
-        },
-        {
-          lldw: "电力公司",
-          xh: 300
-        },
-        {
-          lldw: "信息中心 （通信公司）",
-          xh: 20
-        },
-        {
-          lldw: "技术学院",
-          xh: 300
-        },
-        {
-          lldw: "油田宾馆",
-          xh: 20
-        },
-        {
-          lldw: "车务管理中心",
-          xh: 300
-        },
-        {
-          lldw: "物业公司",
-          xh: 20
-        },
-        {
-          lldw: "市政公司",
-          xh: 300
-        }
-      ],
-      fac: [],
+      month:"",
       listQuery: {
+        page: 1,
         limit: 10,
-        pagea: 1,
-        MATNR: "",
-        info: ""
+         DKCODE: "",
+        yearmonth: "",
+        MATNR: ""
+      },
+      list: [],
+      total:0,
+      listDetail: [],
+      totalDetail:0,
+      listQueryDetail:{
+        MATNR:"",
+        MONTH:"",
+         DKCODE: "",
+        page: 1,
+        limit: 10
       }
     };
   },
+  props:["DKCODE"],
   methods: {
-    getList() {
-      GetFacInfo(this.listQuery).then(response => {
-        if (response.data.code === 2000) {
-          this.fac = response.data.items;
-          this.total = response.data.total;
-          this.listloading = false;
-        } else {
-          this.listloading = false;
-          this.$notify({
-            position: "bottom-right",
-            title: "失败",
-            message: response.data.message,
-            type: "error",
-            duration: 2000
-          });
-        }
-      });
-    },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
       if (rowIndex === 0) {
@@ -211,15 +158,61 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-    handleSizeChange() {},
-    handleCurrentChange() {},
-    CloseDialog() {},
+     getList(){
+      this.listQuery.DKCODE=this.DKCODE;
+      if(this.month.getMonth()<=8){
+        this.listQuery.yearmonth=this.month.getFullYear().toString()+'0'+(this.month.getMonth()+1).toString();
+      }
+      else{
+        this.listQuery.yearmonth=this.month.getFullYear().toString()+(this.month.getMonth()+1).toString();
+      }
+      getZDWZCRK(this.listQuery).then(res=>{
+           if (res.data.code === 2000) {
+           this.list=res.data.items;
+           this.total=res.data.total;
+        }
+      });
+    },
+    handleSizeChange(val) {
+      this.listQuery.limit = val
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.listQuery.page = val
+      this.getList()
+    },
+    btnQuery(){
+      this.listQuery.limit=10;
+      this.listQuery.page=1;
+      this.getList();
+    },
+    getListDetail(){
+      this.listQueryDetail.DKCODE=this.DKCODE;
+       getZDWZCRKDetail(this.listQueryDetail).then(res=>{
+           if (res.data.code === 2000) {
+           this.listDetail=res.data.items;
+           this.totalDetail=res.data.total;
+        }
+      });
+    },
+      handleSizeChangeDetail(val) {
+      this.listQueryDetail.limit = val
+      this.getListDetail()
+    },
+    handleCurrentChangeDetail(val) {
+      this.listQueryDetail.page = val
+      this.getListDetail()
+    },
     DetailClick(row) {
+      this.listQueryDetail.MATNR=row.WL_CODE;
+      this.listQueryDetail.MONTH=row.MONTH;
+      this.getListDetail();
       this.quxiangDialogVisible = true;
-    }
+    },
   },
-  mounted(){
-    //this.getList();
+  created(){
+    this.month=new Date();
+    this.getList();
   }
 };
 </script>

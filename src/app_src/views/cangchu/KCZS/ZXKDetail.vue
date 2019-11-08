@@ -19,13 +19,13 @@
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ></detailZDWZ>
+        <detailZDWZ DKCODE="02"></detailZDWZ>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold" >重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK></detailZDWZCRK>
+        <detailZDWZCRK DKCODE="02"></detailZDWZCRK>
       </el-collapse-item>
       <el-collapse-item name="5" @change="DRKClick">
         <template slot="title">
