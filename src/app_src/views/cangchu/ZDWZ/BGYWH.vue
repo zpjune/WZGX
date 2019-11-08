@@ -212,7 +212,6 @@ export default {
       this.show = true;
       this.dialogTitle = "新建工厂信息";
       this.$nextTick(() => {
-        console.log(this.$refs["BGYModel"]);
         this.$refs["BGYModel"].clearValidate();
       });
       this.reset();

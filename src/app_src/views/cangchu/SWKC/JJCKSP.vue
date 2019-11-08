@@ -1,5 +1,5 @@
 <template>
-  <div id="JJRK" class="app-container calendar-list-container">
+  <div id="JJCKSP" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
@@ -30,7 +30,6 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
-        <el-button type="primary" icon="el-icon-zoom-in" size="mini" @click="create">新建</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -51,15 +50,15 @@
           <el-table-column label="物料编码" prop="MATNR" fixed="left"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
           <el-table-column label="计量数量" prop="MEINS"></el-table-column>
-          <el-table-column label="入库数量" prop="RKNUMBER"></el-table-column>
+          <el-table-column label="出库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
           <el-table-column label="总价" prop="TOTALPRICE"></el-table-column>
-          <el-table-column label="入库时间" width="100">
+          <el-table-column label="出库时间" width="100">
             <template slot-scope="scope">{{scope.row.RK_TIME|change}}</template>
           </el-table-column>
           <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
           <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>
-          <el-table-column label="入库原因" prop="NAME" width="200px"></el-table-column>
+          <el-table-column label="出库原因" prop="NAME" width="200px"></el-table-column>
           <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
@@ -67,41 +66,14 @@
             <template slot-scope="scope">{{scope.row.CLOSE_TIME|change}}</template>
           </el-table-column>
           <el-table-column label="供应商" prop="GYS"></el-table-column>
-          <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
-          <el-table-column label="操作" width="230">
+          <el-table-column label="库存地点" prop="KCDD"></el-table-column>
+          <el-table-column label="操作" width="150">
             <template slot-scope="scope">
-              <el-button
-                type="info"
-                @click="startProcess(scope.row)"
-                size="mini"
-                v-if="scope.row.APPROVAL_STATUS===0"
-              >送审</el-button>
               <el-button
                 type="primary"
                 @click="update(scope.row)"
                 size="mini"
-                v-if="scope.row.APPROVAL_STATUS===0"
-              >编辑</el-button>
-              <el-button
-                type="danger"
-                @click="del(scope.row)"
-                size="mini"
-                v-if="scope.row.APPROVAL_STATUS===0"
-              >删除</el-button>
-              <el-button
-                type="warning"
-                @click="recall(scope.row)"
-                size="mini"
-                v-if="scope.row.APPROVAL_STATUS===1"
-              >撤回</el-button>
-              <el-button
-                type="warning"
-                @click="CancelRK(scope.row)"
-                size="mini"
-                v-if="scope.row.APPROVAL_STATUS===2"
-              >入库取消</el-button>
-              <el-button type="danger" size="mini" v-if="scope.row.APPROVAL_STATUS===3">申请驳回</el-button>
-              <el-button type="success" size="mini" v-if="scope.row.APPROVAL_STATUS===4">业务完成</el-button>
+              >审批</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -124,19 +96,19 @@
           <el-row>
             <el-col :span="8">
               <el-form-item label="编码" prop="CODE">
-                <el-input v-model="temp.CODE"></el-input>
+                <el-input v-model="temp.CODE" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="申请单位" prop="DW_CODE">
-                <!-- <el-select v-model="temp.DW_CODE">
+                <!-- <el-select v-model="temp.DW_CODE" disabled>
                   <el-option
                     v-for="(item,key) in OrgOptions"
                     :key="key"
                     :label="item.ORG_SHORT_NAME"
                     :value="item.ORG_CODE"
                   ></el-option>
-                </el-select>-->
+                </el-select> -->
                 <treeselect
                   v-model="temp.DW_CODE"
                   :multiple="false"
@@ -150,63 +122,64 @@
                   noChildrenText=" "
                   style="font-size:14px; width:100%;"
                   @select="getNode"
+                  disabled
                 />
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="物料编码" prop="MATNR">
-                <el-input v-model="temp.MATNR"></el-input>
+                <el-input v-model="temp.MATNR" disabled></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8">
               <el-form-item label="物料描述" prop="MATNX">
-                <el-input v-model="temp.MATNX"></el-input>
+                <el-input v-model="temp.MATNX" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="计量单位" prop="MEINS">
-                <el-input v-model="temp.MEINS"></el-input>
+                <el-input v-model="temp.MEINS" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="入库数量" prop="RKNUMBER">
-                <el-input v-model="temp.RKNUMBER"></el-input>
+              <el-form-item label="出库数量" prop="RKNUMBER">
+                <el-input v-model="temp.RKNUMBER" disabled></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8">
               <el-form-item label="单价" prop="PRICE">
-                <el-input v-model="temp.PRICE"></el-input>
+                <el-input v-model="temp.PRICE" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="总金额" prop="TOTALPRICE">
-                <el-input v-model="temp.TOTALPRICE"></el-input>
+                <el-input v-model="temp.TOTALPRICE" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="入库时间" prop="RK_TIME">
-                <el-date-picker v-model="temp.RK_TIME" style="width:100%"></el-date-picker>
+              <el-form-item label="出库时间" prop="RK_TIME">
+                <el-date-picker v-model="temp.RK_TIME" style="width:100%" disabled></el-date-picker>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8">
               <el-form-item label="实际数量" prop="RKNUMBER1">
-                <el-input v-model="temp.RKNUMBER1"></el-input>
+                <el-input v-model="temp.RKNUMBER1" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="实际金额" prop="TOTALPRICE1">
-                <el-input v-model="temp.TOTALPRICE1"></el-input>
+                <el-input v-model="temp.TOTALPRICE1" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="入库原因" prop="REASON">
-                <el-select v-model="temp.REASON">
+              <el-form-item label="出库原因" prop="REASON">
+                <el-select v-model="temp.REASON" disabled>
                   <el-option
                     v-for="(item,key) in ReasonOptions"
                     :key="key"
@@ -220,37 +193,43 @@
           <el-row>
             <el-col :span="8">
               <el-form-item label="责任单位" prop="ZRDW">
-                <el-input v-model="temp.ZRDW"></el-input>
+                <el-input v-model="temp.ZRDW" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="责任人" prop="ZRR">
-                <el-input v-model="temp.ZRR"></el-input>
+                <el-input v-model="temp.ZRR" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="关闭日期" prop="CLOSE_TIME">
-                <el-date-picker v-model="temp.CLOSE_TIME" style="width:100%"></el-date-picker>
+                <el-date-picker v-model="temp.CLOSE_TIME" style="width:100%" disabled></el-date-picker>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="8">
               <el-form-item label="库存地点" prop="KCDD">
-                <el-select v-model="temp.KCDD">
+                <!-- <el-select v-model="temp.KCDD">
                   <el-option v-for="(item,key) in KCDDOptions" :key="key" :label="item.KCDD_NAME" :value="item.KCDD_CODE"></el-option>
-                </el-select>
-                <!-- <el-input v-model="temp.KCDD"></el-input> -->
+                </el-select>-->
+                <el-input v-model="temp.KCDD_NAME" disabled></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="8">
               <el-form-item label="供应商" prop="GYS">
-                <el-input v-model="temp.GYS"></el-input>
+                <el-input v-model="temp.GYS" disabled></el-input>
               </el-form-item>
             </el-col>
           </el-row>
+          <el-row>
+            <el-form-item label="意见">
+              <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="temp.SUGGESTION"></el-input>
+            </el-form-item>
+          </el-row>
           <div style="text-align:center">
-            <el-button type="primary" @click="submit">提交</el-button>
+            <el-button type="primary" @click="agree">同意</el-button>
+            <el-button type="danger" @click="disagree">驳回</el-button>
             <el-button @click="show=false">取消</el-button>
           </div>
         </el-form>
@@ -261,22 +240,17 @@
 
 <script>
 import {
-  GetRKInfo,
+  GetCKInfo,
   GetOrgInfo,
   GetKCDDInfo,
   GetCodeOptions,
-  CreateJJRKInfo,
-  UpdateJJRKInfo,
-  DelJJRKInfo,
-  StartProcess,
-  Recall,
-  CancelRK
-} from "@/app_src/api/cangchu/SWKC/JJRK";
+  Approval
+} from "@/app_src/api/cangchu/SWKC/JJCK";
 import { fetchOrgList } from "@/frame_src/api/org";
 import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 export default {
-  name: "JJRK",
+  name: "JJCKSP",
   components: {
     Treeselect
   },
@@ -292,13 +266,12 @@ export default {
         MATNX: "",
         ParentCode: "JJREASON",
         userid: this.$store.state.user.userId,
-        type: 0
+        type: 1
       },
       total: 0,
       show: false,
       temp: {
         CODE: "",
-        ORGID: "",
         DW_CODE: "",
         MATNR: "",
         MATNX: "",
@@ -367,9 +340,9 @@ export default {
       },
       ReasonOptions: [],
       OrgOptions: [],
-      roleTree: [],
       KCDDOptions: [],
       title: "",
+      roleTree: [],
       normalizer(node) {
         return {
           id: node.orgCode,
@@ -381,7 +354,7 @@ export default {
   },
   methods: {
     getList() {
-      GetRKInfo(this.listQuery).then(response => {
+      GetCKInfo(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.fac = response.data.items;
           this.total = response.data.total;
@@ -422,61 +395,11 @@ export default {
         }
       });
     },
-    submit() {
-      this.$refs["dataform"].validate(valid => {
-        if (valid) {
-          if (this.title === "新建") {
-            CreateJJRKInfo(this.temp).then(response => {
-              if (response.data.code === 2000) {
-                this.$notify({
-                  position: "bottom-right",
-                  title: "成功",
-                  message: response.data.message,
-                  type: "success",
-                  duration: 2000
-                });
-                this.show = false;
-                this.getList();
-              } else {
-                this.$notify({
-                  position: "bottom-right",
-                  title: "失败",
-                  message: response.data.message,
-                  type: "error",
-                  duration: 2000
-                });
-              }
-            });
-          } else {
-            UpdateJJRKInfo(this.temp).then(response => {
-              if (response.data.code === 2000) {
-                this.$notify({
-                  position: "bottom-right",
-                  title: "成功",
-                  message: response.data.message,
-                  type: "success",
-                  duration: 2000
-                });
-                this.show = false;
-                this.getList();
-              } else {
-                this.$notify({
-                  position: "bottom-right",
-                  title: "失败",
-                  message: response.data.message,
-                  type: "error",
-                  duration: 2000
-                });
-              }
-            });
-          }
-        }
-      });
-    },
+
     reset() {
       this.temp = {
         CODE: "",
-        DW_CODE: null,
+        DW_CODE: "",
         MATNR: "",
         MATNX: "",
         MEINS: "",
@@ -493,56 +416,30 @@ export default {
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
         GYS: "",
-        KCDD: ""
+        KCDD: "",
+        APPROVAL_STATUS: ""
       };
     },
-    create() {
-      this.show = true;
-      this.title = "新建";
-      this.$nextTick(() => {
-        this.$refs["dataform"].clearValidate();
-      });
-      this.reset();
-    },
     update(data) {
+        this.reset();
       this.temp = Object.assign({}, data);
       this.temp.userid = this.$store.state.user.userId;
       this.show = true;
-      this.title = "修改";
+      this.title = "审批";
       this.$nextTick(() => {
         this.$refs["dataform"].clearValidate();
       });
     },
-    del(data) {
-      this.$confirm("您确定要删除此项信息吗?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(() => {
-        DelJJRKInfo(data).then(response => {
-          if (response.data.code === 2000) {
-            this.$notify({
-              position: "bottom-right",
-              title: "成功",
-              message: response.data.message,
-              type: "success",
-              duration: 2000
-            });
-            this.getList();
-          } else {
-            this.$notify({
-              position: "bottom-right",
-              title: "失败",
-              message: response.data.message,
-              type: "error",
-              duration: 2000
-            });
-          }
-        });
-      });
+    agree() {
+      this.temp.APPROVAL_STATUS = 2;
+      this.Approval();
     },
-    startProcess(data) {
-      StartProcess(data).then(response => {
+    disagree() {
+      this.temp.APPROVAL_STATUS = 3;
+      this.Approval();
+    },
+    Approval() {
+      Approval(this.temp).then(response => {
         if (response.data.code === 2000) {
           this.$notify({
             position: "bottom-right",
@@ -551,6 +448,7 @@ export default {
             type: "success",
             duration: 2000
           });
+          this.show=false;
           this.getList();
         } else {
           this.$notify({
@@ -561,62 +459,6 @@ export default {
             duration: 2000
           });
         }
-      });
-    },
-    recall(data) {
-      this.$confirm("您确定撤回此流程吗?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(() => {
-        Recall(data).then(response => {
-          if (response.data.code === 2000) {
-            this.$notify({
-              position: "bottom-right",
-              title: "成功",
-              message: response.data.message,
-              type: "success",
-              duration: 2000
-            });
-            this.getList();
-          } else {
-            this.$notify({
-              position: "bottom-right",
-              title: "失败",
-              message: response.data.message,
-              type: "error",
-              duration: 2000
-            });
-          }
-        });
-      });
-    },
-    CancelRK(data) {
-      this.$confirm("您确定ERP中是否已经录入了本入库单的信息?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(() => {
-        CancelRK(data).then(response => {
-          if (response.data.code === 2000) {
-            this.$notify({
-              position: "bottom-right",
-              title: "成功",
-              message: response.data.message,
-              type: "success",
-              duration: 2000
-            });
-            this.getList();
-          } else {
-            this.$notify({
-              position: "bottom-right",
-              title: "失败",
-              message: response.data.message,
-              type: "error",
-              duration: 2000
-            });
-          }
-        });
       });
     },
     load() {
@@ -646,15 +488,7 @@ export default {
       }
     },
     getNode(node, instanceId) {
-      this.temp.KCDD="";
-      let temp={
-        orgCode:node.orgCode
-      };
-      GetKCDDInfo(temp).then(response=>{
-        if(response.data.code===2000){
-          this.KCDDOptions=response.data.items;
-        }
-      })
+      this.temp.orgName = node.orgName;
     },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
