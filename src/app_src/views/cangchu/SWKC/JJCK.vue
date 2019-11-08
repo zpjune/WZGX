@@ -290,7 +290,7 @@ export default {
         CODE: "",
         MATNR: "",
         MATNX: "",
-        ParentCode: "JJREASON",
+        ParentCode: "JJCKREASON",
         userid: this.$store.state.user.userId,
         type: 0
       },
