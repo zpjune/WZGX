@@ -79,7 +79,7 @@
       style="margin-top:10vh;margin-left:100px;"
       width="50%"
     >
-      <el-button type="primary" style="float:right" size="mini">导出</el-button>
+      <!-- <el-button type="primary" style="float:right" size="mini">导出</el-button> -->
       <el-table
         :data="listDetail"
         :header-cell-class-name="tableRowClassName"
