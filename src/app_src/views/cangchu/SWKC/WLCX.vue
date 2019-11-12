@@ -40,10 +40,10 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="物料名称" prop="MAKTX"></el-table-column>
+          <el-table-column label="物料名称" prop="MAKTX" width="400"></el-table-column>
           <el-table-column label="物料编号" prop="MATNR"></el-table-column>
-          <!-- <el-table-column label="计量单位" prop="MEINS"></el-table-column> -->
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="存货状态" prop="ZSTATUS"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -80,6 +80,7 @@
           <el-table-column label="工厂名称" prop="WERKS_NAME"></el-table-column>
           <el-table-column label="库存地点" prop="LGORT_NAME"></el-table-column>
           <el-table-column label="库存数量" prop="GESME"></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="库存状态" prop="ZSTATUS"></el-table-column>
         </el-table>
         <el-pagination
@@ -180,7 +181,7 @@ export default {
     },
     handleCurrentChange(val) {
       this.listQuery.page = val;
-      this.GetWLDetail();
+      this.getList();
     },
     handleSizeChange1(val) {
       this.listQuery.limit = val;
