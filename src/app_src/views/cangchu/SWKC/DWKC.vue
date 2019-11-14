@@ -29,8 +29,8 @@
           style="width: 100%"
         >
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
-          <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS" ></el-table-column>
           <el-table-column label="存货状态" prop="ZSTATUS"></el-table-column>
           <el-table-column label="库存地点" prop="LGORT_NAME"></el-table-column>
         </el-table>
