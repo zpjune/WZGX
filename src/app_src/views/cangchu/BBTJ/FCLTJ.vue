@@ -34,7 +34,7 @@
         fit
         highlight-current-row
         style="width: 100%"
-        :show-summary="true"
+        :show-summary="false"
         :summary-method="getSummaries"
       >
         <!-- <el-table-column width="120px" align="center" label="时间月">
