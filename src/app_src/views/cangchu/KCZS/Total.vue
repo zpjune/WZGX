@@ -138,7 +138,7 @@ export default {
         legend: {
           orient: "vertical",
           left: "right",
-          data: ["港东供销", "港西供销", "油区供销", "港狮供销", "港骅供销"]
+          data: ["港东供销", "港西供销", "油区供销", "港狮供销", "港骅供销","物采中心","专用管分公司","本部工厂"]
         },
         series: [
           {
@@ -157,7 +157,10 @@ export default {
               { value: 0, name: "港西供销" },
               { value: 0, name: "油区供销" },
               { value: 0, name: "港狮供销" },
-              { value: 0, name: "港骅供销" }
+              { value: 0, name: "港骅供销" },
+              { value: 0, name: "物采中心" },
+              { value: 0, name: "专用管分公司" },
+              { value: 0, name: "本部工厂" }
             ],
             itemStyle: {
               emphasis: {
@@ -268,6 +271,9 @@ export default {
           arr[2]={value:res.data.items.C27G,name:"油区供销"};
           arr[3]={value:res.data.items.C279,name:"港狮供销"};
           arr[4]={value:res.data.items.C27B,name:"港骅供销"};
+          arr[5]={value:res.data.items.C274,name:"物采中心"};
+          arr[6]={value:res.data.items.C275,name:"专用管分公司"};
+          arr[7]={value:res.data.items.C27B,name:"本部工厂"};
           this.option2.series[0].data=arr;
           this.totalziji=res.data.items.TOTAL;
           this.drawline2();
