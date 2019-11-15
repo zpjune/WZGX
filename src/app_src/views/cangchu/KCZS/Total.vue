@@ -273,7 +273,7 @@ export default {
           arr[4]={value:res.data.items.C27B,name:"港骅供销"};
           arr[5]={value:res.data.items.C274,name:"物采中心"};
           arr[6]={value:res.data.items.C275,name:"专用管分公司"};
-          arr[7]={value:res.data.items.C27B,name:"本部工厂"};
+          arr[7]={value:res.data.items.C271,name:"本部工厂"};
           this.option2.series[0].data=arr;
           this.totalziji=res.data.items.TOTAL;
           this.drawline2();
