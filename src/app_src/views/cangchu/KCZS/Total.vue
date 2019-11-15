@@ -265,7 +265,7 @@ export default {
       GetKCZJ().then(res => {
         if (res.data.code === 2000) {
           //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
-          let arr=new Array(5);
+          let arr=new Array(8);
           arr[0]={value:res.data.items.C27C,name:"港东供销"};
           arr[1]={value:res.data.items.C27D,name:"港西供销"};
           arr[2]={value:res.data.items.C27G,name:"油区供销"};
