@@ -6,26 +6,26 @@
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-        <CXZGK></CXZGK>
+        <CXZGK DKCODE="09"></CXZGK>
         </div>
       </el-collapse-item>
       <el-collapse-item name="2">
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
         </template>
-        <detailJYWZ></detailJYWZ>
+        <detailJYWZ DKCODE="09"></detailJYWZ>
       </el-collapse-item>
       <el-collapse-item name="3">
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ></detailZDWZ>
+        <detailZDWZ DKCODE="09"></detailZDWZ>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK></detailZDWZCRK>
+        <detailZDWZCRK DKCODE="09"></detailZDWZCRK>
       </el-collapse-item>
       <el-collapse-item name="5">
         <template slot="title">
@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       activeCangku: "1",
-      FacCode:"05"
+      FacCode:"09"
     };
   },
   components: {
