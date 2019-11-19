@@ -3,10 +3,13 @@
   <div id="JYWZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="仓库号" style="width:95%;" size="mini" clearable></el-input>
+        <el-input placeholder="仓库号" style="width:95%;" size="mini" clearable v-model="listQuery.FacCode"></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini">查询</el-button>
+        <el-input placeholder="物料码" style="width:95%;" size="mini" clearable v-model="listQuery.MATNR"></el-input>
+      </el-col>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -21,15 +24,15 @@
           style="width: 100%"
         >
           <el-table-column align="center" label="全部存货及物资按期限分类">
-            <el-table-column prop="LGNUM" align="center" label="仓库号"></el-table-column>
-            <el-table-column prop="MATNR" align="center" label="物料编码"></el-table-column>
+            <el-table-column prop="CKH" align="center" label="仓库号"></el-table-column>
+            <el-table-column prop="MATNR" align="center" label="物料编码" width="150"></el-table-column>
             <el-table-column align="center" label="1年以内(含一年">
-              <el-table-column prop="GESMEUO" align="center" label="账面余额"></el-table-column>
+              <el-table-column  align="center" label="账面余额" prop="BENNIAN"></el-table-column>
               <el-table-column align="center" label="跌价准备"></el-table-column>
             </el-table-column>
             <el-table-column align="center" label="1-3年(含3年)">
               <el-table-column align="center" label="小计">
-                <el-table-column prop="GESMEOT" align="center" label="账面余额"></el-table-column>
+                <el-table-column prop="SANNIAN" align="center" label="账面余额"></el-table-column>
                 <el-table-column align="center" label="跌价准备"></el-table-column>
               </el-table-column>
               <el-table-column align="center" label="其中：2-3年无动态">
@@ -39,7 +42,7 @@
             </el-table-column>
             <el-table-column align="center" label="3年以上">
               <el-table-column align="center" label="小计">
-                <el-table-column prop="GESMETU" align="center" label="账面余额"></el-table-column>
+                <el-table-column prop="SANNIANYISHANG" align="center" label="账面余额"></el-table-column>
                 <el-table-column align="center" label="跌价准备"></el-table-column>
               </el-table-column>
               <el-table-column align="center" label="其中：无动态">
@@ -57,7 +60,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="1"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="1"
+          :total="total"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -71,7 +74,7 @@ import panel from "@/frame_src/components/TreeList/panel.vue";
 import { getToken } from "@/frame_src/utils/auth";
 import { parseTime1 } from "@/frame_src/utils/index.js";
 import { NumFormat } from "@/frame_src/filters/index.js";
-
+import { GetJYWZTJInfo } from "@/app_src/api/cangchu/BBTJ/JYWZ";
 export default {
   directives: {
     waves
@@ -101,154 +104,15 @@ export default {
     
 
       list: [
-        {
-          LGNUM: "仓库一",
-          MATNR: "10001506386",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库一",
-          MATNR: "11002298694",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库二",
-          MATNR: "11001999718",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库一",
-          MATNR: "11000857869",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库二",
-          MATNR: "10001852506",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库二",
-          MATNR: "11001999718",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库一",
-          MATNR: "11000857869",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-        {
-          LGNUM: "仓库二",
-          MATNR: "10001852506",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-
-
-
-  {
-          LGNUM: "仓库二",
-          MATNR: "10001852506",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-          {
-          LGNUM: "仓库二",
-          MATNR: "10001852506",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-          {
-          LGNUM: "仓库一",
-          MATNR: "20002264284",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-          {
-          LGNUM: "仓库二",
-          MATNR: "10001852506",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-          {
-          LGNUM: "仓库一",
-          MATNR: "11004640852",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-          {
-          LGNUM: "仓库二",
-          MATNR: "11001889507",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        },
-          {
-          LGNUM: "仓库一",
-          MATNR: "11002334581",
-          GESMEUO: 130,
-          GESMEOT: 22,
-          GESMEWT: 11,
-          GESMETU: 9,
-          GESMENS: 5
-        }
-
       ],
 
-      total: null,
+      total: 0,
       listLoading: true,
       listQuery: {
         page: 1,
         limit: 10,
-        SJD: "",
-        LGNUM: ""
+        FacCode:"",
+        MATNR:""
         // S_OrgCode: this.$store.state.user.orgCode,
         // S_WorkDate: this.$store.state.user.sysTime
       },
@@ -268,23 +132,22 @@ export default {
       return "";
     },
     getList() {
-      //          this.listLoading = true;
-      //   getOneBonusList(this.listQuery).then(response => {
-      //     if (response.data.code === 2000) {
-      //       this.list = response.data.items;
-      this.total = 20;
-      this.listLoading = false;
-      //     } else {
-      //       this.listLoading = false;
-      //       this.$notify({
-      //         position: "bottom-right",
-      //         title: "失败",
-      //         message: response.data.message,
-      //         type: "error",
-      //         duration: 2000
-      //       });
-      //     }
-      //   });
+      GetJYWZTJInfo(this.listQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.list = response.data.items;
+          this.total = response.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
     },
 
     handleSizeChange(val) {
