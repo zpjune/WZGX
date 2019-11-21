@@ -20,7 +20,7 @@
         ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="getlist">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
         <!-- <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button> -->
       </el-col>
     </el-row>
@@ -105,13 +105,13 @@ export default {
     },
     handleSizeChange(val) {
       this.listQuery.limit = val;
-      this.getlist();
+      this.getList();
     },
     handleCurrentChange(val) {
       this.listQuery.page = val;
-      this.getlist();
+      this.getList();
     },
-    getlist() {
+    getList() {
       this.listQuery.DKCODE = this.DKCODE;
       this.listloading = true;
       GetFK_JYWZ(this.listQuery).then(res => {
