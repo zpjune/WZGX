@@ -43,7 +43,7 @@
           shape="rect"
           coords="474, 200, 617, 230"
           title="1号活动料棚"
-          @click="OpenDialog('ZYK',1.1)"
+          @click="OpenDialog('ZYK','01')"
         />
         <area shape="rect" coords="473, 148, 617, 179" title="2号活动料棚" @click="OpenDialog('ZYK','02')" />
         <area shape="rect" coords="473, 44, 509, 75" title="5号库" @click="OpenDialog('ZYK','05')" />
@@ -344,7 +344,7 @@
         />
       </div>
     </div>
-    <div >
+    <div  name="标识图片">
        <img
         id="ZYCPIC"
         src="../../../img/库房2.png"
@@ -393,9 +393,9 @@ export default {
     getList() {
       GetFacStatus(this.listQuery).then(response => {
         if (response.data.code === 2000) {
-          this.StatusStr = response.data.items;
-          
+          this.StatusStr = response.data.items;       
         }
+        this.setStyle(this.width);
       });
     },
     OpenDialog(type, val) {
