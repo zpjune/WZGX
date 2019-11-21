@@ -27,7 +27,7 @@
       <area shape="rect" coords="545, 304, 581, 334" title="13号库" @click="OpenDialog('ZYK',13)" />
       <area shape="rect" coords="583, 304, 619, 334" title="14号库" @click="OpenDialog('ZYK',14)" />
     </map>-->
-
+    
     <div class="box" id="box">
       <img
         id="ZYCPIC"
@@ -38,24 +38,24 @@
         class="ZYCPIC"
       />
       <map name="planetmap" id="planetmap">
-        <area shape="rect" coords="280, 43, 316, 76" title="1号库" @click="OpenDialog('ZYK',1)" />
+        <area shape="rect" coords="280, 43, 316, 76" title="1号库" @click="OpenDialog('ZYK','01')" />
         <area
           shape="rect"
           coords="474, 200, 617, 230"
           title="1号活动料棚"
           @click="OpenDialog('ZYK',1.1)"
         />
-        <area shape="rect" coords="473, 148, 617, 179" title="2号活动料棚" @click="OpenDialog('ZYK',2)" />
-        <area shape="rect" coords="473, 44, 509, 75" title="5号库" @click="OpenDialog('ZYK',5)" />
-        <area shape="rect" coords="511, 44, 547, 75" title="6号库" @click="OpenDialog('ZYK',6)" />
-        <area shape="rect" coords="549, 44, 580, 75" title="7号库" @click="OpenDialog('ZYK',7)" />
-        <area shape="rect" coords="582, 44, 616, 75" title="8号库" @click="OpenDialog('ZYK',8)" />
-        <area shape="rect" coords="352, 304, 387, 334" title="9号库" @click="OpenDialog('ZYK',9)" />
-        <area shape="rect" coords="389, 304, 424, 334" title="10号库" @click="OpenDialog('ZYK',10)" />
-        <area shape="rect" coords="473, 304, 507, 334" title="11号库" @click="OpenDialog('ZYK',11)" />
-        <area shape="rect" coords="509, 304, 543, 334" title="12号库" @click="OpenDialog('ZYK',12)" />
-        <area shape="rect" coords="545, 304, 581, 334" title="13号库" @click="OpenDialog('ZYK',13)" />
-        <area shape="rect" coords="583, 304, 619, 334" title="14号库" @click="OpenDialog('ZYK',14)" />
+        <area shape="rect" coords="473, 148, 617, 179" title="2号活动料棚" @click="OpenDialog('ZYK','02')" />
+        <area shape="rect" coords="473, 44, 509, 75" title="5号库" @click="OpenDialog('ZYK','05')" />
+        <area shape="rect" coords="511, 44, 547, 75" title="6号库" @click="OpenDialog('ZYK','06')" />
+        <area shape="rect" coords="549, 44, 580, 75" title="7号库" @click="OpenDialog('ZYK','07')" />
+        <area shape="rect" coords="582, 44, 616, 75" title="8号库" @click="OpenDialog('ZYK','08')" />
+        <area shape="rect" coords="352, 304, 387, 334" title="9号库" @click="OpenDialog('ZYK','09')" />
+        <area shape="rect" coords="389, 304, 424, 334" title="10号库" @click="OpenDialog('ZYK','10')" />
+        <area shape="rect" coords="473, 304, 507, 334" title="11号库" @click="OpenDialog('ZYK','11')" />
+        <area shape="rect" coords="509, 304, 543, 334" title="12号库" @click="OpenDialog('ZYK','12')" />
+        <area shape="rect" coords="545, 304, 581, 334" title="13号库" @click="OpenDialog('ZYK','13')" />
+        <area shape="rect" coords="583, 304, 619, 334" title="14号库" @click="OpenDialog('ZYK','14')" />
       </map>
       <div name="1号区域">
         <img
@@ -344,7 +344,21 @@
         />
       </div>
     </div>
-    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog"></kucunzhanshidetail>
+    <div >
+       <img
+        id="ZYCPIC"
+        src="../../../img/库房2.png"
+        border="0"
+        class="kufang"
+      />库房
+      <img
+        id="ZYCPIC"
+        src="../../../img/料棚.png"
+        border="0"
+        class="liaopeng"
+      />料棚
+    </div>
+    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog" ref="kucunzhanshidetail" ></kucunzhanshidetail>
   </div>
 </template>
 
@@ -362,6 +376,7 @@ export default {
       listQuery: {
         FacCode: this.FacCode
       },
+      statusCode:"",
       StatusStr: ""
     };
   },
@@ -384,7 +399,11 @@ export default {
       });
     },
     OpenDialog(type, val) {
+      
+      this.statusCode=this.FacCode+val;
       this.kcmxDialog = true;
+      this.$refs.kucunzhanshidetail.getValue(this.statusCode);
+      this.$refs.kucunzhanshidetail.getList();
       //console.log(type + val);
     },
     closeDialog(val) {
@@ -480,6 +499,15 @@ export default {
     //   width: 12px;
     //   height: 12px;
     // }
+  }
+  .kufang{
+    width: 55px;
+    height: 60px;
+  }
+    .liaopeng{
+    width: 70px;
+    height: 60px;
+    margin-left: 50px;
   }
 }
 </style>

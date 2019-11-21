@@ -52,3 +52,10 @@ export function GetDCKInfo(query) {//总库存 资金查询
       params:query
     })
   }
+  export function GetStatusDetail(query) {//平面图状态查询
+    return request({
+      url: '/ZXK/GetStatusDetail',
+      method: 'get',
+      params:query
+    })
+  }
