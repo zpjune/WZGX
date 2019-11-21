@@ -37,17 +37,17 @@
           highlight-current-row
           style="width: 100%"
         >
-         <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
+          <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
           <el-table-column label="工厂名称" prop="WERKS_NAME"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR"></el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
-          <el-table-column label="存货状态" >
-               <template slot-scope="scope" >
-                  <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
-               </template>
+          <el-table-column label="存货状态">
+            <template slot-scope="scope">
+              <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
+            </template>
           </el-table-column>
         </el-table>
         <el-pagination
@@ -67,12 +67,12 @@
 </template>
 
 <script>
-import {GetFK_JYWZ} from "@/app_src/api/cangchu/KCZS/ZXK";      
+import { GetFK_JYWZ } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
   data() {
     return {
-      listloading: false,
+      listloading: true,
       list: [],
       total: 0,
       listQuery: {
@@ -84,17 +84,17 @@ export default {
       }
     };
   },
-  filters:{
-    fZSTATUS:function(val){
-      if(val==='03'){
-        return '质检';
+  filters: {
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
       }
-      if(val==='04'){
-        return '上架';
+      if (val === "04") {
+        return "上架";
       }
     }
   },
-  props:["DKCODE"],
+  props: ["DKCODE"],
   methods: {
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
@@ -103,26 +103,37 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-     handleSizeChange(val) {
-      this.listQuery.limit = val
-      this.getlist()
+    handleSizeChange(val) {
+      this.listQuery.limit = val;
+      this.getlist();
     },
     handleCurrentChange(val) {
-      this.listQuery.page = val
-      this.getlist()
+      this.listQuery.page = val;
+      this.getlist();
     },
     getlist() {
-      this.listQuery.DKCODE=this.DKCODE;
-      GetFK_JYWZ(this.listQuery).then(res=>{
-          if(res.data.code===2000){
-            this.list=res.data.items;
-            this.total=res.data.total;
-          }
+      this.listQuery.DKCODE = this.DKCODE;
+      this.listloading = true;
+      GetFK_JYWZ(this.listQuery).then(res => {
+        if (res.data.code === 2000) {
+          this.list = res.data.items;
+          this.total = res.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
       });
     }
   },
   mounted() {
-    this.getlist();
+    //this.getlist();
   }
 };
 </script>

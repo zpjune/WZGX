@@ -1,7 +1,7 @@
 <template>
   <div id="TotalZDWZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
-       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
           placeholder="请输入工厂名称"
           style="width:95%;"
@@ -46,7 +46,7 @@
           highlight-current-row
           style="width: 100%"
         >
-      <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
+          <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
           <el-table-column label="工厂名称" prop="WERKS_NAME"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
           <el-table-column label="物料编码" :show-overflow-tooltip="true" prop="MATNR"></el-table-column>
@@ -73,25 +73,25 @@
 </template>
 
 <script>
-import {GetZDWZCB} from "@/app_src/api/cangchu/KCZS/ZXK";   
+import { GetZDWZCB } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
   data() {
     return {
-      listloading: false,
-       list: [],
-      total:0,
+      listloading: true,
+      list: [],
+      total: 0,
       listQuery: {
         page: 1,
         limit: 10,
-         DKCODE: "",
+        DKCODE: "",
         WERKS_NAME: "",
         MATNR: "",
         MATKL: ""
-      },
+      }
     };
   },
-  props:["DKCODE"],
+  props: ["DKCODE"],
   methods: {
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
@@ -100,31 +100,42 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-   btnQuert(){
-      this.listQuery.limit=10;
-      this.listQuery.page=1;
+    btnQuert() {
+      this.listQuery.limit = 10;
+      this.listQuery.page = 1;
       this.getList();
     },
     getList() {
-       this.listQuery.DKCODE=this.DKCODE;
+      this.listQuery.DKCODE = this.DKCODE;
+      this.listloading = true;
       GetZDWZCB(this.listQuery).then(res => {
         if (res.data.code === 2000) {
-           this.list=res.data.items;
-           this.total=res.data.total;
+          this.list = res.data.items;
+          this.total = res.data.total;
+          this.listloading = false;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
         }
       });
     },
     handleSizeChange(val) {
-      this.listQuery.limit = val
-      this.getList()
+      this.listQuery.limit = val;
+      this.getList();
     },
     handleCurrentChange(val) {
-      this.listQuery.page = val
-      this.getList()
+      this.listQuery.page = val;
+      this.getList();
     }
   },
-  mounted(){
-    this.getList();
+  mounted() {
+    //this.getList();
   }
 };
 </script>

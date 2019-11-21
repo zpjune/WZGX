@@ -1,31 +1,31 @@
 <template>
   <div id="ZXKDetail" class="app-container calendar-list-container">
-    <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px"  @change="DRKClick">
+    <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px"  @change="change">
       <el-collapse-item name="1">
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-          <ZXK></ZXK>
+          <ZXK ref="ZXK"></ZXK>
         </div>
       </el-collapse-item>
       <el-collapse-item name="2">
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
         </template>
-        <detailJYWZ DKCODE="02"></detailJYWZ>
+        <detailJYWZ DKCODE="02" ref="detailJYWZ"></detailJYWZ>
       </el-collapse-item>
       <el-collapse-item name="3">
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ DKCODE="02"></detailZDWZ>
+        <detailZDWZ DKCODE="02" ref="detailZDWZ"></detailZDWZ>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold" >重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK DKCODE="02"></detailZDWZCRK>
+        <detailZDWZCRK DKCODE="02" ref="detailZDWZCRK"></detailZDWZCRK>
       </el-collapse-item>
       <el-collapse-item name="5" @change="DRKClick">
         <template slot="title">
@@ -57,6 +57,7 @@ export default {
       activeCangku: "1",
       options:[],
       FacCode:"02",
+      OldArr: ["1"] //用于记录当前激活的面板名称,1号面板默认打开
     };
   },
   components: {
@@ -72,6 +73,39 @@ export default {
     },
     DCKClick() {
       console.log(2);
+    },
+    change(val) {
+      let arr = new Set(this.OldArr);
+      let arr1 = new Set(val);
+      let diff = new Set([...arr1].filter(x => !arr.has(x)));
+      this.OldArr = [...val];
+      diff.forEach(item => {
+        this.getData(item);
+      });
+    },
+    getData(val) {
+      switch (val) {
+        case "1":
+          this.$refs.ZXK.getList();
+          break;
+        case "2":
+          this.$refs.detailJYWZ.getlist();
+          break;
+        case "3":
+          this.$refs.detailZDWZ.getList();
+          break;
+        case "4":
+          this.$refs.detailZDWZCRK.getList();
+          break;
+        case "5":
+          this.$refs.detailDRK.getList();
+          break;
+        case "6":
+          this.$refs.detailDCK.getList();
+          break;
+        default:
+          break;
+      }
     }
   },
   mounted() {}

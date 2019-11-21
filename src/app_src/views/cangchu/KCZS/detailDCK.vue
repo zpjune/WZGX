@@ -123,7 +123,7 @@ export default {
   props: ["FacCode"],
   data() {
     return {
-      listloading: false,
+      listloading: true,
       fac: [],
       listQuery: {
         limit: 10,
@@ -137,6 +137,7 @@ export default {
   },
   methods: {
     getList() {
+      this.listloading=true;
       GetDCKInfo(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.fac = response.data.items;
@@ -171,7 +172,7 @@ export default {
     }
   },
   mounted() {
-    this.getList();
+    //this.getList();
   },
   filters: {
     changeNum(val) {

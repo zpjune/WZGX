@@ -20,7 +20,7 @@
     </el-row>
     <el-row>
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-       <el-table
+        <el-table
           size="mini"
           :data="list"
           :header-cell-class-name="tableRowClassName"
@@ -121,35 +121,35 @@
 </template>
 
 <script>
-import { getZDWZCRK,getZDWZCRKDetail } from "@/app_src/api/cangchu/KCZS/ZXK";
+import { getZDWZCRK, getZDWZCRKDetail } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
   data() {
     return {
-      listloading: false,
+      listloading: true,
       quxiangDialogVisible: false,
-      month:"",
+      month: "",
       listQuery: {
         page: 1,
         limit: 10,
-         DKCODE: "",
+        DKCODE: "",
         yearmonth: "",
         MATNR: ""
       },
       list: [],
-      total:0,
+      total: 0,
       listDetail: [],
-      totalDetail:0,
-      listQueryDetail:{
-        MATNR:"",
-        MONTH:"",
-         DKCODE: "",
+      totalDetail: 0,
+      listQueryDetail: {
+        MATNR: "",
+        MONTH: "",
+        DKCODE: "",
         page: 1,
         limit: 10
       }
     };
   },
-  props:["DKCODE"],
+  props: ["DKCODE"],
   methods: {
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
@@ -158,61 +158,76 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-     getList(){
-      this.listQuery.DKCODE=this.DKCODE;
-      if(this.month.getMonth()<=8){
-        this.listQuery.yearmonth=this.month.getFullYear().toString()+'0'+(this.month.getMonth()+1).toString();
+    getList() {
+      this.listloading = true;
+      this.listQuery.DKCODE = this.DKCODE;
+      if (this.month.getMonth() <= 8) {
+        this.listQuery.yearmonth =
+          this.month.getFullYear().toString() +
+          "0" +
+          (this.month.getMonth() + 1).toString();
+      } else {
+        this.listQuery.yearmonth =
+          this.month.getFullYear().toString() +
+          (this.month.getMonth() + 1).toString();
       }
-      else{
-        this.listQuery.yearmonth=this.month.getFullYear().toString()+(this.month.getMonth()+1).toString();
-      }
-      getZDWZCRK(this.listQuery).then(res=>{
-           if (res.data.code === 2000) {
-           this.list=res.data.items;
-           this.total=res.data.total;
+      getZDWZCRK(this.listQuery).then(res => {
+        if (res.data.code === 2000) {
+          this.listloading = false;
+          this.list = res.data.items;
+          this.total = res.data.total;
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
         }
       });
     },
     handleSizeChange(val) {
-      this.listQuery.limit = val
-      this.getList()
-    },
-    handleCurrentChange(val) {
-      this.listQuery.page = val
-      this.getList()
-    },
-    btnQuery(){
-      this.listQuery.limit=10;
-      this.listQuery.page=1;
+      this.listQuery.limit = val;
       this.getList();
     },
-    getListDetail(){
-      this.listQueryDetail.DKCODE=this.DKCODE;
-       getZDWZCRKDetail(this.listQueryDetail).then(res=>{
-           if (res.data.code === 2000) {
-           this.listDetail=res.data.items;
-           this.totalDetail=res.data.total;
+    handleCurrentChange(val) {
+      this.listQuery.page = val;
+      this.getList();
+    },
+    btnQuery() {
+      this.listQuery.limit = 10;
+      this.listQuery.page = 1;
+      this.getList();
+    },
+    getListDetail() {
+      this.listQueryDetail.DKCODE = this.DKCODE;
+      getZDWZCRKDetail(this.listQueryDetail).then(res => {
+        if (res.data.code === 2000) {
+          this.listDetail = res.data.items;
+          this.totalDetail = res.data.total;
         }
       });
     },
-      handleSizeChangeDetail(val) {
-      this.listQueryDetail.limit = val
-      this.getListDetail()
+    handleSizeChangeDetail(val) {
+      this.listQueryDetail.limit = val;
+      this.getListDetail();
     },
     handleCurrentChangeDetail(val) {
-      this.listQueryDetail.page = val
-      this.getListDetail()
+      this.listQueryDetail.page = val;
+      this.getListDetail();
     },
     DetailClick(row) {
-      this.listQueryDetail.MATNR=row.WL_CODE;
-      this.listQueryDetail.MONTH=row.MONTH;
+      this.listQueryDetail.MATNR = row.WL_CODE;
+      this.listQueryDetail.MONTH = row.MONTH;
       this.getListDetail();
       this.quxiangDialogVisible = true;
-    },
+    }
   },
-  created(){
-    this.month=new Date();
-    this.getList();
+  created() {
+    this.month = new Date();
+    //this.getList();
   }
 };
 </script>

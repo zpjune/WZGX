@@ -655,7 +655,7 @@ export default {
     return {
       kcmxDialog: false,
       width: 0,
-      oldwidth: 0
+      oldwidth: 0,
     };
   },
   watch: {
