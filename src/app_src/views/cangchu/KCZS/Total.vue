@@ -375,7 +375,7 @@ export default {
           this.$refs.TotalZDWZDetail.getList();
           break;
         case "4":
-          this.$refs.detailZDWZCRK.getList();
+          this.$refs.TotalZDWZCRK.getList();
           break;
         case "5":
           this.$refs.TotalJYWZ.getList();
