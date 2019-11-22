@@ -1,43 +1,43 @@
 <template>
   <div id="GDQCKDetail" class="app-container calendar-list-container">
-    <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px">
+    <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px" @change="change">
       <el-collapse-item name="1">
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-        <GS></GS>
+        <GS ref="GS"></GS>
         </div>
       </el-collapse-item>
       <el-collapse-item name="2">
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
         </template>
-        <detailJYWZ DKCODE="08"></detailJYWZ>
+        <detailJYWZ DKCODE="08" ref="detailJYWZ"></detailJYWZ>
       </el-collapse-item>
       <el-collapse-item name="3">
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ DKCODE="08"></detailZDWZ>
+        <detailZDWZ DKCODE="08" ref="detailZDWZ"></detailZDWZ>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
         </template>
-        <detailZDWZCRK DKCODE="08"></detailZDWZCRK>
+        <detailZDWZCRK DKCODE="08" ref="detailZDWZCRK"></detailZDWZCRK>
       </el-collapse-item>   
       <el-collapse-item name="5">
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
         </template>
-        <detailDRK :FacCode="FacCode"></detailDRK>
+        <detailDRK :FacCode="FacCode" ref="detailDRK"></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="6">
         <template slot="title">
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">待出库统计</i>
         </template>
-        <detailDCK :FacCode="FacCode"></detailDCK>
+        <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -56,6 +56,7 @@ export default {
     return {
       activeCangku: "1",
       FacCode:"08",
+      OldArr:["1"],
     };
   },
   components: {
@@ -66,7 +67,41 @@ export default {
     detailDRK,
     detailDCK
   },
-  methods: {},
+  methods: {
+    change(val) {
+      let arr = new Set(this.OldArr);
+      let arr1 = new Set(val);
+      let diff = new Set([...arr1].filter(x => !arr.has(x)));
+      this.OldArr = [...val];
+      diff.forEach(item => {
+        this.getData(item);
+      });
+    },
+    getData(val) {
+      switch (val) {
+        case "1":
+          this.$refs.GS.getList();
+          break;
+        case "2":
+          this.$refs.detailJYWZ.getList();
+          break;
+        case "3":
+          this.$refs.detailZDWZ.getList();
+          break;
+        case "4":
+          this.$refs.detailZDWZCRK.getList();
+          break;
+        case "5":
+          this.$refs.detailDRK.getList();
+          break;
+        case "6":
+          this.$refs.detailDCK.getList();
+          break;
+        default:
+          break;
+      }
+    }
+  },
   mounted() {}
 };
 </script>
