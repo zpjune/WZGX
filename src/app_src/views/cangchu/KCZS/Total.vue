@@ -1,6 +1,6 @@
 <template>
   <div id="total" class="app-container calendar-list-container">
-    <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px">
+    <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px" @change="change">
       <el-collapse-item name="1">
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">库存资金统计</i>
@@ -43,25 +43,25 @@
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">实物库存统计</i>
         </template>
-        <TotalSWKC></TotalSWKC>
+        <TotalSWKC ref="TotalSWKC"></TotalSWKC>
       </el-collapse-item>
       <el-collapse-item name="3">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <TotalZDWZDetail></TotalZDWZDetail>
+        <TotalZDWZDetail ref="TotalZDWZDetail"></TotalZDWZDetail>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
         </template>
-        <TotalZDWZCRK></TotalZDWZCRK>
+        <TotalZDWZCRK ref="TotalZDWZCRK"></TotalZDWZCRK>
       </el-collapse-item>
       <el-collapse-item name="5">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">积压物资统计</i>
         </template>
-        <TotalJYWZ></TotalJYWZ>
+        <TotalJYWZ ref="TotalJYWZ"></TotalJYWZ>
       </el-collapse-item>
       <el-collapse-item name="6">
         <template slot="title">
@@ -89,13 +89,14 @@
           @listenToChildEvent="closeDialog"
           :pmonth="crklmonth"
           :pyear="crklyear"
+          ref="TotalCRKdetail"
         ></TotalCRKdetail>
       </el-collapse-item>
       <el-collapse-item name="8">
         <template slot="title">
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">保管员工作量统计</i>
         </template>
-        <TotalBGYGZL></TotalBGYGZL>
+        <TotalBGYGZL ref="TotalBGYGZL"></TotalBGYGZL>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -109,7 +110,7 @@ import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
 import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
 import CountTo from "vue-count-to";
-import { GetKCZJ ,GetCRKJE} from "@/app_src/api/cangchu/KCZS/Total";
+import { GetKCZJ, GetCRKJE } from "@/app_src/api/cangchu/KCZS/Total";
 export default {
   name: "total",
   components: {
@@ -124,7 +125,8 @@ export default {
   data() {
     return {
       activeCangku: "1",
-      totalziji:0,
+      totalziji: 0,
+      OldArr: ["1"],
       option2: {
         title: {
           text: "各单位库存资金",
@@ -138,7 +140,16 @@ export default {
         legend: {
           orient: "vertical",
           left: "right",
-          data: ["港东供销", "港西供销", "油区供销", "港狮供销", "港骅供销","物采中心","专用管分公司","本部工厂"]
+          data: [
+            "港东供销",
+            "港西供销",
+            "油区供销",
+            "港狮供销",
+            "港骅供销",
+            "物采中心",
+            "专用管分公司",
+            "本部工厂"
+          ]
         },
         series: [
           {
@@ -240,16 +251,15 @@ export default {
           //   name: "出库",
           //   type: "bar",
           //   data: [
-             
           //   ]
           // }
         ]
       },
       crkDialog: false, //出入库详情 弹窗
       crkDetailTitle: "",
-      dataYear: "" ,//出入库查询日期选择
-      crklmonth:"",
-      crklyear:""
+      dataYear: "", //出入库查询日期选择
+      crklmonth: "",
+      crklyear: ""
     };
   },
   methods: {
@@ -265,49 +275,53 @@ export default {
       GetKCZJ().then(res => {
         if (res.data.code === 2000) {
           //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
-          let arr=new Array(8);
-          arr[0]={value:res.data.items.C27C,name:"港东供销"};
-          arr[1]={value:res.data.items.C27D,name:"港西供销"};
-          arr[2]={value:res.data.items.C27G,name:"油区供销"};
-          arr[3]={value:res.data.items.C279,name:"港狮供销"};
-          arr[4]={value:res.data.items.C27B,name:"港骅供销"};
-          arr[5]={value:res.data.items.C274,name:"物采中心"};
-          arr[6]={value:res.data.items.C275,name:"专用管分公司"};
-          arr[7]={value:res.data.items.C271,name:"本部工厂"};
-          this.option2.series[0].data=arr;
-          this.totalziji=res.data.items.TOTAL;
+          let arr = new Array(8);
+          arr[0] = { value: res.data.items.C27C, name: "港东供销" };
+          arr[1] = { value: res.data.items.C27D, name: "港西供销" };
+          arr[2] = { value: res.data.items.C27G, name: "油区供销" };
+          arr[3] = { value: res.data.items.C279, name: "港狮供销" };
+          arr[4] = { value: res.data.items.C27B, name: "港骅供销" };
+          arr[5] = { value: res.data.items.C274, name: "物采中心" };
+          arr[6] = { value: res.data.items.C275, name: "专用管分公司" };
+          arr[7] = { value: res.data.items.C271, name: "本部工厂" };
+          this.option2.series[0].data = arr;
+          this.totalziji = res.data.items.TOTAL;
           this.drawline2();
         }
       });
     },
-    GetCRKJE(){
-      let queryparam={"year":this.dataYear}
-      GetCRKJE(queryparam).then(res=>{
-          if (res.data.code === 2000) {
-            let arrCKJE=new Array();
-            let arrRKJE=new Array();
-            for (let index = 1; index < 13; index++) {
-               let ckje=0;
-               let rkje=0;
-               res.data.items[0].forEach(item => {//有的月份没有出入库金额，所以要补0
-                 if(parseInt(item.MONTH)===index){
-                    ckje=item.JE;
-                    return;
-                 }
+    GetCRKJE() {
+      let queryparam = { year: this.dataYear };
+      GetCRKJE(queryparam).then(res => {
+        if (res.data.code === 2000) {
+          let arrCKJE = new Array();
+          let arrRKJE = new Array();
+          for (let index = 1; index < 13; index++) {
+            let ckje = 0;
+            let rkje = 0;
+            res.data.items[0].forEach(item => {
+              //有的月份没有出入库金额，所以要补0
+              if (parseInt(item.MONTH) === index) {
+                ckje = item.JE;
+                return;
+              }
             });
             arrCKJE.push(ckje);
 
             res.data.items[1].forEach(item => {
-              if(parseInt(item.MONTH)===index){
-                    rkje=item.JE;
-                    return;
-                 }
+              if (parseInt(item.MONTH) === index) {
+                rkje = item.JE;
+                return;
+              }
             });
             arrRKJE.push(rkje);
-            }
-            this.optioncrk.series=[{name:"入库",type:"bar",data:arrRKJE},{name:"出库",type:"bar",data:arrCKJE}];
-            this.drawlineCRK();
           }
+          this.optioncrk.series = [
+            { name: "入库", type: "bar", data: arrRKJE },
+            { name: "出库", type: "bar", data: arrCKJE }
+          ];
+          this.drawlineCRK();
+        }
       });
     },
     drawlineCRK() {
@@ -318,8 +332,8 @@ export default {
       mycharts.on("click", function(param) {
         _this.crkDetailTitle = param.dataIndex + 1 + "月份出入库明细";
         //param.dataIndex 0开始 第几组柱状图 param.seriesIndex 0开始 每组里的第几个柱子 param.seriesName 每个柱子的名字
-         _this.crklyear=_this.dataYear;
-         _this.crklmonth=param.dataIndex+1;
+        _this.crklyear = _this.dataYear;
+        _this.crklmonth = param.dataIndex + 1;
         _this.openDialog();
       });
     },
@@ -330,18 +344,54 @@ export default {
       this.crkDialog = true;
     },
     handleFlush() {
-      if(this.dataYear.toString().length>4){//初始化时是字符串格式，当选择日期的时候是date格式，如果不是初始化刷新需要转成字符串
-         this.dataYear=this.dataYear.getFullYear().toString();
+      if (this.dataYear.toString().length > 4) {
+        //初始化时是字符串格式，当选择日期的时候是date格式，如果不是初始化刷新需要转成字符串
+        this.dataYear = this.dataYear.getFullYear().toString();
       }
       this.GetCRKJE();
     },
     getTime() {
       let date = new Date();
       this.dataYear = date.getFullYear().toString();
+    },
+    change(val) {
+      let arr = new Set(this.OldArr);
+      let arr1 = new Set(val);
+      let diff = new Set([...arr1].filter(x => !arr.has(x)));
+      this.OldArr = [...val];
+      diff.forEach(item => {
+        this.getData(item);
+      });
+    },
+    getData(val) {
+      switch (val) {
+        case "1":
+          //this.$refs.ZYGFGS.getList();
+          break;
+        case "2":
+          this.$refs.TotalSWKC.getList();
+          break;
+        case "3":
+          this.$refs.TotalZDWZDetail.getList();
+          break;
+        case "4":
+          this.$refs.detailZDWZCRK.getList();
+          break;
+        case "5":
+          this.$refs.TotalJYWZ.getList();
+          break;
+        case "6":
+          //this.$refs.TotalCRKdetail.getList();
+          break;
+        case "8":
+          this.$refs.TotalBGYGZL.getList();
+          break;
+        default:
+          break;
+      }
     }
   },
-  created(){
-  },
+  created() {},
   mounted() {
     this.getTime();
     this.getKCZJ();

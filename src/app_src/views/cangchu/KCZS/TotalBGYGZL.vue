@@ -259,7 +259,7 @@ export default {
   },
   created(){
     this.month=new Date();
-    this.getList();
+    //this.getList();
   }
 };
 </script>
