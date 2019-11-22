@@ -24,9 +24,22 @@
       >
         <el-table-column label="状态" width="70" align="center" prop="ZT">
           <template slot-scope="scope">
-            <img v-if="scope.row.ZSTATUS==0" src="../../img/blue.jpg" style="width:20px;height:15px;" />
-            <img v-if="scope.row.ZSTATUS=='04'" src="../../img/red.jpg" style="width:20px;height:15px;" title="积压" />
-            <img v-if="scope.row.ZSTATUS==2" src="../../img/yellow.jpg" style="width:20px;height:15px;" />
+            <img
+              v-if="scope.row.ZSTATUS==0"
+              src="../../img/blue.jpg"
+              style="width:20px;height:15px;"
+            />
+            <img
+              v-if="scope.row.ZSTATUS=='04'"
+              src="../../img/red.jpg"
+              style="width:20px;height:15px;"
+              title="积压"
+            />
+            <img
+              v-if="scope.row.ZSTATUS==2"
+              src="../../img/yellow.jpg"
+              style="width:20px;height:15px;"
+            />
           </template>
         </el-table-column>
         <el-table-column label="工厂编号" prop="WERKS" width="80"></el-table-column>
@@ -84,9 +97,9 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        LGPLA:"",
+        LGPLA: ""
       },
-      listLoading: false
+      listLoading: true
     };
   },
   methods: {
@@ -102,16 +115,18 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
-    getValue(val){
-      this.listQuery.LGPLA=val;
+    getValue(val) {
+      this.listQuery.LGPLA = val;
     },
-    getList(){
-       GetStatusDetail(this.listQuery).then(response => {
+    getList() {
+      this.listLoading = true;
+      GetStatusDetail(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.list = response.data.items;
-           this.total = response.data.total; 
-        }
-        else{
+          this.total = response.data.total;
+          this.listLoading = false;
+        } else {
+          this.listLoading = false;
           this.$notify({
             position: "bottom-right",
             title: "失败",
@@ -130,7 +145,7 @@ export default {
     handleCurrentChange(val) {
       this.listQuery.page = val;
       this.getList();
-    },
+    }
   },
   watch: {
     kcmxdialogVisible(val) {
@@ -139,7 +154,7 @@ export default {
       // aa[0].style.background="#C0C0C0";
     }
   },
-  mounted(){
+  mounted() {
     //this.getList();
   }
 };
