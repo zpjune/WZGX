@@ -106,8 +106,6 @@ export default {
     CloseDialog() {
       this.$emit("listenToChildEvent", false);
     },
-    handleSizeChange(val) {},
-    handleCurrentChange(val) {},
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
       if (rowIndex === 0) {

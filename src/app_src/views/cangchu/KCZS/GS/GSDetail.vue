@@ -6,7 +6,7 @@
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-        <GS ref="GS"></GS>
+        <GS ref="GS" :FacCode=FacCode></GS>
         </div>
       </el-collapse-item>
       <el-collapse-item name="2">

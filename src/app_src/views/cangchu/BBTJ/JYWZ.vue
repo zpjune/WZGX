@@ -169,12 +169,6 @@ export default {
       this.listQuery.page = 1;
       this.getList();
     },
-    tableRowClassName({ row, rowIndex }) {
-      if (rowIndex === 0) {
-        return "el-button--primary is-active"; // 'warning-row'
-      } // 'el-button--primary is-plain'// 'warning-row'
-      return "";
-    },
 
     exportExcelInfo() {
       import("@/frame_src/vendor/Export2Excel").then(excel => {

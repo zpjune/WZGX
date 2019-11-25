@@ -262,7 +262,6 @@ export default {
         WL_NAME:"",
         KC_CODE:"",
         WL_LOCATIONCODE: "",
-        WL_LOCATIONCODE: "",
         MAXHAVING: "",
         MINHAVING: ""
       },
@@ -290,9 +289,6 @@ export default {
         WL_LOCATIONCODE: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
-        WL_LOCATIONCODE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
-        ],
         MAXHAVING: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
@@ -309,7 +305,6 @@ export default {
         WL_CODE: "",
         WL_NAME:"",
         KC_CODE:"",
-        WL_LOCATIONCODE: "",
         WL_LOCATIONCODE: "",
         MAXHAVING: "",
         MINHAVING: ""

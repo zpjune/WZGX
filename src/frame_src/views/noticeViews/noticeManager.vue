@@ -311,10 +311,8 @@ export default {
         NOTICE_TITLE: "",
         NOTICE_CONTENT: "",
         NOTICE_ORGID: "",
-        NOTICE_ORGNAME: "",
         NOTICE_DATETIME: "",
         CREATER: "",
-        NOTICE_ORGID: "",
         NOTICE_ORGNAME: ""
       },
       filedata: {

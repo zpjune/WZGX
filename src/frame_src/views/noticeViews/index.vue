@@ -148,8 +148,6 @@ export default {
         NOTICE_ORGNAME: "",
         NOTICE_DATETIME: "",
         CREATER: "",
-        NOTICE_ORGID: "",
-        NOTICE_ORGNAME: ""
       }
     };
   },
