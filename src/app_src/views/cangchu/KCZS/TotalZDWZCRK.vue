@@ -183,6 +183,8 @@ export default {
       this.getList();
     },
     getListDetail(){
+      this.listDetail=[];
+      this.totalDetail=0;
        getZDWZCRKDetail(this.listQueryDetail).then(res=>{
            if (res.data.code === 2000) {
            this.listDetail=res.data.items;
