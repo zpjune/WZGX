@@ -83,7 +83,7 @@
       <el-table
         :data="listDetail"
         :header-cell-class-name="tableRowClassName"
-        v-loading="listloading"
+        v-loading="listdetailloading"
         element-loading-text="给我一点时间"
         border
         fit
@@ -127,6 +127,7 @@ export default {
   data() {
     return {
       listloading: true,
+      listdetailloading: true,
       quxiangDialogVisible: false,
       month: "",
       listQuery: {
@@ -202,12 +203,16 @@ export default {
       this.getList();
     },
     getListDetail() {
+      this.listdetailloading=true;
+       this.listDetail=[];
+      this.totalDetail=0;
       this.listQueryDetail.DKCODE = this.DKCODE;
       getZDWZCRKDetail(this.listQueryDetail).then(res => {
         if (res.data.code === 2000) {
           this.listDetail = res.data.items;
           this.totalDetail = res.data.total;
         }
+        this.listdetailloading=false;
       });
     },
     handleSizeChangeDetail(val) {
