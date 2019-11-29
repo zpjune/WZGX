@@ -25,18 +25,18 @@
         <el-table-column label="状态" width="70" align="center" prop="ZT">
           <template slot-scope="scope">
             <img
-              v-if="scope.row.ZSTATUS==0"
+              v-if="scope.row.STATUS==1"
               src="../../img/blue.jpg"
               style="width:20px;height:15px;"
             />
             <img
-              v-if="scope.row.ZSTATUS=='04'"
+              v-if="scope.row.STATUS==4"
               src="../../img/red.jpg"
               style="width:20px;height:15px;"
               title="积压"
             />
             <img
-              v-if="scope.row.ZSTATUS==2"
+              v-if="scope.row.STATUS==5"
               src="../../img/yellow.jpg"
               style="width:20px;height:15px;"
             />
@@ -48,7 +48,11 @@
         <el-table-column label="物料描述" prop="MAKTX" width="300"></el-table-column>
         <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
         <el-table-column label="实存数量" prop="GESME" width="80"></el-table-column>
-        <el-table-column label="存货状态" prop="ZSTATUS" width="80"></el-table-column>
+        <el-table-column label="存货状态"  width="80">
+          <template slot-scope="scope">
+            {{scope.row.ZSTATUS|changeZSTATUS}}
+          </template>
+        </el-table-column>
       </el-table>
       <div style="padding-top:3px;">
         <img
@@ -154,6 +158,18 @@ export default {
   },
   mounted() {
     //this.getList();
+  },
+  filters: {
+    changeZSTATUS(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      switch (val) {
+        case "04":
+          return "上架";
+          break;
+      }
+    }
   }
 };
 </script>

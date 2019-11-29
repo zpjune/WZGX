@@ -27,7 +27,7 @@
       <area shape="rect" coords="545, 304, 581, 334" title="13号库" @click="OpenDialog('ZYK',13)" />
       <area shape="rect" coords="583, 304, 619, 334" title="14号库" @click="OpenDialog('ZYK',14)" />
     </map>-->
-    
+
     <div class="box" id="box">
       <img
         id="ZYCPIC"
@@ -45,7 +45,12 @@
           title="1号活动料棚"
           @click="OpenDialog('ZYK','01')"
         />
-        <area shape="rect" coords="473, 148, 617, 179" title="2号活动料棚" @click="OpenDialog('ZYK','02')" />
+        <area
+          shape="rect"
+          coords="473, 148, 617, 179"
+          title="2号活动料棚"
+          @click="OpenDialog('ZYK','02')"
+        />
         <area shape="rect" coords="473, 44, 509, 75" title="5号库" @click="OpenDialog('ZYK','05')" />
         <area shape="rect" coords="511, 44, 547, 75" title="6号库" @click="OpenDialog('ZYK','06')" />
         <area shape="rect" coords="549, 44, 580, 75" title="7号库" @click="OpenDialog('ZYK','07')" />
@@ -344,21 +349,15 @@
         />
       </div>
     </div>
-    <div  name="标识图片">
-       <img
-        id="ZYCPIC"
-        src="../../../img/库房2.png"
-        border="0"
-        class="kufang"
-      />库房
-      <img
-        id="ZYCPIC"
-        src="../../../img/料棚.png"
-        border="0"
-        class="liaopeng"
-      />料棚
+    <div name="标识图片">
+      <img id="ZYCPIC" src="../../../img/库房2.png" border="0" class="kufang" />库房
+      <img id="ZYCPIC" src="../../../img/料棚.png" border="0" class="liaopeng" />料棚
     </div>
-    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog" ref="kucunzhanshidetail" ></kucunzhanshidetail>
+    <kucunzhanshidetail
+      :kcmxdialogVisible="kcmxDialog"
+      @listenToChildEvent="closeDialog"
+      ref="kucunzhanshidetail"
+    ></kucunzhanshidetail>
   </div>
 </template>
 
@@ -376,7 +375,7 @@ export default {
       listQuery: {
         FacCode: this.FacCode
       },
-      statusCode:"",
+      statusCode: "",
       StatusStr: ""
     };
   },
@@ -393,14 +392,13 @@ export default {
     getList() {
       GetFacStatus(this.listQuery).then(response => {
         if (response.data.code === 2000) {
-          this.StatusStr = response.data.items;       
+          this.StatusStr = response.data.items;
         }
         this.setStyle(this.width);
       });
     },
     OpenDialog(type, val) {
-      
-      this.statusCode=this.FacCode+val;
+      this.statusCode = this.FacCode + val;
       this.kcmxDialog = true;
       this.$refs.kucunzhanshidetail.getValue(this.statusCode);
       this.$refs.kucunzhanshidetail.getList();
@@ -415,10 +413,17 @@ export default {
       this.width = w;
     },
     setStyle(val) {
-      let maxName = 33;
+      let maxName = 200;
       for (let i = 0; i < maxName; i++) {
         let name = "flag" + i.toString();
-        let currentWidth = document.getElementById(name).style.left;
+        let ele = document.getElementById(name);
+        let currentWidth;
+        if (ele !== null) {
+          currentWidth = ele.style.left;
+        } else {
+          break;
+        }
+        //let currentWidth = document.getElementById(name).style.left;
         let targetWidth =
           parseInt(currentWidth.trim("px")) + val - this.oldwidth + "px";
         document.getElementById(name).style.left = targetWidth;
@@ -450,13 +455,12 @@ export default {
     }
   },
   mounted() {
-    
     this.getPoint();
     //this.setStyle(this.width);
     this.observer();
     this.setStyle(this.width);
   },
-  created(){
+  created() {
     this.getList();
   }
 };
@@ -500,11 +504,11 @@ export default {
     //   height: 12px;
     // }
   }
-  .kufang{
+  .kufang {
     width: 55px;
     height: 60px;
   }
-    .liaopeng{
+  .liaopeng {
     width: 70px;
     height: 60px;
     margin-left: 50px;

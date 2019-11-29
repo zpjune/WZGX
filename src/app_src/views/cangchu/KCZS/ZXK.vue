@@ -26,20 +26,50 @@
         <area shape="rect" coords="777, 428, 811, 467" title="11号库" @click="OpenDialog('ZXK','11')" />
         <area shape="rect" coords="692, 225, 739, 255" title="12号库" @click="OpenDialog('ZXK','12')" />
         <!-- <area shape="rect" coords="80, 215, 126, 245" title="12号库" @click="OpenDialog('ZXK','12')" />
-        <area shape="rect" coords="80, 237, 126, 277" title="12号库" @click="OpenDialog('ZXK','12.2')" /> -->
+        <area shape="rect" coords="80, 237, 126, 277" title="12号库" @click="OpenDialog('ZXK','12.2')" />-->
         <area shape="rect" coords="692, 257, 739, 287" title="13号库" @click="OpenDialog('ZXK','13')" />
         <area shape="rect" coords="692, 289, 739, 319" title="14号库" @click="OpenDialog('ZXK','14')" />
         <area shape="rect" coords="524, 288, 645, 370" title="15号库" @click="OpenDialog('ZXK','15')" />
         <area shape="rect" coords="464, 215, 523, 296" title="16料场" @click="OpenDialog('ZXK','16')" />
         <area shape="rect" coords="318, 215, 438, 418" title="17料场" @click="OpenDialog('ZXK','17')" />
-        <area shape="rect" coords="260, 215, 293, 348" title="18号活动棚" @click="OpenDialog('ZXK','18')" />
-        <area shape="rect" coords="225, 215, 258, 348" title="19号活动棚" @click="OpenDialog('ZXK','19')" />
+        <area
+          shape="rect"
+          coords="260, 215, 293, 348"
+          title="18号活动棚"
+          @click="OpenDialog('ZXK','18')"
+        />
+        <area
+          shape="rect"
+          coords="225, 215, 258, 348"
+          title="19号活动棚"
+          @click="OpenDialog('ZXK','19')"
+        />
         <area shape="rect" coords="188, 38, 222, 192" title="20号料场" @click="OpenDialog('ZXK','20')" />
-        <area shape="rect" coords="224, 38, 256, 192" title="21号活动料棚" @click="OpenDialog('ZXK','21')" />
-        <area shape="rect" coords="258, 38, 292, 192" title="22号活动料棚" @click="OpenDialog('ZXK','22')" />
+        <area
+          shape="rect"
+          coords="224, 38, 256, 192"
+          title="21号活动料棚"
+          @click="OpenDialog('ZXK','21')"
+        />
+        <area
+          shape="rect"
+          coords="258, 38, 292, 192"
+          title="22号活动料棚"
+          @click="OpenDialog('ZXK','22')"
+        />
         <area shape="rect" coords="331, 38, 367, 192" title="23号料场" @click="OpenDialog('ZXK','23')" />
-        <area shape="rect" coords="369, 38, 405, 192" title="24号活动料棚" @click="OpenDialog('ZXK','24')" />
-        <area shape="rect" coords="407, 38, 443, 192" title="25号活动料棚" @click="OpenDialog('ZXK','25')" />
+        <area
+          shape="rect"
+          coords="369, 38, 405, 192"
+          title="24号活动料棚"
+          @click="OpenDialog('ZXK','24')"
+        />
+        <area
+          shape="rect"
+          coords="407, 38, 443, 192"
+          title="25号活动料棚"
+          @click="OpenDialog('ZXK','25')"
+        />
         <area shape="rect" coords="462, 163, 511, 192" title="26号库" @click="OpenDialog('ZXK','26')" />
       </map>
       <div name="1号区域">
@@ -49,7 +79,7 @@
           id="flag0"
           title="积压"
           style=" position: absolute;left: 775px;z-index: 2;top: 2.6%;width: 12px;height: 12px;"
-           v-show="StatusStr[3*(1-1)]==='1'"
+          v-show="StatusStr[3*(1-1)]==='1'"
         />
         <img
           src="../../../img/blue.jpg"
@@ -57,7 +87,7 @@
           id="flag1"
           title="正常"
           style=" position: absolute;left: 798px;z-index: 2;top: 2.6%;width: 12px;height: 12px;"
-           v-show="StatusStr[3*(1-1)+1]==='1'"
+          v-show="StatusStr[3*(1-1)+1]==='1'"
         />
         <img
           src="../../../img/yellow.jpg"
@@ -65,7 +95,7 @@
           id="flag2"
           title="空缺"
           style=" position: absolute;left: 775px;z-index: 2;top: 7.5%;width: 12px;height: 12px;"
-           v-show="StatusStr[3*(1-1)+2]==='1'"
+          v-show="StatusStr[3*(1-1)+2]==='1'"
         />
       </div>
       <div name="2号区域">
@@ -75,7 +105,7 @@
           id="flag3"
           title="积压"
           style=" position: absolute;left: 775px;z-index: 2;top: 9.6%;width: 12px;height: 12px;"
-           v-show="StatusStr[3*(2-1)]==='1'"
+          v-show="StatusStr[3*(2-1)]==='1'"
         />
         <img
           src="../../../img/blue.jpg"
@@ -720,7 +750,11 @@
       </div>
     </div>
 
-    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog" ref="kucunzhanshidetail"></kucunzhanshidetail>
+    <kucunzhanshidetail
+      :kcmxdialogVisible="kcmxDialog"
+      @listenToChildEvent="closeDialog"
+      ref="kucunzhanshidetail"
+    ></kucunzhanshidetail>
   </div>
 </template>
 
@@ -729,7 +763,7 @@ import kucunzhanshidetail from "@/app_src/components/cangchu/kucunzhanshidetail"
 import { GetFacStatus } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZXK",
-  props:["FacCode"],
+  props: ["FacCode"],
   data() {
     return {
       kcmxDialog: false,
@@ -738,7 +772,7 @@ export default {
       listQuery: {
         FacCode: this.FacCode
       },
-      statusCode:"",
+      statusCode: "",
       StatusStr: ""
     };
   },
@@ -761,7 +795,7 @@ export default {
       });
     },
     OpenDialog(type, val) {
-       this.statusCode=this.FacCode+val;
+      this.statusCode = this.FacCode + val;
       this.kcmxDialog = true;
       this.$refs.kucunzhanshidetail.getValue(this.statusCode);
       this.$refs.kucunzhanshidetail.getList();
@@ -777,10 +811,17 @@ export default {
       this.width = w;
     },
     setStyle(val) {
-      let maxName = 78;
+      let maxName = 200;
       for (let i = 0; i < maxName; i++) {
         let name = "flag" + i.toString();
-        let currentWidth = document.getElementById(name).style.left;
+        let ele = document.getElementById(name);
+        let currentWidth;
+        if (ele !== null) {
+          currentWidth = ele.style.left;
+        } else {
+          break;
+        }
+        //let currentWidth = document.getElementById(name).style.left;
         let targetWidth =
           parseInt(currentWidth.trim("px")) + val - this.oldwidth + "px";
         document.getElementById(name).style.left = targetWidth;
@@ -816,7 +857,7 @@ export default {
     this.setStyle(this.width);
     this.observer();
   },
-  created(){
+  created() {
     this.getList();
   }
 };
