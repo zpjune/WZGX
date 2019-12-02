@@ -1281,6 +1281,52 @@
           style=" position: absolute;left: 587px;z-index: 2;top: 64%;width: 12px;height: 12px;"
         />
       </div>
+      <div name="47料棚">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag147"
+          title="积压"
+          style=" position: absolute;left:587px;z-index: 2;top: 70.5%;width: 12px;height: 12px;"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag148"
+          title="正常"
+          style=" position: absolute;left: 704px;z-index: 2;top:70.5%;width: 12px;height: 12px;"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag149"
+          title="空缺"
+          style=" position: absolute;left: 587px;z-index: 2;top: 73.5%;width: 12px;height: 12px;"
+        />
+      </div>
+      <div name="43号库">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag150"
+          title="积压"
+          style=" position: absolute;left:588px;z-index: 2;top: 78.2%;width: 12px;height: 12px;"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag151"
+          title="正常"
+          style=" position: absolute;left: 704px;z-index: 2;top:70.5%;width: 12px;height: 12px;"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag152"
+          title="空缺"
+          style=" position: absolute;left: 587px;z-index: 2;top: 73.5%;width: 12px;height: 12px;"
+        />
+      </div>
     </div>
     <div name="标识图片">
       <img id="ZYCPIC" src="../../../../img/库房2.png" border="0" class="kufang" />库房
