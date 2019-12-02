@@ -109,9 +109,7 @@
           background
           @size-change="handleSizeChangeDetail"
           @current-change="handleCurrentChangeDetail"
-          :current-page="listQueryDetail.page"
           :page-sizes="[10,20,30,40]"
-          :page-size="listQueryDetail.limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="totalDetail"
         ></el-pagination>
@@ -185,8 +183,8 @@ export default {
     },
     getListDetail(){
       this.listdetailloading=true;
-      this.listDetail=[];
-      this.totalDetail=0;
+      //this.listDetail=[];
+      //this.totalDetail=0;
        getZDWZCRKDetail(this.listQueryDetail).then(res=>{
            if (res.data.code === 2000) {
            this.listDetail=res.data.items;

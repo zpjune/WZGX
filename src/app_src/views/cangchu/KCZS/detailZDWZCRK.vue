@@ -202,8 +202,8 @@ export default {
     },
     getListDetail() {
       this.listdetailloading=true;
-       this.listDetail=[];
-      this.totalDetail=0;
+      // this.listDetail=[];
+      //this.totalDetail=0;
       this.listQueryDetail.DKCODE = this.DKCODE;
       getZDWZCRKDetail(this.listQueryDetail).then(res => {
         if (res.data.code === 2000) {
