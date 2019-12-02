@@ -109,9 +109,7 @@
           background
           @size-change="handleSizeChangeDetail"
           @current-change="handleCurrentChangeDetail"
-          :current-page="listQueryDetail.page"
           :page-sizes="[10,20,30,40]"
-          :page-size="listQueryDetail.limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="totalDetail"
         ></el-pagination>
@@ -226,6 +224,7 @@ export default {
     DetailClick(row) {
       this.listQueryDetail.MATNR = row.WL_CODE;
       this.listQueryDetail.MONTH = row.MONTH;
+      this.listQueryDetail.page=1;
       this.getListDetail();
       this.quxiangDialogVisible = true;
     }

@@ -66,7 +66,7 @@
           :page-sizes="[10,20,30, 50]"
           :page-size="listQuery.limit"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="5"
+          :total="total"
           style="text-align: center;"
         ></el-pagination>
       </el-col>
@@ -204,6 +204,7 @@ export default {
       this.getListDetail()
     },
     DetailClick(row) {
+      this.listQueryDetail.page=1;
       this.listQueryDetail.MATNR=row.WL_CODE;
       this.listQueryDetail.MONTH=row.MONTH;
       this.getListDetail();
