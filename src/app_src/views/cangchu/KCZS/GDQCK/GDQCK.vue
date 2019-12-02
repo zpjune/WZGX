@@ -138,7 +138,7 @@
         />
         <area shape="rect" coords="586, 78, 631, 177" title="54料场" @click="OpenDialog('ZXK','54')" />
         <area shape="rect" coords="633, 78, 660, 177" title="52" @click="OpenDialog('ZXK','52')" />
-        <area shape="rect" coords="664, 78, 662, 179" title="53" @click="OpenDialog('ZXK','53')" />
+        <area shape="rect" coords="665, 79, 691, 179" title="53" @click="OpenDialog('ZXK','53')" />
         <area shape="rect" coords="589, 248, 628, 277" title="49号库" @click="OpenDialog('ZXK','49')" />
         <area shape="rect" coords="629, 246, 673, 277" title="50号库" @click="OpenDialog('ZXK','50')" />
         <area shape="rect" coords="675, 247, 716, 277" title="51号库" @click="OpenDialog('ZXK','51')" />
@@ -184,6 +184,7 @@
           id="flag3"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 22.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(7-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -191,6 +192,7 @@
           id="flag4"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:22.5%;;width: 12px;height: 12px;"
+          v-show="StatusStr[(7-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -198,6 +200,7 @@
           id="flag5"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 25.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(7-1)*3+2]==='1'"
         />
       </div>
       <div name="6料台">
@@ -207,6 +210,7 @@
           id="flag6"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 29.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(6-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -214,6 +218,7 @@
           id="flag7"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:29.8%;;width: 12px;height: 12px;"
+          v-show="StatusStr[(6-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -221,6 +226,7 @@
           id="flag8"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 32.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(6-1)*3+2]==='1'"
         />
       </div>
       <div name="5号库房">
@@ -230,6 +236,7 @@
           id="flag9"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 35%;width: 12px;height: 12px;"
+          v-show="StatusStr[(5-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -237,6 +244,7 @@
           id="flag10"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:35%;;width: 12px;height: 12px;"
+          v-show="StatusStr[(5-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -244,6 +252,7 @@
           id="flag11"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 38.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(5-1)*3+2]==='1'"
         />
       </div>
       <div name="4号料台">
@@ -253,6 +262,7 @@
           id="flag12"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 42.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(4-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -260,6 +270,7 @@
           id="flag13"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:42.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(4-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -267,6 +278,7 @@
           id="flag14"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 45.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(4-1)*3+2]==='1'"
         />
       </div>
       <div name="3号料台">
@@ -276,6 +288,7 @@
           id="flag15"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 47.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(3-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -283,6 +296,7 @@
           id="flag16"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:47.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(3-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -290,6 +304,7 @@
           id="flag17"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 50.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(3-1)*3+2]==='1'"
         />
       </div>
       <div name="2号料台">
@@ -299,6 +314,7 @@
           id="flag18"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 54.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(2-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -306,6 +322,7 @@
           id="flag19"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:54.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(2-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -313,6 +330,7 @@
           id="flag20"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 57.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(2-1)*3+2]==='1'"
         />
       </div>
       <div name="1号料台">
@@ -322,6 +340,7 @@
           id="flag21"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 60%;width: 12px;height: 12px;"
+          v-show="StatusStr[(1-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -329,6 +348,7 @@
           id="flag22"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:60%;width: 12px;height: 12px;"
+          v-show="StatusStr[(1-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -336,6 +356,7 @@
           id="flag23"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 63%;width: 12px;height: 12px;"
+          v-show="StatusStr[(1-1)*3+2]==='1'"
         />
       </div>
       <div name="57号料台">
@@ -345,6 +366,7 @@
           id="flag24"
           title="积压"
           style=" position: absolute;left: 55px;z-index: 2;top: 67.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(57-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -352,6 +374,7 @@
           id="flag25"
           title="正常"
           style=" position: absolute;left: 157px;z-index: 2;top:67.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(57-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -359,6 +382,7 @@
           id="flag26"
           title="空缺"
           style=" position: absolute;left: 55px;z-index: 2;top: 70.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(57-1)*3+2]==='1'"
         />
       </div>
       <div name="18料台">
@@ -368,6 +392,7 @@
           id="flag27"
           title="积压"
           style=" position: absolute;left: 199px;z-index: 2;top: 29.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(18-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -375,6 +400,7 @@
           id="flag28"
           title="正常"
           style=" position: absolute;left: 358px;z-index: 2;top:29.8%;;width: 12px;height: 12px;"
+          v-show="StatusStr[(18-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -382,6 +408,7 @@
           id="flag29"
           title="空缺"
           style=" position: absolute;left: 199px;z-index: 2;top: 32.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(18-1)*3+2]==='1'"
         />
       </div>
       <div name="16号料台">
@@ -391,6 +418,7 @@
           id="flag30"
           title="积压"
           style=" position: absolute;left: 199px;z-index: 2;top: 42.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(16-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -398,6 +426,7 @@
           id="flag31"
           title="正常"
           style=" position: absolute;left: 272px;z-index: 2;top:42.2%;width: 12px;height: 12px;"
+           v-show="StatusStr[(16-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -405,6 +434,7 @@
           id="flag32"
           title="空缺"
           style=" position: absolute;left: 199px;z-index: 2;top: 46.5%;width: 12px;height: 12px;"
+           v-show="StatusStr[(16-1)*3+2]==='1'"
         />
       </div>
       <div name="13号料台">
@@ -414,6 +444,7 @@
           id="flag33"
           title="积压"
           style=" position: absolute;left: 199px;z-index: 2;top: 48.7%;width: 12px;height: 12px;"
+           v-show="StatusStr[(13-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -421,6 +452,7 @@
           id="flag34"
           title="正常"
           style=" position: absolute;left: 272px;z-index: 2;top:48.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(13-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -428,6 +460,7 @@
           id="flag35"
           title="空缺"
           style=" position: absolute;left: 199px;z-index: 2;top: 51.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(13-1)*3+2]==='1'"
         />
       </div>
       <div name="11号料台">
@@ -437,6 +470,7 @@
           id="flag36"
           title="积压"
           style=" position: absolute;left: 199px;z-index: 2;top: 53.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(11-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -444,6 +478,7 @@
           id="flag37"
           title="正常"
           style=" position: absolute;left: 272px;z-index: 2;top:53.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(11-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -451,6 +486,7 @@
           id="flag38"
           title="空缺"
           style=" position: absolute;left: 199px;z-index: 2;top: 55.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(11-1)*3+2]==='1'"
         />
       </div>
       <div name="10号料鹏">
@@ -460,6 +496,7 @@
           id="flag39"
           title="积压"
           style=" position: absolute;left: 199px;z-index: 2;top: 66.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(10-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -467,6 +504,7 @@
           id="flag40"
           title="正常"
           style=" position: absolute;left: 371px;z-index: 2;top:66.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(10-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -474,6 +512,7 @@
           id="flag41"
           title="空缺"
           style=" position: absolute;left: 199px;z-index: 2;top: 71.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(10-1)*3+2]==='1'"
         />
       </div>
       <div name="9号料场">
@@ -483,6 +522,7 @@
           id="flag42"
           title="积压"
           style=" position: absolute;left: 199px;z-index: 2;top: 73.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(9-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -490,6 +530,7 @@
           id="flag43"
           title="正常"
           style=" position: absolute;left: 373px;z-index: 2;top:73.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(9-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -497,6 +538,7 @@
           id="flag44"
           title="空缺"
           style=" position: absolute;left: 199px;z-index: 2;top: 78.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(9-1)*3+2]==='1'"
         />
       </div>
       <div name="17号料台">
@@ -506,6 +548,7 @@
           id="flag45"
           title="积压"
           style=" position: absolute;left: 285px;z-index: 2;top: 42.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(17-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -513,6 +556,7 @@
           id="flag46"
           title="正常"
           style=" position: absolute;left: 343px;z-index: 2;top:42.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(17-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -520,6 +564,7 @@
           id="flag47"
           title="空缺"
           style=" position: absolute;left: 285px;z-index: 2;top: 46.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(17-1)*3+2]==='1'"
         />
       </div>
       <div name="14号料台">
@@ -529,6 +574,7 @@
           id="flag48"
           title="积压"
           style=" position: absolute;left: 285px;z-index: 2;top: 48.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(14-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -536,6 +582,7 @@
           id="flag49"
           title="正常"
           style=" position: absolute;left: 345px;z-index: 2;top:48.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(14-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -543,6 +590,7 @@
           id="flag50"
           title="空缺"
           style=" position: absolute;left: 285px;z-index: 2;top: 51.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(14-1)*3+2]==='1'"
         />
       </div>
       <div name="12号料台">
@@ -552,6 +600,7 @@
           id="flag51"
           title="积压"
           style=" position: absolute;left: 285px;z-index: 2;top: 53.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(12-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -559,6 +608,7 @@
           id="flag52"
           title="正常"
           style=" position: absolute;left: 344px;z-index: 2;top:53.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(12-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -566,6 +616,7 @@
           id="flag53"
           title="空缺"
           style=" position: absolute;left: 285px;z-index: 2;top: 55.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(12-1)*3+2]==='1'"
         />
       </div>
       <div name="38号库">
@@ -575,6 +626,7 @@
           id="flag54"
           title="积压"
           style=" position: absolute;left: 417px;z-index: 2;top: 3.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(38-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -582,6 +634,7 @@
           id="flag55"
           title="正常"
           style=" position: absolute;left: 452px;z-index: 2;top:3.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(38-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -589,6 +642,7 @@
           id="flag56"
           title="空缺"
           style=" position: absolute;left: 417px;z-index: 2;top: 7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(38-1)*3+2]==='1'"
         />
       </div>
       <div name="37料棚">
@@ -598,6 +652,7 @@
           id="flag57"
           title="积压"
           style=" position: absolute;left: 417px;z-index: 2;top: 9.3%;width: 12px;height: 12px;"
+          v-show="StatusStr[(37-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -605,6 +660,7 @@
           id="flag58"
           title="正常"
           style=" position: absolute;left: 452px;z-index: 2;top:9.3%;width: 12px;height: 12px;"
+          v-show="StatusStr[(37-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -612,6 +668,7 @@
           id="flag59"
           title="空缺"
           style=" position: absolute;left: 417px;z-index: 2;top: 12.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(37-1)*3+2]==='1'"
         />
       </div>
       <div name="39号库">
@@ -621,6 +678,7 @@
           id="flag60"
           title="积压"
           style=" position: absolute;left: 467px;z-index: 2;top: 3.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(39-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -628,6 +686,7 @@
           id="flag61"
           title="正常"
           style=" position: absolute;left: 501px;z-index: 2;top:3.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(39-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -635,6 +694,7 @@
           id="flag62"
           title="空缺"
           style=" position: absolute;left: 467px;z-index: 2;top: 7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(39-1)*3+2]==='1'"
         />
       </div>
       <div name="40料棚">
@@ -644,6 +704,7 @@
           id="flag63"
           title="积压"
           style=" position: absolute;left: 515px;z-index: 2;top: 3.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(40-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -651,6 +712,7 @@
           id="flag64"
           title="正常"
           style=" position: absolute;left: 618px;z-index: 2;top:3.7%;width: 12px;height: 12px;"
+          v-show="StatusStr[(40-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -658,6 +720,7 @@
           id="flag65"
           title="空缺"
           style=" position: absolute;left: 515px;z-index: 2;top: 7.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(40-1)*3+2]==='1'"
         />
       </div>
       <div name="34号库">
@@ -667,6 +730,7 @@
           id="flag66"
           title="积压"
           style=" position: absolute;left: 430px;z-index: 2;top: 15.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(34-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -674,6 +738,7 @@
           id="flag67"
           title="正常"
           style=" position: absolute;left: 457px;z-index: 2;top:15.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(34-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -681,6 +746,7 @@
           id="flag68"
           title="空缺"
           style=" position: absolute;left: 430px;z-index: 2;top: 18.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(34-1)*3+2]==='1'"
         />
       </div>
       <div name="35号库">
@@ -690,6 +756,7 @@
           id="flag69"
           title="积压"
           style=" position: absolute;left: 470px;z-index: 2;top: 15.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(35-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -697,6 +764,7 @@
           id="flag70"
           title="正常"
           style=" position: absolute;left: 495px;z-index: 2;top:15.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(35-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -704,6 +772,7 @@
           id="flag71"
           title="空缺"
           style=" position: absolute;left: 470px;z-index: 2;top: 18.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(35-1)*3+2]==='1'"
         />
       </div>
       <div name="36号库">
@@ -713,6 +782,7 @@
           id="flag72"
           title="积压"
           style=" position: absolute;left: 508px;z-index: 2;top: 15.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(36-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -720,6 +790,7 @@
           id="flag73"
           title="正常"
           style=" position: absolute;left: 532px;z-index: 2;top:15.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(36-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -727,6 +798,7 @@
           id="flag74"
           title="空缺"
           style=" position: absolute;left: 508px;z-index: 2;top: 18.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(36-1)*3+2]==='1'"
         />
       </div>
       <div name="29号库">
@@ -736,6 +808,7 @@
           id="flag75"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 26%;width: 12px;height: 12px;"
+          v-show="StatusStr[(29-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -743,6 +816,7 @@
           id="flag76"
           title="正常"
           style=" position: absolute;left: 456px;z-index: 2;top:26%;width: 12px;height: 12px;"
+          v-show="StatusStr[(29-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -750,6 +824,7 @@
           id="flag77"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 28.9%;width: 12px;height: 12px;"
+          v-show="StatusStr[(29-1)*3+2]==='1'"
         />
       </div>
       <div name="30号库">
@@ -759,6 +834,7 @@
           id="flag78"
           title="积压"
           style=" position: absolute;left: 469px;z-index: 2;top: 26%;width: 12px;height: 12px;"
+          v-show="StatusStr[(30-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -766,6 +842,7 @@
           id="flag79"
           title="正常"
           style=" position: absolute;left: 494px;z-index: 2;top:26%;width: 12px;height: 12px;"
+          v-show="StatusStr[(30-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -773,6 +850,7 @@
           id="flag80"
           title="空缺"
           style=" position: absolute;left: 469px;z-index: 2;top: 28.9%;width: 12px;height: 12px;"
+          v-show="StatusStr[(30-1)*3+2]==='1'"
         />
       </div>
       <div name="31号库">
@@ -782,6 +860,7 @@
           id="flag81"
           title="积压"
           style=" position: absolute;left: 507px;z-index: 2;top: 26%;width: 12px;height: 12px;"
+          v-show="StatusStr[(31-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -789,6 +868,7 @@
           id="flag82"
           title="正常"
           style=" position: absolute;left: 531px;z-index: 2;top:26%;width: 12px;height: 12px;"
+          v-show="StatusStr[(31-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -796,6 +876,7 @@
           id="flag83"
           title="空缺"
           style=" position: absolute;left: 507px;z-index: 2;top: 29%;width: 12px;height: 12px;"
+          v-show="StatusStr[(31-1)*3+2]==='1'"
         />
       </div>
       <div name="32号料台">
@@ -805,6 +886,7 @@
           id="flag84"
           title="积压"
           style=" position: absolute;left: 430px;z-index: 2;top: 20.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(32-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -812,6 +894,7 @@
           id="flag85"
           title="正常"
           style=" position: absolute;left: 473px;z-index: 2;top:20.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(32-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -819,6 +902,7 @@
           id="flag86"
           title="空缺"
           style=" position: absolute;left: 430px;z-index: 2;top: 23.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(32-1)*3+2]==='1'"
         />
       </div>
       <div name="33号料台">
@@ -828,6 +912,7 @@
           id="flag87"
           title="积压"
           style=" position: absolute;left: 488px;z-index: 2;top: 20.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(33-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -835,6 +920,7 @@
           id="flag88"
           title="正常"
           style=" position: absolute;left: 531px;z-index: 2;top:20.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(33-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -842,6 +928,7 @@
           id="flag89"
           title="空缺"
           style=" position: absolute;left: 488px;z-index: 2;top: 23.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(33-1)*3+2]==='1'"
         />
       </div>
       <div name="28料台">
@@ -851,6 +938,7 @@
           id="flag90"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 31%;width: 12px;height: 12px;"
+          v-show="StatusStr[(28-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -858,6 +946,7 @@
           id="flag91"
           title="正常"
           style=" position: absolute;left: 531px;z-index: 2;top:31%;width: 12px;height: 12px;"
+          v-show="StatusStr[(28-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -865,6 +954,7 @@
           id="flag92"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 34%;width: 12px;height: 12px;"
+          v-show="StatusStr[(28-1)*3+2]==='1'"
         />
       </div>
       <div name="26号库">
@@ -874,6 +964,7 @@
           id="flag93"
           title="积压"
           style=" position: absolute;left: 430px;z-index: 2;top: 40.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(26-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -881,6 +972,7 @@
           id="flag94"
           title="正常"
           style=" position: absolute;left: 482px;z-index: 2;top:40.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(26-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -888,6 +980,7 @@
           id="flag95"
           title="空缺"
           style=" position: absolute;left: 430px;z-index: 2;top: 44.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(26-1)*3+2]==='1'"
         />
       </div>
       <div name="27号库">
@@ -897,6 +990,7 @@
           id="flag96"
           title="积压"
           style=" position: absolute;left: 497px;z-index: 2;top: 40.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(27-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -904,6 +998,7 @@
           id="flag97"
           title="正常"
           style=" position: absolute;left: 545px;z-index: 2;top:40.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(26-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -911,6 +1006,7 @@
           id="flag98"
           title="空缺"
           style=" position: absolute;left: 497px;z-index: 2;top: 44.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(26-1)*3+2]==='1'"
         />
       </div>
       <div name="25料台">
@@ -920,6 +1016,7 @@
           id="flag99"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 46.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(25-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -927,6 +1024,7 @@
           id="flag100"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:46.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(25-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -934,6 +1032,7 @@
           id="flag101"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 49.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(25-1)*3+2]==='1'"
         />
       </div>
       <div name="24号库">
@@ -943,6 +1042,7 @@
           id="flag102"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 54.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(24-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -950,6 +1050,7 @@
           id="flag103"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:54.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(24-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -957,6 +1058,7 @@
           id="flag104"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 58.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(24-1)*3+2]==='1'"
         />
       </div>
       <div name="23料台">
@@ -966,6 +1068,7 @@
           id="flag105"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 61%;width: 12px;height: 12px;"
+          v-show="StatusStr[(23-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -973,6 +1076,7 @@
           id="flag106"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:61%;width: 12px;height: 12px;"
+          v-show="StatusStr[(24-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -980,6 +1084,7 @@
           id="flag107"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 64%;width: 12px;height: 12px;"
+          v-show="StatusStr[(24-1)*3+2]==='1'"
         />
       </div>
       <div name="22号库">
@@ -989,6 +1094,7 @@
           id="flag108"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 70%;width: 12px;height: 12px;"
+          v-show="StatusStr[(22-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -996,6 +1102,7 @@
           id="flag109"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:70%;width: 12px;height: 12px;"
+          v-show="StatusStr[(22-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1003,6 +1110,7 @@
           id="flag110"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 73.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(22-1)*3+2]==='1'"
         />
       </div>
       <div name="21料台">
@@ -1012,6 +1120,7 @@
           id="flag111"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 75.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(21-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1019,6 +1128,7 @@
           id="flag112"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:75.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(21-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1026,6 +1136,7 @@
           id="flag113"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 78.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(21-1)*3+2]==='1'"
         />
       </div>
       <div name="20料台">
@@ -1035,6 +1146,7 @@
           id="flag114"
           title="积压"
           style=" position: absolute;left: 458px;z-index: 2;top: 84%;width: 12px;height: 12px;"
+          v-show="StatusStr[(20-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1042,6 +1154,7 @@
           id="flag115"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:84%;width: 12px;height: 12px;"
+          v-show="StatusStr[(20-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1049,6 +1162,7 @@
           id="flag116"
           title="空缺"
           style=" position: absolute;left: 458px;z-index: 2;top: 86.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(20-1)*3+2]==='1'"
         />
       </div>
       <div name="19料场">
@@ -1058,6 +1172,7 @@
           id="flag117"
           title="积压"
           style=" position: absolute;left: 429px;z-index: 2;top: 92.3%;width: 12px;height: 12px;"
+          v-show="StatusStr[(19-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1065,6 +1180,7 @@
           id="flag118"
           title="正常"
           style=" position: absolute;left: 546px;z-index: 2;top:92.3%;width: 12px;height: 12px;"
+          v-show="StatusStr[(19-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1072,6 +1188,7 @@
           id="flag119"
           title="空缺"
           style=" position: absolute;left: 429px;z-index: 2;top: 106.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(19-1)*3+2]==='1'"
         />
       </div>
       <div name="54料场">
@@ -1081,6 +1198,7 @@
           id="flag120"
           title="积压"
           style=" position: absolute;left: 587px;z-index: 2;top: 13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(54-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1088,6 +1206,7 @@
           id="flag121"
           title="正常"
           style=" position: absolute;left: 618px;z-index: 2;top:13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(54-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1095,6 +1214,7 @@
           id="flag122"
           title="空缺"
           style=" position: absolute;left: 587px;z-index: 2;top: 27.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(54-1)*3+2]==='1'"
         />
       </div>
       <div name="52料台">
@@ -1104,6 +1224,7 @@
           id="flag123"
           title="积压"
           style=" position: absolute;left: 632px;z-index: 2;top: 13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(52-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1111,6 +1232,7 @@
           id="flag124"
           title="正常"
           style=" position: absolute;left: 648px;z-index: 2;top:13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(52-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1118,6 +1240,7 @@
           id="flag125"
           title="空缺"
           style=" position: absolute;left: 632px;z-index: 2;top: 27.6%;width: 12px;height: 12px;"
+          v-show="StatusStr[(52-1)*3+2]==='1'"
         />
       </div>
       <div name="53号库">
@@ -1127,6 +1250,7 @@
           id="flag126"
           title="积压"
           style=" position: absolute;left: 664px;z-index: 2;top: 13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(53-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1134,6 +1258,7 @@
           id="flag127"
           title="正常"
           style=" position: absolute;left: 679px;z-index: 2;top:13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(53-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1141,6 +1266,7 @@
           id="flag128"
           title="空缺"
           style=" position: absolute;left: 664px;z-index: 2;top: 27.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(53-1)*3+2]==='1'"
         />
       </div>
       <div name="49号库">
@@ -1150,6 +1276,7 @@
           id="flag129"
           title="积压"
           style=" position: absolute;left:588px;z-index: 2;top: 41.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(49-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1157,6 +1284,7 @@
           id="flag130"
           title="正常"
           style=" position: absolute;left: 616px;z-index: 2;top:41.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(49-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1164,6 +1292,7 @@
           id="flag131"
           title="空缺"
           style=" position: absolute;left: 588px;z-index: 2;top: 44.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(49-1)*3+2]==='1'"
         />
       </div>
       <div name="50号库">
@@ -1173,6 +1302,7 @@
           id="flag132"
           title="积压"
           style=" position: absolute;left:630px;z-index: 2;top: 41.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(50-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1180,6 +1310,7 @@
           id="flag133"
           title="正常"
           style=" position: absolute;left: 660px;z-index: 2;top:41.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(50-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1187,6 +1318,7 @@
           id="flag134"
           title="空缺"
           style=" position: absolute;left: 630px;z-index: 2;top: 44.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(50-1)*3+2]==='1'"
         />
       </div>
       <div name="51号库">
@@ -1196,6 +1328,7 @@
           id="flag135"
           title="积压"
           style=" position: absolute;left:674px;z-index: 2;top: 41.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(51-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1203,6 +1336,7 @@
           id="flag136"
           title="正常"
           style=" position: absolute;left: 704px;z-index: 2;top:41.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(51-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1210,6 +1344,7 @@
           id="flag137"
           title="空缺"
           style=" position: absolute;left: 674px;z-index: 2;top: 44.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(51-1)*3+2]==='1'"
         />
       </div>
       <div name="48料台">
@@ -1219,6 +1354,7 @@
           id="flag138"
           title="积压"
           style=" position: absolute;left:587px;z-index: 2;top: 46.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(48-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1226,6 +1362,7 @@
           id="flag139"
           title="正常"
           style=" position: absolute;left: 704px;z-index: 2;top:46.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(48-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1233,6 +1370,7 @@
           id="flag140"
           title="空缺"
           style=" position: absolute;left: 587px;z-index: 2;top: 49.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(48-1)*3+2]==='1'"
         />
       </div>
       <div name="47号库">
@@ -1242,6 +1380,7 @@
           id="flag141"
           title="积压"
           style=" position: absolute;left:587px;z-index: 2;top: 55%;width: 12px;height: 12px;"
+          v-show="StatusStr[(47-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1249,6 +1388,7 @@
           id="flag142"
           title="正常"
           style=" position: absolute;left: 704px;z-index: 2;top:55%;width: 12px;height: 12px;"
+          v-show="StatusStr[(47-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1256,6 +1396,7 @@
           id="flag143"
           title="空缺"
           style=" position: absolute;left: 587px;z-index: 2;top: 58.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(47-1)*3+2]==='1'"
         />
       </div>
       <div name="46料台">
@@ -1265,6 +1406,7 @@
           id="flag144"
           title="积压"
           style=" position: absolute;left:587px;z-index: 2;top: 61%;width: 12px;height: 12px;"
+          v-show="StatusStr[(46-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1272,6 +1414,7 @@
           id="flag145"
           title="正常"
           style=" position: absolute;left: 704px;z-index: 2;top:61%;width: 12px;height: 12px;"
+          v-show="StatusStr[(46-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1279,6 +1422,7 @@
           id="flag146"
           title="空缺"
           style=" position: absolute;left: 587px;z-index: 2;top: 64%;width: 12px;height: 12px;"
+          v-show="StatusStr[(46-1)*3+2]==='1'"
         />
       </div>
       <div name="47料棚">
@@ -1288,6 +1432,7 @@
           id="flag147"
           title="积压"
           style=" position: absolute;left:587px;z-index: 2;top: 70.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(47-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
@@ -1295,6 +1440,7 @@
           id="flag148"
           title="正常"
           style=" position: absolute;left: 704px;z-index: 2;top:70.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(47-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
@@ -1302,6 +1448,7 @@
           id="flag149"
           title="空缺"
           style=" position: absolute;left: 587px;z-index: 2;top: 73.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(47-1)*3+2]==='1'"
         />
       </div>
       <div name="43号库">
@@ -1311,20 +1458,153 @@
           id="flag150"
           title="积压"
           style=" position: absolute;left:588px;z-index: 2;top: 78.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(43-1)*3]==='1'"
         />
         <img
           src="../../../../img/blue.jpg"
           alt
           id="flag151"
           title="正常"
-          style=" position: absolute;left: 704px;z-index: 2;top:70.5%;width: 12px;height: 12px;"
+          style=" position: absolute;left: 638px;z-index: 2;top:78.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(43-1)*3+1]==='1'"
         />
         <img
           src="../../../../img/yellow.jpg"
           alt
           id="flag152"
           title="空缺"
-          style=" position: absolute;left: 587px;z-index: 2;top: 73.5%;width: 12px;height: 12px;"
+          style=" position: absolute;left: 588px;z-index: 2;top: 81.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(43-1)*3+2]==='1'"
+        />
+      </div>
+      <div name="44号库">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag153"
+          title="积压"
+          style=" position: absolute;left:654px;z-index: 2;top: 78.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(44-1)*3]==='1'"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag154"
+          title="正常"
+          style=" position: absolute;left: 704px;z-index: 2;top:78.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(44-1)*3+1]==='1'"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag155"
+          title="空缺"
+          style=" position: absolute;left: 654px;z-index: 2;top: 81.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(44-1)*3+2]==='1'"
+        />
+      </div>
+      <div name="42料台">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag156"
+          title="积压"
+          style=" position: absolute;left:587px;z-index: 2;top: 84.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(42-1)*3]==='1'"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag157"
+          title="正常"
+          style=" position: absolute;left: 704px;z-index: 2;top:84.2%;width: 12px;height: 12px;"
+          v-show="StatusStr[(42-1)*3+1]==='1'"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag158"
+          title="空缺"
+          style=" position: absolute;left: 587px;z-index: 2;top: 87%;width: 12px;height: 12px;"
+          v-show="StatusStr[(42-1)*3+2]==='1'"
+        />
+      </div>
+      <div name="41料场">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag159"
+          title="积压"
+          style=" position: absolute;left:587px;z-index: 2;top: 94.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(41-1)*3]==='1'"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag160"
+          title="正常"
+          style=" position: absolute;left: 704px;z-index: 2;top:94.4%;width: 12px;height: 12px;"
+          v-show="StatusStr[(41-1)*3+1]==='1'"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag161"
+          title="空缺"
+          style=" position: absolute;left: 587px;z-index: 2;top: 106.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(41-1)*3+2]==='1'"
+        />
+      </div>
+      <div name="56料场">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag162"
+          title="积压"
+          style=" position: absolute;left:731px;z-index: 2;top: 13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(56-1)*3]==='1'"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag163"
+          title="正常"
+          style=" position: absolute;left: 862px;z-index: 2;top:13.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(56-1)*3+1]==='1'"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag164"
+          title="空缺"
+          style=" position: absolute;left: 731px;z-index: 2;top: 27.8%;width: 12px;height: 12px;"
+          v-show="StatusStr[(56-1)*3+2]==='1'"
+        />
+      </div>
+      <div name="55料场">
+        <img
+          src="../../../../img/red.jpg"
+          alt
+          id="flag165"
+          title="积压"
+          style=" position: absolute;left:731px;z-index: 2;top: 38.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(55-1)*3]==='1'"
+        />
+        <img
+          src="../../../../img/blue.jpg"
+          alt
+          id="flag166"
+          title="正常"
+          style=" position: absolute;left: 876px;z-index: 2;top:38.1%;width: 12px;height: 12px;"
+          v-show="StatusStr[(55-1)*3+1]==='1'"
+        />
+        <img
+          src="../../../../img/yellow.jpg"
+          alt
+          id="flag167"
+          title="空缺"
+          style=" position: absolute;left: 731px;z-index: 2;top: 106.5%;width: 12px;height: 12px;"
+          v-show="StatusStr[(55-1)*3+2]==='1'"
         />
       </div>
     </div>
