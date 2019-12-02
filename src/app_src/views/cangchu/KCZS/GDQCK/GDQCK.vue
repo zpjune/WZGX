@@ -60,7 +60,7 @@
         <area shape="rect" coords="418, 21, 464, 54" title="38号库 " @click="OpenDialog('ZXK','38')" />
         <area shape="rect" coords="468, 21, 512, 54" title="39号库 " @click="OpenDialog('ZXK','39')" />
         <area shape="rect" coords="515, 21, 629, 54" title="40料棚 " @click="OpenDialog('ZXK','40')" />
-        <area shape="rect" coords="417, 57, 464, 894" title="37号库 " @click="OpenDialog('ZXK','37')" />
+        <area shape="rect" coords="417, 57, 464, 87" title="37号库 " @click="OpenDialog('ZXK','37')" />
         <area shape="rect" coords="430, 93, 469, 124" title="34号库 " @click="OpenDialog('ZXK','34')" />
         <area shape="rect" coords="470, 93, 507, 124" title="35号库 " @click="OpenDialog('ZXK','35')" />
         <area shape="rect" coords="508, 93, 545, 124" title="36号库 " @click="OpenDialog('ZXK','36')" />
@@ -150,6 +150,11 @@
         <area shape="rect" coords="654, 465, 716, 503" title="44号库" @click="OpenDialog('ZXK','44')" />
         <area shape="rect" coords="587, 506, 716, 534" title="42料台" @click="OpenDialog('ZXK','42')" />
         <area shape="rect" coords="587, 265, 716, 649" title="41料场" @click="OpenDialog('ZXK','41')" />
+        <area shape="rect" coords="429, 156, 467, 183" title="29号库" @click="OpenDialog('ZXK','29')" />
+        <area shape="rect" coords="469, 156, 505, 186" title="30号库" @click="OpenDialog('ZXK','30')" />
+        <area shape="rect" coords="507, 156, 543, 186" title="31号库" @click="OpenDialog('ZXK','31')" />
+        <area shape="rect" coords="731, 80, 872, 178" title="56料场" @click="OpenDialog('ZXK','56')" />
+        <area shape="rect" coords="731, 230, 888, 651" title="55料场" @click="OpenDialog('ZXK','55')" />
       </map>
       <div name="8号料台">
         <img
