@@ -1,6 +1,6 @@
 <template>
   <div id="ZDWZ" class="app-container calendar-list-container">
-    <TotalZDWZDetail></TotalZDWZDetail>
+    <TotalZDWZDetail ref="TotalZDWZDetail"></TotalZDWZDetail>
   </div>
 </template>
 
@@ -9,11 +9,9 @@ import TotalZDWZDetail from "@/app_src/views/cangchu/KCZS/TotalZDWZDetail";
 export default {
   name: "ZDWZ",
   data() {
-    return {
-     
-    };
+    return {};
   },
-   components: {
+  components: {
     TotalZDWZDetail //重点物资
   },
   methods: {
@@ -23,7 +21,13 @@ export default {
         return "el-button--primary is-active"; // 'warning-row'
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
+    },
+    getList() {
+      this.$refs.TotalZDWZDetail.getList();
     }
+  },
+  mounted() {
+    this.getList();
   }
 };
 </script>

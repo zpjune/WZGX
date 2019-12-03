@@ -1,6 +1,6 @@
 <template>
   <div id="JYWZ" class="app-container calendar-list-container">
-    <TotalJYWZ></TotalJYWZ>
+    <TotalJYWZ ref="TotalJYWZ"></TotalJYWZ>
   </div>
 </template>
 
@@ -9,11 +9,9 @@ import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
 export default {
   name: "JYWZ",
   data() {
-    return {
-     
-    };
+    return {};
   },
-  components:{
+  components: {
     TotalJYWZ
   },
   methods: {
@@ -23,7 +21,14 @@ export default {
         return "el-button--primary is-active"; // 'warning-row'
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
-    }}
+    },
+    getList() {
+      this.$refs.TotalJYWZ.getList();
+    }
+  },
+  mounted() {
+    this.getList();
+  }
 };
 </script>
 
