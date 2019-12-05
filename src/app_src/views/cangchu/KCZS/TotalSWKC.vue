@@ -2,6 +2,19 @@
   <div id="TotalSWKC" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+       <el-radio class="radio" v-model="listQuery.ISWZ" label="1">物资公司</el-radio>
+       <el-radio class="radio" v-model="listQuery.ISWZ" label="2">大港油田</el-radio>
+      </el-col>
+       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-input
+          placeholder="请输入工厂编码"
+          style="width:95%;"
+          size="mini"
+          v-model="listQuery.WERKS"
+          clearable
+        ></el-input>
+      </el-col>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
           placeholder="请输入工厂名称"
           style="width:95%;"
@@ -74,10 +87,14 @@
               />
             </template>
           </el-table-column>
-          <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
-          <el-table-column label="工厂名称" prop="WERKS_NAME"></el-table-column>
-          <el-table-column label="物料组" prop="MATKL"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR"></el-table-column>
+          <el-table-column label="工厂编号" prop="WERKS" width="70"></el-table-column>
+          <el-table-column label="工厂名称" prop="WERKS_NAME"  width="250"></el-table-column>
+          <el-table-column label="物料组" prop="MATKL"  width="80"></el-table-column>
+          <el-table-column label="物料编码" width="100" >
+            <template slot-scope="scope" >
+                  <span>{{scope.row.MATNR|fMATNR}}</span>
+               </template>
+          </el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
@@ -134,7 +151,11 @@ export default {
       if(val==='04'){
         return '上架';
       }
+    },
+    fMATNR:function(val){
+        return val.substring(7);
     }
+    
   },
   data() {
     return {
@@ -142,6 +163,8 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
+        ISWZ:"1",
+        WERKS:"",
         WERKS_NAME: "",
         LGORTNAME: "",
         MATNR: "",

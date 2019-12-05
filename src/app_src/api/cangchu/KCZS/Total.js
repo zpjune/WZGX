@@ -49,9 +49,23 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
-  export function getZDWZCB(query) {//总库存 重点物资储备
+  export function getZDWZCB(query) {//左侧菜单 重点物资储备
     return request({
       url: '/Total/getZDWZCB',
+      method: 'get',
+      params:query
+    })
+  }
+  export function getZDWZCBTOTAL(query) {//总库存 重点物资储备
+    return request({
+      url: '/Total/getZDWZCBTOTAL',
+      method: 'get',
+      params:query
+    })
+  }
+  export function getZDWZCBTOTALDETAIL(query) {//总库存 重点物资储备明细
+    return request({
+      url: '/Total/getZDWZCBTOTALDETAIL',
       method: 'get',
       params:query
     })

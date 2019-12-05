@@ -76,7 +76,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <TotalZDWZDetail ref="TotalZDWZDetail"></TotalZDWZDetail>
+        <TotalZDWZNEW ref="TotalZDWZNEW"></TotalZDWZNEW>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
@@ -131,7 +131,7 @@
 
 <script>
 import TotalSWKC from "@/app_src/views/cangchu/KCZS/TotalSWKC";
-import TotalZDWZDetail from "@/app_src/views/cangchu/KCZS/TotalZDWZDetail";
+import TotalZDWZNEW from "@/app_src/views/cangchu/KCZS/TotalZDWZNEW";
 import TotalZDWZCRK from "@/app_src/views/cangchu/KCZS/TotalZDWZCRK";
 import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
@@ -143,7 +143,7 @@ export default {
   components: {
     CountTo,
     TotalSWKC, //实物库存
-    TotalZDWZDetail, //重点物资
+    TotalZDWZNEW, //重点物资
     TotalZDWZCRK, //重点物资出入库
     TotalBGYGZL, //保管员工作量
     TotalCRKdetail, //出入库统计详情页
@@ -411,7 +411,7 @@ export default {
           this.$refs.TotalSWKC.getList();
           break;
         case "3":
-          this.$refs.TotalZDWZDetail.getList();
+          this.$refs.TotalZDWZNEW.getList();
           break;
         case "4":
           this.$refs.TotalZDWZCRK.getList();
