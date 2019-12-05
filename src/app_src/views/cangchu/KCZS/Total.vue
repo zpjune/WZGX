@@ -6,8 +6,35 @@
           <i class="header-icon el-icon-star-on" style="font-weight:bold">库存资金统计</i>
         </template>
         <el-row style="overflow-x: scroll;">
-          <el-col :xs="12" :sm="12" :lg="7">
+          <el-col :xs="12" :sm="12" :lg="9">
             <div id="pic1" class="pic1" style="width:55%;margin-left:30%;padding-top:80px">
+              <el-row>
+                <el-col :xs="12" :sm="10" :lg="10" style="text-align:right">
+                  <img src="../../../img/renminbi2.png" style="width:85px;height:85px" />
+                </el-col>
+                <el-col :xs="12" :sm="14" :lg="14">
+                  <el-row>
+                    <el-col
+                      :span="24"
+                      style="font-weight:bold;font-size:16px;text-align:center;color:#696969;padding-top:7px;"
+                    >物资公司总资金</el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center">
+                      <count-to
+                        :start-val="0"
+                        :end-val="totalwzziji"
+                        :duration="3000"
+                        :decimals="2"
+                        class="card-panel-num"
+                      />万
+                    </el-col>
+                  </el-row>
+                </el-col>
+              </el-row>
+            </div>
+
+            <div id="pic1" class="pic1" style="width:55%;margin-left:30%;padding-top:20px">
               <el-row>
                 <el-col :xs="12" :sm="10" :lg="10" style="text-align:right">
                   <img src="../../../img/renminbi.png" style="width:80px;height:80px" />
@@ -17,7 +44,7 @@
                     <el-col
                       :span="24"
                       style="font-weight:bold;font-size:16px;text-align:center;color:#696969;padding-top:7px;"
-                    >总资金</el-col>
+                    >大港油田总资金</el-col>
                   </el-row>
                   <el-row>
                     <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center">
@@ -35,7 +62,7 @@
             </div>
           </el-col>
           <el-col :xs="12" :sm="12" :lg="10">
-            <div id="pic2" style="width:714px;height:280px;margin-top:15px"></div>
+            <div id="pic2" style="width:804px;height:550px;margin-top:15px"></div>
           </el-col>
         </el-row>
       </el-collapse-item>
@@ -126,6 +153,7 @@ export default {
     return {
       activeCangku: "1",
       totalziji: 0,
+      totalwzziji:0,
       OldArr: ["1"],
       option2: {
         title: {
@@ -141,22 +169,30 @@ export default {
           orient: "vertical",
           left: "right",
           data: [
-            "港东供销",
-            "港西供销",
-            "油区供销",
-            "港狮供销",
-            "港骅供销",
+            "本部工厂",
             "物采中心",
             "专用管分公司",
-            "本部工厂"
+            "外贸分公司",
+            "油品分公司",
+            "气体供销公司",
+            "港狮分公司",
+            "港南分公司",
+            "港骅分公司",
+            "港东分公司",
+            "港西分公司",
+            "矿区分公司",
+            "炼化分公司",
+            "油区分公司",
+            "设利用分公司",
+            "外部市场"
           ]
         },
         series: [
           {
             name: "总库存",
             type: "pie",
-            radius: "65%",
-            center: ["50%", "53%"],
+            radius: "60%",
+            center: ["50%", "50%"],
             label: {
               normal: {
                 show: true,
@@ -164,14 +200,14 @@ export default {
               }
             },
             data: [
-              { value: 0, name: "港东供销" },
-              { value: 0, name: "港西供销" },
-              { value: 0, name: "油区供销" },
-              { value: 0, name: "港狮供销" },
-              { value: 0, name: "港骅供销" },
-              { value: 0, name: "物采中心" },
-              { value: 0, name: "专用管分公司" },
-              { value: 0, name: "本部工厂" }
+              // { value: 0, name: "港东供销" },
+              // { value: 0, name: "港西供销" },
+              // { value: 0, name: "油区供销" },
+              // { value: 0, name: "港狮供销" },
+              // { value: 0, name: "港骅供销" },
+              // { value: 0, name: "物采中心" },
+              // { value: 0, name: "专用管分公司" },
+              // { value: 0, name: "本部工厂" }
             ],
             itemStyle: {
               emphasis: {
@@ -275,17 +311,20 @@ export default {
       GetKCZJ().then(res => {
         if (res.data.code === 2000) {
           //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
-          let arr = new Array(8);
-          arr[0] = { value: res.data.items.C27C, name: "港东供销" };
-          arr[1] = { value: res.data.items.C27D, name: "港西供销" };
-          arr[2] = { value: res.data.items.C27G, name: "油区供销" };
-          arr[3] = { value: res.data.items.C279, name: "港狮供销" };
-          arr[4] = { value: res.data.items.C27B, name: "港骅供销" };
-          arr[5] = { value: res.data.items.C274, name: "物采中心" };
-          arr[6] = { value: res.data.items.C275, name: "专用管分公司" };
-          arr[7] = { value: res.data.items.C271, name: "本部工厂" };
+          let arr = new Array(10);
+          arr[0] = { value: res.data.items.C271, name: "本部工厂" };
+          arr[1] = { value: res.data.items.C274, name: "物采中心" };
+          arr[2] = { value: res.data.items.C275, name: "专用管分公司" };
+          arr[3] = { value: res.data.items.C277, name: "油品分公司" };
+          arr[4] = { value: res.data.items.C279, name: "港狮分公司" };
+          arr[5] = { value: res.data.items.C27B, name: "港骅分公司" };
+          arr[6] = { value: res.data.items.C27C, name: "港东分公司" };
+          arr[7] = { value: res.data.items.C27D, name: "港西分公司" };
+          arr[8] = { value: res.data.items.C27G, name: "油区分公司" };
+          arr[9] = { value: res.data.items.C27I, name: "外部市场" };
           this.option2.series[0].data = arr;
           this.totalziji = res.data.items.TOTAL;
+          this.totalwzziji=res.data.items.TOTALWZ;
           this.drawline2();
         }
       });
