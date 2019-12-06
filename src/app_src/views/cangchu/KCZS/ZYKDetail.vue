@@ -19,7 +19,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
-        <detailZDWZ DKCODE="01" ref="detailZDWZ"></detailZDWZ>
+        <detailZDWZNEW DKCODE="01" ref="detailZDWZNEW"></detailZDWZNEW>
       </el-collapse-item>
       <el-collapse-item name="4">
         <template slot="title">
@@ -46,7 +46,7 @@
 <script>
 import ZYK from "@/app_src/views/cangchu/KCZS/ZYK";
 import detailJYWZ from "@/app_src/views/cangchu/KCZS/detailJYWZ";
-import detailZDWZ from "@/app_src/views/cangchu/KCZS/detailZDWZ";
+import detailZDWZNEW from "@/app_src/views/cangchu/KCZS/detailZDWZNEW";
 import detailZDWZCRK from "@/app_src/views/cangchu/KCZS/detailZDWZCRK";
 import detailDRK from "@/app_src/views/cangchu/KCZS/detailDRK";
 import detailDCK from "@/app_src/views/cangchu/KCZS/detailDCK";
@@ -63,7 +63,7 @@ export default {
   components: {
     ZYK,
     detailJYWZ,
-    detailZDWZ,
+    detailZDWZNEW,
     detailZDWZCRK,
     detailDRK,
     detailDCK
@@ -90,7 +90,7 @@ export default {
           this.$refs.detailJYWZ.getList();
           break;
         case "3":
-          this.$refs.detailZDWZ.getList();
+          this.$refs.detailZDWZNEW.getList();
           break;
         case "4":
           this.$refs.detailZDWZCRK.getList();
