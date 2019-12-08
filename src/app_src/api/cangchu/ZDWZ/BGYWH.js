@@ -39,3 +39,11 @@ export function GetBGYInfo(query) {
       params:query
     })
   }
+
+  export function GetCKHInfo(query) {
+    return request({
+      url: '/BGYWH/GetCKHInfo',
+      method: 'get',
+      params:query
+    })
+  }

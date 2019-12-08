@@ -53,6 +53,7 @@
           <el-table-column label="保管员编码" prop="WORKER_CODE"></el-table-column>
           <el-table-column label="保管员姓名" prop="WORKER_NAME"></el-table-column>
           <el-table-column label="单位工厂" prop="DW_NAME"></el-table-column>
+          <el-table-column label="管理大库" prop="KCDD_NAME"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" @click="Edit(scope.row)" size="mini">编辑</el-button>
@@ -79,6 +80,11 @@
                   :disable-branch-nodes="true"
                   :show-count="true"
                 />
+              </el-form-item>
+              <el-form-item label="管理大库">
+                <el-select v-model="BGYModel.CKH" style="width:100%;">
+                  <el-option v-for="(item,key) in CKHOptions" :key="key" :value="item.CKH" :label="item.KCDD_NAME"></el-option>
+                </el-select>
               </el-form-item>
               <div style="text-align:center">
                 <el-button type="primary" @click="submit">提交</el-button>
@@ -109,7 +115,8 @@ import {
   CreateBGYInfo,
   EditBGYInfo,
   DelBGYInfo,
-  GetGCInfo
+  GetGCInfo,
+  GetCKHInfo
 } from "@/app_src/api/cangchu/ZDWZ/BGYWH";
 import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
@@ -129,13 +136,14 @@ export default {
         WORKER_CODE: "",
         WORKER_NAME: "",
         GC_CODE:null,
-        WORKER_DP: null
+        WORKER_DP: null,
       },
       BGYModel: {
         WORKER_CODE: "",
         WORKER_NAME: "",
         GC_CODE:null,
-        WORKER_DP: null
+        WORKER_DP: null,
+        CKH:"",
       },
       rules: {
         WORKER_CODE: [
@@ -151,6 +159,7 @@ export default {
       fac: [],
       dialogTitle: "",
       options: [],
+      CKHOptions:[],
       show: false,
       normalizer(node, instanceId) {
         return {
@@ -175,6 +184,7 @@ export default {
         WORKER_NAME: "",
         WORKER_DP: null,
         GC_CODE:null,
+        CKH:"",
       };
     },
     loadOptions({ action, parentNode, callback }) {
@@ -208,6 +218,13 @@ export default {
           });
         }
       });
+    },
+    GetCKH(){
+      GetCKHInfo().then(response=>{
+        if(response.data.code===2000){
+          this.CKHOptions=response.data.items;
+        }
+      })
     },
     Create() {
       this.show = true;
@@ -328,6 +345,7 @@ export default {
   mounted() {
     this.GetList();
     this.GetOptions();
+    this.GetCKH();
   }
 };
 </script>
