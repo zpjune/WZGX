@@ -48,24 +48,24 @@
         >
           <el-table-column label="编码" prop="CODE" fixed="left"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="80" fixed="left"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" fixed="left"></el-table-column>
+          <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
           <el-table-column label="计量数量" prop="MEINS"></el-table-column>
           <el-table-column label="入库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
           <el-table-column label="总价" prop="TOTALPRICE"></el-table-column>
-          <el-table-column label="入库时间" width="100">
+          <!-- <el-table-column label="入库时间" width="100">
             <template slot-scope="scope">{{scope.row.RK_TIME|change}}</template>
-          </el-table-column>
-          <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
-          <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>
+          </el-table-column>-->
+          <!-- <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
+          <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>-->
           <el-table-column label="入库原因" prop="NAME" width="200px"></el-table-column>
-          <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
+          <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
           <el-table-column label="关闭时间" width="100">
             <template slot-scope="scope">{{scope.row.CLOSE_TIME|change}}</template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
           <el-table-column label="操作" width="230">
@@ -94,14 +94,14 @@
                 size="mini"
                 v-if="scope.row.APPROVAL_STATUS===1"
               >撤回</el-button>
-              <el-button
+              <!-- <el-button
                 type="warning"
                 @click="CancelRK(scope.row)"
                 size="mini"
                 v-if="scope.row.APPROVAL_STATUS===2"
-              >入库取消</el-button>
-              <el-button type="danger" size="mini" v-if="scope.row.APPROVAL_STATUS===3">申请驳回</el-button>
-              <el-button type="success" size="mini" v-if="scope.row.APPROVAL_STATUS===4">业务完成</el-button>
+              >入库取消</el-button>-->
+              <span v-if="scope.row.APPROVAL_STATUS===3">此出库单已被驳回，无法操作</span>
+              <span v-if="scope.row.APPROVAL_STATUS===4">业务已完成,无法操作本条数据</span>
             </template>
           </el-table-column>
         </el-table>
@@ -118,75 +118,138 @@
         ></el-pagination>
       </el-col>
     </el-row>
-    <el-dialog :visible.sync="show" :title="title">
+    <el-dialog :visible.sync="show" :title="title" width="70%">
       <el-card>
-        <el-form :model="temp" :rules="rules" label-width="80px" ref="dataform">
+        <el-form :model="temp" :rules="rules" label-width="120px" ref="dataform">
           <el-row>
-            <el-col :span="8">
-              <el-form-item label="编码" prop="CODE">
-                <el-input v-model="temp.CODE"></el-input>
+            <el-col :span="24" style="text-align:center;">
+              <span>中国石油大港油田物资供销公司</span>
+            </el-col>
+            <el-col
+              :span="24"
+              style="text-align:center; font-size:20px;font-weight:bold;margin-top:10px;"
+            >
+              <span>紧急入库单</span>
+            </el-col>
+          </el-row>
+          <el-row style="margin-top:10px;">
+            <el-col :span="6">
+              <el-form-item label="单据编码">
+                <el-input v-model="temp.CODE" disabled placeholder="系统自动生成，无需填写"></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="8">
-              <el-form-item label="申请单位" prop="DW_CODE">
-                <!-- <el-select v-model="temp.DW_CODE">
+            <el-col :span="6">
+              <el-form-item label="制单日期">
+                <el-input v-model="currentTime" disabled></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="制单人">
+                <el-input v-model="username" disabled style="width:45%"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-row>
+              <el-col :span="6">
+                <el-form-item label="申请单位" prop="DW_CODE">
+                  <!-- <el-select v-model="temp.DW_CODE">
                   <el-option
                     v-for="(item,key) in OrgOptions"
                     :key="key"
                     :label="item.ORG_SHORT_NAME"
                     :value="item.ORG_CODE"
                   ></el-option>
-                </el-select>-->
-                <treeselect
-                  v-model="temp.DW_CODE"
-                  :multiple="false"
-                  :options="roleTree"
-                  :load-options="loadOptions"
-                  :loadOptions="loadOptions"
-                  placeholder="请选择部门"
-                  :normalizer="normalizer"
-                  :disable-branch-nodes="false"
-                  noResultsText="未搜索到结果"
-                  noChildrenText=" "
-                  style="font-size:14px; width:100%;"
-                  @select="getNode"
-                />
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="物料编码" prop="MATNR">
-                <el-input v-model="temp.MATNR"></el-input>
+                  </el-select>-->
+                  <treeselect
+                    v-model="temp.DW_CODE"
+                    :multiple="false"
+                    :options="roleTree"
+                    :load-options="loadOptions"
+                    :loadOptions="loadOptions"
+                    placeholder="请选择部门"
+                    :normalizer="normalizer"
+                    :disable-branch-nodes="false"
+                    noResultsText="未搜索到结果"
+                    noChildrenText=" "
+                    style="font-size:14px; width:100%;"
+                    @select="getNode"
+                    disabled
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item label="物料编码" prop="MATNR">
+                  <el-input v-model="temp.MATNR"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="物料描述" prop="MATNX">
+                  <el-input v-model="temp.MATNX"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="6">
+                <el-form-item label="计量单位" prop="MEINS">
+                  <el-input v-model="temp.MEINS"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item label="入库数量" prop="RKNUMBER">
+                  <el-input v-model="temp.RKNUMBER"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item label="单价" prop="PRICE">
+                  <el-input v-model="temp.PRICE"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="6">
+                <el-form-item label="总金额" prop="TOTALPRICE">
+                  <el-input v-model="temp.TOTALPRICE"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="12">
+                <el-form-item label="入库地点" prop="KCDD">
+                  <el-select v-model="temp.KCDD" style="width:100%">
+                    <el-option
+                      v-for="(item,key) in KCDDOptions"
+                      :key="key"
+                      :label="item.KCDD_NAME"
+                      :value="item.KCDD_CODE"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="供应商" prop="GYS">
+                  <el-input v-model="temp.GYS"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-row>
+          <el-row>
+            <el-col :span="24">
+              <el-form-item label="入库原因" prop="REASON">
+                <el-select
+                  v-model="temp.REASON"
+                  style="width:100%"
+                  @change="change"
+                  v-if="!inputstatus"
+                >
+                  <el-option
+                    v-for="(item,key) in ReasonOptions"
+                    :key="key"
+                    :value="item.CODE"
+                    :label="item.NAME"
+                  ></el-option>
+                </el-select>
+                <el-input v-model="temp.REASON" v-if="inputstatus"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row>
-            <el-col :span="8">
-              <el-form-item label="物料描述" prop="MATNX">
-                <el-input v-model="temp.MATNX"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="计量单位" prop="MEINS">
-                <el-input v-model="temp.MEINS"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="入库数量" prop="RKNUMBER">
-                <el-input v-model="temp.RKNUMBER"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="8">
-              <el-form-item label="单价" prop="PRICE">
-                <el-input v-model="temp.PRICE"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="总金额" prop="TOTALPRICE">
-                <el-input v-model="temp.TOTALPRICE"></el-input>
-              </el-form-item>
-            </el-col>
+          <!-- <el-row>
             <el-col :span="8">
               <el-form-item label="入库时间" prop="RK_TIME">
                 <el-date-picker v-model="temp.RK_TIME" style="width:100%"></el-date-picker>
@@ -233,22 +296,7 @@
                 <el-date-picker v-model="temp.CLOSE_TIME" style="width:100%"></el-date-picker>
               </el-form-item>
             </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="8">
-              <el-form-item label="库存地点" prop="KCDD">
-                <el-select v-model="temp.KCDD">
-                  <el-option v-for="(item,key) in KCDDOptions" :key="key" :label="item.KCDD_NAME" :value="item.KCDD_CODE"></el-option>
-                </el-select>
-                <!-- <el-input v-model="temp.KCDD"></el-input> -->
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="供应商" prop="GYS">
-                <el-input v-model="temp.GYS"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
+          </el-row>-->
           <div style="text-align:center">
             <el-button type="primary" @click="submit">提交</el-button>
             <el-button @click="show=false">取消</el-button>
@@ -281,6 +329,14 @@ export default {
     Treeselect
   },
   data() {
+    var validateDecimal = (rule, value, callback) => {
+      let reg = /^[0-9]*\.?\d*$/;
+      if (!reg.test(value)) {
+        return callback(new Error("年龄不能为空"));
+      } else {
+        callback();
+      }
+    };
     return {
       listloading: false,
       fac: [],
@@ -299,7 +355,7 @@ export default {
       temp: {
         CODE: "",
         ORGID: "",
-        DW_CODE: "",
+        DW_CODE: this.$store.state.user.orgCode,
         MATNR: "",
         MATNX: "",
         MEINS: "",
@@ -335,13 +391,28 @@ export default {
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         RKNUMBER: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          {
+            validator: validateDecimal,
+            message: "请输入正确的值",
+            trigger: "change"
+          }
         ],
         PRICE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          {
+            validator: validateDecimal,
+            message: "请输入正确的值",
+            trigger: "change"
+          }
         ],
         TOTALPRICE: [
-          { required: true, message: "此项不能为空！", trigger: "change" }
+          { required: true, message: "此项不能为空！", trigger: "change" },
+          {
+            validator: validateDecimal,
+            message: "请输入正确的值",
+            trigger: "change"
+          }
         ],
         RK_TIME: [
           { required: true, message: "此项不能为空！", trigger: "change" }
@@ -370,6 +441,9 @@ export default {
       roleTree: [],
       KCDDOptions: [],
       title: "",
+      currentTime: "",
+      inputstatus: false,
+      username: this.$store.state.user.name,
       normalizer(node) {
         return {
           id: node.orgCode,
@@ -476,7 +550,7 @@ export default {
     reset() {
       this.temp = {
         CODE: "",
-        DW_CODE: null,
+        DW_CODE: this.$store.state.user.orgCode,
         MATNR: "",
         MATNX: "",
         MEINS: "",
@@ -498,20 +572,44 @@ export default {
     },
     create() {
       this.show = true;
+      this.inputstatus = false;
       this.title = "新建";
       this.$nextTick(() => {
         this.$refs["dataform"].clearValidate();
       });
       this.reset();
+      this.temp.KCDD = "";
+      let temp = {
+        orgCode: this.temp.DW_CODE
+      };
+      GetKCDDInfo(temp).then(response => {
+        if (response.data.code === 2000) {
+          this.KCDDOptions = response.data.items;
+        }
+      });
     },
     update(data) {
       this.temp = Object.assign({}, data);
       this.temp.userid = this.$store.state.user.userId;
+      console.log(this.temp);
       this.show = true;
       this.title = "修改";
       this.$nextTick(() => {
         this.$refs["dataform"].clearValidate();
       });
+      let temp = {
+        orgCode: this.temp.DW_CODE
+      };
+      GetKCDDInfo(temp).then(response => {
+        if (response.data.code === 2000) {
+          this.KCDDOptions = response.data.items;
+        }
+      });
+      if (this.ReasonOptions.findIndex(t => t.CODE === data.REASON) === -1) {
+        this.inputstatus = true;
+      } else {
+        this.inputstatus = false;
+      }
     },
     del(data) {
       this.$confirm("您确定要删除此项信息吗?", "提示", {
@@ -645,16 +743,27 @@ export default {
         }
       }
     },
+    change(data) {
+      if (
+        this.ReasonOptions.findIndex(t => t.CODE === data) ===
+        this.ReasonOptions.length - 1
+      ) {
+        this.temp.REASON = "";
+        this.inputstatus = true;
+      } else {
+        this.inputstatus = false;
+      }
+    },
     getNode(node, instanceId) {
-      this.temp.KCDD="";
-      let temp={
-        orgCode:node.orgCode
+      this.temp.KCDD = "";
+      let temp = {
+        orgCode: node.orgCode
       };
-      GetKCDDInfo(temp).then(response=>{
-        if(response.data.code===2000){
-          this.KCDDOptions=response.data.items;
+      GetKCDDInfo(temp).then(response => {
+        if (response.data.code === 2000) {
+          this.KCDDOptions = response.data.items;
         }
-      })
+      });
     },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
@@ -670,6 +779,31 @@ export default {
     handleCurrentChange(val) {
       this.listQuery.page = val;
       this.getList();
+    },
+    getTime() {
+      let date = new Date();
+      let year = date.getFullYear();
+
+      //由于js的月份是从0开始的,所以月份加上1
+      let month = date.getMonth() + 1;
+
+      //返回的是一个月中的某一天1-31
+      let myDate = date.getDate();
+
+      //返回的是一个星期中的某一天0-6,0是一个星期的第一天星期天
+      let myDay = date.getDay();
+
+      //获取24小时格式的小时
+      let hours = date.getHours();
+      let map1 = [1, 2, 3, 4, 5, 6, 7];
+      let map2 = ["一", "二", "三", "四", "五", "六", "日"];
+      let realDay = "";
+      if (myDay === 0) {
+        realDay = map2[6];
+      } else {
+        realDay = map2[map1.findIndex(t => t === myDay)];
+      }
+      this.currentTime = year + "年" + month + "月" + myDate + "日";
     }
   },
   filters: {
@@ -682,6 +816,7 @@ export default {
     }
   },
   mounted() {
+    this.getTime();
     this.getList();
     //this.getOrgInfo();
     //this.GetKCDDInfo();

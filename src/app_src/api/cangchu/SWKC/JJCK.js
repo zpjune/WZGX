@@ -61,24 +61,39 @@ export function CancelRK(data) {
 }
 export function GetOrgInfo(query) {//单位物资查询接口
     return request({
-      url: '/JJCK/GetOrgInfo',
-      method: 'get',
-      params:query
+        url: '/JJCK/GetOrgInfo',
+        method: 'get',
+        params: query
+    })
+}
+
+export function GetKCDDInfo(query) {//单位物资查询接口
+    return request({
+        url: '/JJCK/GetKCDDInfo',
+        method: 'get',
+        params: query
+    })
+}
+
+export function GetCodeOptions(query) {//单位物资查询接口
+    return request({
+        url: '/DictionaryConfig/GetCodeOptions',
+        method: 'get',
+        params: query
+    })
+}
+
+export function BGYUpdate(data) {//单位物资查询接口
+    return request({
+      url: '/JJCK/BGYUpdate',
+      method: 'post',
+      data
     })
   }
-
-  export function GetKCDDInfo(query) {//单位物资查询接口
+  export function BGYSendForm(data) {//单位物资查询接口
     return request({
-      url: '/JJCK/GetKCDDInfo',
-      method: 'get',
-      params:query
-    })
-  }
-
-  export function GetCodeOptions(query) {//单位物资查询接口
-    return request({
-      url: '/DictionaryConfig/GetCodeOptions',
-      method: 'get',
-      params:query
+      url: '/JJCK/BGYSendForm',
+      method: 'post',
+      data
     })
   }

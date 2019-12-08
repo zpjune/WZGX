@@ -82,3 +82,20 @@ export function GetOrgInfo(query) {//单位物资查询接口
       params:query
     })
   }
+
+  export function BGYUpdate(data) {//单位物资查询接口
+    return request({
+      url: '/JJRK/BGYUpdate',
+      method: 'post',
+      data
+    })
+  }
+  export function BGYSendForm(data) {//单位物资查询接口
+    return request({
+      url: '/JJRK/BGYSendForm',
+      method: 'post',
+      data
+    })
+  }
+
+
