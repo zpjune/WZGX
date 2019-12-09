@@ -46,8 +46,8 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="编码" prop="CODE" fixed="left"></el-table-column>
-          <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="80" fixed="left"></el-table-column>
+          <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
+          <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
           <el-table-column label="计量数量" prop="MEINS"></el-table-column>
@@ -68,8 +68,8 @@
           </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
-          <el-table-column label="制单人" prop="USER_NAME" width="150"></el-table-column>
-          <el-table-column label="操作" width="190">
+          <el-table-column label="制单人" prop="USER_NAME" width="100"></el-table-column>
+          <el-table-column label="操作" width="250">
             <template slot-scope="scope">
               <el-button
                 type="info"
@@ -218,7 +218,7 @@
                     <el-option
                       v-for="(item,key) in KCDDOptions"
                       :key="key"
-                      :label="item.KCDD_NAME"
+                      :label="item.KCDD_NAME+'-'+item.KCDD_CODE"
                       :value="item.KCDD_CODE"
                     ></el-option>
                   </el-select>
@@ -300,7 +300,7 @@
             </el-col>
           </el-row>-->
           <div style="text-align:center">
-            <el-button type="primary" @click="submit">提交</el-button>
+            <el-button type="primary" @click="submit">保存</el-button>
             <el-button @click="show=false">取消</el-button>
           </div>
         </el-form>

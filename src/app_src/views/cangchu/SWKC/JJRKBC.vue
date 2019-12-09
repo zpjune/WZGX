@@ -45,8 +45,8 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="编码" prop="CODE" fixed="left" width="100"></el-table-column>
-          <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="80" fixed="left"></el-table-column>
+          <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
+          <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
           <el-table-column label="计量数量" prop="MEINS"></el-table-column>
@@ -59,7 +59,7 @@
           <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
           <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>
           <el-table-column label="货位号" prop="LGPLA"></el-table-column>
-          <el-table-column label="入库原因" prop="NAME" width="200px"></el-table-column>
+          <el-table-column label="入库原因" prop="NAME" width="230px"></el-table-column>
           <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
@@ -68,8 +68,8 @@
           </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
-          
-          <el-table-column label="制单人" prop="USER_NAME" ></el-table-column>
+
+          <el-table-column label="制单人" prop="USER_NAME" width="100"></el-table-column>
           <el-table-column label="操作" width="230">
             <template slot-scope="scope">
               <el-button
@@ -77,7 +77,13 @@
                 size="mini"
                 type="primary"
                 v-if="scope.row.APPROVAL_STATUS===2"
-              >补充金额</el-button>
+              >修改</el-button>
+              <el-button
+                @click="update(scope.row)"
+                size="mini"
+                type="warning"
+                v-if="scope.row.APPROVAL_STATUS===5"
+              >修改</el-button>
               <el-button
                 @click="send(scope.row)"
                 size="mini"

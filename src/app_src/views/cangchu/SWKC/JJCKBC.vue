@@ -76,7 +76,13 @@
                 size="mini"
                 type="primary"
                 v-if="scope.row.APPROVAL_STATUS===2"
-              >补充金额</el-button>
+              >修改</el-button>
+              <el-button
+                @click="update(scope.row)"
+                size="mini"
+                type="warning"
+                v-if="scope.row.APPROVAL_STATUS===5"
+              >修改</el-button>
               <el-button
                 @click="send(scope.row)"
                 size="mini"
@@ -88,7 +94,7 @@
                 @click="CancelRK(scope.row)"
                 size="mini"
                 v-if="scope.row.APPROVAL_STATUS===6"
-              >出库取消</el-button>
+              >入库取消</el-button>
               <span v-if="scope.row.APPROVAL_STATUS===4">业务已完成,无法操作本条数据</span>
             </template>
           </el-table-column>
