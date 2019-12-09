@@ -59,7 +59,7 @@
           </el-table-column>-->
           <!-- <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
           <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>-->
-          <el-table-column label="入库原因" prop="NAME" width="200px"></el-table-column>
+          <el-table-column label="入库原因" prop="NAME" width="220px"></el-table-column>
           <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
@@ -68,7 +68,8 @@
           </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
-          <el-table-column label="操作" width="230">
+          <el-table-column label="制单人" prop="USER_NAME" width="150"></el-table-column>
+          <el-table-column label="操作" width="190">
             <template slot-scope="scope">
               <el-button
                 type="info"
@@ -100,6 +101,7 @@
                 size="mini"
                 v-if="scope.row.APPROVAL_STATUS===2"
               >入库取消</el-button>-->
+              <span v-if="scope.row.APPROVAL_STATUS===2">等待保管员操作...</span>
               <span v-if="scope.row.APPROVAL_STATUS===3">此出库单已被驳回，无法操作</span>
               <span v-if="scope.row.APPROVAL_STATUS===4">业务已完成,无法操作本条数据</span>
             </template>

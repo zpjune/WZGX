@@ -68,6 +68,7 @@
           </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
+          <el-table-column label="制单人" prop="USER_NAME" ></el-table-column>
           <el-table-column label="操作" width="230">
             <template slot-scope="scope">
               <el-button
@@ -100,6 +101,7 @@
                 size="mini"
                 v-if="scope.row.APPROVAL_STATUS===2"
               >出库取消</el-button>-->
+              <span v-if="scope.row.APPROVAL_STATUS===2">等待保管员操作...</span>
               <span v-if="scope.row.APPROVAL_STATUS===3">此出库单已被驳回，无法操作</span>
               <span v-if="scope.row.APPROVAL_STATUS===4">业务已完成,无法操作本条数据</span>
             </template>

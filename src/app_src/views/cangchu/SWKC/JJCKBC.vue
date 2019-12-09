@@ -58,6 +58,7 @@
           </el-table-column>-->
           <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
           <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>
+          <el-table-column label="货位号" prop="LGPLA"></el-table-column>
           <el-table-column label="出库原因" prop="NAME" width="200px"></el-table-column>
           <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
@@ -66,8 +67,8 @@
             <template slot-scope="scope">{{scope.row.CLOSE_TIME|change}}</template>
           </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
-          <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
-          <el-table-column label="货位号" prop="LGPLA"></el-table-column>
+          <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>        
+          <el-table-column label="制单人" prop="USER_NAME" ></el-table-column>
           <el-table-column label="操作" width="230">
             <template slot-scope="scope">
               <el-button
@@ -132,7 +133,7 @@
             </el-col>
             <el-col :span="12">
               <el-form-item label="制单人">
-                <el-input v-model="username" disabled style="width:45%"></el-input>
+                <el-input v-model="temp.USER_NAME" disabled style="width:45%"></el-input>
               </el-form-item>
             </el-col>
             <el-row>

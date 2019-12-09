@@ -67,6 +67,7 @@
           </el-table-column> -->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
+          <el-table-column label="制单人" prop="USER_NAME" ></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
               <el-button
