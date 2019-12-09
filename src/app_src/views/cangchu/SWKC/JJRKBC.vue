@@ -76,18 +76,12 @@
                 @click="update(scope.row)"
                 size="mini"
                 type="primary"
-                v-if="scope.row.APPROVAL_STATUS===2"
-              >修改</el-button>
-              <el-button
-                @click="update(scope.row)"
-                size="mini"
-                type="warning"
-                v-if="scope.row.APPROVAL_STATUS===5"
+                v-if="scope.row.APPROVAL_STATUS===2||scope.row.APPROVAL_STATUS===5"
               >修改</el-button>
               <el-button
                 @click="send(scope.row)"
                 size="mini"
-                type="primary"
+                type="success"
                 v-if="scope.row.APPROVAL_STATUS===5"
               >提交</el-button>
               <el-button
