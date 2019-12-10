@@ -308,7 +308,9 @@ export default {
         MATNX: "",
         ParentCode: "JJCKREASON",
         userid: this.$store.state.user.userId,
-        type: 2
+        type: 2,
+         SortType:1,//默认倒叙
+        GroupType:0//默认按照单号
       },
       total: 0,
       show: false,

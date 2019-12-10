@@ -50,7 +50,7 @@
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
-          <el-table-column label="计量数量" prop="MEINS"></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="出库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
           <el-table-column label="总价" prop="TOTALPRICE"></el-table-column>
@@ -350,7 +350,9 @@ export default {
         MATNX: "",
         ParentCode: "JJCKREASON",
         userid: this.$store.state.user.userId,
-        type: 0
+        type: 0,
+        SortType: 1, //默认倒叙
+        GroupType: 0 //默认按照单号
       },
       total: 0,
       show: false,

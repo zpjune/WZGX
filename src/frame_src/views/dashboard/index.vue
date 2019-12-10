@@ -95,7 +95,7 @@
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/cangku4.jpg"
+                    src="../../../frame_src/imgs/cangku5.jpg"
                     alt="港狮库"
                     @click="GSclick"
                   >
@@ -106,7 +106,7 @@
               </el-row>
               
               <div class="div_height"></div>
-              <el-row>
+              <!-- <el-row>
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
@@ -129,7 +129,7 @@
                     <span>厂现直供库</span>
                   </div>
                 </el-col>
-              </el-row>
+              </el-row> -->
               
             </div>
           </el-card>
@@ -147,7 +147,7 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div style="height:773px;word-wrap:break-word" class="icon">
+            <div style="height:612px;word-wrap:break-word" class="icon" name="height:773px">
               <el-row>
                 <el-col :span="4" style="text-align:center;" >
                   <img src="../../../frame_src/imgs/icon/33.png" style="width:50px;height:50px;" alt>

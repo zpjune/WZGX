@@ -45,36 +45,32 @@
           highlight-current-row
           style="width: 100%"
         >
-           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
+          <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
-          <el-table-column label="计量数量" prop="MEINS"></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="出库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
           <el-table-column label="总价" prop="TOTALPRICE"></el-table-column>
           <!-- <el-table-column label="出库时间" width="100">
             <template slot-scope="scope">{{scope.row.RK_TIME|change}}</template>
-          </el-table-column> -->
+          </el-table-column>-->
           <!-- <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
-          <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column> -->
+          <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>-->
           <el-table-column label="出库原因" prop="NAME" width="200px"></el-table-column>
           <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
           <el-table-column label="关闭时间" width="100">
             <template slot-scope="scope">{{scope.row.CLOSE_TIME|change}}</template>
-          </el-table-column> -->
+          </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
-          <el-table-column label="制单人" prop="USER_NAME" width="100" ></el-table-column>
+          <el-table-column label="制单人" prop="USER_NAME" width="100"></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
-              <el-button
-                type="primary"
-                @click="update(scope.row)"
-                size="mini"
-              >审批</el-button>
+              <el-button type="primary" @click="update(scope.row)" size="mini">审批</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -91,7 +87,7 @@
         ></el-pagination>
       </el-col>
     </el-row>
-    <el-dialog :visible.sync="show" :title="title"  width="70%">
+    <el-dialog :visible.sync="show" :title="title" width="70%">
       <el-card>
         <el-form :model="temp" :rules="rules" label-width="80px" ref="dataform">
           <el-row>
@@ -107,7 +103,7 @@
           </el-row>
           <el-row style="margin-top:10px;">
             <el-col :span="6">
-              <el-form-item label="单据编码" >
+              <el-form-item label="单据编码">
                 <el-input v-model="temp.CODE" disabled placeholder="系统自动生成，无需填写"></el-input>
               </el-form-item>
             </el-col>
@@ -247,7 +243,7 @@ import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 export default {
   name: "JJCKSP",
-    components: {
+  components: {
     Treeselect
   },
   data() {
@@ -262,7 +258,9 @@ export default {
         MATNX: "",
         ParentCode: "JJCKREASON",
         userid: this.$store.state.user.userId,
-        type: 1
+        type: 1,
+        SortType: 1, //默认倒叙
+        GroupType: 0 //默认按照单号
       },
       total: 0,
       show: false,
@@ -284,7 +282,7 @@ export default {
         SUGGESTION: "",
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
-        USER_NAME:"",
+        USER_NAME: "",
         GYS: "",
         KCDD: ""
       },
@@ -415,14 +413,14 @@ export default {
         SUGGESTION: "",
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
-        USER_NAME:"",
+        USER_NAME: "",
         GYS: "",
         KCDD: "",
         APPROVAL_STATUS: ""
       };
     },
     update(data) {
-        this.reset();
+      this.reset();
       this.temp = Object.assign({}, data);
       this.temp.userid = this.$store.state.user.userId;
       this.show = true;
@@ -449,7 +447,7 @@ export default {
             type: "success",
             duration: 2000
           });
-          this.show=false;
+          this.show = false;
           this.getList();
         } else {
           this.$notify({
