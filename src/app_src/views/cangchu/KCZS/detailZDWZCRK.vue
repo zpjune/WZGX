@@ -1,150 +1,159 @@
 <template>
-  <div id="TotalZDWZ" class="app-container calendar-list-container">
+  <div id="detailZDWZCRK" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
         <el-date-picker
-          v-model="month"
+          v-model="year"
           style="width:95%;"
           size="mini"
-          type="month"
+          type="year"
           :clearable="false"
         ></el-date-picker>
       </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable></el-input>
-      </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="5">
+      <el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
+        <el-select v-model="Query.MATNR" style="width:300px;" size="mini">
+          <el-option
+            v-for="item in opZDWZ"
+            :key="item.WL_CODE"
+            :label="item.WL_NAME"
+            :value="item.WL_CODE"
+          ></el-option>
+        </el-select>
         <el-button type="primary" icon="el-icon-search" @click="btnQuery" size="mini">查询</el-button>
-        <!-- <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button> -->
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-table
-          size="mini"
-          :data="list"
-          :header-cell-class-name="tableRowClassName"
-          v-loading="listloading"
-          element-loading-text="给我一点时间"
-          border
-          fit
-          highlight-current-row
-          style="width: 100%"
-        >
-          <el-table-column label="物料组" width="100" prop="MATKL"></el-table-column>
-          <el-table-column label="物料编码" width="150" prop="WL_CODE"></el-table-column>
-          <el-table-column label="物料描述" width="280" :show-overflow-tooltip="true" prop="MAKTX"></el-table-column>
-          <el-table-column label="计量单位" width="100" prop="MEINS"></el-table-column>
-          <el-table-column label="最低储备" width="120" prop="MAXHAVING"></el-table-column>
-          <el-table-column label="最高储备" width="120" prop="MAXHAVING"></el-table-column>
-          <el-table-column label="现有库存" width="150" prop="GESME"></el-table-column>
-          <el-table-column label="月度入库" width="150" prop="RKSL"></el-table-column>
-          <el-table-column label="累计入库" width="150" prop="RKSUMSL"></el-table-column>
-          <el-table-column label="月度消耗" width="150" prop="CKSL"></el-table-column>
-          <el-table-column label="累计消耗" width="150" prop="CKSUMSL"></el-table-column>
-          <el-table-column
-            align="center"
-            label="操作"
-            width="100px"
-            class-name="small-padding fixed-width"
-          >
-            <template slot-scope="scope">
-              <el-button
-                type="primary"
-                style="width:80px"
-                size="mini"
-                @click="DetailClick(scope.row)"
-              >查看去向</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-        <el-pagination
-          background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="listQuery.page"
-          :page-sizes="[10,20,30, 50]"
-          :page-size="listQuery.limit"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="5"
-          style="text-align: center;"
-        ></el-pagination>
+    <el-row style="overflow-x: scroll;">
+      <el-col :xs="24" :sm="24" :lg="24">
+        <div id="picZDWZBH" style="width:3500px;height:400px;padding-top:10px;"></div>
       </el-col>
     </el-row>
-    <el-dialog
-      title="去向明细表"
-      :visible.sync="quxiangDialogVisible"
-      :modal="false"
-      :modal-append-to-body="false"
-      style="margin-top:10vh;margin-left:100px;"
-      width="50%"
-    >
-      <!-- <el-button type="primary" style="float:right" size="mini">导出</el-button> -->
-      <el-table
-        :data="listDetail"
-        :header-cell-class-name="tableRowClassName"
-        v-loading="listdetailloading"
-        element-loading-text="给我一点时间"
-        border
-        fit
-        height="350"
-        highlight-current-row
-        style="width: 100%"
-        size="mini"
-        id="table"
-      >
-        <el-table-column min-width="100px" align="center" label="(领料)单位" fixed="left">
-          <template slot-scope="scope">
-            <span>{{scope.row.WERKS_NAME}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column min-width="100px" align="center" label="消耗数量" fixed="left">
-          <template slot-scope="scope">
-            <span>{{scope.row.SL}}</span>
-          </template>
-        </el-table-column>
-      </el-table>
-      <div class="pagination-container" style="text-align:center;">
-        <el-pagination
-          background
-          @size-change="handleSizeChangeDetail"
-          @current-change="handleCurrentChangeDetail"
-          :page-sizes="[10,20,30,40]"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="totalDetail"
-        ></el-pagination>
-      </div>
-    </el-dialog>
+    <el-row style="overflow-x: scroll;">
+      <el-col :xs="24" :sm="24" :lg="24">
+        <div id="picZDWZCRK" style="width:3500px;height:400px;padding-top:10px;"></div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import { getZDWZCRK, getZDWZCRKDetail } from "@/app_src/api/cangchu/KCZS/ZXK";
+import { getZDWZPZ } from "@/app_src/api/cangchu/KCZS/Total";
 export default {
   name: "TotalZDWZ",
   data() {
     return {
-      listloading: true,
-      listdetailloading: true,
-      quxiangDialogVisible: false,
-      month: "",
-      listQuery: {
-        page: 1,
-        limit: 10,
-        DKCODE: "",
-        yearmonth: "",
-        MATNR: ""
+      year: "",
+      Query: {
+        year: "",
+        MATNR: "000000010002949916"
       },
-      list: [],
-      total: 0,
-      listDetail: [],
-      totalDetail: 0,
-      listQueryDetail: {
-        MATNR: "",
-        MONTH: "",
-        DKCODE: "",
-        page: 1,
-        limit: 10
+      opZDWZ: [],
+      QueryZDWL: {
+        WL_NAME: ""
+      },
+      options: {
+        title: {
+          text: "重点物资每周变化情况"
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        legend: {
+          data: ["最高储备", "现有库存", "最低储备"]
+        },
+        grid: {
+          left: "2%",
+          right: "3%",
+          bottom: "3%",
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
+          data: []
+        },
+        yAxis: {
+          type: "value"
+        },
+        series: [
+          {
+            name: "最高储备",
+            type: "line",
+            stack: "总量",
+            data: [] //[120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: "现有库存",
+            type: "line",
+            stack: "总量",
+            data: [] //[220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+            name: "最低储备",
+            type: "line",
+            stack: "总量",
+            data: [] //[150, 232, 201, 154, 190, 330, 410]
+          }
+        ]
+      },
+      optionCRK: {
+        title: {
+          text: "重点物资出入库情况",
+          subtext: ""
+        },
+        grid: {
+          left: "2.5%",
+          right: "3%",
+          bottom: "3%",
+          containLabel: true
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        legend: {
+          data: ["入库", "出库"]
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ["line", "bar"] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        calculable: true,
+        xAxis: [
+          {
+            type: "category",
+            data: [
+              // "1月",
+              // "2月"
+            ]
+          }
+        ],
+        yAxis: [
+          {
+            type: "value"
+          }
+        ],
+        series: [
+          {
+            name: "入库",
+            type: "bar",
+            data: [2.0]
+          },
+          {
+            name: "出库",
+            type: "bar",
+            data: [2.0]
+          }
+        ]
       }
     };
   },
@@ -157,81 +166,94 @@ export default {
       } // 'el-button--primary is-plain'// 'warning-row'
       return "";
     },
+    drawlineZDWZBH() {
+      //重点物资变化情况 折线图
+      ///绘制echarts 饼状图
+
+      let mycharts = this.$echarts.init(document.getElementById("picZDWZBH"));
+      mycharts.setOption(this.options, true);
+      // mycharts.on("click", function(param) {
+      //   _this.crkDetailTitle = param.dataIndex + 1 + "月份出入库明细";
+      //   //param.dataIndex 0开始 第几组柱状图 param.seriesIndex 0开始 每组里的第几个柱子 param.seriesName 每个柱子的名字
+      //   _this.crklyear = _this.dataYear;
+      //   _this.crklmonth = param.dataIndex + 1;
+      //   _this.openDialog();
+      // });
+    },
+    drawlineZDWZCRK() {
+      //重点物资变化情况 折线图
+      ///绘制echarts 饼状图
+      let mycharts = this.$echarts.init(document.getElementById("picZDWZCRK"));
+      mycharts.setOption(this.optionCRK, true);
+    },
     getList() {
-      this.listloading = true;
-      this.listQuery.DKCODE = this.DKCODE;
-      if (this.month.getMonth() <= 8) {
-        this.listQuery.yearmonth =
-          this.month.getFullYear().toString() +
-          "0" +
-          (this.month.getMonth() + 1).toString();
-      } else {
-        this.listQuery.yearmonth =
-          this.month.getFullYear().toString() +
-          (this.month.getMonth() + 1).toString();
-      }
-      getZDWZCRK(this.listQuery).then(res => {
+      this.Query.year = this.year.toString().substr(11, 4);
+      getZDWZCRK(this.Query).then(res => {
         if (res.data.code === 2000) {
-          this.listloading = false;
-          this.list = res.data.items;
-          this.total = res.data.total;
-        } else {
-          this.listloading = false;
-          this.$notify({
-            position: "bottom-right",
-            title: "失败",
-            message: response.data.message,
-            type: "error",
-            duration: 2000
-          });
+          let zgcb = [];
+          let zdcb = [];
+          let kc = [];
+          let rk = [];
+          let ck = [];
+          for (let index = 0; index < 52; index++) {
+            zgcb.push(res.data.items.ZGCB[0].MAXHAVING);
+            if (index < res.data.items.KC.length) {
+              kc.push(res.data.items.KC[0].GESME);
+            }
+            zdcb.push(res.data.items.ZGCB[0].MINHAVING);
+
+            //出入库
+            let arr_rk = res.data.items.RK.filter((v, i) => {
+              return index + 1 == parseInt(v.WEEK);
+            });
+            if (arr_rk.length > 0) {
+              rk.push(arr_rk[0].ZSJDHSL);
+            } else {
+              rk.push(0);
+            }
+            //出库
+            let arr_ck = res.data.items.CK.filter((v, i) => {
+              return index + 1 == parseInt(v.WEEK);
+            });
+            if (arr_ck.length > 0) {
+              ck.push(arr_ck[0].ZSJFHSL);
+            } else {
+              ck.push(0);
+            }
+          }
+          this.options.series[0].data = zgcb;
+          this.options.series[1].data = kc;
+          this.options.series[2].data = zdcb;
+          this.drawlineZDWZBH();
+          this.optionCRK.series[0].data = rk;
+          this.optionCRK.series[1].data = ck;
+          this.drawlineZDWZCRK();
         }
       });
-    },
-    handleSizeChange(val) {
-      this.listQuery.limit = val;
-      this.getList();
-    },
-    handleCurrentChange(val) {
-      this.listQuery.page = val;
-      this.getList();
     },
     btnQuery() {
-      this.listQuery.limit = 10;
-      this.listQuery.page = 1;
       this.getList();
     },
-    getListDetail() {
-      this.listdetailloading=true;
-      // this.listDetail=[];
-      //this.totalDetail=0;
-      this.listQueryDetail.DKCODE = this.DKCODE;
-      getZDWZCRKDetail(this.listQueryDetail).then(res => {
-        if (res.data.code === 2000) {
-          this.listDetail = res.data.items;
-          this.totalDetail = res.data.total;
-        }
-        this.listdetailloading=false;
+    getZDWZPZ() {
+      getZDWZPZ(this.QueryZDWL).then(res => {
+        this.opZDWZ = res.data.items;
+        this.Query.MATNR = res.data.items[0].WL_CODE;
       });
     },
-    handleSizeChangeDetail(val) {
-      this.listQueryDetail.limit = val;
-      this.getListDetail();
-    },
-    handleCurrentChangeDetail(val) {
-      this.listQueryDetail.page = val;
-      this.getListDetail();
-    },
-    DetailClick(row) {
-      this.listQueryDetail.MATNR = row.WL_CODE;
-      this.listQueryDetail.MONTH = row.MONTH;
-      this.listQueryDetail.page=1;
-      this.getListDetail();
-      this.quxiangDialogVisible = true;
+    init() {
+      let arr = [];
+      for (let index = 1; index < 53; index++) {
+        arr.push("第" + index + "周");
+      }
+      this.options.xAxis.data = arr;
+      this.optionCRK.xAxis[0].data = arr;
     }
   },
   created() {
-    this.month = new Date();
-    //this.getList();
+    this.year = new Date();
+  },
+  mounted() {
+    this.init();
   }
 };
 </script>

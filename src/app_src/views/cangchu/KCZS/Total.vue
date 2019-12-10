@@ -435,6 +435,7 @@ export default {
     this.getTime();
     this.getKCZJ();
     this.GetCRKJE();
+    this.$refs.TotalZDWZCRK.getZDWZPZ();
   }
 };
 </script>

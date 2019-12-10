@@ -84,3 +84,10 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
+  export function getZDWZPZ(query) {//总库存 重点物资出入库明细
+    return request({
+      url: '/Total/getZDWZPZ',
+      method: 'get',
+      params:query
+    })
+  }
