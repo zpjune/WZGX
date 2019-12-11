@@ -437,7 +437,7 @@ export default {
           this.$refs.TotalJYWZ.getList();
           break;
         case "6":
-          //this.$refs.TotalCRKdetail.getList();
+          this.GetCRKJE();
           break;
         case "8":
           this.$refs.TotalBGYGZL.getList();
@@ -457,7 +457,7 @@ export default {
   mounted() {
     this.getTime();
     this.getKCZJ();
-    this.GetCRKJE();
+    //this.GetCRKJE();
     this.$refs.TotalZDWZCRK.getZDWZPZ();
   }
 };
