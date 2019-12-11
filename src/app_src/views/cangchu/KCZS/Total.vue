@@ -125,6 +125,18 @@
         </template>
         <TotalBGYGZL ref="TotalBGYGZL"></TotalBGYGZL>
       </el-collapse-item>
+      <el-collapse-item name="9">
+        <template slot="title">
+          <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
+        </template>
+        <detailDRK :FacCode="FacCode" ref="detailDRK"></detailDRK>
+      </el-collapse-item>
+      <el-collapse-item name="10">
+        <template slot="title">
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">待出库统计</i>
+        </template>
+        <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
+      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -136,6 +148,8 @@ import TotalZDWZCRK from "@/app_src/views/cangchu/KCZS/TotalZDWZCRK";
 import TotalBGYGZL from "@/app_src/views/cangchu/KCZS/TotalBGYGZL";
 import TotalCRKdetail from "@/app_src/components/cangchu/TotalCRKdetail";
 import TotalJYWZ from "@/app_src/views/cangchu/KCZS/TotalJYWZ";
+import detailDRK from "@/app_src/views/cangchu/KCZS/detailDRK";
+import detailDCK from "@/app_src/views/cangchu/KCZS/detailDCK";
 import CountTo from "vue-count-to";
 import { GetKCZJ, GetCRKJE } from "@/app_src/api/cangchu/KCZS/Total";
 export default {
@@ -147,14 +161,17 @@ export default {
     TotalZDWZCRK, //重点物资出入库
     TotalBGYGZL, //保管员工作量
     TotalCRKdetail, //出入库统计详情页
-    TotalJYWZ
+    TotalJYWZ,
+    detailDRK,
+    detailDCK
   },
   data() {
     return {
       activeCangku: "1",
       totalziji: 0,
-      totalwzziji:0,
+      totalwzziji: 0,
       OldArr: ["1"],
+      FacCode:"",
       option2: {
         title: {
           text: "各单位库存资金",
@@ -324,7 +341,7 @@ export default {
           arr[9] = { value: res.data.items.C27I, name: "外部市场" };
           this.option2.series[0].data = arr;
           this.totalziji = res.data.items.TOTAL;
-          this.totalwzziji=res.data.items.TOTALWZ;
+          this.totalwzziji = res.data.items.TOTALWZ;
           this.drawline2();
         }
       });
@@ -424,6 +441,12 @@ export default {
           break;
         case "8":
           this.$refs.TotalBGYGZL.getList();
+          break;
+        case "9":
+          this.$refs.detailDRK.getList();
+          break;
+        case "10":
+          this.$refs.detailDCK.getList();
           break;
         default:
           break;

@@ -11,7 +11,7 @@
       <area shape="rect" coords="1334, 170, 1393, 236" @click="OpenDialog" />
     </map>-->
     <div id="box" class="box">
-      <img src="../../../img/ZXKPIC.png" id="ZXKPIC" border="0" usemap="#planetmap" alt="Planets" />
+      <img src="../../../img/ZXKPIC1.png" id="ZXKPIC" border="0" usemap="#planetmap" alt="Planets" />
       <map name="planetmap" id="planetmap">
         <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK','01')" />
         <area shape="rect" coords="777, 59, 811, 98" title="2号库" @click="OpenDialog('ZXK','02')" />
@@ -790,6 +790,7 @@ export default {
       GetFacStatus(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.StatusStr = response.data.items;
+          this.StatusStr="0000000000"
         }
         this.setStyle(this.width);
       });

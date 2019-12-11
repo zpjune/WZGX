@@ -35,7 +35,7 @@
                   <img
                     class="cangku_img"
                      @click="zongkucunclick"
-                    src="../../../frame_src/imgs/cangku3.jpg"
+                    src="../../../frame_src/imgs/zongku.jpg"
                     alt="总库存"
                   >
                   <div>
@@ -46,7 +46,7 @@
                   <img
                     class="cangku_img"
                     @click="zhongxinkuclick"
-                    src="../../../frame_src/imgs/cangku1.jpg"
+                    src="../../../frame_src/imgs/zhongxinku.jpg"
                     alt="中心库"
                   >
                   <div>
@@ -60,7 +60,7 @@
                   <img
                     class="cangku_img"
                     @click="zhuanyunku"
-                    src="../../../frame_src/imgs/cangku2.jpg"
+                    src="../../../frame_src/imgs/zhuanyunku.jpg"
                     alt="转运库"
                   >
                   <div>
@@ -70,7 +70,7 @@
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/cangku3.jpg"
+                    src="../../../frame_src/imgs/gangdong.jpg"
                     alt="港东器材库"
                     @click="gangdongclick"
                   >
@@ -84,7 +84,7 @@
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/cangku4.jpg"
+                    src="../../../frame_src/imgs/zhuanyongguan.jpg"
                     alt="专用管分公司"
                     @click="zhuanyongguanclick"
                   >
@@ -106,7 +106,7 @@
               </el-row>
               
               <div class="div_height"></div>
-              <!-- <el-row>
+              <el-row>
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
@@ -129,7 +129,7 @@
                     <span>厂现直供库</span>
                   </div>
                 </el-col>
-              </el-row> -->
+              </el-row>
               
             </div>
           </el-card>
@@ -147,7 +147,7 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div style="height:612px;word-wrap:break-word" class="icon" name="height:773px">
+            <div style="height:773px;word-wrap:break-word" class="icon" name="height:612px">
               <el-row>
                 <el-col :span="4" style="text-align:center;" >
                   <img src="../../../frame_src/imgs/icon/33.png" style="width:50px;height:50px;" alt>
