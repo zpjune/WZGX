@@ -45,7 +45,8 @@ export default {
       year: "",
       Query: {
         year: "",
-        MATNR: "000000010002949916"
+        MATNR: "",
+        DKCODE:""
       },
       opZDWZ: [],
       QueryZDWL: {
@@ -187,6 +188,7 @@ export default {
       mycharts.setOption(this.optionCRK, true);
     },
     getList() {
+      this.Query.DKCODE=this.DKCODE;
       this.Query.year = this.year.toString().substr(11, 4);
       getZDWZCRK(this.Query).then(res => {
         if (res.data.code === 2000) {

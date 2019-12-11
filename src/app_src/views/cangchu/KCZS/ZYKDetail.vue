@@ -106,7 +106,9 @@ export default {
       }
     }
   },
-  mounted() {}
+  mounted() {
+    this.$refs.detailZDWZCRK.getZDWZPZ();
+  }
 };
 </script>
 
