@@ -28,23 +28,61 @@
           v-model="listQuery.MATNX"
         ></el-input>
       </el-col>
+      <el-col :xs="6" :sm="6" :md="6" :lg="4" :xl="3">
+        <treeselect
+          v-model="listQuery.OrgCode"
+          :multiple="false"
+          :options="roleTree"
+          :load-options="loadOptions"
+          :loadOptions="loadOptions"
+          placeholder="请选择部门"
+          :normalizer="normalizer"
+          :disable-branch-nodes="false"
+          noResultsText="未搜索到结果"
+          noChildrenText=" "
+          style="font-size:14px; width:95%;"
+          @select="getNode"
+        />
+      </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-select placeholder="排序方式"   v-model="listQuery.SortType" size="mini" style="width:95%">
-            <el-option label="正序" :value="0"></el-option>
-            <el-option label="倒叙" :value="1"></el-option>
+        <el-date-picker
+          v-model="listQuery.starttime"
+          type="date"
+          placeholder="选择开始日期"
+          style="width: 95%;"
+          value-format="yyyyMMdd"
+          size="mini"
+        ></el-date-picker>
+      </el-col>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-date-picker
+          v-model="listQuery.endtime"
+          type="date"
+          placeholder="选择结束日期"
+          style="width: 95%;"
+          value-format="yyyyMMdd"
+          size="mini"
+        ></el-date-picker>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :xs=5 :sm="5" :md="5" :lg="4" :xl="3">
+        <el-select placeholder="排序方式" v-model="listQuery.SortType" size="mini" style="width:95%">
+          <el-option label="正序" :value="0"></el-option>
+          <el-option label="倒叙" :value="1"></el-option>
         </el-select>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-select placeholder="排序分组"  v-model="listQuery.GroupType" size="mini" style="width:95%">
-            <el-option label="按单号" :value="0"></el-option>
-            <el-option label="按申请单位" :value="1"></el-option>
-            <el-option label="按出库原因" :value="2"></el-option>
-            <el-option label="按库存地点" :value="3"></el-option>
-            <el-option label="按单据状态" :value="4"></el-option>
-            <el-option label="按供应商" :value="5"></el-option>
+        <el-select placeholder="排序分组" v-model="listQuery.GroupType" size="mini" style="width:95%">
+          <el-option label="按单号" :value="0"></el-option>
+          <el-option label="按申请单位" :value="1"></el-option>
+          <el-option label="按出库原因" :value="2"></el-option>
+          <el-option label="按库存地点" :value="3"></el-option>
+          <el-option label="按单据状态" :value="4"></el-option>
+          <el-option label="按供应商" :value="5"></el-option>
         </el-select>
       </el-col>
-      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+      <el-col :xs="4" :sm="4" :md="4" :lg="3" :xl="2">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
       </el-col>
     </el-row>
@@ -61,7 +99,7 @@
           highlight-current-row
           style="width: 100%"
         >
-           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
+          <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
           <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
           <el-table-column label="物料描述" prop="MATNX"></el-table-column>
@@ -83,17 +121,17 @@
             <template slot-scope="scope">{{scope.row.CLOSE_TIME|change}}</template>
           </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
-          <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>        
+          <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
           <el-table-column label="制单人" prop="USER_NAME" width="100"></el-table-column>
           <el-table-column label="操作" width="230">
             <template slot-scope="scope">
-             <span v-if="scope.row.APPROVAL_STATUS===0">还未提交审批</span>
-             <span v-else-if="scope.row.APPROVAL_STATUS===1">正在审批中</span>
-             <span v-else-if="scope.row.APPROVAL_STATUS===2">审批已经通过</span>
-             <span v-else-if="scope.row.APPROVAL_STATUS===3">已被驳回</span>
-             <span v-else-if="scope.row.APPROVAL_STATUS===4">业务流程已完成</span>
-             <span v-else-if="scope.row.APPROVAL_STATUS===5">保管员已经补充了单据</span>
-             <span v-else-if="scope.row.APPROVAL_STATUS===6">保管员已经提交了单据</span>
+              <span v-if="scope.row.APPROVAL_STATUS===0">还未提交审批</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===1">正在审批中</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===2">审批已经通过</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===3">已被驳回</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===4">业务流程已完成</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===5">保管员已经补充了单据</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===6">保管员已经提交了单据</span>
             </template>
           </el-table-column>
         </el-table>
@@ -310,11 +348,14 @@ export default {
         CODE: "",
         MATNR: "",
         MATNX: "",
-        ParentCode: "JJCKREASON",
+        ParentCode: "JJREASON",
         userid: this.$store.state.user.userId,
         type: 3,
-        SortType:1,//默认倒叙
-        GroupType:0//默认按照单号
+        OrgCode: null,
+        SortType: 1, //默认倒叙
+        GroupType: 0, //默认按照单号
+        starttime: "",
+        endtime: ""
       },
       total: 0,
       show: false,
