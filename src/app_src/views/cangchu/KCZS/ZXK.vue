@@ -36,10 +36,10 @@
          <area shape="rect" coords="315, 252, 353, 383" title="18活动料棚" @click="OpenDialog('ZXK','18')" />
          <area shape="rect" coords="278, 252, 314, 383" title="19活动料棚" @click="OpenDialog('ZXK','19')" />
          <area shape="rect" coords="243, 83, 277, 230" title="20号料场" @click="OpenDialog('ZXK','20')" />
-         <area shape="rect" coords="316, 83, 313, 230" title="21号活动料棚" @click="OpenDialog('ZXK','21')" />
+         <area shape="rect" coords="277, 83, 313, 230" title="21号活动料棚" @click="OpenDialog('ZXK','21')" />
          <area shape="rect" coords="243, 83, 351, 230" title="22号活动料棚" @click="OpenDialog('ZXK','22')" />
-         <area shape="rect" coords="386, 83, 456, 230" title="23料场" @click="OpenDialog('ZXK','23')" />
-         <area shape="rect" coords="521, 83, 456, 229" title="24活动料棚" @click="OpenDialog('ZXK','24')" />
+         <area shape="rect" coords="386, 83, 417, 230" title="23料场" @click="OpenDialog('ZXK','23')" />
+         <area shape="rect" coords="420, 83, 456, 229" title="24活动料棚" @click="OpenDialog('ZXK','24')" />
          <area shape="rect" coords="460, 83, 494, 229" title="25活动料棚" @click="OpenDialog('ZXK','25')" />
       </map>
       <!-- <map name="planetmap" id="planetmap">
