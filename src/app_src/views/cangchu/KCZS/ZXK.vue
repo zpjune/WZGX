@@ -29,6 +29,18 @@
          <area shape="rect" coords="739, 322, 783, 350" title="14号库" @click="OpenDialog('ZXK','14')" />
          <area shape="rect" coords="574, 324, 689, 400" title="15号库" @click="OpenDialog('ZXK','15')" />
          <area shape="rect" coords="516, 252, 572, 331" title="16料场" @click="OpenDialog('ZXK','16')" />
+         <area shape="rect" coords="516, 205, 560, 229" title="26" @click="OpenDialog('ZXK','26')" />
+         <area shape="rect" coords="371, 253, 487, 309" title="17料场" @click="OpenDialog('ZXK','17')" />
+         <area shape="rect" coords="420, 313, 487, 395" title="17料场" @click="OpenDialog('ZXK','17')" />
+         <area shape="rect" coords="374, 393, 487, 449" title="17料场" @click="OpenDialog('ZXK','17')" />
+         <area shape="rect" coords="315, 252, 353, 383" title="18活动料棚" @click="OpenDialog('ZXK','18')" />
+         <area shape="rect" coords="278, 252, 314, 383" title="19活动料棚" @click="OpenDialog('ZXK','19')" />
+         <area shape="rect" coords="243, 83, 277, 230" title="20号料场" @click="OpenDialog('ZXK','20')" />
+         <area shape="rect" coords="316, 83, 313, 230" title="21号活动料棚" @click="OpenDialog('ZXK','21')" />
+         <area shape="rect" coords="243, 83, 351, 230" title="22号活动料棚" @click="OpenDialog('ZXK','22')" />
+         <area shape="rect" coords="386, 83, 456, 230" title="23料场" @click="OpenDialog('ZXK','23')" />
+         <area shape="rect" coords="521, 83, 456, 229" title="24活动料棚" @click="OpenDialog('ZXK','24')" />
+         <area shape="rect" coords="460, 83, 494, 229" title="25活动料棚" @click="OpenDialog('ZXK','25')" />
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK','01')" />
@@ -88,7 +100,7 @@
         />
         <area shape="rect" coords="462, 163, 511, 192" title="26号库" @click="OpenDialog('ZXK','26')" />
       </map> -->
-      <div name="1号区域">
+      <!-- <div name="1号区域">
         <img
           src="../../../img/red.jpg"
           alt
@@ -763,8 +775,8 @@
           style="position: absolute;left: 462px;z-index: 2;top: 30%;width: 12px;height: 12px;"
           v-show="StatusStr[3*(26-1)+2]==='1'"
         />
-      </div>
-    </div>
+      </div>-->
+    </div> 
 
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"

@@ -110,10 +110,11 @@
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/cangku4.jpg"
+                    src="../../../frame_src/imgs/huabeidiqujizhongchubeiku.png"
                     alt="华北地区集中储备库"
-                    @click="HBclick"
+                    
                   >
+                  <!-- @click="HBclick" -->
                   <div>
                     <span>华北地区集中储备库</span>
                   </div>
@@ -121,10 +122,11 @@
                 <el-col :span="12" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/cangku4.jpg"
+                    src="../../../frame_src/imgs/changxianzhigong.png"
                     alt="厂现直供库"
-                    @click="changxianzhiclick"
+                    
                   >
+                  <!-- @click="changxianzhiclick" -->
                   <div>
                     <span>厂现直供库</span>
                   </div>
