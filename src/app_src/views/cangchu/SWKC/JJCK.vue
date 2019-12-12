@@ -104,6 +104,8 @@
               <span v-if="scope.row.APPROVAL_STATUS===2">等待保管员操作...</span>
               <span v-if="scope.row.APPROVAL_STATUS===3">此出库单已被驳回，无法操作</span>
               <span v-if="scope.row.APPROVAL_STATUS===4">业务已完成,无法操作本条数据</span>
+              <span v-if="scope.row.APPROVAL_STATUS===5">保管员已经补充了表单数据</span>
+              <span v-if="scope.row.APPROVAL_STATUS===6">保管员已经提交了表单</span>
             </template>
           </el-table-column>
         </el-table>
