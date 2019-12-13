@@ -127,13 +127,13 @@
       </el-collapse-item>
       <el-collapse-item name="9">
         <template slot="title">
-          <i class="header-icon el-icon-eleme" style="font-weight:bold">待入库统计</i>
+          <i class="header-icon el-icon-eleme" style="font-weight:bold">计划入库情况</i>
         </template>
         <detailDRK :FacCode="FacCode" ref="detailDRK"></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="10">
         <template slot="title">
-          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">待出库统计</i>
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">计划出库情况</i>
         </template>
         <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
       </el-collapse-item>

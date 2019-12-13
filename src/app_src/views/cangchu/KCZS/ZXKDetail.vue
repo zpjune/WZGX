@@ -29,13 +29,13 @@
       </el-collapse-item>
       <el-collapse-item name="5" @change="DRKClick">
         <template slot="title">
-          <i class="header-icon el-icon-eleme" style="font-weight:bold" >待入库统计</i>
+          <i class="header-icon el-icon-eleme" style="font-weight:bold" >计划入库情况</i>
         </template>
         <detailDRK ref="detailDRK" :FacCode="FacCode"></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="6" @change="DCKClick">
         <template slot="title">
-          <i class="header-icon el-icon-s-promotion" style="font-weight:bold" >待出库统计</i>
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold" >计划出库情况</i>
         </template>
         <detailDCK ref="detailDCK" :FacCode="FacCode"></detailDCK>
       </el-collapse-item>
