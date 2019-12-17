@@ -34,7 +34,7 @@
                   <img
                     class="cangku_img"
                     @click="zongkucunclick"
-                    src="../../../frame_src/imgs/zongku.jpg"
+                    src="../../../frame_src/imgs/zhongxinku.jpg"
                     alt="总库存"
                   />
                   <div>
@@ -87,7 +87,7 @@
                 <el-col :span="24" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/zhuanyongguan.jpg"
+                    src="../../../frame_src/imgs/zhongxinku.jpg"
                     alt="专用管分公司"
                     @click="zhuanyongguanclick"
                   />
@@ -105,7 +105,7 @@
                     @click="GSclick"
                   />
                   <div>
-                    <span>港狮库</span>
+                    <span>&nbsp;</span>
                   </div>
                 </el-col>
               </el-row>
@@ -115,12 +115,12 @@
                 <el-col :span="24" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/huabeidiqujizhongchubeiku.png"
+                    src="../../../frame_src/imgs/zhongxinku.jpg"
                     alt="华北地区集中储备库"
                   />
                   <!-- @click="HBclick" -->
                   <div>
-                    <span>华北地区集中储备库</span>
+                     <span>&nbsp;</span>
                   </div>
                 </el-col>
                 
@@ -129,12 +129,12 @@
                 <el-col :span="24" style="text-align:center">
                   <img
                     class="cangku_img"
-                    src="../../../frame_src/imgs/changxianzhigong.png"
+                    src="../../../frame_src/imgs/zhongxinku.jpg"
                     alt="厂现直供库"
                   />
                   <!-- @click="changxianzhiclick" -->
                   <div>
-                    <span>厂现直供库</span>
+                     <span>&nbsp;</span>
                   </div>
                 </el-col>
               </el-row>
@@ -154,7 +154,7 @@
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div style="height:773px;word-wrap:break-word" class="icon" name="height:612px">
+            <div style="height:1097px;word-wrap:break-word" class="icon" >
               <el-row>
                 <el-col :span="4" style="text-align:center;">
                   <img

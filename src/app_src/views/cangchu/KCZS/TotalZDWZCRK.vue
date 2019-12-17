@@ -3,62 +3,37 @@
     <div>
       <div class="diva">
         <a @click="setQueryZDWL('油管')" title="油管">
-          <img class="zdwz" src="../../../img/zdwz/youguan.png" />
-          <div class="divs">油管</div>
+          <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
         </a>
       </div>
       <div class="diva">
-        <a @click="setQueryZDWL('水泥')" title="水泥">
-          <img class="zdwz" src="../../../img/zdwz/shuini.png" />
-          <div class="divs">水泥</div>
+        <a @click="setQueryZDWL('水泥')" title="油井水泥">
+          <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
         </a>
       </div>
       <div class="diva">
         <a @click="setQueryZDWL('套管')" title="套管">
-          <img class="zdwz" src="../../../img/zdwz/taoguan.png" />
-          <div class="divs">套管</div>
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('纯碱')" title="纯碱">
-          <img class="zdwz" src="../../../img/zdwz/chunjian.png" />
-          <div class="divs">纯碱</div>
+          <img class="zdwz" src="../../../img/zdwz/taoguan1.png" />
         </a>
       </div>
       <div class="diva">
         <a @click="setQueryZDWL('柴油')" title="柴油">
-          <img class="zdwz" src="../../../img/zdwz/chaiyou.png" />
-          <div class="divs">柴油</div>
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('综合堵漏剂')" title="综合堵漏剂">
-          <img class="zdwz" src="../../../img/zdwz/zonghedulouji.jpg" />
-          <div class="divs">综合堵漏剂</div>
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('封闭剂')" title="封闭剂">
-          <img class="zdwz" src="../../../img/zdwz/fengbiji.jpg" />
-          <div class="divs">封闭剂</div>
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('液体润滑剂')" title="液体润滑剂">
-          <img class="zdwz" src="../../../img/zdwz/yetirunhuaji.png" />
-          <div class="divs">液体润滑剂</div>
+          <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
         </a>
       </div>
       <div class="diva">
         <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">
-          <img class="zdwz" src="../../../img/zdwz/zhongjingshifen.png" />
-          <div class="divs">重晶石粉</div>
+          <img class="zdwz" src="../../../img/zdwz/zhongjingshifen1.png" />
         </a>
       </div>
       <div class="diva">
-        <a @click="setQueryZDWL('膨润土粉')" title="膨润土粉">
-          <img class="zdwz" src="../../../img/zdwz/pengruntufen.png" />
-          <div class="divs">膨润土粉</div>
+        <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
+          <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
+        </a>
+      </div>
+      <div class="diva">
+        <a @click="setQueryZDWL('支撑剂')" title="压力支撑剂">
+          <img class="zdwz" src="../../../img/zdwz/yalizhichengji.png" />
         </a>
       </div>
     </div>
@@ -74,7 +49,7 @@
         ></el-date-picker>
       </el-col>
       <el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
-        <el-select v-model="Query.MATNR" style="width:300px;" size="mini">
+        <el-select v-model="Query.MATNR" style="width:150px;" size="mini">
           <el-option
             v-for="item in opZDWZ"
             :key="item.WL_CODE"
@@ -377,19 +352,15 @@ export default {
   text-align: center;
 }
 .zdwz {
-  width: 70px;
-  height: 45px;
+  width: 200px;
+  height: 75px;
   
 }
 .diva {
-  width: 71px;
+  width: 201px;
   height: 76px;
   float: left;
-  margin-right: 5px;
-  
-}
-.divs {
-  text-align: center;
+  //margin-right: 2px;
 }
 </style>
 
