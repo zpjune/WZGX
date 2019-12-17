@@ -119,12 +119,6 @@
           ref="TotalCRKdetail"
         ></TotalCRKdetail>
       </el-collapse-item>
-      <el-collapse-item name="8">
-        <template slot="title">
-          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">保管员工作量统计</i>
-        </template>
-        <TotalBGYGZL ref="TotalBGYGZL"></TotalBGYGZL>
-      </el-collapse-item>
       <el-collapse-item name="9">
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">计划入库情况</i>
@@ -136,6 +130,12 @@
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">计划出库情况</i>
         </template>
         <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
+      </el-collapse-item>
+      <el-collapse-item name="8">
+        <template slot="title">
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">保管员工作量统计</i>
+        </template>
+        <TotalBGYGZL ref="TotalBGYGZL"></TotalBGYGZL>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -171,7 +171,7 @@ export default {
       totalziji: 0,
       totalwzziji: 0,
       OldArr: ["1"],
-      FacCode:"",
+      FacCode: "",
       option2: {
         title: {
           text: "各单位库存资金",
