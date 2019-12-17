@@ -373,8 +373,8 @@ export default {
             arrRKJE.push(rkje);
           }
           this.optioncrk.series = [
-            { name: "入库", type: "bar", data: arrRKJE },
-            { name: "出库", type: "bar", data: arrCKJE }
+            { name: "入库", type: "bar", data: arrRKJE ,itemStyle:{ normal:{ color:'#20B2AA' } } },
+            { name: "出库", type: "bar", data: arrCKJE}
           ];
           this.drawlineCRK();
         }

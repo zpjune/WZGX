@@ -228,6 +228,7 @@ export default {
             data: [], //[2.0]
             itemStyle: {
               normal: {
+                 color:'#20B2AA' ,
                 label: {
                   show: true, //开启显示
                   position: "top", //在上方显示

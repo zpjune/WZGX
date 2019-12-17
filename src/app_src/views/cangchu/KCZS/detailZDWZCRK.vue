@@ -210,12 +210,39 @@ export default {
           {
             name: "入库",
             type: "bar",
-            data: [2.0]
+            data:[],// [2.0]
+            itemStyle: {
+              normal: {
+                 color:'#20B2AA' ,
+                label: {
+                  show: true, //开启显示
+                  position: "top", //在上方显示
+                  textStyle: {
+                    //数值样式
+                    color: "black",
+                    fontSize: 10
+                  }
+                }
+              }
+            }
           },
           {
             name: "出库",
             type: "bar",
-            data: [2.0]
+            data:[],// [2.0]
+             itemStyle: {
+              normal: {
+                label: {
+                  show: true, //开启显示
+                  position: "top", //在上方显示
+                  textStyle: {
+                    //数值样式
+                    color: "black",
+                    fontSize: 10
+                  }
+                }
+              }
+            }
           }
         ]
       }
