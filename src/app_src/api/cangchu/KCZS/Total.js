@@ -14,6 +14,19 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
+  export function GetSWKCDW(query) {//总库存 实物库存查询第一层
+    return request({
+      url: '/Total/GetSWKCDW',
+      method: 'get',
+      params:query
+    })
+  } export function GetSWKCDL(query) {//总库存 实物库存查询第二层
+    return request({
+      url: '/Total/GetSWKCDL',
+      method: 'get',
+      params:query
+    })
+  }
   export function GetJYWZ(query) {//总库存 积压物资查询
     return request({
       url: '/Total/GetJYWZ',

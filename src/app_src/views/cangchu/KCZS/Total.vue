@@ -425,7 +425,7 @@ export default {
           //this.$refs.ZYGFGS.getList();
           break;
         case "2":
-          this.$refs.TotalSWKC.getList();
+          this.$refs.TotalSWKC.getList1();
           break;
         case "3":
           this.$refs.TotalZDWZNEW.getList();
