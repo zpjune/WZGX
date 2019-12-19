@@ -99,3 +99,12 @@ export function GetOrgInfo(query) {//单位物资查询接口
   }
 
 
+  export function GetWLInfo(query) {//单位物资查询接口
+    return request({
+      url: '/JJRK/GetWLInfo',
+      method: 'get',
+      params:query
+    })
+  }
+
+

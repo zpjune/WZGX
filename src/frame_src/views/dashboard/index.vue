@@ -474,7 +474,7 @@ export default {
   computed: {
     ...mapGetters(["roles"])
   },
-  fliters: {
+  filters: {
     parseTime
   }
   /* created() {

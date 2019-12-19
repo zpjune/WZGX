@@ -79,11 +79,12 @@
                   v-model="BGYModel.WORKER_DP"
                   :disable-branch-nodes="true"
                   :show-count="true"
+                  @select="getNode"
                 />
               </el-form-item>
               <el-form-item label="管理大库">
-                <el-select v-model="BGYModel.CKH" style="width:100%;">
-                  <el-option v-for="(item,key) in CKHOptions" :key="key" :value="item.CKH" :label="item.KCDD_NAME"></el-option>
+                <el-select v-model="BGYModel.CKH" style="width:100%;" >
+                  <el-option v-for="(item,key) in CKHOptions" :key="key" :value="item.CODE" :label="item.NAME"></el-option>
                 </el-select>
               </el-form-item>
               <div style="text-align:center">
@@ -220,7 +221,10 @@ export default {
       });
     },
     GetCKH(){
-      GetCKHInfo().then(response=>{
+      let temp={
+        PARENTCODE:"TOTAL"
+      }
+      GetCKHInfo(temp).then(response=>{
         if(response.data.code===2000){
           this.CKHOptions=response.data.items;
         }
@@ -271,7 +275,6 @@ export default {
       });
     },
     submit() {
-      console.log(this.BGYModel);
       this.$refs["BGYModel"].validate(valid => {
         if (valid) {
           if (this.dialogTitle == "新建工厂信息") {
@@ -328,6 +331,8 @@ export default {
           this.options = response.data.items;
         }
       });
+    },
+    getNode(node, instanceId) {
     },
     handleFilter(){
       this.temp.page=1;

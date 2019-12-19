@@ -47,34 +47,32 @@
         >
           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
-          <el-table-column label="物料描述" prop="MATNX"></el-table-column>
+          <el-table-column label="物料编码" fixed="left" width="150">
+            <template slot-scope="scope">{{scope.row.MATNR|substringWLCODE}}</template>
+          </el-table-column>
+          <el-table-column label="物料描述" prop="MATNX" width="400"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="入库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
           <el-table-column label="总价" prop="TOTALPRICE"></el-table-column>
           <!-- <el-table-column label="入库时间" width="100">
             <template slot-scope="scope">{{scope.row.RK_TIME|change}}</template>
-          </el-table-column> -->
+          </el-table-column>-->
           <!-- <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
-          <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column> -->
-          <el-table-column label="入库原因" prop="NAME" width="200px"></el-table-column>
+          <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>-->
+          <el-table-column label="入库原因" prop="NAME" width="250px"></el-table-column>
           <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
           <el-table-column label="关闭时间" width="100">
             <template slot-scope="scope">{{scope.row.CLOSE_TIME|change}}</template>
-          </el-table-column> -->
+          </el-table-column>-->
           <el-table-column label="供应商" prop="GYS"></el-table-column>
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
           <el-table-column label="制单人" prop="USER_NAME" width="100"></el-table-column>
           <el-table-column label="操作" width="150">
             <template slot-scope="scope">
-              <el-button
-                type="primary"
-                @click="update(scope.row)"
-                size="mini"
-              >审批</el-button>
+              <el-button type="primary" @click="update(scope.row)" size="mini">审批</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -91,9 +89,9 @@
         ></el-pagination>
       </el-col>
     </el-row>
-    <el-dialog :visible.sync="show" :title="title"  width="70%">
+    <el-dialog :visible.sync="show" :title="title" width="70%">
       <el-card>
-        <el-form :model="temp" :rules="rules" label-width="80px" ref="dataform">
+        <el-form :model="temp" :rules="rules" label-width="120px" ref="dataform">
           <el-row>
             <el-col :span="24" style="text-align:center;">
               <span>中国石油大港油田物资供销公司</span>
@@ -107,7 +105,7 @@
           </el-row>
           <el-row style="margin-top:10px;">
             <el-col :span="6">
-              <el-form-item label="单据编码" >
+              <el-form-item label="单据编码">
                 <el-input v-model="temp.CODE" disabled placeholder="系统自动生成，无需填写"></el-input>
               </el-form-item>
             </el-col>
@@ -116,47 +114,57 @@
                 <el-input v-model="temp.CREATEDATE" disabled></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="6">
               <el-form-item label="制单人">
-                <el-input v-model="temp.USER_NAME" disabled style="width:45%"></el-input>
+                <el-input v-model="temp.USER_NAME" disabled></el-input>
               </el-form-item>
             </el-col>
-            <el-row>
-              <el-col :span="6">
-                <el-form-item label="申请单位" prop="DW_CODE">
-                  <!-- <el-select v-model="temp.DW_CODE">
+            <el-col :span="6">
+              <el-form-item label="申请单位" prop="DW_CODE">
+                <!-- <el-select v-model="temp.DW_CODE">
                   <el-option
                     v-for="(item,key) in OrgOptions"
                     :key="key"
                     :label="item.ORG_SHORT_NAME"
                     :value="item.ORG_CODE"
                   ></el-option>
-                  </el-select>-->
-                  <treeselect
-                    v-model="temp.DW_CODE"
-                    :multiple="false"
-                    :options="roleTree"
-                    :load-options="loadOptions"
-                    :loadOptions="loadOptions"
-                    placeholder="请选择部门"
-                    :normalizer="normalizer"
-                    :disable-branch-nodes="false"
-                    noResultsText="未搜索到结果"
-                    noChildrenText=" "
-                    style="font-size:14px; width:100%;"
-                    @select="getNode"
-                    disabled
-                  />
+                </el-select>-->
+                <treeselect
+                  v-model="temp.DW_CODE"
+                  :multiple="false"
+                  :options="roleTree"
+                  :load-options="loadOptions"
+                  :loadOptions="loadOptions"
+                  placeholder="请选择部门"
+                  :normalizer="normalizer"
+                  :disable-branch-nodes="false"
+                  noResultsText="未搜索到结果"
+                  noChildrenText=" "
+                  style="font-size:14px; width:100%;"
+                  @select="getNode"
+                  disabled
+                />
+              </el-form-item>
+            </el-col>
+            <el-row>
+              <el-col :span="6">
+                <el-form-item label="物料组" prop="MATKL">
+                  <el-input v-model="temp.MATKL" disabled></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="12">
                 <el-form-item label="物料编码" prop="MATNR">
                   <el-input v-model="temp.MATNR" disabled></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12">
+              <el-col :span="2">
+                <el-button type="primary" @click="getWL" style="margin-left:60px;" disabled>请选择物料</el-button>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
                 <el-form-item label="物料描述" prop="MATNX">
-                  <el-input v-model="temp.MATNX" disabled></el-input>
+                  <el-input v-model="temp.MATNX" disabled type="textarea" :rows="2"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -189,7 +197,7 @@
                     <el-option
                       v-for="(item,key) in KCDDOptions"
                       :key="key"
-                      :label="item.KCDD_NAME"
+                      :label="item.KCDD_NAME+'-'+item.KCDD_CODE"
                       :value="item.KCDD_CODE"
                     ></el-option>
                   </el-select>
@@ -205,13 +213,7 @@
           <el-row>
             <el-col :span="24">
               <el-form-item label="入库原因" prop="REASON">
-                <el-select
-                  v-model="temp.REASON"
-                  style="width:100%"
-                  @change="change"
-                  v-if="!inputstatus"
-                  disabled
-                >
+                <el-select v-model="temp.REASON" style="width:100%" @change="change" disabled>
                   <el-option
                     v-for="(item,key) in ReasonOptions"
                     :key="key"
@@ -219,7 +221,11 @@
                     :label="item.NAME"
                   ></el-option>
                 </el-select>
-                <el-input v-model="temp.REASON" v-if="inputstatus" disabled></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="24" v-if="inputstatus">
+              <el-form-item label="其他入库原因" prop="OTHERREASON">
+                <el-input v-model="temp.OTHERREASON" v-if="inputstatus" disabled></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -247,7 +253,7 @@ import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 export default {
   name: "JJRKSP",
-    components: {
+  components: {
     Treeselect
   },
   data() {
@@ -263,8 +269,8 @@ export default {
         ParentCode: "JJREASON",
         userid: this.$store.state.user.userId,
         type: 1,
-        SortType:1,//默认倒叙
-        GroupType:0//默认按照单号
+        SortType: 1, //默认倒叙
+        GroupType: 0 //默认按照单号
       },
       total: 0,
       show: false,
@@ -286,7 +292,7 @@ export default {
         SUGGESTION: "",
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
-        USER_NAME:"",
+        USER_NAME: "",
         GYS: "",
         KCDD: ""
       },
@@ -417,14 +423,14 @@ export default {
         SUGGESTION: "",
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
-        USER_NAME:"",
+        USER_NAME: "",
         GYS: "",
         KCDD: "",
         APPROVAL_STATUS: ""
       };
     },
     update(data) {
-        this.reset();
+      this.reset();
       this.temp = Object.assign({}, data);
       this.temp.userid = this.$store.state.user.userId;
       this.show = true;
@@ -432,6 +438,14 @@ export default {
       this.$nextTick(() => {
         this.$refs["dataform"].clearValidate();
       });
+      if (
+        this.ReasonOptions.findIndex(t => t.CODE === data.REASON) ===
+        this.ReasonOptions.length - 1
+      ) {
+        this.inputstatus = true;
+      } else {
+        this.inputstatus = false;
+      }
     },
     agree() {
       this.temp.APPROVAL_STATUS = 2;
@@ -451,7 +465,7 @@ export default {
             type: "success",
             duration: 2000
           });
-          this.show=false;
+          this.show = false;
           this.getList();
         } else {
           this.$notify({
@@ -515,6 +529,13 @@ export default {
         return val;
       } else {
         return val.substring(0, 10);
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
       }
     }
   },

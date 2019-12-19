@@ -19,6 +19,12 @@
             <el-option v-for="(item,key) in KCCODEOptions" :key="key" :value="item.CODE" :label="item.NAME"></el-option>
           </el-select>
         </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+          <el-date-picker placeholder="请选择年份" size="mini" style="width:95%" type="year" v-model="listQuery.YEAR" value-format="yyyy"></el-date-picker>
+        </el-col>
+        <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+         <el-input placeholder="请输入物料编码" v-model="listQuery.WL_CODE" size="mini" style="width:95%"></el-input>
+        </el-col>
         <!-- <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
           <el-select
             v-model="listQuery.WLZ_CODE"
@@ -90,12 +96,17 @@
             style="width: 100%;text-align:left;"
           >
             <!-- <el-table-column align="center" label="物料组" :show-overflow-tooltip="true" prop="WLZ_CODE"></el-table-column> -->
-            <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" prop="WL_CODE"></el-table-column>
+            <el-table-column align="center" label="物料编码" :show-overflow-tooltip="true" >
+              <template slot-scope="scope">
+                {{scope.row.WL_CODE|substringWLCODE}}
+              </template>
+            </el-table-column>
             <el-table-column align="center" label="物料名称" :show-overflow-tooltip="true" prop="WL_NAME"></el-table-column>
             <!-- <el-table-column align="center" label="存放地点" :show-overflow-tooltip="true" prop="KCDD_NAME"></el-table-column> -->
             <el-table-column align="center" label="存放大库" :show-overflow-tooltip="true" prop="NAME"></el-table-column>
             <el-table-column align="center" label="最高储备" :show-overflow-tooltip="true" prop="MAXHAVING"></el-table-column>
             <el-table-column align="center" label="最低储备" :show-overflow-tooltip="true" prop="MINHAVING"></el-table-column>
+            <el-table-column align="center" label="录入年份" :show-overflow-tooltip="true" prop="YEAR"></el-table-column>
             <el-table-column align="center" width="200" label="操作">
               <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">修改</el-button>
@@ -192,14 +203,19 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="最低储备" prop="MAXHAVING">
-              <el-input v-model="temp.MAXHAVING" size="mini" style="width:95%"></el-input>
+            <el-form-item label="最低储备" prop="MINHAVING">
+              <el-input v-model="temp.MINHAVING" size="mini" style="width:95%"></el-input>
             </el-form-item>
           </el-col>
 
           <el-col :span="24">
-            <el-form-item label="最高储备" prop="MINHAVING">
-              <el-input v-model="temp.MINHAVING" size="mini" style="width:95%"></el-input>
+            <el-form-item label="最高储备" prop="MAXHAVING">
+              <el-input v-model="temp.MAXHAVING" size="mini" style="width:95%"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="录入年份" prop="YEAR">
+              <el-date-picker placeholder="请选择年份" size="mini" style="width:95%" type="year" v-model="temp.YEAR" value-format="yyyy"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-form>
@@ -249,7 +265,9 @@ export default {
         page: 1,
         KC_CODE: "",
         WLZ_CODE: "",
-        WL_CODE: ""
+        WL_CODE: "",
+        YEAR:new Date(),
+        WL_CODE:"",
       },
       KCDDOptions: [],
       WLZOptions: [],
@@ -263,7 +281,8 @@ export default {
         KC_CODE:"",
         WL_LOCATIONCODE: "",
         MAXHAVING: "",
-        MINHAVING: ""
+        MINHAVING: "",
+        YEAR:"",
       },
       textMap: {
         update: "修改",
@@ -294,6 +313,9 @@ export default {
         ],
         MINHAVING: [
           { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        YEAR: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
         ]
       }
     };
@@ -307,7 +329,8 @@ export default {
         KC_CODE:"",
         WL_LOCATIONCODE: "",
         MAXHAVING: "",
-        MINHAVING: ""
+        MINHAVING: "",
+        YEAR:new Date(),
       };
     },
     getList() {
@@ -524,8 +547,16 @@ export default {
       }
     }
   },
-  fliters: {
-    parseTime
+  filters: {
+    parseTime,
+    substringWLCODE(val){
+      if(val.startsWith('0000000')){
+        return val.substring(7,18);
+      }
+      else{
+        return val;
+      }
+    }
   }
 };
 </script>

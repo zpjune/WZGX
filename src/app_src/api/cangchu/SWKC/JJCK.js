@@ -97,3 +97,11 @@ export function BGYUpdate(data) {//单位物资查询接口
       data
     })
   }
+
+  export function GetWLInfo(query) {//单位物资查询接口
+    return request({
+      url: '/JJCK/GetWLInfo',
+      method: 'get',
+      params:query
+    })
+  }

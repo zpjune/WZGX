@@ -392,7 +392,7 @@ export default {
       }
     }
   },
-  fliters: {
+  filters: {
     parseTime
   }
 };

@@ -101,8 +101,10 @@
         >
           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
-          <el-table-column label="物料描述" prop="MATNX"></el-table-column>
+          <el-table-column label="物料编码" fixed="left" width="150">
+            <template slot-scope="scope">{{scope.row.MATNR|substringWLCODE}}</template>
+          </el-table-column>
+          <el-table-column label="物料描述" prop="MATNX" width="400"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="入库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
@@ -124,7 +126,7 @@
           <el-table-column label="库存地点" prop="KCDD_NAME" width="150"></el-table-column>
 
           <el-table-column label="制单人" prop="USER_NAME" width="100"></el-table-column>
-          <el-table-column label="操作" width="230">
+          <el-table-column label="状态说明" width="230">
             <template slot-scope="scope">
               <span v-if="scope.row.APPROVAL_STATUS===0">还未提交审批</span>
               <span v-else-if="scope.row.APPROVAL_STATUS===1">正在审批中</span>
@@ -891,6 +893,13 @@ export default {
         return val;
       } else {
         return val.substring(0, 10);
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
       }
     }
   },

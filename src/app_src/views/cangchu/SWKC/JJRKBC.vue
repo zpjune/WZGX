@@ -47,8 +47,12 @@
         >
           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
-          <el-table-column label="物料描述" prop="MATNX"></el-table-column>
+          <el-table-column label="物料编码"  fixed="left" width="150">
+            <template slot-scope="scope">
+              {{scope.row.MATNR|substringWLCODE}}
+            </template>
+          </el-table-column>
+          <el-table-column label="物料描述" prop="MATNX" width="400"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="入库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
@@ -120,7 +124,7 @@
             >
               <span>紧急入库单</span>
             </el-col>
-          </el-row>
+          </el-row>\
           <el-row style="margin-top:10px;">
             <el-col :span="6">
               <el-form-item label="单据编码">
@@ -132,47 +136,57 @@
                 <el-input v-model="temp.CREATEDATE" disabled></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="6">
               <el-form-item label="制单人">
-                <el-input v-model="temp.USER_NAME" disabled style="width:45%"></el-input>
+                <el-input v-model="temp.USER_NAME" disabled></el-input>
               </el-form-item>
             </el-col>
-            <el-row>
-              <el-col :span="6">
-                <el-form-item label="申请单位" prop="DW_CODE">
-                  <!-- <el-select v-model="temp.DW_CODE">
+            <el-col :span="6">
+              <el-form-item label="申请单位" prop="DW_CODE">
+                <!-- <el-select v-model="temp.DW_CODE">
                   <el-option
                     v-for="(item,key) in OrgOptions"
                     :key="key"
                     :label="item.ORG_SHORT_NAME"
                     :value="item.ORG_CODE"
                   ></el-option>
-                  </el-select>-->
-                  <treeselect
-                    v-model="temp.DW_CODE"
-                    :multiple="false"
-                    :options="roleTree"
-                    :load-options="loadOptions"
-                    :loadOptions="loadOptions"
-                    placeholder="请选择部门"
-                    :normalizer="normalizer"
-                    :disable-branch-nodes="false"
-                    noResultsText="未搜索到结果"
-                    noChildrenText=" "
-                    style="font-size:14px; width:100%;"
-                    @select="getNode"
-                    disabled
-                  />
+                </el-select>-->
+                <treeselect
+                  v-model="temp.DW_CODE"
+                  :multiple="false"
+                  :options="roleTree"
+                  :load-options="loadOptions"
+                  :loadOptions="loadOptions"
+                  placeholder="请选择部门"
+                  :normalizer="normalizer"
+                  :disable-branch-nodes="false"
+                  noResultsText="未搜索到结果"
+                  noChildrenText=" "
+                  style="font-size:14px; width:100%;"
+                  @select="getNode"
+                  disabled
+                />
+              </el-form-item>
+            </el-col>
+            <el-row>
+              <el-col :span="6">
+                <el-form-item label="物料组" prop="MATKL">
+                  <el-input v-model="temp.MATKL" disabled></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="6">
+              <el-col :span="12">
                 <el-form-item label="物料编码" prop="MATNR">
                   <el-input v-model="temp.MATNR" disabled></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12">
+              <el-col :span="2">
+                <el-button type="primary" @click="getWL" style="margin-left:60px;" disabled>请选择物料</el-button>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
                 <el-form-item label="物料描述" prop="MATNX">
-                  <el-input v-model="temp.MATNX" disabled></el-input>
+                  <el-input v-model="temp.MATNX" disabled type="textarea" :rows="2"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -205,7 +219,7 @@
                     <el-option
                       v-for="(item,key) in KCDDOptions"
                       :key="key"
-                      :label="item.KCDD_NAME"
+                      :label="item.KCDD_NAME+'-'+item.KCDD_CODE"
                       :value="item.KCDD_CODE"
                     ></el-option>
                   </el-select>
@@ -221,13 +235,7 @@
           <el-row>
             <el-col :span="24">
               <el-form-item label="入库原因" prop="REASON">
-                <el-select
-                  v-model="temp.REASON"
-                  style="width:100%"
-                  @change="change"
-                  v-if="!inputstatus"
-                  disabled
-                >
+                <el-select v-model="temp.REASON" style="width:100%" @change="change" disabled>
                   <el-option
                     v-for="(item,key) in ReasonOptions"
                     :key="key"
@@ -235,7 +243,11 @@
                     :label="item.NAME"
                   ></el-option>
                 </el-select>
-                <el-input v-model="temp.REASON" v-if="inputstatus"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="24" v-if="inputstatus">
+              <el-form-item label="其他入库原因" prop="OTHERREASON" >
+                <el-input v-model="temp.OTHERREASON" v-if="inputstatus" disabled></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -310,8 +322,8 @@ export default {
         ParentCode: "JJREASON",
         userid: this.$store.state.user.userId,
         type: 2,
-        SortType:1,//默认倒叙
-        GroupType:0//默认按照单号
+        SortType: 1, //默认倒叙
+        GroupType: 0 //默认按照单号
       },
       total: 0,
       show: false,
@@ -814,6 +826,14 @@ export default {
         return val;
       } else {
         return val.substring(0, 10);
+      }
+    },
+    substringWLCODE(val){
+      if(val.startsWith('0000000')){
+        return val.substring(7,18);
+      }
+      else{
+        return val;
       }
     }
   },

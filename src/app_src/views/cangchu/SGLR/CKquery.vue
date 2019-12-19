@@ -518,7 +518,7 @@ export default {
     this.listLoading = false;
     this.getList();
   },
-  fliters: {
+  filters: {
     parseTime
   },
   computed: {

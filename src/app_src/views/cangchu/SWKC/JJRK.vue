@@ -48,8 +48,10 @@
         >
           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
-          <el-table-column label="物料描述" prop="MATNX"></el-table-column>
+          <el-table-column label="物料编码" fixed="left" width="150">
+            <template slot-scope="scope">{{scope.row.MATNR|substringWLCODE}}</template>
+          </el-table-column>
+          <el-table-column label="物料描述" prop="MATNX" width="400"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="入库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
@@ -59,7 +61,7 @@
           </el-table-column>-->
           <!-- <el-table-column label="实际数量" prop="RKNUMBER1"></el-table-column>
           <el-table-column label="实际金额" prop="TOTALPRICE1"></el-table-column>-->
-          <el-table-column label="入库原因" prop="NAME" width="220px"></el-table-column>
+          <el-table-column label="入库原因" prop="NAME" width="250px"></el-table-column>
           <!-- <el-table-column label="责任单位" prop="ZRDW"></el-table-column>
           <el-table-column label="责任人" prop="ZRR"></el-table-column>
           <el-table-column label="审批意见" prop="SUGGESTION"></el-table-column>
@@ -115,7 +117,6 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
           style="text-align: center;"
@@ -147,54 +148,64 @@
                 <el-input v-model="currentTime" disabled></el-input>
               </el-form-item>
             </el-col>
-            <el-col :span="12">
+            <el-col :span="6">
               <el-form-item label="制单人">
-                <el-input v-model="username" disabled style="width:45%"></el-input>
+                <el-input v-model="username" disabled></el-input>
               </el-form-item>
             </el-col>
-            <el-row>
-              <el-col :span="6">
-                <el-form-item label="申请单位" prop="DW_CODE">
-                  <!-- <el-select v-model="temp.DW_CODE">
+            <el-col :span="6">
+              <el-form-item label="申请单位" prop="DW_CODE">
+                <!-- <el-select v-model="temp.DW_CODE">
                   <el-option
                     v-for="(item,key) in OrgOptions"
                     :key="key"
                     :label="item.ORG_SHORT_NAME"
                     :value="item.ORG_CODE"
                   ></el-option>
-                  </el-select>-->
-                  <treeselect
-                    v-model="temp.DW_CODE"
-                    :multiple="false"
-                    :options="roleTree"
-                    :load-options="loadOptions"
-                    :loadOptions="loadOptions"
-                    placeholder="请选择部门"
-                    :normalizer="normalizer"
-                    :disable-branch-nodes="false"
-                    noResultsText="未搜索到结果"
-                    noChildrenText=" "
-                    style="font-size:14px; width:100%;"
-                    @select="getNode"
-                    disabled
-                  />
-                </el-form-item>
-              </el-col>
+                </el-select>-->
+                <treeselect
+                  v-model="temp.DW_CODE"
+                  :multiple="false"
+                  :options="roleTree"
+                  :load-options="loadOptions"
+                  :loadOptions="loadOptions"
+                  placeholder="请选择部门"
+                  :normalizer="normalizer"
+                  :disable-branch-nodes="false"
+                  noResultsText="未搜索到结果"
+                  noChildrenText=" "
+                  style="font-size:14px; width:100%;"
+                  @select="getNode"
+                  disabled
+                />
+              </el-form-item>
+            </el-col>
+            <el-row>
               <el-col :span="6">
-                <el-form-item label="物料编码" prop="MATNR">
-                  <el-input v-model="temp.MATNR"></el-input>
+                <el-form-item label="物料组" prop="MATKL">
+                  <el-input v-model="temp.MATKL" disabled></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
+                <el-form-item label="物料编码" prop="MATNR">
+                  <el-input v-model="temp.MATNR" disabled></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="2">
+                <el-button type="primary" @click="getWL" style="margin-left:60px;">请选择物料</el-button>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
                 <el-form-item label="物料描述" prop="MATNX">
-                  <el-input v-model="temp.MATNX"></el-input>
+                  <el-input v-model="temp.MATNX" disabled type="textarea" :rows="2"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row>
               <el-col :span="6">
                 <el-form-item label="计量单位" prop="MEINS">
-                  <el-input v-model="temp.MEINS"></el-input>
+                  <el-input v-model="temp.MEINS" disabled></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -236,12 +247,7 @@
           <el-row>
             <el-col :span="24">
               <el-form-item label="入库原因" prop="REASON">
-                <el-select
-                  v-model="temp.REASON"
-                  style="width:100%"
-                  @change="change"
-                  v-if="!inputstatus"
-                >
+                <el-select v-model="temp.REASON" style="width:100%" @change="change">
                   <el-option
                     v-for="(item,key) in ReasonOptions"
                     :key="key"
@@ -249,7 +255,11 @@
                     :label="item.NAME"
                   ></el-option>
                 </el-select>
-                <el-input v-model="temp.REASON" v-if="inputstatus"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="24" v-if="inputstatus">
+              <el-form-item label="其他入库原因" prop="OTHERREASON">
+                <el-input v-model="temp.OTHERREASON" v-if="inputstatus"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -308,6 +318,68 @@
         </el-form>
       </el-card>
     </el-dialog>
+    <el-dialog :visible.sync="WLdialog" width="60%">
+      <el-card>
+        <el-row>
+          <el-col :span="5">
+            <el-input
+              placeholder="请输入物料编码"
+              size="mini"
+              style="width:95%"
+              v-model="WLQuery.WL_CODE"
+              clearable
+            ></el-input>
+          </el-col>
+          <el-col :span="5">
+            <el-input
+              placeholder="请输入物料名称"
+              size="mini"
+              style="width:95%"
+              v-model="WLQuery.WL_NAME"
+              clearable
+            ></el-input>
+          </el-col>
+          <el-col :span="5">
+            <el-button type="primary" @click="getWLInfo" icon="el-icon-search" size="mini">搜索</el-button>
+          </el-col>
+        </el-row>
+        <el-table
+          size="mini"
+          :data="WLList"
+          :header-cell-class-name="tableRowClassName"
+          v-loading="listloadingWL"
+          element-loading-text="给我一点时间"
+          border
+          fit
+          highlight-current-row
+          style="width: 100%"
+          @row-click="rowclick"
+          @row-dblclick="rowdbclick"
+        >
+          <el-table-column width="50">
+            <template slot-scope="scope">
+              <el-radio :label="scope.$index" v-model="tempStatus">&nbsp;</el-radio>
+            </template>
+          </el-table-column>
+          <el-table-column label="物料组" prop="MATKL" width="120"></el-table-column>
+          <el-table-column label="物料编码" width="230">
+            <template slot-scope="scope">{{scope.row.MATNR|substringWLCODE}}</template>
+          </el-table-column>
+          <el-table-column label="物料名称" prop="MAKTX"></el-table-column>
+          <el-table-column label="计量单位" prop="JBJLDW" width="100"></el-table-column>
+        </el-table>
+        <el-pagination
+          background
+          @size-change="handleSizeChangeWL"
+          @current-change="handleCurrentChangeWL"
+          :current-page="1"
+          :page-sizes="[10,20,30, 50]"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="WLTotal"
+          style="text-align: center;"
+        ></el-pagination>
+      </el-card>
+    </el-dialog>
   </div>
 </template>
 
@@ -322,7 +394,8 @@ import {
   DelJJRKInfo,
   StartProcess,
   Recall,
-  CancelRK
+  CancelRK,
+  GetWLInfo
 } from "@/app_src/api/cangchu/SWKC/JJRK";
 import { fetchOrgList } from "@/frame_src/api/org";
 import { Treeselect, LOAD_CHILDREN_OPTIONS } from "@riophae/vue-treeselect";
@@ -353,8 +426,8 @@ export default {
         ParentCode: "JJREASON",
         userid: this.$store.state.user.userId,
         type: 0,
-        SortType:1,//默认倒叙
-        GroupType:0//默认按照单号
+        SortType: 1, //默认倒叙
+        GroupType: 0 //默认按照单号
       },
       total: 0,
       show: false,
@@ -378,7 +451,9 @@ export default {
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
         GYS: "",
-        KCDD: ""
+        KCDD: "",
+        MATKL: "",
+        OTHERREASON: ""
       },
       rules: {
         CODE: [
@@ -432,6 +507,9 @@ export default {
         REASON: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
+        OTHERREASON: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
         ZRDW: [
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
@@ -440,7 +518,12 @@ export default {
           { required: true, message: "此项不能为空！", trigger: "change" }
         ],
         GYS: [{ required: true, message: "此项不能为空！", trigger: "change" }],
-        KCDD: [{ required: true, message: "此项不能为空！", trigger: "change" }]
+        KCDD: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ],
+        MATKL: [
+          { required: true, message: "此项不能为空！", trigger: "change" }
+        ]
       },
       ReasonOptions: [],
       OrgOptions: [],
@@ -449,6 +532,17 @@ export default {
       title: "",
       currentTime: "",
       inputstatus: false,
+      WLdialog: false,
+      WLList: [],
+      WLTotal: 0,
+      tempStatus: "",
+      WLQuery: {
+        limit: 10,
+        page: 1,
+        WL_CODE: "",
+        WL_NAME: ""
+      },
+      listloadingWL: true,
       username: this.$store.state.user.name,
       normalizer(node) {
         return {
@@ -573,7 +667,9 @@ export default {
         CLOSE_TIME: "",
         userid: this.$store.state.user.userId,
         GYS: "",
-        KCDD: ""
+        KCDD: "",
+        MATKL: "",
+        OTHERREASON: ""
       };
     },
     create() {
@@ -597,7 +693,6 @@ export default {
     update(data) {
       this.temp = Object.assign({}, data);
       this.temp.userid = this.$store.state.user.userId;
-      console.log(this.temp);
       this.show = true;
       this.title = "修改";
       this.$nextTick(() => {
@@ -611,7 +706,10 @@ export default {
           this.KCDDOptions = response.data.items;
         }
       });
-      if (this.ReasonOptions.findIndex(t => t.CODE === data.REASON) === -1) {
+      if (
+        this.ReasonOptions.findIndex(t => t.CODE === data.REASON) ===
+        this.ReasonOptions.length - 1
+      ) {
         this.inputstatus = true;
       } else {
         this.inputstatus = false;
@@ -754,7 +852,6 @@ export default {
         this.ReasonOptions.findIndex(t => t.CODE === data) ===
         this.ReasonOptions.length - 1
       ) {
-        this.temp.REASON = "";
         this.inputstatus = true;
       } else {
         this.inputstatus = false;
@@ -786,6 +883,14 @@ export default {
       this.listQuery.page = val;
       this.getList();
     },
+    handleSizeChangeWL(val) {
+      this.WLQuery.limit = val;
+      this.getWLInfo();
+    },
+    handleCurrentChangeWL(val) {
+      this.WLQuery.page = val;
+      this.getWLInfo();
+    },
     getTime() {
       let date = new Date();
       let year = date.getFullYear();
@@ -810,6 +915,32 @@ export default {
         realDay = map2[map1.findIndex(t => t === myDay)];
       }
       this.currentTime = year + "年" + month + "月" + myDate + "日";
+    },
+    getWL() {
+      this.WLdialog = true;
+      this.getWLInfo();
+    },
+    getWLInfo() {
+      GetWLInfo(this.WLQuery).then(response => {
+        if (response.data.code === 2000) {
+          this.WLList = response.data.items;
+          this.WLTotal = response.data.total;
+          this.listloadingWL = false;
+        } else {
+          this.listloadingWL = false;
+        }
+      });
+    },
+    rowclick(row, column, event) {
+      this.tempStatus = this.WLList.indexOf(row);
+    },
+    rowdbclick(row, column, event) {
+      this.temp.MATKL = row.MATKL;
+      this.temp.MATNR = row.MATNR;
+      this.temp.MEINS = row.JBJLDW;
+      this.temp.MATNX = row.MAKTX;
+      this.tempStatus = "";
+      this.WLdialog = false;
     }
   },
   filters: {
@@ -818,6 +949,13 @@ export default {
         return val;
       } else {
         return val.substring(0, 10);
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
       }
     }
   },

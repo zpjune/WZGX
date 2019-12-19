@@ -43,6 +43,7 @@
           <el-table-column label="物料组名称" prop="PMNAME"></el-table-column> -->
           <el-table-column label="物料编码" prop="WL_CODE"></el-table-column>
           <el-table-column label="物料名称" prop="WL_NAME"></el-table-column>
+          <el-table-column label="排序标识" prop="WL_SORT"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" @click="Edit(scope.row)" size="mini">编辑</el-button>
@@ -70,6 +71,9 @@
               <el-form-item label="物料名称">
                 <el-input v-model="ZDWZPZModel.WL_NAME"></el-input>
               </el-form-item>
+              <el-form-item label="排序标识">
+                <el-input v-model="ZDWZPZModel.WL_SORT"></el-input>
+              </el-form-item>
               <div style="text-align:center">
                 <el-button type="primary" @click="submit">提交</el-button>
                 <el-button @click="show=false">取消</el-button>
@@ -83,7 +87,7 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="20"
+          :page-size="10"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
           style="text-align: center;"
@@ -124,7 +128,8 @@ export default {
       ZDWZPZModel: {
         WLZ_CODE: null,
         WL_CODE: "",
-        WZ_NAME: ""
+        WZ_NAME: "",
+        WL_SORT:"",
       },
       rules: {
         WLZ_CODE: [
@@ -162,7 +167,8 @@ export default {
       this.ZDWZPZModel = {
         WLZ_CODE: null,
         WL_CODE: "",
-        WZ_NAME: ""
+        WZ_NAME: "",
+        WL_SORT:""
       };
     },
     GetList() {

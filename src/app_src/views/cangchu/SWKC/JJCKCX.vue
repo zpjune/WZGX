@@ -66,7 +66,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs=5 :sm="5" :md="5" :lg="4" :xl="3">
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-select placeholder="排序方式" v-model="listQuery.SortType" size="mini" style="width:95%">
           <el-option label="正序" :value="0"></el-option>
           <el-option label="倒叙" :value="1"></el-option>
@@ -101,8 +101,10 @@
         >
           <el-table-column label="编码" prop="CODE" fixed="left" width="150"></el-table-column>
           <el-table-column label="申请单位" prop="ORG_SHORT_NAME" width="250" fixed="left"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" fixed="left" width="150"></el-table-column>
-          <el-table-column label="物料描述" prop="MATNX"></el-table-column>
+          <el-table-column label="物料编码" fixed="left" width="150">
+            <template slot-scope="scope">{{scope.row.MATNR|substringWLCODE}}</template>
+          </el-table-column>
+          <el-table-column label="物料描述" prop="MATNX" width="400"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="出库数量" prop="RKNUMBER"></el-table-column>
           <el-table-column label="单价" prop="PRICE"></el-table-column>
@@ -858,6 +860,14 @@ export default {
         return val;
       } else {
         return val.substring(0, 10);
+      }
+    },
+    substringWLCODE(val){
+      if(val.startsWith('0000000')){
+        return val.substring(7,18);
+      }
+      else{
+        return val;
       }
     }
   },
