@@ -99,6 +99,7 @@ export default {
         tooltip: {
           trigger: "axis"
         },
+        color: ["#20B2AA", "#465967", "#C23531"],
         legend: {
           data: ["最高储备", "现有库存", "最低储备"]
         },
@@ -125,13 +126,20 @@ export default {
           {
             name: "最高储备",
             type: "line",
-            stack: "总量",
+           // stack: "总量",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#20B2AA" //折线的颜色
+                }
+              }
+            },
             data: [] //[120, 132, 101, 134, 90, 230, 210]
           },
           {
             name: "现有库存",
             type: "line",
-            stack: "总量",
+            //stack: "总量",
             data: [], //[220, 182, 191, 234, 290, 330, 310]
             itemStyle: {
               normal: {
@@ -143,6 +151,9 @@ export default {
                     color: "black",
                     fontSize: 10
                   }
+                },
+                lineStyle: {
+                  color: "#465967" //折线的颜色
                 }
               }
             }
@@ -150,7 +161,14 @@ export default {
           {
             name: "最低储备",
             type: "line",
-            stack: "总量",
+           // stack: "总量",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#C23531" //折线的颜色
+                }
+              }
+            },
             data: [] //[150, 232, 201, 154, 190, 330, 410]
           }
         ]
@@ -203,7 +221,7 @@ export default {
             data: [], //[2.0]
             itemStyle: {
               normal: {
-                 color:'#20B2AA' ,
+                color: "#20B2AA",
                 label: {
                   show: true, //开启显示
                   position: "top", //在上方显示
@@ -278,8 +296,12 @@ export default {
           for (let index = 0; index < 52; index++) {
             zgcb.push(res.data.items.ZGCB[0].MAXHAVING);
             if (index < res.data.items.KC.length) {
-              kc.push(res.data.items.KC[0].GESME);
+              kc.push(res.data.items.KC[index].GESME);
             }
+            else{
+              kc.push(0);
+            }
+
             zdcb.push(res.data.items.ZGCB[0].MINHAVING);
             //出入库
             let arr_rk = res.data.items.RK.filter((v, i) => {
@@ -303,6 +325,7 @@ export default {
           this.options.series[0].data = zgcb;
           this.options.series[1].data = kc;
           this.options.series[2].data = zdcb;
+          console.log(this.options.series)
           this.drawlineZDWZBH();
           this.optionCRK.series[0].data = rk;
           this.optionCRK.series[1].data = ck;
@@ -354,7 +377,6 @@ export default {
 .zdwz {
   width: 200px;
   height: 75px;
-  
 }
 .diva {
   width: 201px;
