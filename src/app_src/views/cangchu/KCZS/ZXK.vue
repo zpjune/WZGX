@@ -887,7 +887,7 @@ export default {
     this.observer();
   },
   created() {
-    this.getList();
+    //this.getList();
   }
 };
 </script>

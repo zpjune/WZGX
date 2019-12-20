@@ -1,24 +1,14 @@
 <template>
   <div id="detailZDWZCRK" class="app-container calendar-list-container">
-      <div>
-       <div class="diva">
-        <a @click="setQueryZDWL('油管')" title="油管">
-          <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('水泥')" title="油井水泥">
-          <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
-        </a>
-      </div>
+    <div>
       <div class="diva">
         <a @click="setQueryZDWL('套管')" title="套管">
           <img class="zdwz" src="../../../img/zdwz/taoguan1.png" />
         </a>
       </div>
       <div class="diva">
-        <a @click="setQueryZDWL('柴油')" title="柴油">
-          <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
+        <a @click="setQueryZDWL('油管')" title="油管">
+          <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
         </a>
       </div>
       <div class="diva">
@@ -27,13 +17,23 @@
         </a>
       </div>
       <div class="diva">
-        <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
-          <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
+        <a @click="setQueryZDWL('水泥')" title="油井水泥">
+          <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
         </a>
       </div>
       <div class="diva">
         <a @click="setQueryZDWL('支撑剂')" title="压力支撑剂">
           <img class="zdwz" src="../../../img/zdwz/yalizhichengji.png" />
+        </a>
+      </div>
+      <div class="diva">
+        <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
+          <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
+        </a>
+      </div>
+      <div class="diva">
+        <a @click="setQueryZDWL('柴油')" title="柴油">
+          <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
         </a>
       </div>
     </div>
@@ -84,7 +84,7 @@ export default {
       Query: {
         year: "",
         MATNR: "",
-        DKCODE:""
+        DKCODE: ""
       },
       opZDWZ: [],
       QueryZDWL: {
@@ -185,10 +185,10 @@ export default {
           {
             name: "入库",
             type: "bar",
-            data:[],// [2.0]
+            data: [], // [2.0]
             itemStyle: {
               normal: {
-                 color:'#20B2AA' ,
+                color: "#20B2AA",
                 label: {
                   show: true, //开启显示
                   position: "top", //在上方显示
@@ -204,8 +204,8 @@ export default {
           {
             name: "出库",
             type: "bar",
-            data:[],// [2.0]
-             itemStyle: {
+            data: [], // [2.0]
+            itemStyle: {
               normal: {
                 label: {
                   show: true, //开启显示
@@ -253,7 +253,7 @@ export default {
       mycharts.setOption(this.optionCRK, true);
     },
     getList() {
-      this.Query.DKCODE=this.DKCODE;
+      this.Query.DKCODE = this.DKCODE;
       this.Query.year = this.year.toString().substr(11, 4);
       getZDWZCRK(this.Query).then(res => {
         if (res.data.code === 2000) {
@@ -298,8 +298,8 @@ export default {
         }
       });
     },
-    setQueryZDWL(val){
-      this.QueryZDWL.WL_NAME=val;
+    setQueryZDWL(val) {
+      this.QueryZDWL.WL_NAME = val;
       this.getZDWZPZ();
     },
     btnQuery() {
@@ -339,7 +339,6 @@ export default {
 .zdwz {
   width: 200px;
   height: 75px;
-  
 }
 .diva {
   width: 201px;

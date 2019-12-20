@@ -2,23 +2,13 @@
   <div id="TotalZDWZCRK" class="app-container calendar-list-container">
     <div>
       <div class="diva">
-        <a @click="setQueryZDWL('油管')" title="油管">
-          <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('水泥')" title="油井水泥">
-          <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
-        </a>
-      </div>
-      <div class="diva">
         <a @click="setQueryZDWL('套管')" title="套管">
           <img class="zdwz" src="../../../img/zdwz/taoguan1.png" />
         </a>
       </div>
       <div class="diva">
-        <a @click="setQueryZDWL('柴油')" title="柴油">
-          <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
+        <a @click="setQueryZDWL('油管')" title="油管">
+          <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
         </a>
       </div>
       <div class="diva">
@@ -27,13 +17,23 @@
         </a>
       </div>
       <div class="diva">
-        <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
-          <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
+        <a @click="setQueryZDWL('水泥')" title="油井水泥">
+          <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
         </a>
       </div>
       <div class="diva">
         <a @click="setQueryZDWL('支撑剂')" title="压力支撑剂">
           <img class="zdwz" src="../../../img/zdwz/yalizhichengji.png" />
+        </a>
+      </div>
+      <div class="diva">
+        <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
+          <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
+        </a>
+      </div>
+      <div class="diva">
+        <a @click="setQueryZDWL('柴油')" title="柴油">
+          <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
         </a>
       </div>
     </div>

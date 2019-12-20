@@ -349,7 +349,7 @@ export default {
     this.setStyle(this.width);
   },
   created() {
-    this.getList();
+    //this.getList();
   }
 };
 </script>
