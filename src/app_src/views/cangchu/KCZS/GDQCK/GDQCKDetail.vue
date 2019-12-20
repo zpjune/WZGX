@@ -6,9 +6,22 @@
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-          <GDQCK ref="GDQCK" :FacCode='FacCode'></GDQCK>
+          <GDQCK ref="GDQCK" :FacCode="FacCode"></GDQCK>
         </div>
       </el-collapse-item>
+      <el-collapse-item name="5">
+        <template slot="title">
+          <i class="header-icon el-icon-eleme" style="font-weight:bold">计划入库情况</i>
+        </template>
+        <detailDRK :FacCode="FacCode" ref="detailDRK"></detailDRK>
+      </el-collapse-item>
+      <el-collapse-item name="6">
+        <template slot="title">
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">计划出库情况</i>
+        </template>
+        <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
+      </el-collapse-item>
+
       <el-collapse-item name="2">
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
@@ -27,18 +40,6 @@
         </template>
         <detailZDWZCRK DKCODE="03" ref="detailZDWZCRK"></detailZDWZCRK>
       </el-collapse-item>
-      <el-collapse-item name="5">
-        <template slot="title">
-          <i class="header-icon el-icon-eleme" style="font-weight:bold">计划入库情况</i>
-        </template>
-        <detailDRK :FacCode="FacCode" ref="detailDRK"></detailDRK>
-      </el-collapse-item>
-      <el-collapse-item name="6">
-        <template slot="title">
-          <i class="header-icon el-icon-s-promotion" style="font-weight:bold">计划出库情况</i>
-        </template>
-        <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
-      </el-collapse-item>
     </el-collapse>
   </div>
 </template>
@@ -56,7 +57,7 @@ export default {
     return {
       activeCangku: "1",
       FacCode: "03",
-      OldArr:["1"],
+      OldArr: ["1"]
     };
   },
   components: {

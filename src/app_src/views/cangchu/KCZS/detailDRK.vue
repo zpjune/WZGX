@@ -88,7 +88,11 @@
           </el-table-column>
           <el-table-column label="入库单号" prop="ZDHTZD" width="150"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR" width="150"></el-table-column>
+          <el-table-column label="物料编码"  width="150">
+            <template slot-scope="scope">
+              {{scope.row.MATNR|substringWLCODE}}
+            </template>
+          </el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" width="250"></el-table-column>
           <el-table-column label="计量单位" prop="JBJLDW"></el-table-column>
           <el-table-column label="待入库数量" prop="MENGE" width="100"></el-table-column>
@@ -179,6 +183,13 @@ export default {
     changeNum(val) {
       if (val === null || val === "") {
         return 0;
+      } else {
+        return val;
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
       } else {
         return val;
       }

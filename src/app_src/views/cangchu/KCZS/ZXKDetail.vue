@@ -9,6 +9,18 @@
           <ZXK ref="ZXK" :FacCode="FacCode"></ZXK>
         </div>
       </el-collapse-item>
+      <el-collapse-item name="5" @change="DRKClick">
+        <template slot="title">
+          <i class="header-icon el-icon-eleme" style="font-weight:bold" >计划入库情况</i>
+        </template>
+        <detailDRK ref="detailDRK" :FacCode="FacCode"></detailDRK>
+      </el-collapse-item>
+      <el-collapse-item name="6" @change="DCKClick">
+        <template slot="title">
+          <i class="header-icon el-icon-s-promotion" style="font-weight:bold" >计划出库情况</i>
+        </template>
+        <detailDCK ref="detailDCK" :FacCode="FacCode"></detailDCK>
+      </el-collapse-item>
       <el-collapse-item name="2">
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">积压物资统计</i>
@@ -27,18 +39,7 @@
         </template>
         <detailZDWZCRK DKCODE="02" ref="detailZDWZCRK"></detailZDWZCRK>
       </el-collapse-item>
-      <el-collapse-item name="5" @change="DRKClick">
-        <template slot="title">
-          <i class="header-icon el-icon-eleme" style="font-weight:bold" >计划入库情况</i>
-        </template>
-        <detailDRK ref="detailDRK" :FacCode="FacCode"></detailDRK>
-      </el-collapse-item>
-      <el-collapse-item name="6" @change="DCKClick">
-        <template slot="title">
-          <i class="header-icon el-icon-s-promotion" style="font-weight:bold" >计划出库情况</i>
-        </template>
-        <detailDCK ref="detailDCK" :FacCode="FacCode"></detailDCK>
-      </el-collapse-item>
+      
     </el-collapse>
   </div>
 </template>

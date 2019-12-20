@@ -95,6 +95,8 @@
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">出入库情况统计</i>
         </template>
         <div>
+          <el-radio class="radio" v-model="ISWZ" :label="1">物资公司</el-radio>
+          <el-radio class="radio" v-model="ISWZ" :label="2">大港油田</el-radio>
           <el-date-picker
             v-model="dataYear"
             style="width:120px"
@@ -311,6 +313,7 @@ export default {
       crkDialog: false, //出入库详情 弹窗
       crkDetailTitle: "",
       dataYear: "", //出入库查询日期选择
+      ISWZ:1,
       crklmonth: "",
       crklyear: ""
     };
@@ -347,7 +350,7 @@ export default {
       });
     },
     GetCRKJE() {
-      let queryparam = { year: this.dataYear };
+      let queryparam = { year: this.dataYear,ISWZ:this.ISWZ };
       GetCRKJE(queryparam).then(res => {
         if (res.data.code === 2000) {
           let arrCKJE = new Array();
@@ -373,8 +376,13 @@ export default {
             arrRKJE.push(rkje);
           }
           this.optioncrk.series = [
-            { name: "入库", type: "bar", data: arrRKJE ,itemStyle:{ normal:{ color:'#20B2AA' } } },
-            { name: "出库", type: "bar", data: arrCKJE}
+            {
+              name: "入库",
+              type: "bar",
+              data: arrRKJE,
+              itemStyle: { normal: { color: "#20B2AA" } }
+            },
+            { name: "出库", type: "bar", data: arrCKJE }
           ];
           this.drawlineCRK();
         }

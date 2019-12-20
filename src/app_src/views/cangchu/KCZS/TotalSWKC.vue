@@ -101,7 +101,7 @@
           :page-size="listQuery1.limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total1"
-          style="text-align: center;"
+          
         ></el-pagination>
       </el-col>
     </el-row>
