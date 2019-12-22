@@ -882,12 +882,13 @@ export default {
     }
   },
   mounted() {
-    this.getPoint();
-    this.setStyle(this.width);
-    this.observer();
+    //this.getPoint();//获取当前平面图width方法
+    ////this.setStyle(this.width);//初始化放置点位方法
+    //this.observer();//监听当前PIC DOM的方法
+    //this.setStyle(this.width);//初始化设置点位方法
   },
   created() {
-    //this.getList();
+    //this.getList();//获取平面图点位状态方法
   }
 };
 </script>

@@ -11,8 +11,20 @@
       <area shape="rect" coords="1334, 170, 1393, 236" @click="OpenDialog" />
     </map>-->
 
-    <img src="../../../../img/ZXKPIC.png" border="0" usemap="#planetmap" alt="Planets" />
+    <img
+      src="../../../../img/ZYGPIC.jpg"
+      border="0"
+      usemap="#planetmap"
+      alt="Planets"
+      style="width:1000px;height:600px;"
+    />
+
     <map name="planetmap" id="planetmap">
+      <area shape="rect" coords="256, 182, 448, 279" title="二区" @click="OpenDialog('ZYK','01')" />
+      <area shape="rect" coords="465, 209, 709, 281" title="二区" @click="OpenDialog('ZYK','01')" />
+      <area shape="rect" coords="649, 317, 916, 367" title="料场10区" @click="OpenDialog('ZYK','02')" />
+    </map>
+    <!-- <map name="planetmap" id="planetmap">
       <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK',1)" />
       <area shape="rect" coords="777, 59, 811, 98" title="2号库" @click="OpenDialog('ZXK',2)" />
       <area shape="rect" coords="777, 100, 811, 139" title="3号库" @click="OpenDialog('ZXK',3)" />
@@ -42,8 +54,8 @@
       <area shape="rect" coords="369, 38, 405, 192" title="24号活动料棚" @click="OpenDialog('ZXK',24)" />
       <area shape="rect" coords="407, 38, 443, 192" title="25号活动料棚" @click="OpenDialog('ZXK',25)" />
       <area shape="rect" coords="462, 163, 511, 192" title="26号库" @click="OpenDialog('ZXK',26)" />
-    </map>
-    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog"></kucunzhanshidetail>
+    </map>-->
+    <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog" ref="kucunzhanshidetail"></kucunzhanshidetail>
   </div>
 </template>
 
@@ -51,18 +63,29 @@
 import kucunzhanshidetail from "@/app_src/components/cangchu/kucunzhanshidetail";
 export default {
   name: "TotalZXK",
+  props: ["FacCode"],
   data() {
     return {
-      kcmxDialog: false
+      kcmxDialog: false,
+      width: 0,
+      oldwidth: 0,
+      listQuery: {
+        FacCode: this.FacCode
+      },
+      statusCode: "",
+      StatusStr: ""
     };
   },
   components: {
     kucunzhanshidetail
   },
   methods: {
-    OpenDialog(type,val) {
+    OpenDialog(type, val) {
+      this.statusCode = this.FacCode + val;
       this.kcmxDialog = true;
-      console.log(type+val);
+      this.$refs.kucunzhanshidetail.getValue(this.statusCode);
+      this.$refs.kucunzhanshidetail.getList();
+      //console.log(type + val);
     },
     closeDialog(val) {
       this.kcmxDialog = val;

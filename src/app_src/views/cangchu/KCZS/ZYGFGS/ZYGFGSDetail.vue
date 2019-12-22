@@ -6,14 +6,14 @@
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
         <div style="overflow-x: scroll;">
-        <ZYGFGS ref="ZYGFGS"></ZYGFGS>
+        <ZYGFGS ref="ZYGFGS" :FacCode="FacCode"></ZYGFGS>
         </div>
       </el-collapse-item>
       <el-collapse-item name="5">
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">计划入库情况</i>
         </template>
-        <detailDRK :FacCode="FacCode" ref="detailDRK"></detailDRK>
+        <detailDRK :FacCode="FacCode" ref="detailDRK" ></detailDRK>
       </el-collapse-item>
       <el-collapse-item name="6">
         <template slot="title">

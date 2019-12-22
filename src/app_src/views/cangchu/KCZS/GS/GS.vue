@@ -8,13 +8,18 @@
     <div class="box" id="box">
       <img
         id="GSPIC"
-        src="../../../../img/GSPIC.png"
+        src="../../../../img/GSPIC.jpg"
         border="0"
         usemap="#planetmap"
         alt="Planets"
         class="ZYCPIC"
+        style="width:1000px;height:600px;"
       />
       <map name="planetmap" id="planetmap">
+        <area shape="rect" coords="365,361,709,389" title="1号库"  @click="OpenDialog('ZYK','01')">
+        <area shape="rect" coords="364,393,709,434" title="2号库"  @click="OpenDialog('ZYK','02')">
+      </map>
+      <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="270, 326, 521, 365" title="1号库" @click="OpenDialog('ZXK','01')" />
         <area shape="rect" coords="270, 365, 521, 405" title="2号库" @click="OpenDialog('ZXK','02')" />
         <area
@@ -242,12 +247,12 @@
           style=" position: absolute;left: 113px;z-index: 2;top: 79.6%;width: 12px;height: 12px;"
           v-show="StatusStr[3*(3-1)+2]==='1'"
         />
-      </div>
+      </div> -->
     </div>
-    <div name="标识图片">
+    <!-- <div name="标识图片">
       <img id="ZYCPIC" src="../../../../img/库房2.png" border="0" class="kufang" />库房
       <img id="ZYCPIC" src="../../../../img/料棚.png" border="0" class="liaopeng" />料棚
-    </div>
+    </div> -->
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"
       @listenToChildEvent="closeDialog"
@@ -343,13 +348,13 @@ export default {
     }
   },
   mounted() {
-    this.getPoint();
-    //this.setStyle(this.width);
-    this.observer();
-    this.setStyle(this.width);
+    //this.getPoint();//获取当前平面图width方法
+    ////this.setStyle(this.width);//初始化放置点位方法
+    //this.observer();//监听当前PIC DOM的方法
+    //this.setStyle(this.width);//初始化设置点位方法
   },
   created() {
-    //this.getList();
+    //this.getList();//获取平面图点位状态方法
   }
 };
 </script>

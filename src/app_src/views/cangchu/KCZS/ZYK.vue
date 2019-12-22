@@ -31,12 +31,18 @@
     <div class="box" id="box">
       <img
         id="ZYCPIC"
-        src="../../../img/ZYKPIC.png"
+        src="../../../img/ZYKPIC.jpg"
         border="0"
         usemap="#planetmap"
         alt="Planets"
         class="ZYCPIC"
+        style="width:1000px;height:600px;"
       />
+      <map name="planetmap" id="planetmap">
+        <area shape="rect" coords="322,75,360,104" title="1号库"  @click="OpenDialog('ZYK','01')">
+        <area shape="rect" coords="530,75,568,104" title="5号库"  @click="OpenDialog('ZYK','05')">
+      </map>
+
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="280, 43, 316, 76" title="1号库" @click="OpenDialog('ZYK','01')" />
         <area
@@ -455,13 +461,13 @@ export default {
     }
   },
   mounted() {
-    this.getPoint();
-    //this.setStyle(this.width);
-    this.observer();
-    this.setStyle(this.width);
+    //this.getPoint();//获取当前平面图width方法
+    ////this.setStyle(this.width);//初始化放置点位方法
+    //this.observer();//监听当前PIC DOM的方法
+    //this.setStyle(this.width);//初始化设置点位方法
   },
   created() {
-    //this.getList();
+    //this.getList();//获取平面图点位状态方法
   }
 };
 </script>
