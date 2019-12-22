@@ -1622,7 +1622,6 @@
       <img id="ZYCPIC" src="../../../../img/库房2.png" border="0" class="kufang" />库房
       <img id="ZYCPIC" src="../../../../img/料棚.png" border="0" class="liaopeng" />料棚
     </div> -->
-    <el-button @click="testMethod">测试</el-button>
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"
       @listenToChildEvent="closeDialog"
