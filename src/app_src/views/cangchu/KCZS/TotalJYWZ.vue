@@ -51,6 +51,7 @@
                 <el-table-column label="大类" prop="DLCODE" width="70"></el-table-column>
                 <el-table-column label="项数" prop="XM" width="150"></el-table-column>
                 <el-table-column label="数量" prop="SL" width="250"></el-table-column>
+                <el-table-column label="数量" prop="JE" width="250"></el-table-column>
                 <el-table-column label="计量单位" prop="JLDW" width="324"></el-table-column>
                 <el-table-column label="操作" width="120">
                   <template slot-scope="scope">

@@ -37,7 +37,7 @@
         alt="Planets"
         class="ZYCPIC"
       />
-      <map name="planetmap" id="planetmap">
+      <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="280, 43, 316, 76" title="1号库" @click="OpenDialog('ZYK','01')" />
         <area
           shape="rect"
@@ -347,12 +347,12 @@
           style=" position: absolute;left: 388px;z-index: 2;top: 53.7%;width: 12px;height: 12px;"
           v-show="StatusStr[3*(10-1)+2]==='1'"
         />
-      </div>
+      </div> -->
     </div>
-    <div name="标识图片">
+    <!-- <div name="标识图片">
       <img id="ZYCPIC" src="../../../img/库房2.png" border="0" class="kufang" />库房
       <img id="ZYCPIC" src="../../../img/料棚.png" border="0" class="liaopeng" />料棚
-    </div>
+    </div> -->
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"
       @listenToChildEvent="closeDialog"

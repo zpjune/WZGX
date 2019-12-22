@@ -9,6 +9,20 @@
       style="margin-top:10vh;margin-left:100px;"
       width="60%"
     >
+    <el-row style="margin-bottom:10px">
+      <el-col :span="5">
+        <el-input placeholder="请输入工厂编码" size="mini" style="width:95%;" v-model="listQuery.WERKS" clearable></el-input>
+      </el-col>
+      <el-col :span="5">
+        <el-input placeholder="请输入物料编码" size="mini" style="width:95%;" v-model="listQuery.MATNR" clearable></el-input>
+      </el-col>
+      <el-col :span="3">
+        <div style="text-aligin:right;">
+          <el-button  type="primary" size="mini" icon="el-icon-search" @click="getList()">搜索</el-button>
+        </div>
+        
+      </el-col>
+    </el-row>
       <el-table
         :key="tableKey"
         :data="list"
@@ -44,7 +58,11 @@
         </el-table-column>
         <el-table-column label="工厂编号" prop="WERKS" width="80"></el-table-column>
         <el-table-column label="物料组" prop="MATKL" width="100"></el-table-column>
-        <el-table-column label="物料编码" prop="MATNR"></el-table-column>
+        <el-table-column label="物料编码" >
+          <template slot-scope="scope">
+            {{scope.row.MATNR|substringWLCODE}}
+          </template>
+        </el-table-column>
         <el-table-column label="物料描述" prop="MAKTX" width="300"></el-table-column>
         <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
         <el-table-column label="实存数量" prop="GESME" width="80"></el-table-column>
@@ -101,7 +119,9 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        LGPLA: ""
+        LGPLA: "",
+        MATNR:"",
+        WERKS:"",
       },
       listLoading: true
     };
@@ -168,6 +188,13 @@ export default {
         case "04":
           return "上架";
           break;
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
       }
     }
   }
