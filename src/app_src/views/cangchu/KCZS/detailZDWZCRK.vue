@@ -97,6 +97,7 @@ export default {
         tooltip: {
           trigger: "axis"
         },
+        color: ["#20B2AA", "#465967", "#C23531"],
         legend: {
           data: ["最高储备", "现有库存", "最低储备"]
         },
@@ -123,19 +124,49 @@ export default {
           {
             name: "最高储备",
             type: "line",
-            stack: "总量",
+           // stack: "总量",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#20B2AA" //折线的颜色
+                }
+              }
+            },
             data: [] //[120, 132, 101, 134, 90, 230, 210]
           },
           {
             name: "现有库存",
             type: "line",
-            stack: "总量",
-            data: [] //[220, 182, 191, 234, 290, 330, 310]
+            //stack: "总量",
+            data: [], //[220, 182, 191, 234, 290, 330, 310]
+            itemStyle: {
+              normal: {
+                label: {
+                  show: true, //开启显示
+                  position: "top", //在上方显示
+                  textStyle: {
+                    //数值样式
+                    color: "black",
+                    fontSize: 10
+                  }
+                },
+                lineStyle: {
+                  color: "#465967" //折线的颜色
+                }
+              }
+            }
           },
           {
             name: "最低储备",
             type: "line",
-            stack: "总量",
+           // stack: "总量",
+            itemStyle: {
+              normal: {
+                lineStyle: {
+                  color: "#C23531" //折线的颜色
+                }
+              }
+            },
             data: [] //[150, 232, 201, 154, 190, 330, 410]
           }
         ]
