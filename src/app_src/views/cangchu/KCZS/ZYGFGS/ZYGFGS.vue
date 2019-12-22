@@ -23,6 +23,8 @@
       <area shape="rect" coords="256, 182, 448, 279" title="二区" @click="OpenDialog('ZYK','01')" />
       <area shape="rect" coords="465, 209, 709, 281" title="二区" @click="OpenDialog('ZYK','01')" />
       <area shape="rect" coords="649, 317, 916, 367" title="料场10区" @click="OpenDialog('ZYK','02')" />
+
+      
     </map>
     <!-- <map name="planetmap" id="planetmap">
       <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK',1)" />
