@@ -73,3 +73,11 @@ export function GetDCKInfo(query) {//分库 资金查询
       params:query
     })
   }
+
+  export function GetFloatWindowInfo(query) {//平面图悬浮窗查询
+    return request({
+      url: '/ZXK/GetFloatWindowInfo',
+      method: 'get',
+      params:query
+    })
+  }

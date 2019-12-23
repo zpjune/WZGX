@@ -11,36 +11,89 @@
       <area shape="rect" coords="1334, 170, 1393, 236" @click="OpenDialog" />
     </map>-->
     <div id="box" class="box">
-      <img src="../../../img/ZXKPIC.jpg" id="ZXKPIC" border="0" usemap="#planetmap" alt="Planets"  style="width:1000px;height:600px;"/>
+      <img
+        src="../../../img/ZXKPIC.jpg"
+        id="ZXKPIC"
+        border="0"
+        usemap="#planetmap"
+        alt="Planets"
+        style="width:1000px;height:600px;"
+      />
+      <div class="FloatingWindow">
+        <FloatingWindow ref="FloatingWindow"></FloatingWindow>
+      </div>
       <map name="planetmap" id="planetmap">
-         <area shape="rect" coords="821, 62, 853, 100" title="1号库" @click="OpenDialog('ZXK','01')" />
-         <area shape="rect" coords="821, 104, 853, 140" title="2号库" @click="OpenDialog('ZXK','02')" />
-         <area shape="rect" coords="821, 144, 853, 180" title="3号库" @click="OpenDialog('ZXK','03')" />
-         <area shape="rect" coords="821, 184, 853, 220" title="4号库" @click="OpenDialog('ZXK','04')" />
-         <area shape="rect" coords="821, 224, 853, 260" title="5号库" @click="OpenDialog('ZXK','05')" />
-         <area shape="rect" coords="821, 264, 853, 300" title="6号库" @click="OpenDialog('ZXK','06')" />
-         <area shape="rect" coords="821, 304, 853, 340" title="7号库" @click="OpenDialog('ZXK','07')" />
-         <area shape="rect" coords="821, 344, 853, 380" title="8号库" @click="OpenDialog('ZXK','08')" />
-         <area shape="rect" coords="821, 384, 853, 420" title="9号库" @click="OpenDialog('ZXK','09')" />
-         <area shape="rect" coords="821, 424, 853, 460" title="10号库" @click="OpenDialog('ZXK','10')" />
-         <area shape="rect" coords="821, 464, 853, 500" title="11号库" @click="OpenDialog('ZXK','11')" />
-         <area shape="rect" coords="739, 262, 783, 290" title="12号库" @click="OpenDialog('ZXK','12')" />
-         <area shape="rect" coords="739, 292, 783, 320" title="13号库" @click="OpenDialog('ZXK','13')" />
-         <area shape="rect" coords="739, 322, 783, 350" title="14号库" @click="OpenDialog('ZXK','14')" />
-         <area shape="rect" coords="574, 324, 689, 400" title="15号库" @click="OpenDialog('ZXK','15')" />
-         <area shape="rect" coords="516, 252, 572, 331" title="16料场" @click="OpenDialog('ZXK','16')" />
-         <area shape="rect" coords="516, 205, 560, 229" title="26" @click="OpenDialog('ZXK','26')" />
-         <area shape="rect" coords="371, 253, 487, 309" title="17料场" @click="OpenDialog('ZXK','17')" />
-         <area shape="rect" coords="420, 313, 487, 395" title="17料场" @click="OpenDialog('ZXK','17')" />
-         <area shape="rect" coords="374, 393, 487, 449" title="17料场" @click="OpenDialog('ZXK','17')" />
-         <area shape="rect" coords="315, 252, 353, 383" title="18活动料棚" @click="OpenDialog('ZXK','18')" />
-         <area shape="rect" coords="278, 252, 314, 383" title="19活动料棚" @click="OpenDialog('ZXK','19')" />
-         <area shape="rect" coords="243, 83, 277, 230" title="20号料场" @click="OpenDialog('ZXK','20')" />
-         <area shape="rect" coords="277, 83, 313, 230" title="21号活动料棚" @click="OpenDialog('ZXK','21')" />
-         <area shape="rect" coords="243, 83, 351, 230" title="22号活动料棚" @click="OpenDialog('ZXK','22')" />
-         <area shape="rect" coords="386, 83, 417, 230" title="23料场" @click="OpenDialog('ZXK','23')" />
-         <area shape="rect" coords="420, 83, 456, 229" title="24活动料棚" @click="OpenDialog('ZXK','24')" />
-         <area shape="rect" coords="460, 83, 494, 229" title="25活动料棚" @click="OpenDialog('ZXK','25')" />
+        <area
+          shape="rect"
+          coords="821, 62, 853, 100"
+          title="1号库"
+          @click="OpenDialog('ZXK','01')"
+          @mouseenter="enter('01')"
+          @mousemove="updateXY()"
+        />
+        <area
+          shape="rect"
+          coords="821, 104, 853, 140"
+          title="2号库"
+          @click="OpenDialog('ZXK','02')"
+          @mouseenter="enter('02')"
+        />
+        <area shape="rect" coords="821, 144, 853, 180" title="3号库" @click="OpenDialog('ZXK','03')" />
+        <area shape="rect" coords="821, 184, 853, 220" title="4号库" @click="OpenDialog('ZXK','04')" />
+        <area shape="rect" coords="821, 224, 853, 260" title="5号库" @click="OpenDialog('ZXK','05')" />
+        <area shape="rect" coords="821, 264, 853, 300" title="6号库" @click="OpenDialog('ZXK','06')" />
+        <area shape="rect" coords="821, 304, 853, 340" title="7号库" @click="OpenDialog('ZXK','07')" />
+        <area shape="rect" coords="821, 344, 853, 380" title="8号库" @click="OpenDialog('ZXK','08')" />
+        <area shape="rect" coords="821, 384, 853, 420" title="9号库" @click="OpenDialog('ZXK','09')" />
+        <area shape="rect" coords="821, 424, 853, 460" title="10号库" @click="OpenDialog('ZXK','10')" />
+        <area shape="rect" coords="821, 464, 853, 500" title="11号库" @click="OpenDialog('ZXK','11')" />
+        <area shape="rect" coords="739, 262, 783, 290" title="12号库" @click="OpenDialog('ZXK','12')" />
+        <area shape="rect" coords="739, 292, 783, 320" title="13号库" @click="OpenDialog('ZXK','13')" />
+        <area shape="rect" coords="739, 322, 783, 350" title="14号库" @click="OpenDialog('ZXK','14')" />
+        <area shape="rect" coords="574, 324, 689, 400" title="15号库" @click="OpenDialog('ZXK','15')" />
+        <area shape="rect" coords="516, 252, 572, 331" title="16料场" @click="OpenDialog('ZXK','16')" />
+        <area shape="rect" coords="516, 205, 560, 229" title="26" @click="OpenDialog('ZXK','26')" />
+        <area shape="rect" coords="371, 253, 487, 309" title="17料场" @click="OpenDialog('ZXK','17')" />
+        <area shape="rect" coords="420, 313, 487, 395" title="17料场" @click="OpenDialog('ZXK','17')" />
+        <area shape="rect" coords="374, 393, 487, 449" title="17料场" @click="OpenDialog('ZXK','17')" />
+        <area
+          shape="rect"
+          coords="315, 252, 353, 383"
+          title="18活动料棚"
+          @click="OpenDialog('ZXK','18')"
+        />
+        <area
+          shape="rect"
+          coords="278, 252, 314, 383"
+          title="19活动料棚"
+          @click="OpenDialog('ZXK','19')"
+        />
+        <area shape="rect" coords="243, 83, 277, 230" title="20号料场" @click="OpenDialog('ZXK','20')" />
+        <area
+          shape="rect"
+          coords="277, 83, 313, 230"
+          title="21号活动料棚"
+          @click="OpenDialog('ZXK','21')"
+        />
+        <area
+          shape="rect"
+          coords="243, 83, 351, 230"
+          title="22号活动料棚"
+          @click="OpenDialog('ZXK','22')"
+        />
+        <area shape="rect" coords="386, 83, 417, 230" title="23料场" @click="OpenDialog('ZXK','23')" />
+        <area
+          shape="rect"
+          coords="420, 83, 456, 229"
+          title="24活动料棚"
+          @click="OpenDialog('ZXK','24')"
+        />
+        <area
+          shape="rect"
+          coords="460, 83, 494, 229"
+          title="25活动料棚"
+          @click="OpenDialog('ZXK','25')"
+        />
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK','01')" />
@@ -99,7 +152,7 @@
           @click="OpenDialog('ZXK','25')"
         />
         <area shape="rect" coords="462, 163, 511, 192" title="26号库" @click="OpenDialog('ZXK','26')" />
-      </map> -->
+      </map>-->
       <!-- <div name="1号区域">
         <img
           src="../../../img/red.jpg"
@@ -776,7 +829,7 @@
           v-show="StatusStr[3*(26-1)+2]==='1'"
         />
       </div>-->
-    </div> 
+    </div>
 
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"
@@ -788,6 +841,7 @@
 
 <script>
 import kucunzhanshidetail from "@/app_src/components/cangchu/kucunzhanshidetail";
+import FloatingWindow from "@/app_src/components/cangchu/FloatingWindow";
 import { GetFacStatus } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZXK",
@@ -811,14 +865,15 @@ export default {
     }
   },
   components: {
-    kucunzhanshidetail
+    kucunzhanshidetail,
+    FloatingWindow
   },
   methods: {
     getList() {
       GetFacStatus(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.StatusStr = response.data.items;
-          this.StatusStr="0000000000"
+          this.StatusStr = "0000000000";
         }
         this.setStyle(this.width);
       });
@@ -879,6 +934,15 @@ export default {
       erd.listenTo(document.getElementById("box"), element => {
         this.width = document.getElementById("ZXKPIC").offsetLeft;
       });
+    },
+    enter(data) {
+      this.$refs.FloatingWindow.enter(this.FacCode + data);
+    },
+    leave() {
+      this.$refs.FloatingWindow.leave();
+    },
+    updateXY() {
+      this.$refs.FloatingWindow.updateXY();
     }
   },
   mounted() {
@@ -912,6 +976,13 @@ export default {
     position: absolute;
     z-index: 1;
     right: 25%;
+  }
+  .FloatingWindow {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
   }
 }
 </style>

@@ -328,26 +328,41 @@ export default {
       // }, 1500);
     },
     getKCZJ() {
-      GetKCZJ().then(res => {
-        if (res.data.code === 2000) {
-          //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
-          let arr = new Array(10);
-          arr[0] = { value: res.data.items.C271, name: "本部工厂" };
-          arr[1] = { value: res.data.items.C274, name: "物采中心" };
-          arr[2] = { value: res.data.items.C275, name: "专用管分公司" };
-          arr[3] = { value: res.data.items.C277, name: "油品分公司" };
-          arr[4] = { value: res.data.items.C279, name: "港狮分公司" };
-          arr[5] = { value: res.data.items.C27B, name: "港骅分公司" };
-          arr[6] = { value: res.data.items.C27C, name: "港东分公司" };
-          arr[7] = { value: res.data.items.C27D, name: "港西分公司" };
-          arr[8] = { value: res.data.items.C27G, name: "油区分公司" };
-          arr[9] = { value: res.data.items.C27I, name: "外部市场" };
+      // GetKCZJ().then(res => {
+      //   if (res.data.code === 2000) {
+      //     //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
+      //     let arr = new Array(10);
+      //     arr[0] = { value: res.data.items.C271, name: "本部工厂" };
+      //     arr[1] = { value: res.data.items.C274, name: "物采中心" };
+      //     arr[2] = { value: res.data.items.C275, name: "专用管分公司" };
+      //     arr[3] = { value: res.data.items.C277, name: "油品分公司" };
+      //     arr[4] = { value: res.data.items.C279, name: "港狮分公司" };
+      //     arr[5] = { value: res.data.items.C27B, name: "港骅分公司" };
+      //     arr[6] = { value: res.data.items.C27C, name: "港东分公司" };
+      //     arr[7] = { value: res.data.items.C27D, name: "港西分公司" };
+      //     arr[8] = { value: res.data.items.C27G, name: "油区分公司" };
+      //     arr[9] = { value: res.data.items.C27I, name: "外部市场" };
+      //     this.option2.series[0].data = arr;
+      //     this.totalziji = res.data.items.TOTAL;
+      //     this.totalwzziji = res.data.items.TOTALWZ;
+      //     this.drawline2();
+      //   }
+      // });
+      let arr = new Array(10);
+          arr[0] = { value: 13856*0.0006, name: "本部工厂" };
+          arr[1] = { value: 13856*0.1123, name: "物采中心" };
+          arr[2] = { value: 13856*0.5885, name: "专用管分公司" };
+          arr[3] = { value: 13856*0.1189, name: "油品分公司" };
+          arr[4] = { value: 13856*0.0008, name: "港狮分公司" };
+          arr[5] = { value: 13856*0.0014, name: "港骅分公司" };
+          arr[6] = { value: 13856*0.0262, name: "港东分公司" };
+          arr[7] = { value: 13856*0.0443, name: "港西分公司" };
+          arr[8] = { value: 13856*0.029, name: "油区分公司" };
+          arr[9] = { value: 13856*0.141, name: "外部市场" };
           this.option2.series[0].data = arr;
-          this.totalziji = res.data.items.TOTAL;
-          this.totalwzziji = res.data.items.TOTALWZ;
+          this.totalziji = 19585;
+          this.totalwzziji = 13856;
           this.drawline2();
-        }
-      });
     },
     GetCRKJE() {
       let queryparam = { year: this.dataYear,ISWZ:this.ISWZ };
@@ -366,7 +381,6 @@ export default {
               }
             });
             arrCKJE.push(ckje);
-
             res.data.items[1].forEach(item => {
               if (parseInt(item.MONTH) === index) {
                 rkje = item.JE;

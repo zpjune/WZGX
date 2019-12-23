@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       activeCangku: "1",
-      FacCode:"08",
+      FacCode:"06",
       OldArr:["1"],
     };
   },
