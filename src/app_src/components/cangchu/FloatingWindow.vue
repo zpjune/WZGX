@@ -1,9 +1,6 @@
 <template>
   <div id="FlaotingWindow" v-show="seen" class="FlaotingWindow" @mouseleave="leave">
     <el-card>
-      <div slot="header" class="clearfix" style="width:500px">
-        <span>库存概况</span>
-      </div>
       <div>
         <el-table
           size="mini"

@@ -25,18 +25,29 @@
       <map name="planetmap" id="planetmap">
         <area
           shape="rect"
-          coords="821, 62, 853, 100"
+          coords="821, 62, 853, 80"
           title="1号库"
-          @click="OpenDialog('ZXK','01')"
           @mouseenter="enter('01')"
           @mousemove="updateXY()"
         />
         <area
           shape="rect"
+          coords="821, 80, 853, 100"
+          title="1号库"
+          @click="OpenDialog('ZXK','01')"
+          
+        />
+        <area
+          shape="rect"
+          coords="821, 104, 853, 120"
+          title="2号库"
+          @mouseenter="enter('02')"
+        />
+        <area
+          shape="rect"
           coords="821, 104, 853, 140"
           title="2号库"
-          @click="OpenDialog('ZXK','02')"
-          @mouseenter="enter('02')"
+           @click="OpenDialog('ZXK','02')"
         />
         <area shape="rect" coords="821, 144, 853, 180" title="3号库" @click="OpenDialog('ZXK','03')" />
         <area shape="rect" coords="821, 184, 853, 220" title="4号库" @click="OpenDialog('ZXK','04')" />
@@ -980,7 +991,7 @@ export default {
   .FloatingWindow {
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 40%;
     transform: translate(-50%, -50%);
     z-index: 9999;
   }
