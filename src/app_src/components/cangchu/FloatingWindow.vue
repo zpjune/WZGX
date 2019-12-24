@@ -1,5 +1,5 @@
 <template>
-  <div id="FlaotingWindow"  class="FlaotingWindow" @mouseleave="leave">
+  <div id="FlaotingWindow" class="FlaotingWindow">
     <el-dialog :visible.sync="seen" title="库存概况">
       <el-card>
         <div>
@@ -15,24 +15,128 @@
             style="width: 100%;min-height:400px;"
             :modal="false"
             :modal-append-to-body="false"
+            @expand-change="expandChange"
+            :expand-row-keys="expands"
+            :row-key="getRowKeys"
           >
-            <el-table-column label="大类" prop="DL" fixed="left" width="150"></el-table-column>
-            <el-table-column label="项数" prop="SL" width="250" ></el-table-column>
-            <el-table-column label="数量" fixed="left" width="150" prop="GESME"></el-table-column>
-            <el-table-column label="计量单位" fixed="left" width="150" prop="MEINS"></el-table-column>
+            <el-table-column type="expand">
+              <template slot-scope="scope">
+                <span v-show="false">{{scope.row}}</span>
+                <el-table
+                  size="mini"
+                  :data="list1"
+                  :header-cell-class-name="tableRowClassName"
+                  v-loading="listloading"
+                  element-loading-text="给我一点时间"
+                  border
+                  fit
+                  highlight-current-row
+                  style="width: 100%"
+                >
+                  <!-- <el-table-column label="状态" width="70" align="center" prop="ZT">
+                    <template slot-scope="scope">
+                      <img
+                        v-if="scope.row.ZT=='01'"
+                        src="../../img/blue.jpg"
+                        style="width:20px;height:15px;"
+                      />
+                      <img
+                        v-if="scope.row.ZT=='02'"
+                        src="../../img/red.jpg"
+                        style="width:20px;height:15px;"
+                      />
+                      <img
+                        v-if="scope.row.ZT=='03'"
+                        src="../../img/yellow.jpg"
+                        style="width:20px;height:15px;"
+                      />
+                    </template>
+                  </el-table-column> -->
+                  <el-table-column label="工厂编号" prop="WERKS" width="70"></el-table-column>
+                  <el-table-column label="工厂名称" width="250">
+                    <template slot-scope="scope">
+                      <span>{{scope.row.WERKS_NAME|substringName}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column label="物料组" prop="MATKL" width="80"></el-table-column>
+                  <el-table-column label="物料编码" width="100">
+                    <template slot-scope="scope">
+                      <span>{{scope.row.MATNR|fMATNR}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    label="物料描述"
+                    prop="MAKTX"
+                    :show-overflow-tooltip="true"
+                    width="300"
+                  ></el-table-column>
+                  <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
+                  <el-table-column label="实存数量" prop="GESME"></el-table-column>
+                  <el-table-column label="存货状态">
+                    <template slot-scope="scope">
+                      <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
+                    </template>
+                  </el-table-column>
+                  <el-table-column
+                    label="库存地点编码"
+                    prop="LGORT"
+                    :show-overflow-tooltip="true"
+                    width="120"
+                  ></el-table-column>
+                  <el-table-column
+                    label="库存地点"
+                    :show-overflow-tooltip="true"
+                    width="120"
+                    prop="LGORT_NAME"
+                  ></el-table-column>
+                </el-table>
+                <!-- <div style="padding-top:3px;">
+                  <img
+                    src="../../img/blue.jpg"
+                    style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"
+                  />
+                  <span>&nbsp;无动态（积压）</span>
+                  <img
+                    src="../../img/red.jpg"
+                    style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"
+                  />
+                  <span>&nbsp;报废或超期</span>
+                  <img
+                    src="../../img/yellow.jpg"
+                    style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"
+                  />
+                  <span>&nbsp;有保存期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他为正常</span>
+                </div> -->
+                <el-pagination
+                  background
+                  @size-change="handleSizeChange1"
+                  @current-change="handleCurrentChange1"
+                  :current-page="listQuery1.page"
+                  :page-sizes="[10,20,30, 50]"
+                  :page-size="listQuery1.limit"
+                  layout="total, sizes, prev, pager, next, jumper"
+                  :total="total1"
+                  style="text-align: center;"
+                ></el-pagination>
+              </template>
+            </el-table-column>
+            <el-table-column label="大类" prop="DL" width="150"></el-table-column>
+            <el-table-column label="项数" prop="SL" width="250"></el-table-column>
+            <el-table-column label="数量" width="150" prop="GESME"></el-table-column>
+            <el-table-column label="计量单位" width="150" prop="MEINS"></el-table-column>
           </el-table>
         </div>
         <div class="pagination-container" style="text-align:center;">
-        <el-pagination
-          background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="1"
-          :page-sizes="[10,20,30,40]"
-          :page-size="10"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-        ></el-pagination>
+          <el-pagination
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="1"
+            :page-sizes="[10,20,30,40]"
+            :page-size="10"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total"
+          ></el-pagination>
         </div>
       </el-card>
     </el-dialog>
@@ -40,7 +144,10 @@
 </template>
 
 <script>
-import { GetFloatWindowInfo } from "@/app_src/api/cangchu/KCZS/ZXK";
+import {
+  GetFloatWindowInfo,
+  GetGetFloatWindowDetailInfo
+} from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "FlaotingWindow",
   data() {
@@ -50,13 +157,27 @@ export default {
       y: 0,
       positionStyle: { top: "20px", left: "20px" },
       list: [],
+      list1: [],
       total: 0,
+      total1: 0,
       listloading: false,
       QueryPamara: "",
       listQuery: {
         LGPLA: "",
         limit: 10,
         page: 1
+      },
+      listQuery1: {
+        LGPLA: "",
+        DLCODE: "",
+        page: 1,
+        limit: 10
+      },
+      expands: [], //只展开一行放入当前行id
+      getRowKeys(row) {
+        //获取当前行id
+        // console.log(row)
+        return row.DL; //这里看这一行中需要根据哪个属性值是id
       }
     };
   },
@@ -69,11 +190,19 @@ export default {
         }
       });
     },
+    getList1() {
+      this.listQuery1.LGPLA=this.QueryPamara;
+      GetGetFloatWindowDetailInfo(this.listQuery1).then(res => {
+        if (res.data.code === 2000) {
+          this.list1 = res.data.items;
+          this.total1 = res.data.total;
+        }
+      });
+    },
     enter(data) {
       this.QueryPamara = data;
-      
+      this.expands=[];
       this.seen = true;
-      console.log(this.seen);
     },
     leave() {
       this.seen = false;
@@ -92,13 +221,21 @@ export default {
           var e = event || window.event;
         }, delay);
       };
-
-      // this.x = event.offsetX;
-      // this.y = event.offsetY;
-      // this.positionStyle = {
-      //   top: this.y - 164 + "px",
-      //   left: this.x - 374 + "px"
-      // };
+    },
+    expandChange(row, expandedRows) {
+      let that = this;
+      if (expandedRows.length > 0) {
+        that.expands = [];
+        if (row) {
+          that.expands.push(row.DL);
+        }
+        that.listQuery1.page = 1;
+        that.listQuery1.limit = 10;
+        that.listQuery1.DLCODE = row.DL;
+        that.getList1();
+      } else {
+        that.expands = [];
+      }
     },
     debounce(fn, delay) {
       var delay = delay || 200;
@@ -122,18 +259,69 @@ export default {
     },
     handleSizeChange(val) {
       this.listQuery.limit = val;
-      console.log(val);
       this.getList();
     },
     handleCurrentChange(val) {
       this.listQuery.page = val;
       this.getList();
+    },
+     handleSizeChange1(val) {
+      this.listQuery1.limit = val;
+      this.getList1();
+    },
+    handleCurrentChange1(val) {
+      this.listQuery1.page = val;
+      this.getList1();
     }
   },
   watch: {
     QueryPamara(val) {
-      this.listQuery.LGPLA = val;
+      this.listQuery={
+        LGPLA:val,
+        limit:10,
+        page:1
+      }
+      console.log(1);
       this.getList();
+    }
+  },
+  filters: {
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
+    fMATNR: function(val) {
+      return val.substring(7);
+    },
+    fWERKSNAME: function(val) {
+      if (val != "") {
+        if (val.indexOf("大港油田公司物资供销公司") != -1) {
+          return val.substring(12);
+        }
+        if (val.indexOf("大港油田公司") != -1) {
+          return val.substring(6);
+        }
+      } else {
+        return val;
+      }
+    },
+    substringName(val){
+      if(val===null||val===""){
+        return "";
+      }
+      if(val.startsWith("大港油田公司")){
+        let str=val.replace("大港油田公司","");
+        if(str.startsWith("物资供销公司")){
+          return str.replace("物资供销公司","");
+        }
+        else{
+          return str;
+        }
+      }
     }
   }
 };

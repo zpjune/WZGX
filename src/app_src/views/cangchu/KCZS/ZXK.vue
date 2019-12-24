@@ -61,28 +61,53 @@
           @click="OpenDialog('ZXK','19')"
         />
         <area shape="rect" coords="243, 83, 277, 230" title="20号料场" @click="OpenDialog('ZXK','20')" />
+         <area
+          shape="rect"
+          coords="277, 83, 313, 156"
+          title="21号活动料棚"
+          @click="enter('21')"
+        />
         <area
           shape="rect"
-          coords="277, 83, 313, 230"
+          coords="277, 156, 313, 230"
           title="21号活动料棚"
           @click="OpenDialog('ZXK','21')"
         />
         <area
           shape="rect"
-          coords="243, 83, 351, 230"
+          coords="243, 83, 351, 156"
+          title="22号活动料棚"
+          @click="enter('22')"
+          
+        />
+        <area
+          shape="rect"
+          coords="243, 156, 351, 230"
           title="22号活动料棚"
           @click="OpenDialog('ZXK','22')"
         />
         <area shape="rect" coords="386, 83, 417, 230" title="23料场" @click="OpenDialog('ZXK','23')" />
         <area
           shape="rect"
-          coords="420, 83, 456, 229"
+          coords="420, 83, 456, 150"
+          title="24活动料棚"
+          @click="enter('24')"
+        />
+        <area
+          shape="rect"
+          coords="420, 150, 456, 229"
           title="24活动料棚"
           @click="OpenDialog('ZXK','24')"
         />
         <area
           shape="rect"
-          coords="460, 83, 494, 229"
+          coords="460, 83, 494, 150"
+          title="25活动料棚"
+          @click="enter('25')"
+        />
+        <area
+          shape="rect"
+          coords="460, 150, 494, 229"
           title="25活动料棚"
           @click="OpenDialog('ZXK','25')"
         />
