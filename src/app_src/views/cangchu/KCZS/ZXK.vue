@@ -19,36 +19,17 @@
         alt="Planets"
         style="width:1000px;height:600px;"
       />
-      <div class="FloatingWindow">
-        <FloatingWindow ref="FloatingWindow"></FloatingWindow>
-      </div>
+
       <map name="planetmap" id="planetmap">
         <area
           shape="rect"
           coords="821, 62, 853, 80"
           title="1号库"
-          @mouseenter="enter('01')"
-          @mousemove="updateXY()"
+          @click="enter('01')"
         />
-        <area
-          shape="rect"
-          coords="821, 80, 853, 100"
-          title="1号库"
-          @click="OpenDialog('ZXK','01')"
-          
-        />
-        <area
-          shape="rect"
-          coords="821, 104, 853, 120"
-          title="2号库"
-          @mouseenter="enter('02')"
-        />
-        <area
-          shape="rect"
-          coords="821, 104, 853, 140"
-          title="2号库"
-           @click="OpenDialog('ZXK','02')"
-        />
+        <area shape="rect" coords="821, 80, 853, 100" title="1号库" @click="OpenDialog('ZXK','01')" />
+        <area shape="rect" coords="821, 104, 853, 120" title="2号库" @click="enter('02')" />
+        <area shape="rect" coords="821, 104, 853, 140" title="2号库" @click="OpenDialog('ZXK','02')" />
         <area shape="rect" coords="821, 144, 853, 180" title="3号库" @click="OpenDialog('ZXK','03')" />
         <area shape="rect" coords="821, 184, 853, 220" title="4号库" @click="OpenDialog('ZXK','04')" />
         <area shape="rect" coords="821, 224, 853, 260" title="5号库" @click="OpenDialog('ZXK','05')" />
@@ -847,6 +828,9 @@
       @listenToChildEvent="closeDialog"
       ref="kucunzhanshidetail"
     ></kucunzhanshidetail>
+    <div>
+      <FloatingWindow ref="FloatingWindow"></FloatingWindow>
+    </div>
   </div>
 </template>
 
