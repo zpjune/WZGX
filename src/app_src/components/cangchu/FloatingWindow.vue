@@ -21,7 +21,40 @@
           >
             <el-table-column type="expand">
               <template slot-scope="scope">
-                <span v-show="false">{{scope.row}}</span>
+                <span v-if="false">{{scope.row}}</span>
+                <el-row style="margin-bottom:10px;">
+                  <el-col :xs="6" :sm="6" :md="6" :lg="5" :xl="4">
+                    <el-input
+                      placeholder="请输入工厂编码"
+                      style="width:95%;"
+                      size="mini"
+                      v-model="listQuery1.LGORT"
+                      clearable
+                    ></el-input>
+                  </el-col>
+                  <el-col :xs="6" :sm="6" :md="6" :lg="5" :xl="4">
+                    <el-input
+                      placeholder="请输入物料组编码"
+                      style="width:95%;"
+                      size="mini"
+                      v-model="listQuery1.MATKL"
+                      clearable
+                    ></el-input>
+                  </el-col>
+                  <el-col :xs="6" :sm="6" :md="6" :lg="5" :xl="4">
+                    <el-input
+                      placeholder="请输入物料编码"
+                      style="width:95%;"
+                      size="mini"
+                      v-model="listQuery1.MATNR"
+                      clearable
+                    ></el-input>
+                  </el-col>
+                  <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+                    <el-button type="primary" icon="el-icon-search" @click="getList1" size="mini">查询</el-button>
+                    <!-- <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button> -->
+                  </el-col>
+                </el-row>
                 <el-table
                   size="mini"
                   :data="list1"
@@ -51,7 +84,7 @@
                         style="width:20px;height:15px;"
                       />
                     </template>
-                  </el-table-column> -->
+                  </el-table-column>-->
                   <el-table-column label="工厂编号" prop="WERKS" width="70"></el-table-column>
                   <el-table-column label="工厂名称" width="250">
                     <template slot-scope="scope">
@@ -106,7 +139,7 @@
                     style="width:20px;height:15px;vertical-align:middle;margin-top:-2px"
                   />
                   <span>&nbsp;有保存期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他为正常</span>
-                </div> -->
+                </div>-->
                 <el-pagination
                   background
                   @size-change="handleSizeChange1"
@@ -120,10 +153,10 @@
                 ></el-pagination>
               </template>
             </el-table-column>
-            <el-table-column label="大类" prop="DL" width="150"></el-table-column>
-            <el-table-column label="项数" prop="SL" width="250"></el-table-column>
-            <el-table-column label="数量" width="150" prop="GESME"></el-table-column>
-            <el-table-column label="计量单位" width="150" prop="MEINS"></el-table-column>
+            <el-table-column label="大类" prop="DL"></el-table-column>
+            <el-table-column label="项数" prop="SL"></el-table-column>
+            <el-table-column label="数量" prop="GESME"></el-table-column>
+            <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           </el-table>
         </div>
         <div class="pagination-container" style="text-align:center;">
@@ -170,6 +203,9 @@ export default {
       listQuery1: {
         LGPLA: "",
         DLCODE: "",
+        LGORT:"",
+        MATNR:"",
+        MATKL:"",
         page: 1,
         limit: 10
       },
@@ -191,7 +227,7 @@ export default {
       });
     },
     getList1() {
-      this.listQuery1.LGPLA=this.QueryPamara;
+      this.listQuery1.LGPLA = this.QueryPamara;
       GetGetFloatWindowDetailInfo(this.listQuery1).then(res => {
         if (res.data.code === 2000) {
           this.list1 = res.data.items;
@@ -201,7 +237,7 @@ export default {
     },
     enter(data) {
       this.QueryPamara = data;
-      this.expands=[];
+      this.expands = [];
       this.seen = true;
     },
     leave() {
@@ -265,7 +301,7 @@ export default {
       this.listQuery.page = val;
       this.getList();
     },
-     handleSizeChange1(val) {
+    handleSizeChange1(val) {
       this.listQuery1.limit = val;
       this.getList1();
     },
@@ -276,11 +312,11 @@ export default {
   },
   watch: {
     QueryPamara(val) {
-      this.listQuery={
-        LGPLA:val,
-        limit:10,
-        page:1
-      }
+      this.listQuery = {
+        LGPLA: val,
+        limit: 10,
+        page: 1
+      };
       console.log(1);
       this.getList();
     }
@@ -309,16 +345,15 @@ export default {
         return val;
       }
     },
-    substringName(val){
-      if(val===null||val===""){
+    substringName(val) {
+      if (val === null || val === "") {
         return "";
       }
-      if(val.startsWith("大港油田公司")){
-        let str=val.replace("大港油田公司","");
-        if(str.startsWith("物资供销公司")){
-          return str.replace("物资供销公司","");
-        }
-        else{
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
           return str;
         }
       }
