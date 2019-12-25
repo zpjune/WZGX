@@ -74,7 +74,7 @@
       :modal="false"
       :modal-append-to-body="false"
       style="margin-top:10vh;margin-left:100px;"
-      width="60%"
+      width="95%"
     >
     <div >
     <el-row style="margin-bottom:10px;">
