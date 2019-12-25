@@ -1,6 +1,6 @@
 <template>
   <div id="FlaotingWindow" class="FlaotingWindow">
-    <el-dialog :visible.sync="seen" title="库存概况">
+    <el-dialog :visible.sync="seen" title="库存概况" width="80%">
       <el-card>
         <div>
           <el-table
