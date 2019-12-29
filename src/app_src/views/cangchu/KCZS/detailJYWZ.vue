@@ -51,7 +51,9 @@
                 <el-table-column label="大类" prop="DLCODE" width="70" show-overflow-tooltip></el-table-column>
                 <el-table-column label="项数" prop="SL" width="150" show-overflow-tooltip></el-table-column>
                 <el-table-column label="数量" prop="GESME" width="250" show-overflow-tooltip></el-table-column>
-                <el-table-column label="金额" prop="SALK3" width="250" show-overflow-tooltip></el-table-column>
+                <el-table-column label="金额" width="250" show-overflow-tooltip>
+                  <template slot-scope="scope">{{scope.row.SALK3|FixNum}}</template>
+                </el-table-column>
                 <el-table-column label="计量单位" prop="MEINS" width="324" show-overflow-tooltip></el-table-column>
                 <el-table-column label="操作" width="120">
                   <template slot-scope="scope">
@@ -93,9 +95,7 @@
             </template>
           </el-table-column>
           <el-table-column label="金额" width="380">
-            <template slot-scope="scope">
-              <span>{{scope.row.SALK3}}</span>
-            </template>
+            <template slot-scope="scope">{{scope.row.SALK3|FixNum}}</template>
           </el-table-column>
         </el-table>
         <el-pagination
@@ -160,7 +160,11 @@
           style="width: 100%"
         >
           <el-table-column label="工厂编号" prop="WERKS" width="100" show-overflow-tooltip></el-table-column>
-          <el-table-column label="工厂名称" prop="WERKS_NAME" width="250" show-overflow-tooltip></el-table-column>
+          <el-table-column label="工厂名称" prop="WERKS_NAME" width="250" show-overflow-tooltip>
+            <template slot-scope="scope">
+                {{scope.row.WERKS_NAME|substringName}}
+              </template>
+          </el-table-column>
           <el-table-column label="物料组" prop="MATKL" width="100" show-overflow-tooltip></el-table-column>
           <el-table-column label="物料编码" width="120">
             <template slot-scope="scope">
@@ -170,7 +174,9 @@
           <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS" width="100" show-overflow-tooltip></el-table-column>
           <el-table-column label="实存数量" prop="GESME" show-overflow-tooltip></el-table-column>
-          <el-table-column label="金额" prop="SALK3" show-overflow-tooltip></el-table-column>
+          <el-table-column label="金额" show-overflow-tooltip>
+            <template slot-scope="scope">{{scope.row.SALK3|FixNum}}</template>
+          </el-table-column>
           <el-table-column label="存货状态">
             <template slot-scope="scope">
               <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
@@ -208,8 +214,8 @@ export default {
       total: 0,
       ISWZ: "1",
       listQuery: {
-        DLCODE:"",
-        MEINS:"",
+        DLCODE: "",
+        MEINS: "",
         DKCODE: this.DKCODE,
         MATNR: "",
         MATKL: "",
@@ -271,6 +277,26 @@ export default {
       } else {
         return val;
       }
+    },
+    FixNum(val) {
+      if (val === null || val === "") {
+        return "";
+      } else {
+        return val.toFixed(2);
+      }
+    },
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
     }
   },
   props: ["DKCODE"],
@@ -294,7 +320,7 @@ export default {
       //this.listQuery.DKCODE = this.DKCODE;
       this.listloading = true;
       this.listQuery.ISWZ = this.ISWZ;
-      
+
       GetFK_JYWZ(this.listQuery).then(res => {
         if (res.data.code === 2000) {
           this.list = res.data.items;
@@ -333,8 +359,8 @@ export default {
     btnQuert2(row) {
       this.listQuery.WERKS = this.listQuery2.WERKS;
       this.listQuery.DLCODE = row.DLCODE;
-      this.listQuery.MEINS=row.MEINS;
-      this.listQuery.ISWZ=this.ISWZ;
+      this.listQuery.MEINS = row.MEINS;
+      this.listQuery.ISWZ = this.ISWZ;
       this.getList();
       this.detailDialog = true;
     },
