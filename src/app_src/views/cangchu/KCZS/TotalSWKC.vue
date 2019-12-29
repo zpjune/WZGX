@@ -48,10 +48,10 @@
                 highlight-current-row
                 style="width: 100%"
               >
-                <el-table-column label="大类" prop="DLCODE" width="70"></el-table-column>
-                <el-table-column label="项数" prop="XM" width="150"></el-table-column>
-                <el-table-column label="数量" prop="SL" width="250"></el-table-column>
-                <el-table-column label="计量单位" prop="JLDW" width="324"></el-table-column>
+                <el-table-column label="大类" prop="DLCODE" width="70" show-overflow-tooltipshow-overflow-tooltip></el-table-column>
+                <el-table-column label="项数" prop="XM" width="150" show-overflow-tooltipshow-overflow-tooltip></el-table-column>
+                <el-table-column label="数量" prop="SL" width="250" show-overflow-tooltipshow-overflow-tooltip></el-table-column>
+                <el-table-column label="计量单位" prop="JLDW" width="324" show-overflow-tooltipshow-overflow-tooltip></el-table-column>
                 <el-table-column label="操作" width="120">
                   <template slot-scope="scope">
                     <el-button
@@ -83,7 +83,7 @@
           </el-table-column>
           <el-table-column label="工厂名称" width="400">
             <template slot-scope="scope">
-              <span>{{scope.row.WERKS_NAME|fWERKSNAME}}</span>
+              <span>{{scope.row.WERKS_NAME|substringName}}</span>
             </template>
           </el-table-column>
           <el-table-column label="物资项数" width="380">
@@ -200,28 +200,28 @@
               />
             </template>
           </el-table-column>
-          <el-table-column label="工厂编号" prop="WERKS" width="70"></el-table-column>
+          <el-table-column label="工厂编号" prop="WERKS" width="100" show-overflow-tooltip></el-table-column>
           <el-table-column label="工厂名称" width="150">
             <template slot-scope="scope">
-              <span>{{scope.row.WERKS_NAME|fWERKSNAME}}</span>
+              <span>{{scope.row.WERKS_NAME|substringName}}</span>
             </template>
           </el-table-column>
-          <el-table-column label="物料组" prop="MATKL" width="80"></el-table-column>
-          <el-table-column label="物料编码" width="100">
+          <el-table-column label="物料组" prop="MATKL" width="100" show-overflow-tooltip></el-table-column>
+          <el-table-column label="物料编码" width="120">
             <template slot-scope="scope">
               <span>{{scope.row.MATNR|fMATNR}}</span>
             </template>
           </el-table-column>
-          <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300"></el-table-column>
-          <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
-          <el-table-column label="实存数量" prop="GESME"></el-table-column>
+          <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300" ></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS" width="100" show-overflow-tooltip></el-table-column>
+          <el-table-column label="实存数量" prop="GESME" show-overflow-tooltip></el-table-column>
           <el-table-column label="存货状态">
             <template slot-scope="scope">
               <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
             </template>
           </el-table-column>
-          <el-table-column label="库存地点编码" prop="LGORT" :show-overflow-tooltip="true" width="120"></el-table-column>
-          <el-table-column label="库存地点" :show-overflow-tooltip="true" width="120" prop="LGORT_NAME"></el-table-column>
+          <el-table-column label="库存地点编码" prop="LGORT" :show-overflow-tooltip="true" width="120" ></el-table-column>
+          <el-table-column label="库存地点" :show-overflow-tooltip="true" width="120" prop="LGORT_NAME" ></el-table-column>
         </el-table>
         <div style="padding-top:3px;">
           <img
@@ -287,6 +287,19 @@ export default {
         }
       } else {
         return val;
+      }
+    },
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
       }
     }
   },

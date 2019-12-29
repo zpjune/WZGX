@@ -90,7 +90,7 @@ export default {
           this.$refs.ZXK.getList();
           break;
         case "2":
-          this.$refs.detailJYWZ.getList();
+          this.$refs.detailJYWZ.getList1();
           break;
         case "3":
           this.$refs.detailZDWZNEW.getList();

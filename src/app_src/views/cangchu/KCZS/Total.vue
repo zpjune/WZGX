@@ -206,6 +206,31 @@ export default {
             "外部市场"
           ]
         },
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)"
+          },
+          normal: {
+            color: function(params) {
+              //自定义颜色
+              var colorList = [
+                //"rgb(252,157,154)",
+                "rgb(249,205,173)",
+                "rgb(254,67,101)",
+                "rgb(200,200,169)",
+                "rgb(131,175,155)",
+                "rgb(182,194,154)",
+                "rgb(138,151,123)",
+                "rgb(244,208,0)",
+                "rgb(229,131,8)",
+                "rgb(220,87,18)"
+              ];
+              return colorList[params.dataIndex];
+            }
+          }
+        },
         series: [
           {
             name: "总库存",
@@ -215,25 +240,49 @@ export default {
             label: {
               normal: {
                 show: true,
-                formatter: "{b}: {c}万({d}%)"
+                  //formatter: "{b}: {c}万({d}%)"
+                  formatter: "{d}%",
+                  position: "inner",
+                  align: "left"
               }
             },
+            labelLine:{
+              show:false
+            },
             data: [
-              // { value: 0, name: "港东供销" },
-              // { value: 0, name: "港西供销" },
-              // { value: 0, name: "油区供销" },
-              // { value: 0, name: "港狮供销" },
-              // { value: 0, name: "港骅供销" },
-              // { value: 0, name: "物采中心" },
-              // { value: 0, name: "专用管分公司" },
-              // { value: 0, name: "本部工厂" }
             ],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
                 shadowColor: "rgba(0, 0, 0, 0.5)"
+              },
+            }
+          },
+          {
+            name: "总库存",
+            type: "pie",
+            radius: "60%",
+            center: ["50%", "50%"],
+            label: {
+              normal: {
+                show: true,
+                  formatter: "{b}: {c}万",
+                  position: "outer",
+                  align: "left"
               }
+            },
+            labelLine:{
+              show:false
+            },
+            data: [
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              },
             }
           }
         ]
@@ -313,7 +362,7 @@ export default {
       crkDialog: false, //出入库详情 弹窗
       crkDetailTitle: "",
       dataYear: "", //出入库查询日期选择
-      ISWZ:1,
+      ISWZ: 1,
       crklmonth: "",
       crklyear: ""
     };
@@ -348,24 +397,25 @@ export default {
       //     this.drawline2();
       //   }
       // });
-      let arr = new Array(10);
-          arr[0] = { value: 13856*0.0006, name: "本部工厂" };
-          arr[1] = { value: 13856*0.1123, name: "物采中心" };
-          arr[2] = { value: 13856*0.5885, name: "专用管分公司" };
-          arr[3] = { value: 13856*0.1189, name: "油品分公司" };
-          arr[4] = { value: 13856*0.0008, name: "港狮分公司" };
-          arr[5] = { value: 13856*0.0014, name: "港骅分公司" };
-          arr[6] = { value: 13856*0.0262, name: "港东分公司" };
-          arr[7] = { value: 13856*0.0443, name: "港西分公司" };
-          arr[8] = { value: 13856*0.029, name: "油区分公司" };
-          arr[9] = { value: 13856*0.141, name: "外部市场" };
-          this.option2.series[0].data = arr;
-          this.totalziji = 19585;
-          this.totalwzziji = 13856;
-          this.drawline2();
+      let arr = new Array(7);
+      //arr[0] = { value: 13856 * 0.0006.toFixed(2), name: "本部工厂" };
+      arr[0] = { value: 13856 * 0.1123.toFixed(2), name: "物采中心" };
+      arr[1] = { value: 13856 * 0.5885.toFixed(2), name: "专用管分公司" };
+      arr[2] = { value: 13856 * 0.1189.toFixed(2), name: "油品分公司" };
+      //arr[3] = { value: 13856 * 0.0008.toFixed(2), name: "港狮分公司" };
+      //arr[3] = { value: 13856 * 0.0014.toFixed(2), name: "港骅分公司" };
+      arr[3] = { value: 13856 * 0.0262.toFixed(2), name: "港东分公司" };
+      arr[4] = { value: 13856 * 0.0443.toFixed(2), name: "港西分公司" };
+      arr[5] = { value: 13856 * 0.029.toFixed(2), name: "油区分公司" };
+      arr[6] = { value: 13856 * 0.141, name: "外部市场" };
+      this.option2.series[0].data = arr;
+      this.option2.series[1].data = arr;
+      this.totalziji = 19585;
+      this.totalwzziji = 13856;
+      this.drawline2();
     },
     GetCRKJE() {
-      let queryparam = { year: this.dataYear,ISWZ:this.ISWZ };
+      let queryparam = { year: this.dataYear, ISWZ: this.ISWZ };
       GetCRKJE(queryparam).then(res => {
         if (res.data.code === 2000) {
           let arrCKJE = new Array();
@@ -456,7 +506,7 @@ export default {
           this.$refs.TotalZDWZCRK.getList();
           break;
         case "5":
-          this.$refs.TotalJYWZ.getList();
+          this.$refs.TotalJYWZ.getList1();
           break;
         case "6":
           this.GetCRKJE();

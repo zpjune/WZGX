@@ -15,6 +15,22 @@ export function GetDCKInfo(query) {//分库 资金查询
       params:query
     })
   }
+
+  export function GetTotalFK_JYWZ(query) {//分库 资金查询
+    return request({
+      url: '/ZXK/GetTotalFK_JYWZ',
+      method: 'get',
+      params:query
+    })
+  }
+
+  export function GetDLFK_JYWZ(query) {//分库 资金查询
+    return request({
+      url: '/ZXK/GetDLFK_JYWZ',
+      method: 'get',
+      params:query
+    })
+  }
   export function GetFK_JYWZ(query) {//分库 资金查询
     return request({
       url: '/ZXK/GetFK_JYWZ',
@@ -24,7 +40,7 @@ export function GetDCKInfo(query) {//分库 资金查询
   }
 
 
-    export function GetFacStatus(query) {//分库 资金查询 
+    export function GetFacStatus(query) {//平面图状态字符串查询 
     return request({
       url: '/ZXK/GetFacStatus',
       method: 'get',
@@ -74,7 +90,15 @@ export function GetDCKInfo(query) {//分库 资金查询
     })
   }
 
-  export function GetFloatWindowInfo(query) {//平面图悬浮窗查询
+  export function GetFloatWindowFirstInfo(query) {//平面图悬浮窗第一层
+    return request({
+      url: '/ZXK/GetFloatWindowFirstInfo',
+      method: 'get',
+      params:query
+    })
+  }
+
+  export function GetFloatWindowInfo(query) {//平面图第二层
     return request({
       url: '/ZXK/GetFloatWindowInfo',
       method: 'get',

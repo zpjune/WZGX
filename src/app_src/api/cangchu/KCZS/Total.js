@@ -104,3 +104,18 @@ export function GetSWKC(query) {//总库存 实物库存查询
       params:query
     })
   }
+
+  export function GetDLJYWZ(query) {//积压物资第二层
+    return request({
+      url: '/Total/GetDLJYWZ',
+      method: 'get',
+      params:query
+    })
+  }
+  export function GetTotalJYWZ(query) {//积压物资第一层
+    return request({
+      url: '/Total/GetTotalJYWZ',
+      method: 'get',
+      params:query
+    })
+  }

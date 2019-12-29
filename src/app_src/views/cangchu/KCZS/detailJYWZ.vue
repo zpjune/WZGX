@@ -2,8 +2,8 @@
   <div id="TotalZDWZ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-radio class="radio" v-model="listQuery.ISWZ" label="1">物资公司</el-radio>
-        <el-radio class="radio" v-model="listQuery.ISWZ" label="2">大港油田</el-radio>
+        <el-radio class="radio" v-model="ISWZ" label="1">物资公司</el-radio>
+        <el-radio class="radio" v-model="ISWZ" label="2">大港油田</el-radio>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-input
@@ -15,7 +15,7 @@
         ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-button type="primary" icon="el-icon-search" @click="btnQuert1" size="mini">查询</el-button>
+        <el-button type="primary" icon="el-icon-search" @click="getList1" size="mini">查询</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -48,11 +48,11 @@
                 highlight-current-row
                 style="width: 100%"
               >
-                <el-table-column label="大类" prop="DLCODE" width="70"></el-table-column>
-                <el-table-column label="项数" prop="XM" width="150"></el-table-column>
-                <el-table-column label="数量" prop="SL" width="250"></el-table-column>
-                <el-table-column label="数量" prop="JE" width="250"></el-table-column>
-                <el-table-column label="计量单位" prop="JLDW" width="324"></el-table-column>
+                <el-table-column label="大类" prop="DLCODE" width="70" show-overflow-tooltip></el-table-column>
+                <el-table-column label="项数" prop="SL" width="150" show-overflow-tooltip></el-table-column>
+                <el-table-column label="数量" prop="GESME" width="250" show-overflow-tooltip></el-table-column>
+                <el-table-column label="金额" prop="SALK3" width="250" show-overflow-tooltip></el-table-column>
+                <el-table-column label="计量单位" prop="MEINS" width="324" show-overflow-tooltip></el-table-column>
                 <el-table-column label="操作" width="120">
                   <template slot-scope="scope">
                     <el-button
@@ -89,12 +89,12 @@
           </el-table-column>
           <el-table-column label="物资项数" width="380">
             <template slot-scope="scope">
-              <span>{{scope.row.XM}}</span>
+              <span>{{scope.row.SL}}</span>
             </template>
           </el-table-column>
           <el-table-column label="金额" width="380">
             <template slot-scope="scope">
-              <span>{{scope.row.JE}}</span>
+              <span>{{scope.row.SALK3}}</span>
             </template>
           </el-table-column>
         </el-table>
@@ -159,17 +159,18 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="工厂编号" prop="WERKS" width="70"></el-table-column>
-          <el-table-column label="工厂名称" prop="WERKS_NAME" width="250"></el-table-column>
-          <el-table-column label="物料组" prop="MATKL" width="80"></el-table-column>
-          <el-table-column label="物料编码" width="100">
+          <el-table-column label="工厂编号" prop="WERKS" width="100" show-overflow-tooltip></el-table-column>
+          <el-table-column label="工厂名称" prop="WERKS_NAME" width="250" show-overflow-tooltip></el-table-column>
+          <el-table-column label="物料组" prop="MATKL" width="100" show-overflow-tooltip></el-table-column>
+          <el-table-column label="物料编码" width="120">
             <template slot-scope="scope">
               <span>{{scope.row.MATNR|fMATNR}}</span>
             </template>
           </el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300"></el-table-column>
-          <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
-          <el-table-column label="实存数量" prop="GESME"></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS" width="100" show-overflow-tooltip></el-table-column>
+          <el-table-column label="实存数量" prop="GESME" show-overflow-tooltip></el-table-column>
+          <el-table-column label="金额" prop="SALK3" show-overflow-tooltip></el-table-column>
           <el-table-column label="存货状态">
             <template slot-scope="scope">
               <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
@@ -193,7 +194,11 @@
 </template>
 
 <script>
-import { GetFK_JYWZ } from "@/app_src/api/cangchu/KCZS/ZXK";
+import {
+  GetFK_JYWZ,
+  GetTotalFK_JYWZ,
+  GetDLFK_JYWZ
+} from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "TotalZDWZ",
   data() {
@@ -201,7 +206,10 @@ export default {
       listloading: true,
       list: [],
       total: 0,
+      ISWZ: "1",
       listQuery: {
+        DLCODE:"",
+        MEINS:"",
         DKCODE: this.DKCODE,
         MATNR: "",
         MATKL: "",
@@ -211,18 +219,20 @@ export default {
         limit: 10
       },
       listQuery1: {
+        DKCODE: this.DKCODE,
         page: 1,
         limit: 10,
         ISWZ: "1",
         WERKS: ""
       },
       listQuery2: {
+        DKCODE: this.DKCODE,
         page: 1,
         limit: 10,
         WERKS: ""
       },
-      list1: [{ WERKS: "C274", WERKS_NAME: "1" }],
-      list2: [{ DLCODE: "100", XM: 100 }],
+      list1: [],
+      list2: [],
       list: [],
       total: 0,
       total1: 1,
@@ -283,6 +293,8 @@ export default {
     getList() {
       //this.listQuery.DKCODE = this.DKCODE;
       this.listloading = true;
+      this.listQuery.ISWZ = this.ISWZ;
+      
       GetFK_JYWZ(this.listQuery).then(res => {
         if (res.data.code === 2000) {
           this.list = res.data.items;
@@ -300,14 +312,32 @@ export default {
         }
       });
     },
-    btnQuert1() {},
+    getList1() {
+      this.listQuery1.ISWZ = this.ISWZ;
+      GetTotalFK_JYWZ(this.listQuery1).then(response => {
+        if (response.data.code === 2000) {
+          this.list1 = response.data.items;
+          this.total1 = response.data.total;
+        }
+      });
+    },
+    getList2() {
+      this.listQuery2.ISWZ = this.ISWZ;
+      GetDLFK_JYWZ(this.listQuery2).then(response => {
+        if (response.data.code === 2000) {
+          this.list2 = response.data.items;
+          this.total2 = response.data.total;
+        }
+      });
+    },
     btnQuert2(row) {
       this.listQuery.WERKS = this.listQuery2.WERKS;
       this.listQuery.DLCODE = row.DLCODE;
+      this.listQuery.MEINS=row.MEINS;
+      this.listQuery.ISWZ=this.ISWZ;
       this.getList();
       this.detailDialog = true;
     },
-    getList2() {},
     expandChange(row, expandedRows) {
       let that = this;
       if (expandedRows.length > 0) {
@@ -324,20 +354,20 @@ export default {
       }
     },
     handleSizeChange1(val) {
-      this.listQuery.limit = val;
-      this.getList();
+      this.listQuery1.limit = val;
+      this.getList1();
     },
     handleCurrentChange1(val) {
-      this.listQuery.page = val;
-      this.getList();
+      this.listQuery1.page = val;
+      this.getList1();
     },
     handleSizeChange2(val) {
-      this.listQuery.limit = val;
-      this.getList();
+      this.listQuery2.limit = val;
+      this.getList2();
     },
     handleCurrentChange2(val) {
-      this.listQuery.page = val;
-      this.getList();
+      this.listQuery2.page = val;
+      this.getList2();
     }
   },
   mounted() {
