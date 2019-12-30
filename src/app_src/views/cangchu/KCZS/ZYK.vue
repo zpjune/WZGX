@@ -364,12 +364,16 @@
       @listenToChildEvent="closeDialog"
       ref="kucunzhanshidetail"
     ></kucunzhanshidetail>
+    <div>
+      <FloatingWindow ref="FloatingWindow"></FloatingWindow>
+    </div>
   </div>
 </template>
 
 <script>
 import kucunzhanshidetail from "@/app_src/components/cangchu/kucunzhanshidetail";
 import { GetFacStatus } from "@/app_src/api/cangchu/KCZS/ZXK";
+import FloatingWindow from "@/app_src/components/cangchu/FloatingWindow";
 export default {
   name: "TotalZYK",
   props: ["FacCode"],
@@ -392,7 +396,8 @@ export default {
     }
   },
   components: {
-    kucunzhanshidetail
+    kucunzhanshidetail,
+    FloatingWindow
   },
   methods: {
     getList() {
@@ -458,7 +463,10 @@ export default {
       erd.listenTo(document.getElementById("box"), element => {
         this.width = document.getElementById("ZYCPIC").offsetLeft;
       });
-    }
+    },
+    enter(data) {
+      this.$refs.FloatingWindow.enter(this.FacCode + data);
+    },
   },
   mounted() {
     //this.getPoint();//获取当前平面图width方法

@@ -58,10 +58,14 @@
       <area shape="rect" coords="462, 163, 511, 192" title="26号库" @click="OpenDialog('ZXK',26)" />
     </map>-->
     <kucunzhanshidetail :kcmxdialogVisible="kcmxDialog" @listenToChildEvent="closeDialog" ref="kucunzhanshidetail"></kucunzhanshidetail>
+    <div>
+      <FloatingWindow ref="FloatingWindow"></FloatingWindow>
+    </div>
   </div>
 </template>
 
 <script>
+import FloatingWindow from "@/app_src/components/cangchu/FloatingWindow"
 import kucunzhanshidetail from "@/app_src/components/cangchu/kucunzhanshidetail";
 export default {
   name: "TotalZXK",
@@ -79,7 +83,8 @@ export default {
     };
   },
   components: {
-    kucunzhanshidetail
+    kucunzhanshidetail,
+    FloatingWindow
   },
   methods: {
     OpenDialog(type, val) {
@@ -91,7 +96,10 @@ export default {
     },
     closeDialog(val) {
       this.kcmxDialog = val;
-    }
+    },
+    enter(data) {
+      this.$refs.FloatingWindow.enter(this.FacCode + data);
+    },
   }
 };
 </script>

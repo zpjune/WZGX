@@ -258,11 +258,15 @@
       @listenToChildEvent="closeDialog"
       ref="kucunzhanshidetail"
     ></kucunzhanshidetail>
+    <div>
+      <FloatingWindow ref="FloatingWindow"></FloatingWindow>
+    </div>
   </div>
 </template>
 
 <script>
 import kucunzhanshidetail from "@/app_src/components/cangchu/kucunzhanshidetail";
+import FloatingWindow from "@/app_src/components/cangchu/FloatingWindow";
 import { GetFacStatus } from "@/app_src/api/cangchu/KCZS/ZXK";
 export default {
   name: "GS",
@@ -345,7 +349,10 @@ export default {
       erd.listenTo(document.getElementById("box"), element => {
         this.width = document.getElementById("GSPIC").offsetLeft;
       });
-    }
+    },
+    enter(data) {
+      this.$refs.FloatingWindow.enter(this.FacCode + data);
+    },
   },
   mounted() {
     //this.getPoint();//获取当前平面图width方法
