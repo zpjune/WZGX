@@ -19,7 +19,6 @@
         alt="Planets"
         style="width:1000px;height:600px;"
       />
-
       <map name="planetmap" id="planetmap">
         <area shape="rect" coords="843, 62, 879, 80" title="1号库" @click="enter('01')" />
         <area shape="rect" coords="843, 61, 879, 101" title="1号库" @click="OpenDialog('ZXK','01')" />
@@ -850,8 +849,15 @@
           v-show="StatusStr[3*(26-1)+2]==='1'"
         />
       </div>-->
+      <img
+        src="../../../img/zhinanzhen.png"
+        id="ZXKPIC"
+        border="0"
+        usemap="#planetmap"
+        alt="Planets"
+        style="width:100px;height:100px;"
+      />
     </div>
-
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"
       @listenToChildEvent="closeDialog"

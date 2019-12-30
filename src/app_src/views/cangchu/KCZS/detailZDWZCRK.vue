@@ -1,42 +1,125 @@
 <template>
   <div id="detailZDWZCRK" class="app-container calendar-list-container">
-    <div>
-      <div class="diva">
-        <a @click="setQueryZDWL('套管')" title="套管">
-          <img class="zdwz" src="../../../img/zdwz/taoguan1.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('油管')" title="油管">
-          <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">
-          <img class="zdwz" src="../../../img/zdwz/zhongjingshifen1.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('水泥')" title="油井水泥">
-          <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('支撑剂')" title="压力支撑剂">
-          <img class="zdwz" src="../../../img/zdwz/yalizhichengji.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
-          <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
-        </a>
-      </div>
-      <div class="diva">
-        <a @click="setQueryZDWL('柴油')" title="柴油">
-          <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
-        </a>
-      </div>
-    </div>
+    <el-row>
+      <el-col :lg="3" :md="6">
+        <div style="clear: both;position:relative">
+          <div class="diva">
+            <a @click="setQueryZDWL('套管')" title="套管">
+              <img class="zdwz" src="../../../img/zdwz/taoguan1.png" />
+            </a>
+          </div>
+          <div class="divb">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.TG"
+              :duration="1500"
+              class="card-panel-num"
+            />
+            {{TotalCount.TGDW}}
+          </div>
+        </div>
+      </el-col>
+      <el-col :lg="3" :md="6">
+        <div>
+          <div class="diva">
+            <a @click="setQueryZDWL('油管')" title="油管">
+              <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
+            </a>
+          </div>
+          <div class="divb">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.YG"
+              :duration="1500"
+              class="card-panel-num"
+            />
+            {{TotalCount.YGDW}}
+          </div>
+        </div>
+      </el-col>
+      <el-col :lg="3" :md="6">
+        <div>
+          <div class="diva">
+            <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">
+              <img class="zdwz" src="../../../img/zdwz/zhongjingshifen1.png" />
+            </a>
+          </div>
+          <div class="divb">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.ZJSF"
+              :duration="1500"
+              class="card-panel-num"
+            />
+            {{TotalCount.ZJSFDW}}
+          </div>
+        </div>
+      </el-col>
+      <el-col :lg="3" :md="6">
+        <div class="diva">
+          <a @click="setQueryZDWL('水泥')" title="油井水泥">
+            <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
+          </a>
+        </div>
+        <div class="divb">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.SN"
+            :duration="1500"
+            class="card-panel-num"
+          />
+          {{TotalCount.SNDW}}
+        </div>
+      </el-col>
+      <el-col :lg="3" :md="6">
+        <div class="diva">
+          <a @click="setQueryZDWL('支撑剂')" title="压力支撑剂">
+            <img class="zdwz" src="../../../img/zdwz/yalizhichengji.png" />
+          </a>
+        </div>
+        <div class="divb">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.ZCJ"
+            :duration="1500"
+            class="card-panel-num"
+          />
+          {{TotalCount.ZCJDW}}
+        </div>
+      </el-col>
+      <el-col :lg="3" :md="6">
+        <div class="diva">
+          <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
+            <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
+          </a>
+        </div>
+        <div class="divb">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.ZJNJCL"
+            :duration="1500"
+            class="card-panel-num"
+          />
+          {{TotalCount.ZJNJCLDW}}
+        </div>
+      </el-col>
+      <el-col :lg="3" :md="6">
+        <div class="diva">
+          <a @click="setQueryZDWL('柴油')" title="柴油">
+            <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
+          </a>
+        </div>
+        <div class="divb">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.CX"
+            :duration="1500"
+            class="card-panel-num"
+          />
+          {{TotalCount.CXDW}}
+        </div>
+      </el-col>
+    </el-row>
     <div style="clear:both"></div>
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
@@ -48,8 +131,8 @@
           :clearable="false"
         ></el-date-picker>
       </el-col>
-      <el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
-        <el-select v-model="Query.MATNR" style="width:150px;" size="mini">
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
+        <el-select v-model="Query.MATNR" style="width:95%;" size="mini">
           <el-option
             v-for="item in opZDWZ"
             :key="item.WL_CODE"
@@ -57,7 +140,15 @@
             :value="item.WL_CODE"
           ></el-option>
         </el-select>
+      </el-col>
+      <el-col :span="4">
         <el-button type="primary" icon="el-icon-search" @click="btnQuery" size="mini">查询</el-button>
+      </el-col>
+    </el-row>
+    <div style="margin-top:20px;"></div>
+    <el-row>
+      <el-col :span="24">
+        <detailZDWZNEW ref="detailZDWZNEW" :DKCODE="DKCODE"></detailZDWZNEW>
       </el-col>
     </el-row>
     <el-row style="overflow-x: scroll;">
@@ -74,13 +165,58 @@
 </template>
 
 <script>
-import { getZDWZCRK, getZDWZCRKDetail } from "@/app_src/api/cangchu/KCZS/ZXK";
+import {
+  getZDWZCRK,
+  getZDWZCRKDetail,
+  GetWLCount
+} from "@/app_src/api/cangchu/KCZS/ZXK";
 import { getZDWZPZ } from "@/app_src/api/cangchu/KCZS/Total";
+import detailZDWZNEW from "@/app_src/views/cangchu/KCZS/detailZDWZNEW";
+import CountTo from "vue-count-to";
 export default {
   name: "TotalZDWZ",
+  components: {
+    detailZDWZNEW,
+    CountTo
+  },
   data() {
     return {
       year: "",
+      TotalCount: {
+        TG: 0,
+        TGDW: "",
+        YG: 0,
+        YGDW: "",
+        ZJSF: 0,
+        ZJSFDW: "",
+        SN: 0,
+        SNDW: "",
+        ZCJ: 0,
+        ZCJDW: "",
+        ZJNJCL: 0,
+        ZJNJCLDW: "",
+        CX: 0,
+        CXDW: ""
+      },
+      OldTotalCount: {
+        TG: 0,
+        TGDW: "",
+        YG: 0,
+        YGDW: "",
+        ZJSF: 0,
+        ZJSFDW: "",
+        SN: 0,
+        SNDW: "",
+        ZCJ: 0,
+        ZCJDW: "",
+        ZJNJCL: 0,
+        ZJNJCLDW: "",
+        CX: 0,
+        CXDW: ""
+      },
+      TotalCountQuery: {
+        DKCODE: this.DKCODE
+      },
       Query: {
         year: "",
         MATNR: "",
@@ -124,7 +260,7 @@ export default {
           {
             name: "最高储备",
             type: "line",
-           // stack: "总量",
+            // stack: "总量",
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -159,7 +295,7 @@ export default {
           {
             name: "最低储备",
             type: "line",
-           // stack: "总量",
+            // stack: "总量",
             itemStyle: {
               normal: {
                 lineStyle: {
@@ -266,7 +402,6 @@ export default {
     drawlineZDWZBH() {
       //重点物资变化情况 折线图
       ///绘制echarts 饼状图
-
       let mycharts = this.$echarts.init(document.getElementById("picZDWZBH"));
       mycharts.setOption(this.options, true);
       // mycharts.on("click", function(param) {
@@ -282,6 +417,49 @@ export default {
       ///绘制echarts 饼状图
       let mycharts = this.$echarts.init(document.getElementById("picZDWZCRK"));
       mycharts.setOption(this.optionCRK, true);
+    },
+    GetWLCount() {
+      GetWLCount(this.TotalCountQuery).then(res => {
+        if (res.data.code === 2000) {
+          this.TotalCount.TG = res.data.TG[0];
+          this.TotalCount.TGDW = res.data.TG[1];
+          this.TotalCount.YG = res.data.YG[0];
+          this.TotalCount.YGDW = res.data.YG[1];
+          this.TotalCount.ZJSF = res.data.ZJSF[0];
+          this.TotalCount.ZJSFDW = res.data.ZJSF[1];
+          this.TotalCount.SN = res.data.SN[0];
+          this.TotalCount.SNDW = res.data.SN[1];
+          this.TotalCount.ZCJ = res.data.ZCJ[0];
+          this.TotalCount.ZCJDW = res.data.ZCJ[1];
+          this.TotalCount.ZJNJCL = res.data.ZJNJCL[0];
+          this.TotalCount.ZJNJCLDW = res.data.ZJNJCL[1];
+          this.TotalCount.CX = res.data.CX[0];
+          this.TotalCount.CXDW = res.data.CX[1];
+          this.OldTotalCount = Object.assign({}, this.TotalCount);
+        }
+      });
+    },
+    resetCount() {
+      this.TotalCount.YG = 0;
+      this.TotalCount.TG = 0;
+      this.TotalCount.ZJSF = 0;
+      this.TotalCount.SN = 0;
+      this.TotalCount.ZCJ = 0;
+      this.TotalCount.ZJNJCL = 0;
+      this.TotalCount.CX = 0;
+      setTimeout(this.setNewCount, 3000);
+    },
+    setNewCount() {
+      this.TotalCount.YG = this.OldTotalCount.YG;
+      this.TotalCount.TG = this.OldTotalCount.TG;
+      this.TotalCount.ZJSF = this.OldTotalCount.ZJSF;
+      this.TotalCount.SN = this.OldTotalCount.SN;
+      this.TotalCount.ZCJ = this.OldTotalCount.ZCJ;
+      this.TotalCount.ZJNJCL = this.OldTotalCount.ZJNJCL;
+      this.TotalCount.CX = this.OldTotalCount.CX;
+    },
+    stopResetCount() {
+      clearInterval(this.resetCount);
     },
     getList() {
       this.Query.DKCODE = this.DKCODE;
@@ -328,12 +506,28 @@ export default {
           this.drawlineZDWZCRK();
         }
       });
+      let temp = {
+        MAKTX: ""
+      };
+      if (this.QueryZDWL.WL_NAME === null || this.QueryZDWL.WL_NAME == "") {
+        temp.MAKTX = "套管";
+      } else {
+        temp.MAKTX = this.QueryZDWL.WL_NAME;
+      }
+      this.$refs.detailZDWZNEW.getQueryValue(temp);
+      this.GetWLCount();
+      setInterval(this.resetCount, 8000);
     },
     setQueryZDWL(val) {
       this.QueryZDWL.WL_NAME = val;
       this.getZDWZPZ();
+      this.btnQuery();
     },
     btnQuery() {
+      let temp = {
+        MAKTX: this.QueryZDWL.WL_NAME
+      };
+      this.$refs.detailZDWZNEW.getQueryValue(temp);
       this.getList();
     },
     getZDWZPZ() {
@@ -356,6 +550,10 @@ export default {
   },
   mounted() {
     this.init();
+    //
+  },
+  destroyed() {
+    clearInterval(this.resetCount);
   }
 };
 </script>
@@ -372,9 +570,26 @@ export default {
   height: 75px;
 }
 .diva {
-  width: 201px;
-  height: 76px;
-  float: left;
+  width: 130px;
+  height: 44px;
+  //float: left;
+  clear: both;
+  //margin-right: 2px;
+}
+.divb {
+  margin-top: 20px;
+  width: 120;
+  height: 40px;
+  //float: left;
+  border-color: #98bf21;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  //border:1px;
+  //border-top-style:dotted;
+  //border-right-style:solid;
+  //border-bottom-style:dotted;
+  //border-left-style:solid;
   //margin-right: 2px;
 }
 </style>
