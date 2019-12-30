@@ -21,7 +21,11 @@
       />
 
       <map name="planetmap" id="planetmap">
-        <area
+        <area shape="rect" coords="843, 62, 879, 80" title="1号库" @click="enter('01')" />
+        <area shape="rect" coords="843, 61, 879, 101" title="1号库" @click="OpenDialog('ZXK','01')" />
+        <area shape="rect" coords="843, 102, 879, 120" title="2号库" @click="enter('02')" />
+        <area shape="rect" coords="843, 103, 879, 140" title="号库" @click="OpenDialog('ZXK','02')" />
+        <!-- <area
           shape="rect"
           coords="821, 62, 853, 80"
           title="1号库"
@@ -110,7 +114,7 @@
           coords="460, 150, 494, 229"
           title="25活动料棚"
           @click="OpenDialog('ZXK','25')"
-        />
+        />-->
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK','01')" />
