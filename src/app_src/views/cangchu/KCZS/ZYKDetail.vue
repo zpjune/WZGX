@@ -1,6 +1,7 @@
 <template>
   <div id="ZYKDetail" class="app-container calendar-list-container">
     <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px" @change="change">
+      
       <el-collapse-item name="1">
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
