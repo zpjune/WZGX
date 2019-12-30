@@ -408,6 +408,9 @@ export default {
       arr[4] = { value: 15356 * 0.0443.toFixed(2), name: "港西分公司" };
       arr[5] = { value: 15356 * 0.029.toFixed(2), name: "油区分公司" };
       arr[6] = { value: 15356 * 0.141, name: "外部市场" };
+       
+
+       
       this.option2.series[0].data = arr;
       this.option2.series[1].data = arr;
       this.totalziji = 19585;
