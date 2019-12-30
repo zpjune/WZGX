@@ -20,9 +20,9 @@
     />
 
     <map name="planetmap" id="planetmap">
-      <area shape="rect" coords="256, 182, 448, 279" title="二区" @click="OpenDialog('ZYK','01')" />
-      <area shape="rect" coords="465, 209, 709, 281" title="二区" @click="OpenDialog('ZYK','01')" />
-      <area shape="rect" coords="649, 317, 916, 367" title="料场10区" @click="OpenDialog('ZYK','02')" />
+       <area shape="rect" coords="256, 182, 448, 279" title="一场" @click="OpenDialog('ZYK','01')" />
+      <area shape="rect" coords="465, 209, 709, 281" title="一场" @click="OpenDialog('ZYK','01')" />
+      <area shape="rect" coords="640, 373, 917, 491" title="二场" @click="OpenDialog('ZYK','02')" />
 
       
     </map>

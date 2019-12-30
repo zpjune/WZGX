@@ -16,8 +16,10 @@
         style="width:1000px;height:600px;"
       />
       <map name="planetmap" id="planetmap">
-        <area shape="rect" coords="365,361,709,389" title="1号库"  @click="OpenDialog('ZYK','01')">
-        <area shape="rect" coords="364,393,709,434" title="2号库"  @click="OpenDialog('ZYK','02')">
+         <area shape="rect" coords="193,134,350,162" title="9号料台"  @click="OpenDialog('ZYK','09')">
+        <area shape="rect" coords="191,164,351,190" title="8号料台"  @click="OpenDialog('ZYK','08')">
+        <area shape="rect" coords="370, 349, 707, 386" title="1号库" @click="OpenDialog('ZXK','01')" />
+        <area shape="rect" coords="372, 388, 706, 427" title="2号库" @click="OpenDialog('ZXK','02')" />
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="270, 326, 521, 365" title="1号库" @click="OpenDialog('ZXK','01')" />
