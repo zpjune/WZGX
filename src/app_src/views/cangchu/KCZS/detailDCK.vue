@@ -107,7 +107,7 @@
           </el-table-column>
           <!-- <el-table-column label="创建人" prop="CJR"></el-table-column> -->
           <el-table-column label="供货单位" prop="NAME1" width="250"></el-table-column>
-          <el-table-column label="入库地点" prop="KCDD_NAME" width="250"></el-table-column>
+          <el-table-column label="库存地点" prop="KCDD_NAME" width="250"></el-table-column>
         </el-table>
         <el-pagination
           background
