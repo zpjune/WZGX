@@ -1,67 +1,56 @@
 <template>
   <div id="TotalZDWZCRK" class="app-container calendar-list-container">
-    <el-row>
-      <el-col :lg="3" :md="6">
-        <div style="clear: both;position:relative">
-          <div class="diva">
-            <a @click="setQueryZDWL('套管')" title="套管">
-              <img class="zdwz" src="../../../img/zdwz/taoguan1.png" />
-            </a>
-          </div>
-          <div class="divb">
-            <count-to
-              :start-val="0"
-              :end-val="TotalCount.TG"
-              :duration="3000"
-              class="card-panel-num"
-            />
-            {{TotalCount.TGDW}}
-          </div>
+    <div id="divzdwz">
+      <el-card id="taoguan" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('套管')" title="套管">套&nbsp;&nbsp;&nbsp;&nbsp;管</a>
         </div>
-      </el-col>
-      <el-col :lg="3" :md="6">
-        <div>
-          <div class="diva">
-            <a @click="setQueryZDWL('油管')" title="油管">
-              <img class="zdwz" src="../../../img/zdwz/youguan1.png" />
-            </a>
-          </div>
-          <div class="divb">
-            <count-to
-              :start-val="0"
-              :end-val="TotalCount.YG"
-              :duration="3000"
-              class="card-panel-num"
-            />
-            {{TotalCount.YGDW}}
-          </div>
+        <div class="text item">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.TG"
+            :duration="3000"
+            class="card-panel-num"
+          />
+          {{TotalCount.TGDW}}
         </div>
-      </el-col>
-      <el-col :lg="3" :md="6">
-        <div>
-          <div class="diva">
-            <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">
-              <img class="zdwz" src="../../../img/zdwz/zhongjingshifen1.png" />
-            </a>
-          </div>
-          <div class="divb">
-            <count-to
-              :start-val="0"
-              :end-val="TotalCount.ZJSF"
-              :duration="3000"
-              class="card-panel-num"
-            />
-            {{TotalCount.ZJSFDW}}
-          </div>
+      </el-card>
+
+      <el-card id="youguan" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('油管')" title="油管">油&nbsp;&nbsp;&nbsp;&nbsp;管</a>
         </div>
-      </el-col>
-      <el-col :lg="3" :md="6">
-        <div class="diva">
-          <a @click="setQueryZDWL('水泥')" title="油井水泥">
-            <img class="zdwz" src="../../../img/zdwz/shuini1.png" />
-          </a>
+        <div class="text item">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.YG"
+            :duration="3000"
+            class="card-panel-num"
+          />
+          {{TotalCount.YGDW}}
         </div>
-        <div class="divb">
+      </el-card>
+
+      <el-card id="zjsf" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">重晶石粉</a>
+        </div>
+        <div class="text item">
+          <count-to
+            :start-val="0"
+            :end-val="TotalCount.ZJSF"
+            :duration="3000"
+            class="card-panel-num"
+          />
+          {{TotalCount.ZJSFDW}}
+        </div>
+      </el-card>
+
+      <el-card id="yjsn" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('水泥')" title="水泥">油井水泥</a>
+        </div>
+        <div class="text item">
           <count-to
             :start-val="0"
             :end-val="TotalCount.SN"
@@ -70,14 +59,13 @@
           />
           {{TotalCount.SNDW}}
         </div>
-      </el-col>
-      <el-col :lg="3" :md="6">
-        <div class="diva">
-          <a @click="setQueryZDWL('支撑剂')" title="压力支撑剂">
-            <img class="zdwz" src="../../../img/zdwz/yalizhichengji.png" />
-          </a>
+      </el-card>
+
+      <el-card id="ylzcj" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('支撑剂')" title="支撑剂">压裂支撑剂</a>
         </div>
-        <div class="divb">
+        <div class="text item">
           <count-to
             :start-val="0"
             :end-val="TotalCount.ZCJ"
@@ -86,14 +74,13 @@
           />
           {{TotalCount.ZCJDW}}
         </div>
-      </el-col>
-      <el-col :lg="3" :md="6">
-        <div class="diva">
-          <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">
-            <img class="zdwz" src="../../../img/zdwz/zuanjingnijiangcailiao.png" />
-          </a>
+      </el-card>
+
+      <el-card id="zjnjcl" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">钻井泥浆材料</a>
         </div>
-        <div class="divb">
+        <div class="text item">
           <count-to
             :start-val="0"
             :end-val="TotalCount.ZJNJCL"
@@ -102,14 +89,13 @@
           />
           {{TotalCount.ZJNJCLDW}}
         </div>
-      </el-col>
-      <el-col :lg="3" :md="6">
-        <div class="diva">
-          <a @click="setQueryZDWL('柴油')" title="柴油">
-            <img class="zdwz" src="../../../img/zdwz/chaiyou1.png" />
-          </a>
+      </el-card>
+
+      <el-card id="chaiyou" class="box-card">
+        <div slot="header" class="clearfix">
+          <a @click="setQueryZDWL('柴油')" title="柴油">柴&nbsp;&nbsp;&nbsp;&nbsp;油</a>
         </div>
-        <div class="divb">
+        <div class="text item">
           <count-to
             :start-val="0"
             :end-val="TotalCount.CX"
@@ -118,9 +104,11 @@
           />
           {{TotalCount.CXDW}}
         </div>
-      </el-col>
-    </el-row>
-    <div style="clear:both"></div>
+      </el-card>
+    </div>
+    <div style="clear:both;height:10px"></div>
+
+    <TotalZDWZNEW ref="TotalZDWZNEW"></TotalZDWZNEW>
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="2">
         <el-date-picker
@@ -145,8 +133,7 @@
         <el-button type="primary" icon="el-icon-search" @click="btnQuery" size="mini">查询</el-button>
       </el-col>
     </el-row>
-    <div style="margin-top:20px;"></div>
-    <TotalZDWZNEW ref="TotalZDWZNEW"></TotalZDWZNEW>
+
     <div style="clear:both"></div>
     <el-row style="overflow-x: scroll;">
       <el-col :xs="24" :sm="24" :lg="24">
@@ -591,6 +578,84 @@ export default {
   // border-bottom-style: dotted;
   // border-left-style: solid;
   //margin-right: 2px;
+}
+#divzdwz {
+  .text {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .clearfix {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .item {
+    margin-bottom: 10px;
+  }
+
+  .box-card {
+    float: left;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 130px;
+    text-align: center;
+  }
+  #taoguan{
+  /deep/ .el-card__header {
+    background: #FF6666;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #FFCC99;
+  }}
+  #youguan{
+  /deep/ .el-card__header {
+    background: #99CC33;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #99CCFF;
+  }}
+  #zjsf{
+  /deep/ .el-card__header {
+    background: #FFCC00;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #FFCCCC;
+  }}
+  #yjsn{
+  /deep/ .el-card__header {
+    background: #ddd;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #CCCC99;
+  }}
+  #ylzcj{
+  /deep/ .el-card__header {
+    background: #CC99CC;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #66CCCC;
+  }}
+  #zjnjcl{
+  /deep/ .el-card__header {
+    background: #339999;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #FF9900;
+  }}
+  #chaiyou{
+  /deep/ .el-card__header {
+    background: #CCCC00;
+    padding: 12px 5px;
+  }
+  /deep/  .el-card__body{
+    background: #FF99CC;
+  }}
 }
 </style>
 
