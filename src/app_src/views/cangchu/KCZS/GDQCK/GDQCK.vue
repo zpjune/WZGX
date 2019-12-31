@@ -13,11 +13,15 @@
         usemap="#planetmap"
         alt="Planets"
         class="ZYCPIC"
-        style="width:1000px;height:600px;"
+        style="width:1000px;height:600px;vertical-align:text-top"
       />
       <map name="planetmap" id="planetmap">
-        <area shape="rect" coords="87,135,207,162" title="7号库"  @click="OpenDialog('ZYK','07')">
-        <area shape="rect" coords="87,198,207,225" title="5号库"  @click="OpenDialog('ZYK','05')">
+        <area shape="rect" coords="87,135,207,162" title="7号库"  @click="enter('07')">
+        <area shape="rect" coords="87,198,207,225" title="5号库"  @click="enter('05')">
+        <area shape="rect" coords="99,107,216,131" title="8料台"  @click="enter('08')">
+        <area shape="rect" coords="99,193,216,189" title="6料台"  @click="enter('06')">
+        <area shape="rect" coords="99,224,216,249" title="4料台"  @click="enter('04')">
+        <area shape="rect" coords="99,250,216,277" title="3号"  @click="enter('03')">
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="55, 360, 169, 390" title="1号库" @click="OpenDialog('ZXK','01')" />
@@ -1617,6 +1621,13 @@
           v-show="StatusStr[(55-1)*3+2]==='1'"
         />
       </div> -->
+      <img 
+        src="../../../../img/zhinanzhen.png"
+        id="ZXKPIC"
+        border="0"
+        alt="Planets"
+        style="height:100px;width:100px;vertical-align:text-top"
+      />
     </div>
     <!-- <div name="标识图片">
       <img id="ZYCPIC" src="../../../../img/库房2.png" border="0" class="kufang" />库房
@@ -1733,6 +1744,7 @@ export default {
       });
     },
     enter(data) {
+      console.log(this.FacCode + data)
       this.$refs.FloatingWindow.enter(this.FacCode + data);
     },
   },
