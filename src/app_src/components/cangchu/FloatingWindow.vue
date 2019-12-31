@@ -213,7 +213,7 @@
             <el-table-column label="数量">
               <template slot-scope="scope">{{scope.row.GESME|changeNum}}</template>
             </el-table-column>
-            <el-table-column label="单位(吨)" prop="MEINS"></el-table-column>
+            <el-table-column label="单位" prop="MEINS"></el-table-column>
             <el-table-column label="容仓量"></el-table-column>
             <el-table-column label="容积量"></el-table-column>
           </el-table>
