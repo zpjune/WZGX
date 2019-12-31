@@ -17,13 +17,59 @@
         border="0"
         usemap="#planetmap"
         alt="Planets"
-        style="width:1000px;height:600px;"
+        class="ZXKPIC"
       />
       <map name="planetmap" id="planetmap">
         <area shape="rect" coords="843, 62, 879, 80" title="1号库" @click="enter('01')" />
         <area shape="rect" coords="843, 61, 879, 101" title="1号库" @click="OpenDialog('ZXK','01')" />
         <area shape="rect" coords="843, 102, 879, 120" title="2号库" @click="enter('02')" />
-        <area shape="rect" coords="843, 103, 879, 140" title="号库" @click="OpenDialog('ZXK','02')" />
+        <area shape="rect" coords="843, 103, 879, 140" title="2号库" @click="OpenDialog('ZXK','02')" />
+        <area shape="rect" coords="843, 141, 879, 160" title="3号库" @click="enter('03')" />
+        <area shape="rect" coords="843, 161, 879, 184" title="3号库" @click="OpenDialog('ZXK','03')" />
+        <area shape="rect" coords="843, 185, 879, 205" title="4号库" @click="enter('04')" />
+        <area shape="rect" coords="843, 206, 879, 226" title="4号库" @click="OpenDialog('ZXK','04')" />
+        <area shape="rect" coords="843, 227, 879, 247" title="5号库" @click="enter('05')" />
+        <area shape="rect" coords="843, 248, 879, 268" title="5号库" @click="OpenDialog('ZXK','05')" />
+        <area shape="rect" coords="843, 269, 879, 289" title="6号库" @click="enter('06')" />
+        <area shape="rect" coords="843, 290, 879, 310" title="6号库" @click="OpenDialog('ZXK','06')" />
+        <area shape="rect" coords="843, 311, 879, 331" title="7号库" @click="enter('07')" />
+        <area shape="rect" coords="843, 332, 879, 352" title="7号库" @click="OpenDialog('ZXK','07')" />
+        <area shape="rect" coords="843, 353, 879, 373" title="8号库" @click="enter('08')" />
+        <area shape="rect" coords="843, 374, 879, 394" title="8号库" @click="OpenDialog('ZXK','08')" />
+        <area shape="rect" coords="843, 395, 879, 415" title="9号库" @click="enter('09')" />
+        <area shape="rect" coords="843, 416, 879, 436" title="9号库" @click="OpenDialog('ZXK','09')" />
+        <area shape="rect" coords="843, 437, 879, 457" title="10号库" @click="enter('10')" />
+        <area shape="rect" coords="843, 458, 879, 478" title="10号库" @click="OpenDialog('ZXK','10')" />
+        <area shape="rect" coords="843, 479, 879, 499" title="11号库" @click="enter('11')" />
+        <area shape="rect" coords="843, 500, 879, 520" title="11号库" @click="OpenDialog('ZXK','11')" />
+        <area shape="rect" coords="756, 269, 802, 283" title="12号库" @click="enter('12')" />
+        <area shape="rect" coords="756, 284, 802, 298" title="12号库" @click="OpenDialog('ZXK','12')" />
+        <area shape="rect" coords="756, 299, 802, 314" title="13号库" @click="enter('13')" />
+        <area shape="rect" coords="756, 315, 802, 330" title="13号库" @click="OpenDialog('ZXK','13')" />
+        <area shape="rect" coords="756, 331, 802, 345" title="14号库" @click="enter('14')" />
+        <area shape="rect" coords="756, 346, 802, 360" title="14号库" @click="OpenDialog('ZXK','14')" />
+        <area shape="rect" coords="518, 259, 577, 299" title="16料场" @click="enter('16')" />
+        <area shape="rect" coords="518, 300, 577, 340" title="16料场" @click="OpenDialog('ZXK','16')" />
+        <area shape="rect" coords="580, 333, 703, 373" title="15综合库" @click="enter('15')" />
+        <area shape="rect" coords="580, 374, 703, 431" title="15综合库" @click="OpenDialog('ZXK','15')" />
+        <area shape="rect" coords="367, 257, 488, 410" title="17料场" @click="enter('17')" />
+        <area shape="rect" coords="367, 411, 488, 466" title="17料场" @click="OpenDialog('ZXK','17')" />
+        <area shape="rect" coords="266, 260, 304, 327" title="19号库" @click="enter('19')" />
+        <area shape="rect" coords="266, 328, 304, 393" title="19号库" @click="OpenDialog('ZXK','19')" />
+        <area shape="rect" coords="305, 259, 345, 327" title="18号库" @click="enter('18')" />
+        <area shape="rect" coords="305, 328, 345, 393" title="18号库" @click="OpenDialog('ZXK','18')" />
+        <area shape="rect" coords="229, 80, 263, 156" title="20号库" @click="enter('20')" />
+        <area shape="rect" coords="229, 157, 263, 236" title="20号库" @click="OpenDialog('ZXK','20')" />
+        <area shape="rect" coords="265, 80, 305, 156" title="21号库" @click="enter('21')" />
+        <area shape="rect" coords="265, 157, 305, 236" title="21号库" @click="OpenDialog('ZXK','21')" />
+        <area shape="rect" coords="306, 80, 346, 156" title="22号库" @click="enter('22')" />
+        <area shape="rect" coords="306, 157, 346, 236" title="22号库" @click="OpenDialog('ZXK','22')" />
+        <area shape="rect" coords="306, 80, 346, 156" title="22号库" @click="enter('22')" />
+        <area shape="rect" coords="306, 157, 346, 236" title="22号库" @click="OpenDialog('ZXK','22')" />
+        <area shape="rect" coords="380, 80, 420, 156" title="23料场" @click="enter('23')" />
+        <area shape="rect" coords="380, 157, 420, 236" title="23料场" @click="OpenDialog('ZXK','23')" />
+        <area shape="rect" coords="421, 80, 460, 156" title="24活动料棚" @click="enter('24')" />
+        <area shape="rect" coords="421, 157, 460, 236" title="24活动料棚" @click="OpenDialog('ZXK','24')" />
         <!-- <area
           shape="rect"
           coords="821, 62, 853, 80"
@@ -855,7 +901,7 @@
         border="0"
         usemap="#planetmap"
         alt="Planets"
-        style="width:100px;height:100px;"
+        class="zhinanzhen"
       />
     </div>
     <kucunzhanshidetail
@@ -1002,10 +1048,20 @@ export default {
 .box {
   position: relative;
   height: 600px;
-  .ZYCPIC {
+  .ZXKPIC {
     position: absolute;
     z-index: 1;
     right: 25%;
+    width:1000px;
+    height:600px;
+  }
+  .zhinanzhen {
+    width: 100px;
+    height: 100px;
+    //position: absolute;
+    margin-right: 50px;
+    float: right;
+    //margin-right: 10%;
   }
   .FloatingWindow {
     position: absolute;
