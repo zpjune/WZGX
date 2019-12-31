@@ -13,14 +13,26 @@
         usemap="#planetmap"
         alt="Planets"
         class="ZYCPIC"
-        style="width:1000px;height:600px;"
+        style="width:1000px;height:600px;vertical-align:text-top"
       />
       <map name="planetmap" id="planetmap">
-         <area shape="rect" coords="193,134,350,162" title="9号料台"  @click="OpenDialog('ZYK','09')">
-        <area shape="rect" coords="191,164,351,190" title="8号料台"  @click="OpenDialog('ZYK','08')">
-        <area shape="rect" coords="370, 349, 707, 386" title="1号库" @click="OpenDialog('ZXK','01')" />
-        <area shape="rect" coords="372, 388, 706, 427" title="2号库" @click="OpenDialog('ZXK','02')" />
+         <area shape="rect" coords="189,140,348,160" title="9号料台"  @click="OpenDialog('ZYK','09')">
+        <area shape="rect" coords="195,163,351,183" title="8号料台"  @click="OpenDialog('ZYK','08')">
+        <area shape="rect" coords="374, 354, 701, 388" title="1号库" @click="OpenDialog('ZXK','01')" />
+        <area shape="rect" coords="374, 395, 702, 430" title="2号库" @click="OpenDialog('ZXK','02')" />
+         <area shape="rect" coords="372, 437, 702, 473" title="7号料棚" @click="OpenDialog('ZXK','07')" />
+         <area shape="rect" coords="567, 69, 746, 284" title="5号料场" @click="OpenDialog('ZXK','05')" />
+          <area shape="rect" coords="160, 410, 203, 513" title="4号库" @click="OpenDialog('ZXK','04')" />
+          <area shape="rect" coords="371, 480, 567, 513" title="3号库" @click="OpenDialog('ZXK','03')" />
+          <area shape="rect" coords="752, 68, 798, 217" title="6号料棚" @click="OpenDialog('ZXK','06')" />
       </map>
+      <img 
+        src="../../../../img/zhinanzhen.png"
+        id="ZXKPIC"
+        border="0"
+        alt="Planets"
+        style="height:100px;width:100px;vertical-align:text-top"
+      />
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="270, 326, 521, 365" title="1号库" @click="OpenDialog('ZXK','01')" />
         <area shape="rect" coords="270, 365, 521, 405" title="2号库" @click="OpenDialog('ZXK','02')" />
