@@ -16,16 +16,25 @@
       border="0"
       usemap="#planetmap"
       alt="Planets"
-      style="width:1000px;height:600px;"
+      style="width:1000px;height:600px;vertical-align:text-top"
     />
 
     <map name="planetmap" id="planetmap">
-       <area shape="rect" coords="256, 182, 448, 279" title="一场" @click="OpenDialog('ZYK','01')" />
-      <area shape="rect" coords="465, 209, 709, 281" title="一场" @click="OpenDialog('ZYK','01')" />
-      <area shape="rect" coords="640, 373, 917, 491" title="二场" @click="OpenDialog('ZYK','02')" />
-
+      <area shape="rect" coords="92,171,194,310" title="1号料场"  @click="enter('01')">
+      <area shape="rect" coords="271,190,446,277" title="1号料场"  @click="enter('01')">
+      <area shape="rect" coords="466,214,693,282" title="1号料场"  @click="enter('01')">
+      <area shape="rect" coords="773,189,885,251" title="1号料场"  @click="enter('01')">
+      <area shape="rect" coords="637,318,892,480" title="2号料场"  @click="enter('02')">
+      <area shape="rect" coords="507,372,605,442" title="2号料场"  @click="enter('02')"> 
       
     </map>
+    <img 
+        src="../../../../img/zhinanzhen.png"
+        id="ZXKPIC"
+        border="0"
+        alt="Planets"
+        style="height:100px;width:100px;vertical-align:text-top"
+      />
     <!-- <map name="planetmap" id="planetmap">
       <area shape="rect" coords="777, 18, 811, 57" title="1号库" @click="OpenDialog('ZXK',1)" />
       <area shape="rect" coords="777, 59, 811, 98" title="2号库" @click="OpenDialog('ZXK',2)" />

@@ -2,9 +2,8 @@
   <div
     style="text-align:center"
     usemap="#planetmap"
-    id="TotalZYK"
-    class="app-container calendar-list-container"
-  >
+    id="TotalZYK1"
+    class="app-container calendar-list-container">
     <!-- <img src="../../../img/ZXKdetail.png" border="0" usemap="#planetmap" alt="Planets" />
     <map name="planetmap" id="planetmap">
       <area shape="rect" coords="274, 120, 331, 384" @click="OpenDialog" />
@@ -28,7 +27,7 @@
       <area shape="rect" coords="583, 304, 619, 334" title="14号库" @click="OpenDialog('ZYK',14)" />
     </map>-->
 
-    <div class="box" id="box">
+    <div>
       <img
         id="ZYCPIC"
         src="../../../img/ZYKPIC.jpg"
@@ -36,13 +35,27 @@
         usemap="#planetmap"
         alt="Planets"
         class="ZYCPIC"
-        style="width:1000px;height:600px;"
-      />
+        style="width:1000px;height:600px;vertical-align:text-top"/>
       <map name="planetmap" id="planetmap">
-        <area shape="rect" coords="322,75,360,104" title="1号库"  @click="OpenDialog('ZYK','01')">
-        <area shape="rect" coords="530,75,568,104" title="5号库"  @click="OpenDialog('ZYK','05')">
+        <area shape="rect" coords="322,79,360,106" title="1号库"  @click="enter('01')">
+        <area shape="rect" coords="533,77,570,103" title="5号库"  @click="enter('05')">
+        <area shape="rect" coords="576,79,609,104" title="6号库"  @click="enter('06')">
+        <area shape="rect" coords="612,80,651,103" title="7号库"  @click="enter('07')">
+        <area shape="rect" coords="654,80,689,104" title="8号库"  @click="enter('08')">
+        <area shape="rect" coords="535,226,688,252" title="9号料棚"  @click="enter('09')">
+        <area shape="rect" coords="537,179,687,204" title="10号料棚"  @click="enter('10')">
+        <area shape="rect" coords="536,138,687,175" title="11号料场"  @click="enter('11')">
+        <area shape="rect" coords="332,144,481,204" title="12号料场"  @click="enter('12')">
+        <area shape="rect" coords="534,258,688,294" title="13号料场"  @click="enter('13')">
+        <area shape="rect" coords="323,224,483,295" title="14号料场"  @click="enter('14')">
       </map>
-
+      <img 
+        src="../../../img/zhinanzhen.png"
+        id="ZXKPIC"
+        border="0"
+        alt="Planets"
+        style="height:100px;width:100px;vertical-align:text-top;" />
+     
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="280, 43, 316, 76" title="1号库" @click="OpenDialog('ZYK','01')" />
         <area
@@ -355,6 +368,7 @@
         />
       </div> -->
     </div>
+     
     <!-- <div name="标识图片">
       <img id="ZYCPIC" src="../../../img/库房2.png" border="0" class="kufang" />库房
       <img id="ZYCPIC" src="../../../img/料棚.png" border="0" class="liaopeng" />料棚
@@ -483,7 +497,7 @@ export default {
 
 
 <style lang="scss" >
-#TotalZYK {
+#TotalZYK1 {
   .app-container {
     padding-top: 2px;
   }
@@ -493,31 +507,15 @@ export default {
   .app-container /deep/ .el-dialog__header {
     background: #c0c0c0 !important;
   }
-  .box {
-    position: relative;
-    height: 600px;
-    .ZYCPIC {
-      position: absolute;
-      z-index: 1;
-      right: 25%;
-    }
-    // .flag1 {
-    //   position: absolute;
-    //   z-index: 2;
-    //   left: 41.1%;
-    //   top: 10.5%;
-    //   width: 12px;
-    //   height: 12px;
-    // }
-    // .flag2 {
-    //   position: absolute;
-    //   z-index: 2;
-    //   left: 42.538%;
-    //   top: 7%;
-    //   width: 12px;
-    //   height: 12px;
-    // }
-  }
+  // .box {
+  //   position: relative;
+  //   height: 600px;
+  //   .ZYCPIC {
+  //     position: absolute;
+  //     z-index: 1;
+  //     right: 25%;
+  //   }
+  // }
   .kufang {
     width: 55px;
     height: 60px;

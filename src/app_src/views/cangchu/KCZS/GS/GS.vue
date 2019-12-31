@@ -2,9 +2,8 @@
   <div
     style="text-align:center"
     usemap="#planetmap"
-    id="TotalZYK"
-    class="app-container calendar-list-container"
-  >
+    id="TotalGS"
+    class="app-container calendar-list-container">
     <div class="box" id="box">
       <img
         id="GSPIC"
@@ -16,15 +15,15 @@
         style="width:1000px;height:600px;vertical-align:text-top"
       />
       <map name="planetmap" id="planetmap">
-         <area shape="rect" coords="189,140,348,160" title="9号料台"  @click="OpenDialog('ZYK','09')">
-        <area shape="rect" coords="195,163,351,183" title="8号料台"  @click="OpenDialog('ZYK','08')">
-        <area shape="rect" coords="374, 354, 701, 388" title="1号库" @click="OpenDialog('ZXK','01')" />
-        <area shape="rect" coords="374, 395, 702, 430" title="2号库" @click="OpenDialog('ZXK','02')" />
-         <area shape="rect" coords="372, 437, 702, 473" title="7号料棚" @click="OpenDialog('ZXK','07')" />
-         <area shape="rect" coords="567, 69, 746, 284" title="5号料场" @click="OpenDialog('ZXK','05')" />
-          <area shape="rect" coords="160, 410, 203, 513" title="4号库" @click="OpenDialog('ZXK','04')" />
-          <area shape="rect" coords="371, 480, 567, 513" title="3号库" @click="OpenDialog('ZXK','03')" />
-          <area shape="rect" coords="752, 68, 798, 217" title="6号料棚" @click="OpenDialog('ZXK','06')" />
+         <area shape="rect" coords="189,140,348,160" title="9号料台"  @click="enter('09')">
+        <area shape="rect" coords="195,163,351,183" title="8号料台"  @click="enter('08')">
+        <area shape="rect" coords="374, 354, 701, 388" title="1号库" @click="enter('01')" />
+        <area shape="rect" coords="374, 395, 702, 430" title="2号库" @click="enter('02')" />
+         <area shape="rect" coords="372, 437, 702, 473" title="7号料棚" @click="enter('07')" />
+         <area shape="rect" coords="567, 69, 746, 284" title="5号料场" @click="enter('05')" />
+          <area shape="rect" coords="160, 410, 203, 513" title="4号库" @click="enter('04')" />
+          <area shape="rect" coords="371, 480, 567, 513" title="3号库" @click="enter('03')" />
+          <area shape="rect" coords="752, 68, 798, 217" title="6号料棚" @click="enter('06')" />
       </map>
       <img 
         src="../../../../img/zhinanzhen.png"
@@ -304,7 +303,8 @@ export default {
     }
   },
   components: {
-    kucunzhanshidetail
+    kucunzhanshidetail,
+    FloatingWindow
   },
   methods: {
     getList() {
@@ -383,7 +383,7 @@ export default {
 
 
 <style lang="scss" >
-#TotalZYK {
+#TotalGS {
   .app-container {
     padding-top: 2px;
   }
