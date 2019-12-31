@@ -22,6 +22,10 @@
         <area shape="rect" coords="99,193,216,189" title="6料台"  @click="enter('06')">
         <area shape="rect" coords="99,224,216,249" title="4料台"  @click="enter('04')">
         <area shape="rect" coords="99,250,216,277" title="3号"  @click="enter('03')">
+        <area shape="rect" coords="99,283,216,308" title="2料台"  @click="enter('02')">
+        <area shape="rect" coords="99,310,216,336" title="1"  @click="enter('01')">
+        <area shape="rect" coords="99,341,216,366" title="57料台"  @click="enter('57')">
+        <area shape="rect" coords="247,166,426,191" title="18料台"  @click="enter('18')">
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="55, 360, 169, 390" title="1号库" @click="OpenDialog('ZXK','01')" />
