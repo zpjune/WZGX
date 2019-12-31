@@ -72,15 +72,15 @@
         </template>
         <TotalSWKC ref="TotalSWKC"></TotalSWKC>
       </el-collapse-item>
-      <el-collapse-item name="3">
+      <!-- <el-collapse-item name="3">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资储备统计</i>
         </template>
         <TotalZDWZNEW ref="TotalZDWZNEW"></TotalZDWZNEW>
-      </el-collapse-item>
+      </el-collapse-item> -->
       <el-collapse-item name="4">
         <template slot="title">
-          <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资出入库统计</i>
+          <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资统计</i>
         </template>
         <TotalZDWZCRK ref="TotalZDWZCRK"></TotalZDWZCRK>
       </el-collapse-item>
