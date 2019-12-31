@@ -2,7 +2,7 @@
   <div
     style="text-align:center"
     usemap="#planetmap"
-    id="TotalZXK"
+    id="TotalZXK1"
     class="app-container calendar-list-container"
   >
     <!-- <img src="../../../img/ZXKdetail.png" border="0" usemap="#planetmap" alt="Planets" />
@@ -10,7 +10,7 @@
       <area shape="rect" coords="274, 120, 331, 384" @click="OpenDialog" />
       <area shape="rect" coords="1334, 170, 1393, 236" @click="OpenDialog" />
     </map>-->
-    <div id="box" class="box">
+    <div id="box" >
       <img
         src="../../../img/ZXKPIC.jpg"
         id="ZXKPIC"
@@ -18,6 +18,14 @@
         usemap="#planetmap"
         alt="Planets"
         class="ZXKPIC"
+        style="width:1000px;height:600px;vertical-align:text-top"
+      />
+      <img
+        src="../../../img/zhinanzhen.png"
+        id="ZXKPIC"
+        border="0"
+        alt="Planets"
+        style="height:100px;width:100px;vertical-align:text-top"
       />
       <map name="planetmap" id="planetmap">
         <area shape="rect" coords="843, 62, 879, 80" title="1号库" @click="enter('01')" />
@@ -899,14 +907,6 @@
           v-show="StatusStr[3*(26-1)+2]==='1'"
         />
       </div>-->
-      <img
-        src="../../../img/zhinanzhen.png"
-        id="ZXKPIC"
-        border="0"
-        usemap="#planetmap"
-        alt="Planets"
-        class="zhinanzhen"
-      />
     </div>
     <kucunzhanshidetail
       :kcmxdialogVisible="kcmxDialog"
@@ -1056,8 +1056,8 @@ export default {
     position: absolute;
     z-index: 1;
     right: 25%;
-    width:1000px;
-    height:600px;
+    width: 1000px;
+    height: 600px;
   }
   .zhinanzhen {
     width: 100px;

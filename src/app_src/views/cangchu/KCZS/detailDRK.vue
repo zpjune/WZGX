@@ -87,23 +87,27 @@
             <template slot-scope="scope">{{scope.$index+1}}</template>
           </el-table-column>
           <el-table-column label="入库单号" prop="ZDHTZD" width="150"></el-table-column>
-          <el-table-column label="物料组" prop="MATKL"></el-table-column>
+          <!-- <el-table-column label="物料组" prop="MATKL"></el-table-column> -->
           <el-table-column label="物料编码"  width="150">
             <template slot-scope="scope">
               {{scope.row.MATNR|substringWLCODE}}
             </template>
           </el-table-column>
-          <el-table-column label="物料描述" prop="MAKTX" width="250"></el-table-column>
+          <el-table-column label="物料描述" prop="MAKTX" width="350"></el-table-column>
           <el-table-column label="计量单位" prop="JBJLDW"></el-table-column>
           <el-table-column label="待入库数量" prop="MENGE" width="100"></el-table-column>
           <el-table-column label="库存数量">
             <template slot-scope="scope">{{scope.row.GESME|changeNum}}</template>
           </el-table-column>
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
-          <el-table-column label="单位名称" prop="DW_NAME" width="250px"></el-table-column>
+          <el-table-column label="单位名称"  width="150px">
+            <template slot-scope="scope">
+              {{scope.row.DW_NAME|substringName}}
+            </template>
+          </el-table-column>
           <!-- <el-table-column label="创建人" prop="CJR"></el-table-column> -->
           <el-table-column label="供货单位" prop="NAME1" width="250"></el-table-column>
-          <el-table-column label="备注" prop="BZ" width="250"></el-table-column>
+          <el-table-column label="库存地点" prop="KCDD_NAME" width="250"></el-table-column>
         </el-table>
         <el-pagination
           background
@@ -192,6 +196,19 @@ export default {
         return val.substring(7, 18);
       } else {
         return val;
+      }
+    },
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
       }
     }
   }

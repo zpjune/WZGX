@@ -2,7 +2,7 @@
   <div
     style="text-align:center"
     usemap="#planetmap"
-    id="TotalZYK"
+    id="TotalGDQCK"
     class="app-container calendar-list-container"
   >
     <div class="box" id="box">
@@ -26,6 +26,43 @@
         <area shape="rect" coords="99,310,216,336" title="1"  @click="enter('01')">
         <area shape="rect" coords="99,341,216,366" title="57料台"  @click="enter('57')">
         <area shape="rect" coords="247,166,426,191" title="18料台"  @click="enter('18')">
+        <area shape="rect" coords="247,216,333,250" title="16"  @click="enter('16')">
+        <area shape="rect" coords="337,216,423,250" title="17"  @click="enter('17')">
+        <area shape="rect" coords="248,254,334,276" title="13料台"  @click="enter('13')">
+        <area shape="rect" coords="336,254,409,276" title="14料台"  @click="enter('14')">
+        <area shape="rect" coords="250,279,409,276" title="14料台"  @click="enter('14')">
+        <area shape="rect" coords="250,278,334,295" title="11料台"  @click="enter('11')">
+        <area shape="rect" coords="337,278,408,295" title="12料台"  @click="enter('12')">
+        <area shape="rect" coords="250,313,408,295" title="10料棚"  @click="enter('10')">
+        <area shape="rect" coords="250,360,434,400" title="9料场"  @click="enter('9')">
+        <area shape="rect" coords="467,51,495,78" title="38"  @click="enter('38')">
+        <area shape="rect" coords="497,51,525,78" title="39"  @click="enter('39')">
+        <area shape="rect" coords="527,51,643,78" title="40料棚"  @click="enter('40')">
+        <area shape="rect" coords="468,79,519,97" title="37料台"  @click="enter('37')">
+        <area shape="rect" coords="484,99,524,122" title="32料台"  @click="enter('32')">
+        <area shape="rect" coords="543,124,598,146" title="33料台"  @click="enter('33')">
+        <area shape="rect" coords="485,147,524,169" title="29"  @click="enter('29')">
+        <area shape="rect" coords="526,148,562,170" title="30"  @click="enter('30')">
+        <area shape="rect" coords="565,148,597,171" title="31"  @click="enter('31')">
+        <area shape="rect" coords="482,171,597,193" title="28料台"  @click="enter('28')">
+        <area shape="rect" coords="482,210,547,244" title="26"  @click="enter('26')">
+        <area shape="rect" coords="548,210,613,244" title="27"  @click="enter('27')">
+        <area shape="rect" coords="485,273,613,308" title="24"  @click="enter('24')">
+        <area shape="rect" coords="485,343,613,376" title="22"  @click="enter('22')">
+        <area shape="rect" coords="642,90,701,164" title="54料场"  @click="enter('54')">
+        <area shape="rect" coords="704,90,731,164" title="52料台"  @click="enter('52')">
+        <area shape="rect" coords="732,90,772,163" title="53"  @click="enter('53')">
+        <area shape="rect" coords="795,90,937,163" title="56料场"  @click="enter('56')">
+        <area shape="rect" coords="648,210,690,242" title="49"  @click="enter('49')">
+        <area shape="rect" coords="689,210,733,242" title="50"  @click="enter('50')">
+        <area shape="rect" coords="733,210,774,242" title="51"  @click="enter('51')">
+        <area shape="rect" coords="647,275,774,304" title="47"  @click="enter('47')">
+        <area shape="rect" coords="647,342,774,378" title="45料棚"  @click="enter('45')">
+        <area shape="rect" coords="646,392,710,427" title="43"  @click="enter('43')">
+        <area shape="rect" coords="713,392,775,425" title="44"  @click="enter('44')">
+        <area shape="rect" coords="646,429,775,450" title="42料台"  @click="enter('42')">
+        <area shape="rect" coords="646,468,775,532" title="41料场"  @click="enter('41')">
+        <area shape="rect" coords="795,206,944,528" title="55料场"  @click="enter('55')">
       </map>
       <!-- <map name="planetmap" id="planetmap">
         <area shape="rect" coords="55, 360, 169, 390" title="1号库" @click="OpenDialog('ZXK','01')" />

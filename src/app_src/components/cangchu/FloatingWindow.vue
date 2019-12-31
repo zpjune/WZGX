@@ -189,7 +189,9 @@
                   </el-table-column>
                   <el-table-column label="大类" prop="DL" show-overflow-tooltip></el-table-column>
                   <el-table-column label="项数" prop="SL" show-overflow-tooltip></el-table-column>
-                  <el-table-column label="数量" prop="GESME" show-overflow-tooltip></el-table-column>
+                  <el-table-column label="数量" show-overflow-tooltip>
+                    <template slot-scope="scope">{{scope.row.GESME|changeNum}}</template>
+                  </el-table-column>
                   <el-table-column label="计量单位" prop="MEINS" show-overflow-tooltip></el-table-column>
                 </el-table>
                 <div class="pagination-container" style="text-align:center;">
@@ -208,7 +210,9 @@
             </el-table-column>
             <el-table-column label="主要物资" prop="DLNAME" width="250"></el-table-column>
             <el-table-column label="项数" prop="SL"></el-table-column>
-            <el-table-column label="数量" prop="GESME"></el-table-column>
+            <el-table-column label="数量">
+              <template slot-scope="scope">{{scope.row.GESME|changeNum}}</template>
+            </el-table-column>
             <el-table-column label="单位(吨)" prop="MEINS"></el-table-column>
             <el-table-column label="容仓量"></el-table-column>
             <el-table-column label="容积量"></el-table-column>
@@ -300,9 +304,9 @@ export default {
       this.QueryPamara = data;
       this.expands = [];
       this.expands1 = [];
-      this.list=[];
-      this.list1=[];
-      this.list2=[];
+      this.list = [];
+      this.list1 = [];
+      this.list2 = [];
       this.seen = true;
     },
     leave() {
@@ -345,11 +349,11 @@ export default {
         if (row) {
           that.expands1.push(1);
         }
-        this.listQuery={
-          LGPLA:this.QueryPamara,
-          limit:10,
-          page:1,
-        }
+        this.listQuery = {
+          LGPLA: this.QueryPamara,
+          limit: 10,
+          page: 1
+        };
         that.getList();
       } else {
         that.expands1 = [];
@@ -435,6 +439,13 @@ export default {
         } else {
           return str;
         }
+      }
+    },
+    changeNum(val) {
+      if (val === "" || val === null) {
+        return 0.0;
+      } else {
+        return val.toFixed(2);
       }
     }
   }
