@@ -52,7 +52,11 @@
         >
           <el-table-column label="保管员编码" prop="WORKER_CODE"></el-table-column>
           <el-table-column label="保管员姓名" prop="WORKER_NAME"></el-table-column>
-          <el-table-column label="单位工厂" prop="DW_NAME"></el-table-column>
+          <el-table-column label="单位工厂" >
+            <template slot-scope="scope">
+              {{scope.row.DW_NAME|substringName}}
+            </template>
+          </el-table-column>
           <el-table-column label="管理大库" prop="KCDD_NAME"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -351,6 +355,36 @@ export default {
     this.GetList();
     this.GetOptions();
     this.GetCKH();
+  },
+  filters: {
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    },
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
+      }
+    }
   }
 };
 </script>

@@ -44,9 +44,13 @@
           highlight-current-row
         >
           <el-table-column label="工厂编码" prop="DW_CODE"></el-table-column>
-          <el-table-column label="工厂名称" prop="DW_NAME"></el-table-column>
+          <el-table-column label="工厂名称" >
+            <template slot-scope="scope">
+              {{scope.row.DW_NAME|substringName}}
+            </template>
+          </el-table-column>
           <el-table-column label="是否上市">
-            <template slot-scope="scope">{{scope.row.DW_ISSS|ChangeFlag}}</template>
+            <template slot-scope="scope">{{scope.row.DW_ISSS|changeFlag}}</template>
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -285,6 +289,49 @@ export default {
   },
   mounted() {
     this.GetList();
+  },
+  filters: {
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    },
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
+      }
+    },
+    changeFlag(val){
+      if(val===null||val===""){
+        return "";
+      }
+      else{
+        if(val==="Y"){
+          return "是"
+        }
+        else{
+          return "否"
+        }
+      }
+    }
   }
 };
 </script>

@@ -56,9 +56,17 @@
           style="width: 100%"
         >
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
-          <el-table-column label="工厂名称" prop="WERKS_NAME"></el-table-column>
+          <el-table-column label="工厂名称" width="230">
+            <template slot-scope="scope">
+              {{scope.row.WERKS_NAME|substringName}}
+            </template>
+          </el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
-          <el-table-column label="物料编码" :show-overflow-tooltip="true" prop="MATNR"></el-table-column>
+          <el-table-column label="物料编码" :show-overflow-tooltip="true" >
+            <template slot-scope="scope">
+              {{scope.row.MATNR|substringWLCODE}}
+            </template>
+          </el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" :show-overflow-tooltip="true" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
@@ -149,6 +157,36 @@ export default {
   },
   mounted(){
     //this.getList();
+  },
+  filters: {
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    },
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
+      }
+    }
   }
 };
 </script>

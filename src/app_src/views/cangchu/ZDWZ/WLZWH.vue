@@ -26,7 +26,7 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col :xs="24" :sm="20" :md="20" :lg="20" :xl="18">
+      <el-col >
         <el-table
           :data="goods"
           row-key="flagID"
@@ -41,8 +41,9 @@
           fit
           highlight-current-row
           empty-text="空"
+          width="100%"
         >
-          <el-table-column label="大类编码" prop="DLCODE" width="120px"></el-table-column>
+          <el-table-column label="大类编码" prop="DLCODE" ></el-table-column>
           <el-table-column label="大类名称" prop="DLNAME" ></el-table-column>
           <el-table-column label="中类编码" prop="ZLCODE" ></el-table-column>
           <el-table-column label="中类名称" prop="ZLNAME" ></el-table-column>
@@ -50,7 +51,7 @@
           <el-table-column label="小类名称" prop="XLNAME" ></el-table-column>
           <el-table-column label="物料编码" prop="PMCODE" ></el-table-column>
           <el-table-column label="物料名称" prop="PMNAME" ></el-table-column>
-          <el-table-column label="型号规格规范" prop="XHGGGF" ></el-table-column>
+          <el-table-column label="型号规格规范" prop="XHGGGF" width="180"></el-table-column>
           <el-table-column label="基本计量单位" prop="JBJLDW" ></el-table-column>
           <!-- <el-table-column label="属性名称1" prop="SX1MC"></el-table-column>
           <el-table-column label="属性单位1" prop="SX1DW"></el-table-column>

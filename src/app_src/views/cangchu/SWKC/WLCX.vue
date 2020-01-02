@@ -41,10 +41,18 @@
           style="width: 100%"
         >
           <el-table-column label="物料名称" prop="MAKTX" width="400"></el-table-column>
-          <el-table-column label="物料编号" prop="MATNR"></el-table-column>
+          <el-table-column label="物料编号">
+            <template slot-scope="scope">
+              {{scope.row.MATNR|substringWLCODE}}
+            </template>
+          </el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
-          <el-table-column label="存货状态" prop="ZSTATUS"></el-table-column>
+          <el-table-column label="库存状态" >
+            <template slot-scope="scope">
+              {{scope.row.ZSTATUS|fZSTATUS}}
+            </template>
+          </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
               <el-button type="primary" size="mini" @click="getDetail(scope.row)">详情</el-button>
@@ -77,11 +85,19 @@
           highlight-current-row
           style="width: 100%"
         >
-          <el-table-column label="工厂名称" prop="WERKS_NAME"></el-table-column>
+          <el-table-column label="工厂名称" >
+            <template slot-scope="scope">
+              {{scope.row.WERKS_NAME|substringName}}
+            </template>
+          </el-table-column>
           <el-table-column label="库存地点" prop="LGORT_NAME"></el-table-column>
           <el-table-column label="库存数量" prop="GESME"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS"></el-table-column>
-          <el-table-column label="库存状态" prop="ZSTATUS"></el-table-column>
+          <el-table-column label="库存状态" >
+            <template slot-scope="scope">
+              {{scope.row.ZSTATUS|fZSTATUS}}
+            </template>
+          </el-table-column>
         </el-table>
         <el-pagination
           background
@@ -194,6 +210,36 @@ export default {
   },
   mounted() {
     this.getList();
+  },
+  filters: {
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    },
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
+      }
+    }
   }
 };
 </script>

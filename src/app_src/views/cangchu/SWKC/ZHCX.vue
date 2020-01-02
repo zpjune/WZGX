@@ -37,11 +37,19 @@
           
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
-          <el-table-column label="物料编码" prop="MATNR"></el-table-column>
+           <el-table-column label="物料编码">
+            <template slot-scope="scope">
+              {{scope.row.MATNR|substringWLCODE}}
+            </template>
+          </el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
-          <el-table-column label="存货状态" prop="ZSTATUS"></el-table-column>
+          <el-table-column label="存货状态" >
+            <template slot-scope="scope">
+              {{scope.row.ZSTATUS|fZSTATUS}}
+            </template>
+          </el-table-column>
           <el-table-column label="库存地点" prop="LGORT_NAME"></el-table-column>
         </el-table>
         
@@ -119,6 +127,23 @@ export default {
   },
   mounted(){
     this.getList();
+  },
+  filters:{
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
+      }
+    },
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
   }
 };
 </script>

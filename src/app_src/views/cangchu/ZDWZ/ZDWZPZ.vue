@@ -41,7 +41,11 @@
         >
           <!-- <el-table-column label="物料组编码" prop="WLZ_CODE"></el-table-column>
           <el-table-column label="物料组名称" prop="PMNAME"></el-table-column> -->
-          <el-table-column label="物料编码" prop="WL_CODE"></el-table-column>
+          <el-table-column label="物料编码" >
+            <template slot-scope="scope">
+              {{scope.row.WL_CODE|substringWLCODE}}
+            </template>
+          </el-table-column>
           <el-table-column label="物料名称" prop="WL_NAME"></el-table-column>
           <el-table-column label="排序标识" prop="WL_SORT"></el-table-column>
           <el-table-column label="操作">
@@ -352,6 +356,36 @@ export default {
     this.GetList();
     //this.GetParentNode();
     //this.GetPMCODE();
+  },
+   filters: {
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    },
+    fZSTATUS: function(val) {
+      if (val === "03") {
+        return "质检";
+      }
+      if (val === "04") {
+        return "上架";
+      }
+    },
+    substringWLCODE(val) {
+      if (val.startsWith("0000000")) {
+        return val.substring(7, 18);
+      } else {
+        return val;
+      }
+    }
   }
 };
 </script>
