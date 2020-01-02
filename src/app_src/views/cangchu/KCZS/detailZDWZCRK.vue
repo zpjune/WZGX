@@ -1,111 +1,114 @@
 <template>
   <div id="detailZDWZCRK" class="app-container calendar-list-container">
-    <div id="divzdwz">
-      <el-card id="taoguan" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('套管')" title="套管">套&nbsp;&nbsp;&nbsp;&nbsp;管</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.TG"
-            :duration="3000"
-            class="card-panel-num"
-          />
-          {{TotalCount.TGDW}}
-        </div>
-      </el-card>
+    <div style="overflow-x:auto;">
+      <div id="divzdwz">
+        <el-card id="taoguan" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('套管')" title="套管">套&nbsp;&nbsp;&nbsp;&nbsp;管</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.TG"
+              :duration="3000"
+              class="card-panel-num"
+            />
+            {{TotalCount.TGDW}}
+          </div>
+        </el-card>
 
-      <el-card id="youguan" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('油管')" title="油管">油&nbsp;&nbsp;&nbsp;&nbsp;管</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.YG"
-            :duration="3000"
-            class="card-panel-num"
-          />
-          {{TotalCount.YGDW}}
-        </div>
-      </el-card>
+        <el-card id="youguan" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('油管')" title="油管">油&nbsp;&nbsp;&nbsp;&nbsp;管</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.YG"
+              :duration="3000"
+              class="card-panel-num"
+            />
+            {{TotalCount.YGDW}}
+          </div>
+        </el-card>
 
-      <el-card id="zjsf" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">重晶石粉</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.ZJSF"
-            :duration="3000"
-            class="card-panel-num"
-          />
-          {{TotalCount.ZJSFDW}}
-        </div>
-      </el-card>
+        <el-card id="zjsf" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('重晶石粉')" title="重晶石粉">重晶石粉</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.ZJSF"
+              :duration="3000"
+              class="card-panel-num"
+            />
+            {{TotalCount.ZJSFDW}}
+          </div>
+        </el-card>
 
-      <el-card id="yjsn" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('水泥')" title="水泥">油井水泥</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.SN"
-            :duration="3000"
-            class="card-panel-num"
-          />
-          {{TotalCount.SNDW}}
-        </div>
-      </el-card>
+        <el-card id="yjsn" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('水泥')" title="水泥">油井水泥</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.SN"
+              :duration="3000"
+              class="card-panel-num"
+            />
+            {{TotalCount.SNDW}}
+          </div>
+        </el-card>
 
-      <el-card id="ylzcj" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('支撑剂')" title="支撑剂">压裂支撑剂</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.ZCJ"
-            :duration="3000"
-            class="card-panel-num"
-          />
-          {{TotalCount.ZCJDW}}
-        </div>
-      </el-card>
+        <el-card id="ylzcj" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('支撑剂')" title="支撑剂">压裂支撑剂</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.ZCJ"
+              :duration="3000"
+              class="card-panel-num"
+            />
+            {{TotalCount.ZCJDW}}
+          </div>
+        </el-card>
 
-      <el-card id="zjnjcl" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">钻井泥浆材料</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.ZJNJCL"
-            :duration="5000"
-            class="card-panel-num"
-          />
-          {{TotalCount.ZJNJCLDW}}
-        </div>
-      </el-card>
+        <el-card id="zjnjcl" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('钻井泥浆材料')" title="钻井泥浆材料">钻井泥浆材料</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.ZJNJCL"
+              :duration="5000"
+              class="card-panel-num"
+            />
+            {{TotalCount.ZJNJCLDW}}
+          </div>
+        </el-card>
 
-      <el-card id="chaiyou" class="box-card">
-        <div slot="header" class="clearfix">
-          <a @click="setQueryZDWL('柴油')" title="柴油">柴&nbsp;&nbsp;&nbsp;&nbsp;油</a>
-        </div>
-        <div class="text item">
-          <count-to
-            :start-val="0"
-            :end-val="TotalCount.CX"
-            :duration="5000"
-            class="card-panel-num"
-          />
-          {{TotalCount.CXDW}}
-        </div>
-      </el-card>
+        <el-card id="chaiyou" class="box-card">
+          <div slot="header" class="clearfix">
+            <a @click="setQueryZDWL('柴油')" title="柴油">柴&nbsp;&nbsp;&nbsp;&nbsp;油</a>
+          </div>
+          <div class="text item">
+            <count-to
+              :start-val="0"
+              :end-val="TotalCount.CX"
+              :duration="5000"
+              class="card-panel-num"
+            />
+            {{TotalCount.CXDW}}
+          </div>
+        </el-card>
+      </div>
     </div>
+
     <div style="clear:both;height:10px"></div>
 
     <el-row>
@@ -579,6 +582,7 @@ export default {
   //margin-right: 2px;
 }
 #divzdwz {
+  width:1400px;
   .text {
     font-size: 18px;
     font-weight: bold;
@@ -599,62 +603,69 @@ export default {
     height: 130px;
     text-align: center;
   }
-  #taoguan{
-  /deep/ .el-card__header {
-    background: #FF6666;
-    padding: 12px 5px;
+  #taoguan {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-    background: #FFCC99;
-  }}
-  #youguan{
-  /deep/ .el-card__header {
-    background: #FF6666;
-    padding: 12px 5px;
+  #youguan {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-    background: #FFCC99;
-  }}
-  #zjsf{
-  /deep/ .el-card__header {
-    background: #FF6666;
-    padding: 12px 5px;
+  #zjsf {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-     background: #FFCC99;
-  }}
-  #yjsn{
-  /deep/ .el-card__header {
-    background: #FF6666;
-    padding: 12px 5px;
+  #yjsn {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-     background: #FFCC99;
-  }}
-  #ylzcj{
-  /deep/ .el-card__header {
-    background: #FF6666;
-    padding: 12px 5px;
+  #ylzcj {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-     background: #FFCC99;
-  }}
-  #zjnjcl{
-  /deep/ .el-card__header {
-   background: #FF6666;
-    padding: 12px 5px;
+  #zjnjcl {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-    background: #FFCC99;
-  }}
-  #chaiyou{
-  /deep/ .el-card__header {
-     background: #FF6666;
-    padding: 12px 5px;
+  #chaiyou {
+    /deep/ .el-card__header {
+      background: #ff6666;
+      padding: 12px 5px;
+    }
+    /deep/ .el-card__body {
+      background: #ffcc99;
+    }
   }
-  /deep/  .el-card__body{
-     background: #FFCC99;
-  }}
 }
 </style>
 
