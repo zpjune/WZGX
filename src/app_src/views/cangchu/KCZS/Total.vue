@@ -399,15 +399,15 @@ export default {
       // });
       let arr = new Array(7);
       //arr[0] = { value: 13856 * 0.0006.toFixed(2), name: "本部工厂" };
-      arr[0] = { value: 15387.71 * 0.1123.toFixed(2), name: "物采中心" };
-      arr[1] = { value: 15387.71 * 0.5885.toFixed(2), name: "专用管分公司" };
-      arr[2] = { value: 15387.71 * 0.1189.toFixed(2), name: "油品分公司" };
+      arr[0] = { value: (15387.71 * 0.1123).toFixed(2), name: "物采中心" };
+      arr[1] = { value: (15387.71 * 0.5885).toFixed(2), name: "专用管分公司" };
+      arr[2] = { value: (15387.71 * 0.1189).toFixed(2), name: "油品分公司" };
       //arr[3] = { value: 13856 * 0.0008.toFixed(2), name: "港狮分公司" };
       //arr[3] = { value: 13856 * 0.0014.toFixed(2), name: "港骅分公司" };
-      arr[3] = { value: 15387.71 * 0.0262.toFixed(2), name: "港东分公司" };
-      arr[4] = { value: 15387.71 * 0.0443.toFixed(2), name: "港西分公司" };
-      arr[5] = { value: 15387.71 * 0.029.toFixed(2), name: "油区分公司" };
-      arr[6] = { value: 15387.71 * 0.141, name: "外部市场" };
+      arr[3] = { value: (15387.71 * 0.0262).toFixed(2), name: "港东分公司" };
+      arr[4] = { value: (15387.71 * 0.0443).toFixed(2), name: "港西分公司" };
+      arr[5] = { value: (15387.71 * 0.029).toFixed(2), name: "油区分公司" };
+      arr[6] = { value: (15387.71 * 0.141).toFixed(2), name: "外部市场" };
        
 
        
