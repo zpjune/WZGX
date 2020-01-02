@@ -610,51 +610,51 @@ export default {
   }}
   #youguan{
   /deep/ .el-card__header {
-    background: #99CC33;
+    background: #FF6666;
     padding: 12px 5px;
   }
   /deep/  .el-card__body{
-    background: #99CCFF;
+    background: #FFCC99;
   }}
   #zjsf{
   /deep/ .el-card__header {
-    background: #FFCC00;
+    background: #FF6666;
     padding: 12px 5px;
   }
   /deep/  .el-card__body{
-    background: #FFCCCC;
+     background: #FFCC99;
   }}
   #yjsn{
   /deep/ .el-card__header {
-    background: #ddd;
+    background: #FF6666;
     padding: 12px 5px;
   }
   /deep/  .el-card__body{
-    background: #CCCC99;
+     background: #FFCC99;
   }}
   #ylzcj{
   /deep/ .el-card__header {
-    background: #CC99CC;
+    background: #FF6666;
     padding: 12px 5px;
   }
   /deep/  .el-card__body{
-    background: #66CCCC;
+     background: #FFCC99;
   }}
   #zjnjcl{
   /deep/ .el-card__header {
-    background: #339999;
+   background: #FF6666;
     padding: 12px 5px;
   }
   /deep/  .el-card__body{
-    background: #FF9900;
+    background: #FFCC99;
   }}
   #chaiyou{
   /deep/ .el-card__header {
-    background: #CCCC00;
+     background: #FF6666;
     padding: 12px 5px;
   }
   /deep/  .el-card__body{
-    background: #FF99CC;
+     background: #FFCC99;
   }}
 }
 </style>
