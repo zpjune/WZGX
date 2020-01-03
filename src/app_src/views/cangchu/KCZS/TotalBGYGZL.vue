@@ -32,7 +32,6 @@
           <el-table-column label="员工编号" prop="ERNAME"></el-table-column>
           <el-table-column label="姓名" prop="WORKER_NAME"></el-table-column>
           <el-table-column label="单位" prop="WERKS_NAME"></el-table-column>
-
           <el-table-column label="工作量合计（项）" prop="XMHJ"></el-table-column>
           <el-table-column label="数量统计" align="center">
             <el-table-column label="吨" prop="HJ_DUN"></el-table-column>
@@ -91,7 +90,7 @@
       :modal="false"
       :modal-append-to-body="false"
       style="margin-top:10vh;margin-left:100px;"
-      width="60%"
+      width="80%"
     >
       <el-table
         :data="listDetail"
@@ -111,7 +110,7 @@
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="单位名称" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.WERKS_NAME}}</span>
+            <span>{{scope.row.WERKS_NAME|substringName}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" width="125" label="入/出库通知单" fixed="left">
@@ -260,6 +259,21 @@ export default {
   created(){
     this.month=new Date();
     //this.getList();
+  },
+  filters:{
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    }
   }
 };
 </script>
