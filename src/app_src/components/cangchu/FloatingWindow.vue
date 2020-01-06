@@ -300,13 +300,17 @@ export default {
         }
       });
     },
-    enter(data) {
-      this.QueryPamara = data;
+    enter(data) {    
       this.expands = [];
       this.expands1 = [];
       this.list = [];
       this.list1 = [];
       this.list2 = [];
+      this.QueryPamara = data;
+      this.listQuery2 = {
+        LGPLA: this.QueryPamara
+      };
+      this.getList2();
       this.seen = true;
     },
     leave() {
@@ -397,12 +401,6 @@ export default {
     }
   },
   watch: {
-    QueryPamara(val) {
-      this.listQuery2 = {
-        LGPLA: val
-      };
-      this.getList2();
-    }
   },
   filters: {
     fZSTATUS: function(val) {
