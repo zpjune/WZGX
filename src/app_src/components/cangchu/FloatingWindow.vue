@@ -180,7 +180,6 @@
                         @current-change="handleCurrentChange1"
                         :current-page="listQuery1.page"
                         :page-sizes="[10,20,30, 50]"
-                        :page-size="listQuery1.limit"
                         layout="total, sizes, prev, pager, next, jumper"
                         :total="total1"
                         style="text-align: center;"
@@ -201,7 +200,6 @@
                     @current-change="handleCurrentChange"
                     :current-page="1"
                     :page-sizes="[10,20,30,40]"
-                    :page-size="10"
                     layout="total, sizes, prev, pager, next, jumper"
                     :total="total"
                   ></el-pagination>

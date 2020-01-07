@@ -144,7 +144,6 @@
           @current-change="handleCurrentChange"
           :current-page="1"
           :page-sizes="[10,20,30, 50]"
-          :page-size="20"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
           style="text-align: center;"

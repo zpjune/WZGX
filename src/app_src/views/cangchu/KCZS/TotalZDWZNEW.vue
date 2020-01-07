@@ -57,7 +57,6 @@
           @current-change="handleCurrentChange"
           :current-page="listQuery.page"
           :page-sizes="[10,20,30, 50]"
-          :page-size="listQuery.limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
           style="text-align: center;"
@@ -148,7 +147,6 @@
             @current-change="handleCurrentChangeDetail"
             :current-page="listQueryDetail.page"
             :page-sizes="[10,20,30,40]"
-            :page-size="listQueryDetail.limit"
             layout="total, sizes, prev, pager, next, jumper"
             :total="totalDetail"
           ></el-pagination>

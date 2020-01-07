@@ -72,7 +72,6 @@
                 @current-change="handleCurrentChange2"
                 :current-page="listQuery2.page"
                 :page-sizes="[10,20,30, 50]"
-                :page-size="listQuery2.limit"
                 layout="total, sizes, prev, pager, next, jumper"
                 :total="total2"
                 style="text-align: center;"
@@ -104,7 +103,6 @@
           @current-change="handleCurrentChange1"
           :current-page="listQuery1.page"
           :page-sizes="[10,20,30, 50]"
-          :page-size="listQuery1.limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total1"
         ></el-pagination>
@@ -189,7 +187,6 @@
           @current-change="handleCurrentChange"
           :current-page="listQuery.page"
           :page-sizes="[10,20,30, 50]"
-          :page-size="listQuery.limit"
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
           style="text-align: center;"
