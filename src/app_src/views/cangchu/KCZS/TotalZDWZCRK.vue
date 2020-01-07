@@ -501,10 +501,9 @@ export default {
       } else {
         temp.MAKTX = this.QueryZDWL.WL_NAME;
       }
-      console.log(temp);
       this.$refs.TotalZDWZNEW.getQueryValue(temp);
       this.GetWLCount();
-      setInterval(this.resetCount, 8000);
+      //setInterval(this.resetCount, 8000);
     },
     setQueryZDWL(val) {
       this.QueryZDWL.WL_NAME = val;

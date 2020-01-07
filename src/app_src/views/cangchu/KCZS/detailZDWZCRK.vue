@@ -505,7 +505,7 @@ export default {
       }
       this.$refs.detailZDWZNEW.getQueryValue(temp);
       this.GetWLCount();
-      setInterval(this.resetCount, 8000);
+      //setInterval(this.resetCount, 8000);//循环展示数字方法 放出即可过段时间从0-数字再变0在变数字
     },
     setQueryZDWL(val) {
       this.QueryZDWL.WL_NAME = val;
