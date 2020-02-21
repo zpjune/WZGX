@@ -7,3 +7,11 @@ export function GetFacInfo(query) {//单位物资查询接口
       params:query
     })
   }
+
+  export function GetExportFacInfo(query) {//单位物资查询接口
+    return request({
+      url: '/SWKC/GetExportFacInfo',
+      method: 'get',
+      params:query
+    })
+  }

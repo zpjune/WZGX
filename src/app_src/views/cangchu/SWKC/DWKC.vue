@@ -2,17 +2,41 @@
   <div id="DWKC" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂" style="width:95%;" size="mini" clearable v-model="listQuery.WERKS"></el-input>
+        <el-input
+          placeholder="请输入工厂"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.WERKS"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable v-model="listQuery.LGORT"></el-input>
+        <el-input
+          placeholder="请输入库存地点编码"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.LGORT"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable v-model="listQuery.LGORT_NAME"></el-input>
+        <el-input
+          placeholder="请输入库存地点"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.LGORT_NAME"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
-        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-document"
+          size="mini"
+          @click="exportList"
+          v-loading.fullscreen.lock="fullscreenLoading"
+        >导出</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -30,7 +54,7 @@
         >
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
-          <el-table-column label="计量单位" prop="MEINS" ></el-table-column>
+          <el-table-column label="计量单位" prop="MEINS"></el-table-column>
           <el-table-column label="存货状态" prop="ZSTATUS"></el-table-column>
           <el-table-column label="库存地点" prop="LGORT_NAME"></el-table-column>
         </el-table>
@@ -51,12 +75,13 @@
 </template>
 
 <script>
-import { GetFacInfo } from "@/app_src/api/cangchu/SWKC/DWKC";
+import { GetFacInfo, GetExportFacInfo } from "@/app_src/api/cangchu/SWKC/DWKC";
 export default {
   name: "DWKC",
   data() {
     return {
       listloading: false,
+      fullscreenLoading: false,
       fac: [],
       listQuery: {
         limit: 10,
@@ -69,6 +94,54 @@ export default {
     };
   },
   methods: {
+    exportList() {
+      this.fullscreenLoading = true;
+      let list;
+      GetExportFacInfo().then(response => {
+        if (response.data.code === 2000) {
+          list = response.data.items;
+          import("@/frame_src/vendor/Export2Excel").then(excel => {
+            const tHeader = [
+              "工厂编号",
+              "实存数量",
+              "计量单位",
+              "存货状态",
+              "库存地点"
+            ];
+            const filterVal = [
+              "WERKS",
+              "GESME",
+              "MEINS",
+              "ZSTATUS",
+              "LGORT_NAME"
+            ];
+            const data = this.formatJson(filterVal, list);
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: "综合查询信息"
+            });
+          });
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+        this.fullscreenLoading = false;
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          return v[j];
+        })
+      );
+    },
     getList() {
       GetFacInfo(this.listQuery).then(response => {
         if (response.data.code === 2000) {
@@ -103,7 +176,7 @@ export default {
       this.getList();
     }
   },
-  mounted(){
+  mounted() {
     this.getList();
   }
 };

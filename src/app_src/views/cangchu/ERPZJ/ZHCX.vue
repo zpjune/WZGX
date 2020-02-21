@@ -45,7 +45,13 @@
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
-        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
+        <el-button
+          type="primary"
+          icon="el-icon-document"
+          size="mini"
+          @click="exportList"
+          v-loading.fullscreen.lock="fullscreenLoading"
+        >导出</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -85,12 +91,16 @@
 </template>
 
 <script>
-import { GetCompositeInfo } from "@/app_src/api/cangchu/ERPZJ/ZHCX";
+import {
+  GetCompositeInfo,
+  GetExportCompositeInfo
+} from "@/app_src/api/cangchu/ERPZJ/ZHCX";
 export default {
   name: "ZHCX",
   data() {
     return {
       listloading: false,
+      fullscreenLoading: false,
       categoryList: [
         {
           value: 0,
@@ -122,6 +132,59 @@ export default {
   },
 
   methods: {
+    exportList() {
+      this.fullscreenLoading = true;
+      let list;
+      GetExportCompositeInfo().then(response => {
+        if (response.data.code === 2000) {
+          list = response.data.items;
+          import("@/frame_src/vendor/Export2Excel").then(excel => {
+            const tHeader = [
+              "工厂编码",
+              "工厂名称",
+              "大类",
+              "中类",
+              "小类",
+              "品名",
+              "金额"
+            ];
+            const filterVal = [
+              "BWKEY",
+              "BWKEY_NAME",
+              "DLNAME",
+              "ZLNAME",
+              "XLNAME",
+              "PMNAME",
+              "SALK3"
+            ];
+            const data = this.formatJson(filterVal, list);
+            console.log(data);
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: "综合查询信息"
+            });
+          });
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+        this.fullscreenLoading = false;
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          return v[j];
+        })
+      );
+    },
     getList() {
       GetCompositeInfo(this.listQuery).then(response => {
         if (response.data.code === 2000) {

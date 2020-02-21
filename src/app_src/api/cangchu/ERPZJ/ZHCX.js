@@ -7,3 +7,11 @@ export function GetCompositeInfo(query) {//综合查询接口
       params:query
     })
   }
+
+  export function GetExportCompositeInfo(query) {//综合查询导出
+    return request({
+      url: '/ZWKC/GetExportCompositeInfo',
+      method: 'get',
+      params:query
+    })
+  }

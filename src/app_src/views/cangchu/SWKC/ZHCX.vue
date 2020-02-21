@@ -1,24 +1,60 @@
 <template>
   <div id="SWKCZHCX" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
-         <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂" style="width:95%;" size="mini" clearable v-model="listQuery.WERKS"></el-input>
+      <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
+        <el-input
+          placeholder="请输入工厂"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.WERKS"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点编码" style="width:95%;" size="mini" clearable v-model="listQuery.LGORT"></el-input>
+        <el-input
+          placeholder="请输入库存地点编码"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.LGORT"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入库存地点" style="width:95%;" size="mini" clearable v-model="listQuery.LGORT_NAME"></el-input>
+        <el-input
+          placeholder="请输入库存地点"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.LGORT_NAME"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料编码" style="width:95%;" size="mini" clearable v-model="listQuery.MATNR"></el-input>
+        <el-input
+          placeholder="请输入物料编码"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.MATNR"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入物料名称" style="width:95%;" size="mini" clearable v-model="listQuery.MAKTX"></el-input>
+        <el-input
+          placeholder="请输入物料名称"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.MAKTX"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
-        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
+        <!-- <el-button
+          type="primary"
+          icon="el-icon-document"
+          size="mini"
+          @click="exportList"
+          v-loading.fullscreen.lock="fullscreenLoading"
+        >导出</el-button> -->
       </el-col>
     </el-row>
     <el-row>
@@ -34,25 +70,20 @@
           highlight-current-row
           style="width: 100%"
         >
-          
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
-           <el-table-column label="物料编码">
-            <template slot-scope="scope">
-              {{scope.row.MATNR|substringWLCODE}}
-            </template>
+          <el-table-column label="物料编码">
+            <template slot-scope="scope">{{scope.row.MATNR|substringWLCODE}}</template>
           </el-table-column>
           <el-table-column label="物料描述" prop="MAKTX" width="300"></el-table-column>
           <el-table-column label="计量单位" prop="MEINS" width="80"></el-table-column>
           <el-table-column label="实存数量" prop="GESME"></el-table-column>
-          <el-table-column label="存货状态" >
-            <template slot-scope="scope">
-              {{scope.row.ZSTATUS|fZSTATUS}}
-            </template>
+          <el-table-column label="存货状态">
+            <template slot-scope="scope">{{scope.row.ZSTATUS|fZSTATUS}}</template>
           </el-table-column>
           <el-table-column label="库存地点" prop="LGORT_NAME"></el-table-column>
         </el-table>
-        
+
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -69,27 +100,96 @@
 </template>
 
 <script>
-import { GetCompositeInfo } from "@/app_src/api/cangchu/SWKC/ZHCX";
+import {
+  GetCompositeInfo,
+  GetExportCompositeInfo
+} from "@/app_src/api/cangchu/SWKC/ZHCX";
+const StatusOptions = [
+  { key: "03", sex_name: "质检" },
+  { key: "04", sex_name: "上架" }
+];
 export default {
   name: "SWKCZHCX",
   data() {
     return {
+      fullscreenLoading: false,
       listloading: false,
-      fac: [
-      ],
-      listQuery:{
-        WERKS:"",
-        LGORT:"",
-        LGORT_NAME:"",
-        MATNR:"",
-        MAKTX:"",
-        page:1,
-        limit:10
+      fac: [],
+      listQuery: {
+        WERKS: "",
+        LGORT: "",
+        LGORT_NAME: "",
+        MATNR: "",
+        MAKTX: "",
+        page: 1,
+        limit: 10
       },
-      total:0,
+      total: 0
     };
   },
   methods: {
+    exportList() {
+      this.fullscreenLoading = true;
+      let list;
+      GetExportCompositeInfo().then(response => {
+        if (response.data.code === 2000) {
+          list = response.data.items;
+          import("@/frame_src/vendor/Export2Excel").then(excel => {
+            const tHeader = [
+              "工厂编号",
+              "物料组",
+              "物料编码",
+              "物料描述",
+              "计量单位",
+              "实存数量",
+              "存货状态",
+              "库存地点"
+            ];
+            const filterVal = [
+              "WERKS",
+              "MATKL",
+              "MATNR",
+              "MAKTX",
+              "MEINS",
+              "GESME",
+              "ZSTATUS",
+              "LGORT_NAME"
+            ];
+            const data = this.formatJson(filterVal, list);
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: "综合查询信息"
+            });
+          });
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+        this.fullscreenLoading = false;
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          if (j === "ZSTATUS") {
+            return StatusOptions[v[j]];
+          }
+          if (j === "MATNR") {
+            if (v[j].startsWith("0000000")) {
+              return v[j].substring(7, 18);
+            }
+          }
+          return v[j];
+        })
+      );
+    },
     getList() {
       GetCompositeInfo(this.listQuery).then(response => {
         if (response.data.code === 2000) {
@@ -124,10 +224,10 @@ export default {
       this.getList();
     }
   },
-  mounted(){
+  mounted() {
     this.getList();
   },
-  filters:{
+  filters: {
     substringWLCODE(val) {
       if (val.startsWith("0000000")) {
         return val.substring(7, 18);
@@ -142,7 +242,7 @@ export default {
       if (val === "04") {
         return "上架";
       }
-    },
+    }
   }
 };
 </script>
