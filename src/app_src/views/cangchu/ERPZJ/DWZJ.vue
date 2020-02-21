@@ -2,14 +2,26 @@
   <div id="DWZJ" class="app-container calendar-list-container">
     <el-row style="margin-bottom:10px;">
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂编码" style="width:95%;" size="mini" clearable v-model="listQuery.BWKEY"></el-input>
+        <el-input
+          placeholder="请输入工厂编码"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.BWKEY"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
-        <el-input placeholder="请输入工厂名称" style="width:95%;" size="mini" clearable v-model="listQuery.BWKEY_NAME"></el-input>
+        <el-input
+          placeholder="请输入工厂名称"
+          style="width:95%;"
+          size="mini"
+          clearable
+          v-model="listQuery.BWKEY_NAME"
+        ></el-input>
       </el-col>
       <el-col :xs="5" :sm="5" :md="5" :lg="4" :xl="3">
         <el-button type="primary" icon="el-icon-search" size="mini" @click="getList">查询</el-button>
-        <el-button type="primary" icon="el-icon-document" size="mini">导出</el-button>
+        <el-button type="primary" icon="el-icon-document" size="mini" @click="exportList">导出</el-button>
       </el-col>
     </el-row>
     <el-row>
@@ -45,23 +57,61 @@
 </template>
 
 <script>
-import { GetFacMoney } from "@/app_src/api/cangchu/ERPZJ/DWZJ";
+import {
+  GetFacMoney,
+  GetExportsFacMoney
+} from "@/app_src/api/cangchu/ERPZJ/DWZJ";
 export default {
   name: "DWZJ",
   data() {
     return {
       listloading: false,
       fac: [],
-      listQuery:{
-        page:1,
-        limit:10,
-        BWKEY:"",
-        BWKEY_NAME:"",
+      listQuery: {
+        page: 1,
+        limit: 10,
+        BWKEY: "",
+        BWKEY_NAME: ""
       },
-      total:0,
+      total: 0
     };
   },
   methods: {
+    exportList() {
+      let list;
+      GetExportsFacMoney().then(response => {
+        if (response.data.code === 2000) {
+          list = response.data.items;
+          import("@/frame_src/vendor/Export2Excel").then(excel => {
+            const tHeader = ["工厂编码", "工厂名称", "金额"];
+            const filterVal = ["BWKEY", "BWKEY_NAME", "SALK3"];
+            const data = this.formatJson(filterVal, list);
+            console.log(data);
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: "单位资金信息"
+            });
+          });
+        } else {
+          this.listloading = false;
+          this.$notify({
+            position: "bottom-right",
+            title: "失败",
+            message: response.data.message,
+            type: "error",
+            duration: 2000
+          });
+        }
+      });
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v =>
+        filterVal.map(j => {
+          return v[j];
+        })
+      );
+    },
     getList() {
       GetFacMoney(this.listQuery).then(response => {
         if (response.data.code === 2000) {
@@ -88,15 +138,15 @@ export default {
       return "";
     },
     handleSizeChange(val) {
-      this.listQuery.limit=val;
+      this.listQuery.limit = val;
       this.getList();
     },
     handleCurrentChange(val) {
-      this.listQuery.page=val;
+      this.listQuery.page = val;
       this.getList();
-    },
+    }
   },
-  mounted(){
+  mounted() {
     this.getList();
   }
 };

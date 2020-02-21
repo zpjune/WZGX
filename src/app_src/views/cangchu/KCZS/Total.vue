@@ -182,7 +182,7 @@ export default {
         },
         tooltip: {
           trigger: "item",
-          formatter: "{a} <br/>{b} : {c}亿 ({d}%)"
+          formatter: "{a} <br/>{b} : {c}万({d}%)"
         },
         legend: {
           orient: "vertical",
