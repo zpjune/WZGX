@@ -119,7 +119,7 @@ export default {
             excel.export_json_to_excel({
               header: tHeader,
               data,
-              filename: "综合查询信息"
+              filename: "单位库存"
             });
           });
         } else {
