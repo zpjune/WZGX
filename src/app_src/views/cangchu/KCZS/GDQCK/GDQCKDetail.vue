@@ -5,6 +5,7 @@
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
+        <TotalSWKC ref="TotalSWKC" :FacCode="FacCode" ></TotalSWKC>
         <div style="overflow-x: scroll;">
           <GDQCK ref="GDQCK" :FacCode="FacCode"></GDQCK>
         </div>
@@ -51,6 +52,7 @@ import detailZDWZNEW from "@/app_src/views/cangchu/KCZS/detailZDWZNEW";
 import detailZDWZCRK from "@/app_src/views/cangchu/KCZS/detailZDWZCRK";
 import detailDRK from "@/app_src/views/cangchu/KCZS/detailDRK";
 import detailDCK from "@/app_src/views/cangchu/KCZS/detailDCK";
+import TotalSWKC from "@/app_src/views/cangchu/KCZS/TotalSWKC";
 export default {
   name: "GDQCKDetail",
   data() {
@@ -66,7 +68,8 @@ export default {
     detailZDWZNEW,
     detailZDWZCRK,
     detailDRK,
-    detailDCK
+    detailDCK,
+    TotalSWKC
   },
   methods: {
     change(val) {
@@ -82,6 +85,7 @@ export default {
       switch (val) {
         case "1":
           this.$refs.GDQCK.getList();
+          this.$refs.TotalSWKC.getList1();
           break;
         case "2":
           this.$refs.detailJYWZ.getList();
@@ -105,6 +109,7 @@ export default {
   },
   mounted() {
     this.$refs.detailZDWZCRK.getZDWZPZ();
+    this.$refs.TotalSWKC.getList1();
   }
 };
 </script>

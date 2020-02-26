@@ -75,17 +75,17 @@
               ></el-pagination>
             </template>
           </el-table-column>
-          <el-table-column label="工厂编号" width="200">
+          <el-table-column label="工厂编号" >
             <template slot-scope="scope">
               <span>{{scope.row.WERKS}}</span>
             </template>
           </el-table-column>
-          <el-table-column label="工厂名称" width="400">
+          <el-table-column label="工厂名称" >
             <template slot-scope="scope">
               <span>{{scope.row.WERKS_NAME|substringName}}</span>
             </template>
           </el-table-column>
-          <el-table-column label="物资项数" width="380">
+          <el-table-column label="物资项数" >
             <template slot-scope="scope">
               <span>{{scope.row.XM}}</span>
             </template>
@@ -261,6 +261,7 @@ import {
   GetSWKCDL
 } from "@/app_src/api/cangchu/KCZS/Total";
 export default {
+  props:["FacCode"],
   name: "TotalSWKC",
   filters: {
     fZSTATUS: function(val) {
@@ -321,14 +322,16 @@ export default {
         page: 1,
         limit: 10,
         ISWZ: "1",
-        WERKS: ""
+        WERKS: "",
+        LGPLA:this.FacCode,
       },
       list1: [],
       total1: 0,
       listQuery2: {
         page: 1,
         limit: 10,
-        WERKS: ""
+        WERKS: "",
+        LGPLA:this.FacCode,
       },
       list2: [],
       total2: 0,

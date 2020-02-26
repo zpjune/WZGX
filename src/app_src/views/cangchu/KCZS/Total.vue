@@ -70,7 +70,7 @@
         <template slot="title">
           <i class="header-icon el-icon-s-help" style="font-weight:bold">实物库存统计</i>
         </template>
-        <TotalSWKC ref="TotalSWKC"></TotalSWKC>
+        <TotalSWKC ref="TotalSWKC" :FacCode="FacCode"></TotalSWKC>
       </el-collapse-item>
       <!-- <el-collapse-item name="3">
         <template slot="title">
