@@ -92,7 +92,7 @@
           </div>
         </el-card>
 
-        <el-card id="chaiyou" class="box-card">
+        <!-- <el-card id="chaiyou" class="box-card">
           <div slot="header" class="clearfix">
             <a @click="setQueryZDWL('柴油')" title="柴油">柴&nbsp;&nbsp;&nbsp;&nbsp;油</a>
           </div>
@@ -105,7 +105,7 @@
             />
             {{TotalCount.CXDW}}
           </div>
-        </el-card>
+        </el-card> -->
       </div>
     </div>
 

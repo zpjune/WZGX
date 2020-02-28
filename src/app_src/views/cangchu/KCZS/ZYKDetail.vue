@@ -35,11 +35,17 @@
         </template>
         <detailZDWZNEW DKCODE="01" ref="detailZDWZNEW"></detailZDWZNEW>
       </el-collapse-item> -->
-      <el-collapse-item name="4">
+      <!-- <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资统计</i>
         </template>
         <detailZDWZCRK DKCODE="01" ref="detailZDWZCRK"></detailZDWZCRK>
+      </el-collapse-item> -->
+       <el-collapse-item name="4">
+        <template slot="title">
+          <i class="header-icon el-icon-s-flag" style="font-weight:bold" >实物出入库情况</i>
+        </template>
+        <detailSWCRK DKCODE="01" ref="detailSWCRK"></detailSWCRK>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -50,6 +56,7 @@ import ZYK from "@/app_src/views/cangchu/KCZS/ZYK";
 import detailJYWZ from "@/app_src/views/cangchu/KCZS/detailJYWZ";
 import detailZDWZNEW from "@/app_src/views/cangchu/KCZS/detailZDWZNEW";
 import detailZDWZCRK from "@/app_src/views/cangchu/KCZS/detailZDWZCRK";
+import detailSWCRK from "@/app_src/views/cangchu/KCZS/detailSWCRK";
 import detailDRK from "@/app_src/views/cangchu/KCZS/detailDRK";
 import detailDCK from "@/app_src/views/cangchu/KCZS/detailDCK";
 import TotalSWKC from "@/app_src/views/cangchu/KCZS/TotalSWKC";
@@ -70,7 +77,8 @@ export default {
     detailZDWZCRK,
     detailDRK,
     detailDCK,
-    TotalSWKC
+    TotalSWKC,
+    detailSWCRK
   },
   methods: {
     getDetailJYWZData() {
@@ -98,7 +106,7 @@ export default {
           this.$refs.detailZDWZNEW.getList();
           break;
         case "4":
-          this.$refs.detailZDWZCRK.getList();
+          this.$refs.detailSWCRK.GetCRKSL();
           break;
         case "5":
           this.$refs.detailDRK.getList();
@@ -112,7 +120,7 @@ export default {
     }
   },
   mounted() {
-    this.$refs.detailZDWZCRK.getZDWZPZ();
+    //this.$refs.detailZDWZCRK.getZDWZPZ();
     this.$refs.TotalSWKC.getList1();
   }
 };

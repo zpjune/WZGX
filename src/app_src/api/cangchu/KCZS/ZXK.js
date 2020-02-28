@@ -122,3 +122,19 @@ export function GetDCKInfo(query) {//分库 资金查询
       params:query
     })
   }
+
+  export function GetCRKSL(query) {//分库实物出入库柱状图
+    return request({
+      url: '/ZXK/GetCRKSL',
+      method: 'get',
+      params:query
+    })
+  }
+  export function getSWCRKDetail(query) {//分库实物出入库明细
+    return request({
+      url: '/ZXK/getSWCRKDetail',
+      method: 'get',
+      params:query
+    })
+  }
+  
