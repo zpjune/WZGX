@@ -1,7 +1,7 @@
 <template>
   <div id="ZXKDetail" class="app-container calendar-list-container">
     <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px"  @change="change">
-      <el-collapse-item name="7">
+      <el-collapse-item name="7" >
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
@@ -69,7 +69,7 @@ export default {
   name: "ZXKDetail",
   data() {
     return {
-      activeCangku: "1",
+      activeCangku: "7",
       options:[],
       FacCode:"02",
       OldArr: ["7"] //用于记录当前激活的面板名称,1号面板默认打开

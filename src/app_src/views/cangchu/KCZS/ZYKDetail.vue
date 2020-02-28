@@ -1,17 +1,22 @@
 <template>
   <div id="ZYKDetail" class="app-container calendar-list-container">
     <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px" @change="change">
-      
+      <el-collapse-item name="7">
+        <template slot="title">
+          <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>     
+        </template>
+        <TotalSWKC ref="TotalSWKC" :FacCode="FacCode"></TotalSWKC>
+      </el-collapse-item>
       <el-collapse-item name="1">
         <template slot="title">
-          <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
+          <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存平面图</i>
         </template>
-        <TotalSWKC ref="TotalSWKC" :FacCode="FacCode" ></TotalSWKC>
+
         <div style="overflow-x: scroll;">
           <ZYK :FacCode="FacCode" ref="ZYK"></ZYK>
         </div>
       </el-collapse-item>
-       <el-collapse-item name="5">
+      <el-collapse-item name="5">
         <template slot="title">
           <i class="header-icon el-icon-eleme" style="font-weight:bold">计划入库情况</i>
         </template>
@@ -34,16 +39,16 @@
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
         <detailZDWZNEW DKCODE="01" ref="detailZDWZNEW"></detailZDWZNEW>
-      </el-collapse-item> -->
+      </el-collapse-item>-->
       <!-- <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资统计</i>
         </template>
         <detailZDWZCRK DKCODE="01" ref="detailZDWZCRK"></detailZDWZCRK>
-      </el-collapse-item> -->
-       <el-collapse-item name="4">
+      </el-collapse-item>-->
+      <el-collapse-item name="4">
         <template slot="title">
-          <i class="header-icon el-icon-s-flag" style="font-weight:bold" >实物出入库情况</i>
+          <i class="header-icon el-icon-s-flag" style="font-weight:bold">实物出入库情况</i>
         </template>
         <detailSWCRK DKCODE="01" ref="detailSWCRK"></detailSWCRK>
       </el-collapse-item>
@@ -64,10 +69,10 @@ export default {
   name: "ZYKDetail",
   data() {
     return {
-      activeCangku: "1",
+      activeCangku: "7",
       param: "ZYK",
       FacCode: "01",
-      OldArr: ["1"] //用于记录当前激活的面板名称,1号面板默认打开
+      OldArr: ["7"] //用于记录当前激活的面板名称,1号面板默认打开
     };
   },
   components: {
@@ -97,7 +102,7 @@ export default {
       switch (val) {
         case "1":
           this.$refs.ZYK.getList();
-          this.$refs.TotalSWKC.getList1();
+
           break;
         case "2":
           this.$refs.detailJYWZ.getList();
@@ -114,6 +119,9 @@ export default {
         case "6":
           this.$refs.detailDCK.getList();
           break;
+        case "7":
+          this.$refs.TotalSWKC.getList1();
+          break;
         default:
           break;
       }
@@ -121,6 +129,8 @@ export default {
   },
   mounted() {
     //this.$refs.detailZDWZCRK.getZDWZPZ();
+    //this.$refs.TotalSWKC.getList1();
+    //this.$refs.ZYK.getList();
     this.$refs.TotalSWKC.getList1();
   }
 };

@@ -1,13 +1,18 @@
 <template>
   <div id="GDQCKDetail" class="app-container calendar-list-container">
     <el-collapse v-model="activeCangku" style="width:98%;margin-left:20px" @change="change">
-      <el-collapse-item name="1">
+      <el-collapse-item name="7">
         <template slot="title">
           <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存情况</i>
         </template>
-        <TotalSWKC ref="TotalSWKC" :FacCode="FacCode" ></TotalSWKC>
+        <TotalSWKC ref="TotalSWKC" :FacCode="FacCode"></TotalSWKC>
+      </el-collapse-item>
+      <el-collapse-item name="1">
+        <template slot="title">
+          <i class="header-icon el-icon-star-on" style="font-weight:bold">实物库存平面图</i>
+        </template>
         <div style="overflow-x: scroll;">
-        <GS ref="GS" :FacCode=FacCode></GS>
+          <GS ref="GS" :FacCode="FacCode"></GS>
         </div>
       </el-collapse-item>
       <el-collapse-item name="5">
@@ -33,16 +38,16 @@
           <i class="header-icon el-icon-s-platform" style="font-weight:bold">重点物资储备统计</i>
         </template>
         <detailZDWZNEW DKCODE="06" ref="detailZDWZNEW"></detailZDWZNEW>
-      </el-collapse-item> -->
+      </el-collapse-item>-->
       <!-- <el-collapse-item name="4">
         <template slot="title">
           <i class="header-icon el-icon-s-flag" style="font-weight:bold">重点物资统计</i>
         </template>
         <detailZDWZCRK DKCODE="06" ref="detailZDWZCRK"></detailZDWZCRK>
-      </el-collapse-item>    -->
-        <el-collapse-item name="4">
+      </el-collapse-item>-->
+      <el-collapse-item name="4">
         <template slot="title">
-          <i class="header-icon el-icon-s-flag" style="font-weight:bold" >实物出入库情况</i>
+          <i class="header-icon el-icon-s-flag" style="font-weight:bold">实物出入库情况</i>
         </template>
         <detailSWCRK DKCODE="06" ref="detailSWCRK"></detailSWCRK>
       </el-collapse-item>
@@ -63,9 +68,9 @@ export default {
   name: "GDQCKDetail",
   data() {
     return {
-      activeCangku: "1",
-      FacCode:"06",
-      OldArr:["1"],
+      activeCangku: "7",
+      FacCode: "06",
+      OldArr: ["7"]
     };
   },
   components: {
@@ -92,7 +97,6 @@ export default {
       switch (val) {
         case "1":
           this.$refs.GS.getList();
-          this.$refs.TotalSWKC.getList1();
           break;
         case "2":
           this.$refs.detailJYWZ.getList();
@@ -101,7 +105,7 @@ export default {
           this.$refs.detailZDWZNEW.getList();
           break;
         case "4":
-               this.$refs.detailSWCRK.GetCRKSL();
+          this.$refs.detailSWCRK.GetCRKSL();
           break;
         case "5":
           this.$refs.detailDRK.getList();
@@ -109,13 +113,16 @@ export default {
         case "6":
           this.$refs.detailDCK.getList();
           break;
+        case "7":
+          this.$refs.TotalSWKC.getList1();
+          break;
         default:
           break;
       }
     }
   },
   mounted() {
-   // this.$refs.detailZDWZCRK.getZDWZPZ();
+    // this.$refs.detailZDWZCRK.getZDWZPZ();
     this.$refs.TotalSWKC.getList1();
   }
 };
