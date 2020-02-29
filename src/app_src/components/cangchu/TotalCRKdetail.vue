@@ -22,9 +22,9 @@
         size="mini"
         id="table"
       >
-        <el-table-column min-width="100px" align="center" label="库存地点" fixed="left">
+        <el-table-column min-width="100px" align="center" label="单位" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.DKName}}</span>
+            <span>{{scope.row.WERKS_NAME}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="入库金额" fixed="left">
@@ -32,23 +32,23 @@
             <span>{{scope.row.RKJE}}</span>
           </template>
         </el-table-column>
-        <el-table-column min-width="100px" align="center" label="入库量" fixed="left">
+        <!-- <el-table-column min-width="100px" align="center" label="入库量" fixed="left">
           <template slot-scope="scope">
             <span >{{scope.row.RKL}}</span>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column min-width="100px" align="center" label="出库金额" fixed="left">
           <template slot-scope="scope">
             <span>{{scope.row.CKJE}}</span>
           </template>
         </el-table-column>
-        <el-table-column min-width="100px" align="center" label="出库量" fixed="left">
+        <!-- <el-table-column min-width="100px" align="center" label="出库量" fixed="left">
           <template slot-scope="scope">
             <span >{{scope.row.CKL}}</span>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
-      <!-- <div class="pagination-container" style="text-align:center;">
+      <div class="pagination-container" style="text-align:center;">
         <el-pagination
           background
           @size-change="handleSizeChange"
@@ -59,7 +59,7 @@
           layout="total, sizes, prev, pager, next, jumper"
           :total="total"
         ></el-pagination>
-      </div> -->
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -77,14 +77,16 @@ export default {
       list: [],
       listQuery: {
         page: 1,
-        limit: 10
+        limit: 10,
+         year:"",
+      month:"",
+      ISWZ:"1"
       },
       listLoading: false,
-      year:"",
-      month:""
+     month:''
     };
   },
-  props: ["CRKdetaildialogVisible","RCKDetailTitle","pmonth","pyear"],
+  props: ["CRKdetaildialogVisible","RCKDetailTitle","pmonth","pyear","iswz"],
   methods: {
     CloseDialog() {
       this.$emit("listenToChildEvent", false);
@@ -92,15 +94,24 @@ export default {
     getList() {
       let newmonth="0"+this.month;
       if(this.month>9){
-        newmonth=month;
+        newmonth=this.month;
       }
-      let query={year:this.year,month:newmonth}
-      getCRKDetail(query).then(res=>{
+      this.listQuery.month=newmonth;
+     // let query={year:this.year,month:newmonth,ISWZ:this.ISWZ}
+      getCRKDetail(this.listQuery).then(res=>{
         if(res.data.code===2000){
           this.list=res.data.items;
           this.total=res.data.total;
         }
       });
+    },
+     handleSizeChange(val) {
+      this.listQuery.limit = val
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.listQuery.page = val
+      this.getList()
     },
     tableRowClassName({ row, rowIndex }) {
       // 表头行的 className 的回调方法，也可以使用字符串为所有表头行设置一个固定的 className。
@@ -121,10 +132,14 @@ export default {
         this.month=val;
     },
     pyear(val){
-      this.year=val;
+      this.listQuery.year=val;
+    },
+    iswz(val){
+      this.listQuery.ISWZ=val;
     },
     crkdialog(val){
       if(val==true){
+        this.listQuery.page = 1;
         this.getList();
       }
       
