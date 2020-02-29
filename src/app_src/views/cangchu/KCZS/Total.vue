@@ -118,6 +118,7 @@
           @listenToChildEvent="closeDialog"
           :pmonth="crklmonth"
           :pyear="crklyear"
+          :iswz="ISWZ"
           ref="TotalCRKdetail"
         ></TotalCRKdetail>
       </el-collapse-item>
