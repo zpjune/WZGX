@@ -92,7 +92,7 @@
                 @click="CancelRK(scope.row)"
                 size="mini"
                 v-if="scope.row.APPROVAL_STATUS===6"
-              >入库取消</el-button>
+              >出库关闭</el-button>
               <span v-if="scope.row.APPROVAL_STATUS===4">业务已完成,无法操作本条数据</span>
             </template>
           </el-table-column>
