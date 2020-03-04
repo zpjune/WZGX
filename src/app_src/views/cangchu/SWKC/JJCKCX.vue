@@ -131,9 +131,9 @@
               <span v-else-if="scope.row.APPROVAL_STATUS===1">正在审批中</span>
               <span v-else-if="scope.row.APPROVAL_STATUS===2">审批已经通过</span>
               <span v-else-if="scope.row.APPROVAL_STATUS===3">已被驳回</span>
-              <span v-else-if="scope.row.APPROVAL_STATUS===4">业务流程已完成</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===4">业务流程已关闭</span>
               <span v-else-if="scope.row.APPROVAL_STATUS===5">保管员已经补充了单据</span>
-              <span v-else-if="scope.row.APPROVAL_STATUS===6">保管员已经提交了单据</span>
+              <span v-else-if="scope.row.APPROVAL_STATUS===6">保管员已做出库</span>
             </template>
           </el-table-column>
         </el-table>
