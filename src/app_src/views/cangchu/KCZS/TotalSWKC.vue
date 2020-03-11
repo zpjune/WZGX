@@ -83,7 +83,7 @@
                   </template>
                 </el-table-column>
               </el-table>
-              <el-pagination
+              <el-pagination v-if="isPpage"
                 background
                 @size-change="handleSizeChange2"
                 @current-change="handleCurrentChange2"
@@ -359,6 +359,7 @@ export default {
       },
       list2: [],
       total2: 0,
+      isPpage:false,
       //设置row-key只展示一行
       expands: [], //只展开一行放入当前行id
       getRowKeys(row) {
@@ -408,8 +409,6 @@ export default {
         if (res.data.code === 2000) {
           this.list1 = res.data.items;
           this.total1 = res.data.total;
-          console.log(1);
-          console.log(this.list1);
         }
       });
     },
@@ -447,11 +446,13 @@ export default {
     getList2() {
       this.list2 = [];
       this.total2 = 0;
+      this.isPpage=false;
       GetSWKCDL(this.listQuery2).then(res => {
         if (res.data.code === 2000) {
           this.list2 = res.data.items;
           this.total2 = res.data.total;
         }
+        this.isPpage=true;
       });
     },
     handleSizeChange2(val) {
