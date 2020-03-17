@@ -40,7 +40,7 @@
             icon="el-icon-edit"
           >新增</el-button>
           <el-button type="primary" icon="el-icon-edit" size="mini">导入</el-button>
-          <el-button size="mini" type="primary" icon="el-icon-document">导出</el-button>
+          <!-- <el-button size="mini" type="primary" icon="el-icon-document">导出</el-button> -->
         </el-col>
       </el-row>
     </div>
