@@ -322,9 +322,9 @@
                     </el-form-item>
 
                     <el-form-item label="账号：" prop="USER_DOMAIN">
-                      <el-input v-model="temp.USER_DOMAIN" size="mini" ></el-input>
+                      <el-input v-model="temp.USER_DOMAIN" size="mini"></el-input>
                     </el-form-item>
-                    <el-form-item label="用户类型：" prop="USER_TYPE" >
+                    <el-form-item label="用户类型：" prop="USER_TYPE">
                       <el-radio v-model="temp.USER_TYPE" :label="0">管理员</el-radio>
                       <el-radio v-model="temp.USER_TYPE" :label="1">普通用户</el-radio>
                     </el-form-item>
@@ -373,15 +373,14 @@
                       />
                     </el-form-item>
                   </el-col>
-                  <el-col :span="1">
-                  </el-col>
+                  <el-col :span="1"></el-col>
                   <el-col :span="11">
                     <el-form-item :label="$t('userTable.USER_CODE')+'：'" prop="USER_CODE">
                       <el-input v-model="temp.USER_CODE" size="mini"></el-input>
                     </el-form-item>
                     <el-form-item :label="$t('userTable.USER_SEX')+'：'">
                       <el-select
-                        class="filter-item"                   
+                        class="filter-item"
                         v-model="temp.USER_SEX"
                         placeholder="Please select"
                         style="width:100%"
@@ -402,7 +401,7 @@
           <el-input v-model="temp.USER_ALIAS" ></el-input>
                     </el-form-item>-->
                     <el-form-item :label="$t('userTable.PHONE_OFFICE')+'：'" prop="PHONE_OFFICE">
-                      <el-input v-model="temp.PHONE_OFFICE" size="mini" ></el-input>
+                      <el-input v-model="temp.PHONE_OFFICE" size="mini"></el-input>
                     </el-form-item>
 
                     <el-form-item :label="$t('userTable.PHONE_MOBILE')+'：'" prop="PHONE_MOBILE">
@@ -412,7 +411,7 @@
           <el-input v-model="temp.PHONE_ORG"></el-input>
                     </el-form-item>-->
                     <el-form-item :label="$t('userTable.USER_EMAIL')+'：'" prop="USER_EMAIL">
-                      <el-input v-model="temp.USER_EMAIL" size="mini" ></el-input>
+                      <el-input v-model="temp.USER_EMAIL" size="mini"></el-input>
                     </el-form-item>
                     <!--<el-form-item :label="$t('userTable.EMAIL_OFFICE')" prop="EMAIL_OFFICE">
           <el-input v-model="temp.EMAIL_OFFICE"></el-input>
@@ -615,7 +614,10 @@ const flagOptions = [
   { key: 0, flag_name: "禁用" },
   { key: 1, flag_name: "激活" }
 ];
-const sexOptions = [{ key: 0, sex_name: "女" }, { key: 1, sex_name: "男" }];
+const sexOptions = [
+  { key: 0, sex_name: "女" },
+  { key: 1, sex_name: "男" }
+];
 const typeOptions = [
   { key: 0, type_name: "本地账号" },
   { key: 1, type_name: "PTR账号" }
@@ -728,7 +730,8 @@ export default {
         USER_ID: "",
         USER_DOMAIN: "",
         sort: "+USER_ID",
-        orgId: null
+        orgId: null,
+        IS_EXPORT: "0"
       },
       flagOptions,
       sexOptions,
@@ -860,7 +863,6 @@ export default {
   methods: {
     getList() {
       this.listLoading = true;
-      console.log(this.listQuery);
       fetchUserOrgList(this.listQuery).then(response => {
         if (response.data.code === 2000) {
           this.list = response.data.items;
@@ -1023,7 +1025,7 @@ export default {
       this.temp = Object.assign({}, row); // copy obj
       this.temp.USER_PASS2 = row.USER_PASS;
       this.temp.timestamp = new Date(this.temp.timestamp);
-      this.temp.orgId=row.ORGID;
+      this.temp.orgId = row.ORGID;
       this.dialogStatus = "update";
       this.dialogFormVisible = true;
       this.$nextTick(() => {
@@ -1432,43 +1434,58 @@ export default {
       this.$router.push({ path: "/" });
     },
     handleDownload() {
-      // 导出
-      this.downloadLoading = true;
-      import("@/frame_src/vendor/Export2Excel").then(excel => {
-        const tHeader = [
-          "账号类型",
-          "账号",
-          "员工编号",
-          "用户类型",
-          "用户名称",
-          "手机",
-          "办公电话",
-          "手机",
-          "性别",
-          "是否激活",
-          "备注"
-        ];
-        const filterVal = [
-          "AUTHENTICATION_TYPE",
-          "USER_DOMAIN",
-          "USER_CODE",
-          "USER_TYPE",
-          "USER_NAME",
-          "PHONE_MOBILE",
-          "PHONE_OFFICE",
-          "USER_EMAIL",
-          "USER_SEX",
-          "FLAG",
-          "REMARK"
-        ];
-        const data = this.formatJson(filterVal, this.list);
-        //console.log(data);
-        excel.export_json_to_excel({
-          header: tHeader,
-          data,
-          filename: "用户信息表"
-        });
-        this.downloadLoading = false;
+      let temp = {
+        page: 1,
+        limit: 10,
+        USER_NAME: undefined,
+        USER_ID: "",
+        USER_DOMAIN: "",
+        sort: "+USER_ID",
+        orgId: null,
+        IS_EXPORT: "1"
+      };
+      fetchUserOrgList(temp).then(res => {
+        if (res.data.code === 2000) {
+          this.downloadLoading = true;
+          import("@/frame_src/vendor/Export2Excel").then(excel => {
+            const tHeader = [
+              "组织机构名称",
+              "账号类型",
+              "账号",
+              "员工编号",
+              "用户类型",
+              "用户名称",
+              "手机",
+              "办公电话",
+              "手机",
+              "性别",
+              "是否激活",
+              "备注"
+            ];
+            const filterVal = [
+              "ORGNAME",
+              "AUTHENTICATION_TYPE",
+              "USER_DOMAIN",
+              "USER_CODE",
+              "USER_TYPE",
+              "USER_NAME",
+              "PHONE_MOBILE",
+              "PHONE_OFFICE",
+              "USER_EMAIL",
+              "USER_SEX",
+              "FLAG",
+              "REMARK"
+            ];
+            const data = this.formatJson(filterVal, res.data.items);
+            //console.log(data);
+            excel.export_json_to_excel({
+              header: tHeader,
+              data,
+              filename: "用户信息表"
+            });
+            this.downloadLoading = false;
+          });
+        }
       });
     },
     formatJson(filterVal, jsonData) {
