@@ -319,7 +319,7 @@ export default {
         },
         legend: {
           orient: "vertical",
-          left: "right",
+          left: "75%",
            textStyle : {
                            fontSize :17   //文字的字体大小
                          },
