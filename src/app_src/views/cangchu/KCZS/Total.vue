@@ -17,7 +17,7 @@
                     <el-col
                       :span="24"
                       style="font-weight:bold;font-size:16px;text-align:center;color:#696969;padding-top:7px;"
-                    >物资公司总资金</el-col>
+                    >物资供销公司总资金</el-col>
                   </el-row>
                   <el-row>
                     <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center">
