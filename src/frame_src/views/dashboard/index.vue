@@ -144,180 +144,81 @@
                   <img src="../../../frame_src/imgs/notice.png" alt>
                 </el-col>
                 <el-col :span="14">
-                  <span>生产数据信息</span>
+                  <span>账务库存信息</span>
                 </el-col>
                 <el-col :span="8"></el-col>
               </el-row>
             </div>
-            <div style="height:773px;word-wrap:break-word" class="icon" name="height:612px">
-              <el-row>
+            <div style="height:773px;word-wrap:break-word" class="icon" >
+              <!-- <el-row>
                 <el-col :span="4" style="text-align:center;" >
                   <img src="../../../frame_src/imgs/icon/33.png" style="width:50px;height:50px;" alt>
                   <div style="font-size:12px;" class="icon-font" ><span>自采统计</span></div>
                 </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/13.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>统采统计</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/12.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>设备情况</span></div>
-                </el-col>
-                
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/16.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>两金压控</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/27.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>降本增效</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/5.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>厂现直供</span></div>
-                </el-col>
-              </el-row>
-
-               <el-row>
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/7.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>钻井动态</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/17.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>月度消耗统计</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/20.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>到货周期统计</span></div>
-                </el-col>
-                
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/9.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>库存变动统计</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/32.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>成本费用管理</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/35.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>市场收入预计</span></div>
-                </el-col>
-              </el-row>
-
+              </el-row> -->
+               
               <el-row>
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/1.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>物资销售统计</span></div>
+                <el-col :xs="6" :sm="6" :lg="6" style="text-align:right">
+                  <el-row>
+                    <el-col
+                      :span="24">
+                       <img src="../../../app_src/img/renminbi2.png" style="width:85px;height:85px" />
+                  </el-col>
+                  </el-row>
                 </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/2.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>设备油耗统计</span></div>
+                <el-col :xs="6" :sm="6" :lg="6">
+                  <el-row>
+                    <el-col
+                      :span="24"
+                      style="font-weight:bold;font-size:18px;text-align:center;color:#696969;padding-top:10px;"
+                    >物资供销公司总资金</el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center">
+                      <count-to
+                        :start-val="0"
+                        :end-val="totalwzziji"
+                        :duration="3000"
+                        :decimals="2"
+                        class="card-panel-num"
+                      />万
+                    </el-col>
+                  </el-row>
                 </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/3.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>修理费用统计</span></div>
+                <el-col :xs="3" :sm="3" :lg="3" style="text-align:right">
+                  <el-row>
+                    <el-col
+                      :span="24">
+                       <img src="../../../app_src/img/renminbi.png" style="width:85px;height:85px" />
+                  </el-col>
+                  </el-row>
                 </el-col>
-                
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/4.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>利润情况统计</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/6.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>市场占有率</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/8.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>作业计划查询</span></div>
-                </el-col>
-              </el-row>
-
-               <el-row>
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/10.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>外部市场创收</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/11.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>重点物资收发</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/12.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>重点生产信息</span></div>
-                </el-col>
-                
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/18.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>基建维修计划</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/19.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>基建维修进度</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/21.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>生产预测表</span></div>
-                </el-col>
-              </el-row>
-
-              <el-row>
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/25.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>井位进度日报</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/26.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>油管朋度计划</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/27.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>油管月度统计</span></div>
-                </el-col>
-                
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/28.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>配送物流跟踪</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/29.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>产能建设计划</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/30.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>井位需求计划</span></div>
+                <el-col :xs="6" :sm="6" :lg="6">
+                  <el-row>
+                    <el-col
+                      :span="24"
+                      style="font-weight:bold;font-size:18px;text-align:center;color:#696969;padding-top:10px;"
+                    >大港油田总资金</el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="24" style="font-weight:bold;font-size:22px;text-align:center">
+                      <count-to
+                        :start-val="0"
+                        :end-val="totalwzziji"
+                        :duration="3000"
+                        :decimals="2"
+                        class="card-panel-num"
+                      />万
+                    </el-col>
+                  </el-row>
                 </el-col>
               </el-row>
-
-              <el-row>
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/31.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>设备运转记录</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/32.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>当日入库统计</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/34.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>当日出库统计</span></div>
-                </el-col>
-                
-                <el-col :span="4" style="text-align:center;" >
-                  <img src="../../../frame_src/imgs/icon/35.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>油井改造措施</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/36.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>重点工作进度</span></div>
-                </el-col>
-                <el-col :span="4" style="text-align:center">
-                  <img src="../../../frame_src/imgs/icon/37.png" style="width:50px;height:50px;" alt>
-                  <div style="font-size:12px;" class="icon-font"><span>生产产能统计</span></div>
-                </el-col>
-              </el-row>
-              
+             <row>
+                <el-col>
+                  <div style="height:50px"></div>
+                   <div id="pic2" style="width:804px;height:550px;"></div>
+                 </el-col>
+             </row>
             </div>
           </el-card>
         </el-col>
@@ -371,6 +272,7 @@
 import { mapGetters } from "vuex";
 import adminDashboard from "./admin";
 import CountTo from "vue-count-to";
+import { GetKCZJ, } from "@/app_src/api/cangchu/KCZS/Total";
 import {
   getMonthData,
   getNotice,
@@ -402,6 +304,129 @@ export default {
       baseurl: process.env.BASE_API,
       detailVisible: false,
       CHECK_STATE: "1",
+      totalwzziji:0,
+      totalwzziji:0,
+      totalziji:0,
+       option2: {
+        title: {
+          text: "各单位库存资金",
+          subtext: "",
+          x: "center"
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c}万({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          left: "right",
+           textStyle : {
+                           fontSize :17   //文字的字体大小
+                         },
+          data: [
+            "本部工厂",
+            "物采中心",
+            "专用管分公司",
+            "外贸分公司",
+            "油品分公司",
+            "气体供销公司",
+            "港狮分公司",
+            "港南分公司",
+            "港骅分公司",
+            "港东分公司",
+            "港西分公司",
+            "矿区分公司",
+            "炼化分公司",
+            "油区分公司",
+            "设利用分公司",
+            "外部市场"
+          ]
+        },
+        itemStyle: {
+          emphasis: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)"
+          },
+           
+          normal: {
+            color: function(params) {
+              //自定义颜色
+              var colorList = [
+                //"rgb(252,157,154)",
+                "rgb(249,205,173)",
+                "rgb(254,67,101)",
+                "rgb(200,200,169)",
+                "rgb(131,175,155)",
+                "rgb(182,194,154)",
+                "rgb(138,151,123)",
+                "rgb(244,208,0)",
+                "rgb(229,131,8)",
+                "rgb(220,87,18)"
+              ];
+              return colorList[params.dataIndex];
+            }
+          }
+        },
+        series: [
+          {
+            name: "总库存",
+            type: "pie",
+            radius: "75%",
+            center: ["45%", "50%"],
+            label: {
+              normal: {
+                show: true,
+                  //formatter: "{b}: {c}万({d}%)"
+                  formatter: "{d}%",
+                  position: "top",
+                  align: "left",
+                  textStyle : {
+                                    fontSize :20   //文字的字体大小
+                                }
+              }
+            },
+            labelLine:{
+              show:false
+            },
+            data: [
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)"
+              }
+            }
+          }//,
+      //     {
+      //       name: "总库存",
+      //       type: "pie",
+      //       radius: "65%",
+      //       center: ["45%", "50%"],
+      //       label: {
+      //         normal: {
+      //           show: true,
+      //             formatter: "{b}: {c}万",
+      //             position: "outer",
+      //             align: "left"
+      //         }
+      //       },
+      //       labelLine:{
+      //         show:false
+      //       },
+      //       data: [
+      //       ],
+      //       itemStyle: {
+      //         emphasis: {
+      //           shadowBlur: 10,
+      //           shadowOffsetX: 0,
+      //           shadowColor: "rgba(0, 0, 0, 0.5)"
+      //         },
+      //       }
+      //     }
+         ]
+       }
 
     };
   },
@@ -411,6 +436,36 @@ export default {
     //   let mycharts = this.$echarts.init(document.getElementById("pic1"));
     //   mycharts.setOption(this.ZJoption);
     // },
+     drawline2() {
+      ///绘制echarts 饼状图
+      let mycharts = this.$echarts.init(document.getElementById("pic2"));
+      mycharts.setOption(this.option2, true);
+      // setTimeout(() => {
+      //   mycharts.resize();
+      // }, 1500);
+    },
+     getKCZJ() {
+      GetKCZJ().then(res => {
+        if (res.data.code === 2000) {
+          //港东C27C  港西 C27D 油区 C27G  港狮 C279 港华 C27B
+          let arr = new Array(10);
+          arr[0] = { value: res.data.items.C271, name: "本部工厂" };
+          arr[1] = { value: res.data.items.C274, name: "物采中心" };
+          arr[2] = { value: res.data.items.C275, name: "专用管分公司" };
+          arr[3] = { value: res.data.items.C277, name: "油品分公司" };
+          arr[4] = { value: res.data.items.C279, name: "港狮分公司" };
+          arr[5] = { value: res.data.items.C27B, name: "港骅分公司" };
+          arr[6] = { value: res.data.items.C27C, name: "港东分公司" };
+          arr[7] = { value: res.data.items.C27D, name: "港西分公司" };
+          arr[8] = { value: res.data.items.C27G, name: "油区分公司" };
+          arr[9] = { value: res.data.items.C27I, name: "外部市场" };
+          this.option2.series[0].data = arr;
+          this.totalziji = res.data.items.TOTAL;
+          this.totalwzziji = res.data.items.TOTALWZ;
+          this.drawline2();
+        }
+      });
+      },
     getNotice() {
       getNotice(this.temp).then(response => {
         if (response.data.code === 2000) {
@@ -469,7 +524,8 @@ export default {
   created() {},
   mounted() {
     // this.drawlineKC();
-    this.getNotice();
+    //this.getNotice();
+    this.getKCZJ();
   },
   computed: {
     ...mapGetters(["roles"])
