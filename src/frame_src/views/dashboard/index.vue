@@ -216,7 +216,7 @@
              <row>
                 <el-col>
                   <div style="height:50px"></div>
-                   <div id="pic2" style="width:804px;height:550px;"></div>
+                   <div id="pic2" style="width:100%;height:550px;"></div>
                  </el-col>
              </row>
             </div>
@@ -317,31 +317,31 @@ export default {
           trigger: "item",
           formatter: "{a} <br/>{b} : {c}万({d}%)"
         },
-        legend: {
-          orient: "vertical",
-          left: "75%",
-           textStyle : {
-                           fontSize :17   //文字的字体大小
-                         },
-          data: [
-            "本部工厂",
-            "物采中心",
-            "专用管分公司",
-            "外贸分公司",
-            "油品分公司",
-            "气体供销公司",
-            "港狮分公司",
-            "港南分公司",
-            "港骅分公司",
-            "港东分公司",
-            "港西分公司",
-            "矿区分公司",
-            "炼化分公司",
-            "油区分公司",
-            "设利用分公司",
-            "外部市场"
-          ]
-        },
+//         legend: {
+//           orient: "vertical",
+//           left: "75%",
+//            textStyle : {
+//                            fontSize :17   //文字的字体大小
+//                          },
+//           data: [
+//             "本部工厂",
+//             "物采中心",
+//             "专用管分公司",
+//             "外贸分公司",
+//             "油品分公司",
+//             "气体供销公司",
+//             "港狮分公司",
+//             "港南分公司",
+//             "港骅分公司",
+//             "港东分公司",
+//             "港西分公司",
+//             "矿区分公司",
+//             "炼化分公司",
+//             "油区分公司",
+//             "设利用分公司",
+//             "外部市场"
+//           ]
+//         },
         itemStyle: {
           emphasis: {
             shadowBlur: 10,
@@ -373,7 +373,7 @@ export default {
             name: "总库存",
             type: "pie",
             radius: "75%",
-            center: ["45%", "50%"],
+            center: ["50%", "50%"],
             label: {
               normal: {
                 show: true,
