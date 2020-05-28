@@ -24,10 +24,10 @@
       >
         <el-table-column min-width="100px" align="center" label="单位" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.WERKS_NAME}}</span>
+            <span>{{scope.row.WERKS_NAME|substringName}}</span>
           </template>
         </el-table-column>
-        <el-table-column min-width="100px" align="center" label="入库金额" fixed="left">
+        <el-table-column min-width="100px" align="center" label="入库金额(万)" fixed="left">
           <template slot-scope="scope">
             <span>{{scope.row.RKJE}}</span>
           </template>
@@ -37,7 +37,7 @@
             <span >{{scope.row.RKL}}</span>
           </template>
         </el-table-column> -->
-        <el-table-column min-width="100px" align="center" label="出库金额" fixed="left">
+        <el-table-column min-width="100px" align="center" label="出库金额(万)" fixed="left">
           <template slot-scope="scope">
             <span>{{scope.row.CKJE}}</span>
           </template>
@@ -85,6 +85,21 @@ export default {
       listLoading: false,
      month:''
     };
+  },
+  filters:{
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    }
   },
   props: ["CRKdetaildialogVisible","RCKDetailTitle","pmonth","pyear","iswz"],
   methods: {

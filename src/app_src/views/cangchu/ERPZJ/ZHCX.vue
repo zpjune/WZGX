@@ -73,7 +73,11 @@
           <el-table-column label="中类" prop="ZLNAME"></el-table-column>
           <el-table-column label="小类" prop="XLNAME"></el-table-column>
           <el-table-column label="品名" prop="PMNAME"></el-table-column>
-          <el-table-column label="金额" prop="SALK3"></el-table-column>
+          <el-table-column label="金额(万)" prop="SALK3">
+             <template slot-scope="scope">
+            <span >{{scope.row.SALK3|zifilter}}</span>
+          </template>
+          </el-table-column>
         </el-table>
         <el-pagination
           background
@@ -130,7 +134,11 @@ export default {
       total: 0
     };
   },
-
+filters:{
+    zifilter(val){
+      return  (val/10000).toFixed(6);
+    }
+  },
   methods: {
     exportList() {
       this.fullscreenLoading = true;

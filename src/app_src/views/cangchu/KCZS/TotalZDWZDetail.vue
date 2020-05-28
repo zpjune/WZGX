@@ -56,13 +56,15 @@
           style="width: 100%"
         >
           <el-table-column label="工厂编号" prop="WERKS"></el-table-column>
-          <el-table-column label="工厂名称" width="230">
+          <el-table-column label="工厂名称" :show-overflow-tooltip="true" width="150">
             <template slot-scope="scope">
               {{scope.row.WERKS_NAME|substringName}}
             </template>
           </el-table-column>
+           <el-table-column label="库存地点编码" width="95" prop="LGORT"></el-table-column>
+          <el-table-column label="库存地点" width="180" :show-overflow-tooltip="true" prop="LGORT_NAME"></el-table-column>
           <el-table-column label="物料组" prop="MATKL"></el-table-column>
-          <el-table-column label="物料编码" :show-overflow-tooltip="true" >
+          <el-table-column label="物料编码" width="120" :show-overflow-tooltip="true" >
             <template slot-scope="scope">
               {{scope.row.MATNR|substringWLCODE}}
             </template>
@@ -77,8 +79,7 @@
                   <span>{{scope.row.ZSTATUS|fZSTATUS}}</span>
                </template>
           </el-table-column>
-          <el-table-column label="库存地点编码" width="95" prop="LGORT"></el-table-column>
-          <el-table-column label="库存地点" :show-overflow-tooltip="true" prop="LGORT_NAME"></el-table-column>
+         
         </el-table>
         <el-pagination
           background

@@ -134,12 +134,12 @@
         </template>
         <detailDCK :FacCode="FacCode" ref="detailDCK"></detailDCK>
       </el-collapse-item>
-      <el-collapse-item name="8">
+      <!-- <el-collapse-item name="8">
         <template slot="title">
           <i class="header-icon el-icon-s-promotion" style="font-weight:bold">保管员工作量统计</i>
         </template>
         <TotalBGYGZL ref="TotalBGYGZL"></TotalBGYGZL>
-      </el-collapse-item>
+      </el-collapse-item> -->
     </el-collapse>
   </div>
 </template>
@@ -329,7 +329,8 @@ export default {
           }
         ],
         yAxis: [
-          {
+          
+          {name:"单位：万",
             type: "value"
           }
         ],

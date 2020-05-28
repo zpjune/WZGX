@@ -50,7 +50,11 @@
           <!-- <el-table-column label="大类" prop="MATKL"></el-table-column> -->
           <el-table-column label="物料编码" prop="CODE"></el-table-column>
           <el-table-column label="物料名称" prop="NAME"></el-table-column>
-          <el-table-column label="金额" prop="SALK3"></el-table-column>
+          <el-table-column label="金额(万)" prop="SALK3">
+             <template slot-scope="scope">
+            <span >{{scope.row.SALK3|zifilter}}</span>
+          </template>
+          </el-table-column>
         </el-table>
 
         <el-pagination
@@ -90,6 +94,11 @@ export default {
     };
   },
 
+  filters:{
+    zifilter(val){
+      return  (val/10000).toFixed(6);
+    }
+  },
   methods: {
     getList() {
       GetParentWLZList(this.listQuery).then(response => {

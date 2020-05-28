@@ -39,7 +39,11 @@
         >
           <el-table-column label="工厂编码" prop="BWKEY"></el-table-column>
           <el-table-column label="工厂名称" prop="BWKEY_NAME"></el-table-column>
-          <el-table-column label="金额" prop="SALK3"></el-table-column>
+          <el-table-column label="金额(万)" prop="SALK3">
+             <template slot-scope="scope">
+            <span >{{scope.row.SALK3|zifilter}}</span>
+          </template>
+          </el-table-column>
         </el-table>
         <el-pagination
           background
@@ -75,6 +79,11 @@ export default {
       },
       total: 0
     };
+  },
+  filters:{
+    zifilter(val){
+      return  (val/10000).toFixed(6);
+    }
   },
   methods: {
     exportList() {

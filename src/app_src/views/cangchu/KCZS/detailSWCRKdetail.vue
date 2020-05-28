@@ -24,7 +24,7 @@
       >
         <el-table-column min-width="100px" align="center" label="单位" fixed="left">
           <template slot-scope="scope">
-            <span>{{scope.row.WERKS_NAME}}</span>
+            <span>{{scope.row.WERKS_NAME|substringName}}</span>
           </template>
         </el-table-column>
         <el-table-column min-width="100px" align="center" v-if="this.TYP=='0'" label="入库量" fixed="left">
@@ -88,6 +88,21 @@ export default {
       
     };
   },
+  filters:{
+    substringName(val) {
+      if (val === null || val === "") {
+        return "";
+      }
+      if (val.startsWith("大港油田公司")) {
+        let str = val.replace("大港油田公司", "");
+        if (str.startsWith("物资供销公司")) {
+          return str.replace("物资供销公司", "");
+        } else {
+          return str;
+        }
+      }
+    }
+  },
   props: ["SWCRKdetaildialogVisible","SWRCKDetailTitle","pmonth","pyear","DDKCODE","TYP"],
   methods: {
     CloseDialog() {
@@ -102,6 +117,7 @@ export default {
       this.getList()
     },
     getList() {
+      this.list=[];
       let newmonth="0"+this.month;
       if(this.month>9){
         newmonth=this.month;
